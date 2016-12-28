@@ -1,0 +1,8 @@
+name: CoinFlipper
+version: 1.0
+author: gronnmann
+main: me.gronnmann.coinflipper.Main
+depend: [Vault]
+commands:
+    coinflipper:
+        aliases: [ cf ]

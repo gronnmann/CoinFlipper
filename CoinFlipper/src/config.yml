@@ -1,0 +1,5 @@
+min_amount: 300
+max_amount: 1000000
+time_expire: 60
+sound_while_choosing: BLOCK_DISPENSER_DISPENSE
+sound_winner_chosen: ENTITY_FIREWORK_BLAST
