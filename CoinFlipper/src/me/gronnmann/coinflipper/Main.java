@@ -15,16 +15,17 @@ public class Main extends JavaPlugin{
 	public void onEnable(){
 		
 		if (!enableEconomy()){
-			System.out.println("[CoinFlipper] Vault not found.");
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
+		
+		ConfigManager.getManager().setup(this);
+		GUI.getInstance().setup(this);
 		
 		Bukkit.getPluginManager().registerEvents(GUI.getInstance(), this);
 		
 		this.getCommand("coinflipper").setExecutor(new CommandsManager());
 		
-		ConfigManager.getManager().setup(this);
-		GUI.getInstance().setup(this);
+		
 		
 		BettingTimer task = new BettingTimer();
 		task.runTaskTimerAsynchronously(this, 0, 60*20);

@@ -1,0 +1,44 @@
+CMD_PLAYER_ONLY: 'This command is for players only' #Which message should be displayed when console tries to use player-only commands
+NO_PERMISSION: '&cYou don''t have permission to use this command!' #Displayed when player has no permission
+
+HEADS: 'Heads'
+TAILS: 'Tails'
+
+WRONG_MONEY: '&c%NUMBER% is not recognized as a number.' #When played doesn't use a number as value in /coinflipper [amount] [heads/tails]
+
+SYNTAX_L1: '&6Syntax:' 
+SYNTAX_L2: '&a/coinflipper [amount] [heads/tails] &2- &ePlaces a CoinFlipper game'
+SYNTAX_L3: '&a/coinflipper gui &2- &eOpens the GUI'
+
+MIN_BET: '&cPlease provide a bet over &a$%MIN_BET%' #Message when player places bet under minimum
+MAX_BET: '&cPlease provide a bet under &a$%MAX_BET%' #Message when player places bet over maximum
+
+PLACE_SUCCESSFUL: '&aSuccessfully placed a CoinFlipper game.' #Message when player places bet
+PLACE_FAILED_ALREADYGAME: '&cYou already have a CoinFlipper game in progress.' #Message when player tries to place bet but already has one in progress
+PLACE_FAILED_NOMONEY: '&cYou don''t have enough money to do this.' #Message when player tries to place bet but doesn't have enough money
+
+CLEAR_SUCCESSFUL: '&aCleared all bets' #Message when player clears bets
+CLEAR_FAILED_NOBETS: '&cThere are no bets to clear.' #Message when there's no bets to clear
+
+HELP_ITEM_L1: '&6&lCoinFlipper Help'
+HELP_ITEM_L2: '&eLeft-click to challenge flip'
+HELP_ITEM_L3: '&eRight-click to remove your flip'
+HELP_ITEM_L4: '&e''/coinflipper help'' for more help with the commands.'
+
+MENU_HEAD_GAME: '&6Game #%ID%'
+MENU_HEAD_PLAYER: '&2Player: &a%PLAYER%'
+MENU_HEAD_MONEY: '&2Money: &a%MONEY%'
+MENU_HEAD_TIMEREMAINING: '&2Time remaining: &a%HOURS% hours, %MINUTES% minutes'
+MENU_HEAD_SIDE: '&2Side: &a%SIDE%'
+
+BET_REMOVE_SELF_CONFIRM: '&cRight click once more to confirm you want to remove your bet.'
+BET_REMOVE_SELF_SUCCESSFUL: '&aSuccessfully removed your bet.'
+
+BET_REMOVE_OTHER_CONFIRM: '&cRight click once more to confirm you want to remove %PLAYER%''s bet.'
+BET_REMOVE_OTHER_SUCCESSFUL: '&aSuccessfully removed %PLAYER%''s bet.'
+BET_REMOVE_OTHER_NOTIFICATION: '&cYour bet has been removed'
+
+BET_CHALLENGE_CANTSELF: '&cYou can''t challenge your own bet!'
+BET_CHALLENGE_NOMONEY: '&cYou can''t afford to challenge this bet.'
+
+BET_WON: '&aYou have won your bet with the value $%MONEY%' 

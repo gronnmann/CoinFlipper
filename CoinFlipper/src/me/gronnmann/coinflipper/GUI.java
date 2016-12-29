@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import me.gronnmann.coinflipper.MessagesManager.Message;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class GUI implements Listener{
@@ -49,11 +50,11 @@ public class GUI implements Listener{
 		}
 		ItemStack help = new ItemStack(Material.BOOK);
 		ItemMeta helpM = help.getItemMeta();
-		helpM.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + "CoinFlipper Help");
+		helpM.setDisplayName(ChatColor.BOLD + MessagesManager.getMessage(Message.HELP_ITEM_L1));
 		ArrayList<String> lores = new ArrayList<String>();
-		lores.add(ChatColor.YELLOW + "Left-click to challenge flip");
-		lores.add(ChatColor.YELLOW + "Right-click to remove your flip");
-		lores.add(ChatColor.YELLOW + "'/coinflip help' for more help with the commands.");
+		lores.add(MessagesManager.getMessage(Message.HELP_ITEM_L2));
+		lores.add(MessagesManager.getMessage(Message.HELP_ITEM_L3));
+		lores.add(MessagesManager.getMessage(Message.HELP_ITEM_L4));
 		helpM.setLore(lores);
 		help.setItemMeta(helpM);
 		selectionScreen.setItem(49, help);
@@ -74,7 +75,7 @@ public class GUI implements Listener{
 		sm2.setOwner(p2);sk2.setItemMeta(sm2);
 		
 		
-		Inventory inv = Bukkit.createInventory(null, 45, "CoinFlipper Game");
+		Inventory inv = Bukkit.createInventory(null, 45, "CoinFlipper: " + p1 + " vs. " + p2);
 		
 		ItemStack gpG = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte)5);
 		for (int i = 0;i <= 44; i++){
@@ -114,20 +115,20 @@ public class GUI implements Listener{
 		SkullMeta sm = (SkullMeta)skull.getItemMeta();
 		sm.setOwner(b.getPlayer());
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add(ChatColor.DARK_GREEN + "Player: " + ChatColor.GREEN + b.getPlayer());
-		lore.add(ChatColor.DARK_GREEN + "Money:" + ChatColor.GREEN + " $"+b.getAmount());
+		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_PLAYER).replaceAll("%PLAYER%", b.getPlayer()));
+		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_MONEY).replaceAll("%MONEY%", b.getAmount()+""));
 		int hours = b.getTimeRemaining()/60;
 		int mins = b.getTimeRemaining()-hours*60;
-		lore.add(ChatColor.DARK_GREEN + "Time Remaining: " + ChatColor.GREEN + hours+" hours, " + mins + " minutes.");
+		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_TIMEREMAINING).replaceAll("%HOURS%", hours+"").replaceAll("%MINUTES%", mins+""));
 		String side = ".";
 		if (b.getSide() == 0){
-			side = "Tails";
+			side = MessagesManager.getMessage(Message.TAILS);
 		}else{
-			side = "Heads";
+			side = MessagesManager.getMessage(Message.HEADS);
 		}
-		lore.add(ChatColor.DARK_GREEN + "Side: " + ChatColor.GREEN + side);
+		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_SIDE).replaceAll("%SIDE%", side));
 		sm.setLore(lore);
-		sm.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + "Game #" + b.getID());
+		sm.setDisplayName(MessagesManager.getMessage(Message.MENU_HEAD_GAME).replaceAll("%ID%", b.getID()+""));
 		skull.setItemMeta(sm);
 		return skull;
 	}
@@ -165,10 +166,10 @@ public class GUI implements Listener{
 				if (removers.contains(p.getName())){
 					BettingManager.getManager().removeBet(b);
 					this.refreshGameManager();
-					p.sendMessage(ChatColor.GREEN + "Successfully removed your bet.");
+					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_SELF_SUCCESSFUL));
 					Main.getEcomony().depositPlayer(p.getName(), b.getAmount());
 				}else{
-					p.sendMessage(ChatColor.RED + "Right click once more to confirm you want to remove your bet.");
+					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_SELF_CONFIRM));
 					removers.add(p.getName());
 					final String pN = p.getName();
 					Bukkit.getScheduler().scheduleAsyncDelayedTask(pl, new Runnable() {
@@ -192,15 +193,15 @@ public class GUI implements Listener{
 				if (removers.contains(p.getName())){
 					BettingManager.getManager().removeBet(b);
 					this.refreshGameManager();
-					p.sendMessage(ChatColor.GREEN + "Successfully removed " + b.getPlayer() +"'s bet.");
+					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_SUCCESSFUL).replaceAll("%PLAYER%", b.getPlayer()));
 					Player bP = Bukkit.getPlayer(b.getPlayer());
 					if (bP != null){
-						bP.sendMessage(ChatColor.RED + "Your bet has been been removed.");
+						bP.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_NOTIFICATION));
 					}
 					
 					Main.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
 				}else{
-					p.sendMessage(ChatColor.RED + "Right click once more to confirm you want to remove " + b.getPlayer() +"'s bet.");
+					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_CONFIRM).replaceAll("%PLAYER%", b.getPlayer()));
 					removers.add(p.getName());
 					final String pN = p.getName();
 					Bukkit.getScheduler().scheduleAsyncDelayedTask(pl, new Runnable() {
@@ -219,12 +220,12 @@ public class GUI implements Listener{
 		}
 		
 		if (p.getName().equals(b.getPlayer())){
-			p.sendMessage(ChatColor.RED + "You can't play in your own game.");
+			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_CANTSELF));
 			return;
 		}
 		EconomyResponse response = Main.getEcomony().withdrawPlayer(p, b.getAmount());
 		if (!response.transactionSuccess()){
-			p.sendMessage(ChatColor.RED + "You don't have money for this bet!");
+			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_NOMONEY));
 			return;
 		}
 		
@@ -237,7 +238,7 @@ public class GUI implements Listener{
 			public void run(){
 				Player winnerP = Bukkit.getPlayer(winner);
 			if (winnerP != null){
-				winnerP.sendMessage(ChatColor.GREEN + "You have won the bet with the vaue $" + winAmount);
+				winnerP.sendMessage(MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winAmount+""));
 			}
 			}
 		}, 60);
