@@ -1,4 +1,6 @@
-package me.gronnmann.coinflipper;
+package me.gronnmann.coinflipper.bets;
+
+import me.gronnmann.coinflipper.ConfigManager;
 
 public class Bet {
 	private String player;

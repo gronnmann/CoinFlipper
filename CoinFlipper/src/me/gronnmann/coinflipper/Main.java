@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.gronnmann.coinflipper.bets.BettingTimer;
+import me.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.Economy;
 
 
@@ -14,29 +16,25 @@ public class Main extends JavaPlugin{
 	
 	public void onEnable(){
 		
-		if (!enableEconomy()){
-			Bukkit.getPluginManager().disablePlugin(this);
-		}
+		if (!enableEconomy()){Bukkit.getPluginManager().disablePlugin(this);}
 		
 		ConfigManager.getManager().setup(this);
 		GUI.getInstance().setup(this);
-		
-		Bukkit.getPluginManager().registerEvents(GUI.getInstance(), this);
-		
+		StatsManager.getManager().load();
+
 		this.getCommand("coinflipper").setExecutor(new CommandsManager());
-		
 		
 		
 		BettingTimer task = new BettingTimer();
 		task.runTaskTimerAsynchronously(this, 0, 60*20);
 		
+		
+		Bukkit.getPluginManager().registerEvents(GUI.getInstance(), this);
+		Bukkit.getPluginManager().registerEvents(StatsManager.getManager(), this);
 	}
 	
 	public void onDisable(){
-		/*if (BettingManager.getManager().getBets().isEmpty())return;
-		for (Bet b : BettingManager.getManager().getBets()){
-			economy.depositPlayer(b.getPlayer(), b.getAmount());
-		}*/
+		StatsManager.getManager().save();
 	}
 	
 	public boolean enableEconomy(){

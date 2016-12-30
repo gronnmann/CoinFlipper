@@ -13,8 +13,8 @@ public class ConfigManager {
 	public static ConfigManager getManager(){return mng;}
 	
 	private Plugin pl;
-	private File configF, messagesF;
-	private FileConfiguration config, messages;
+	private File configF, messagesF, statsF;
+	private FileConfiguration config, messages, stats;
 	
 	public void setup(Plugin p){
 		
@@ -41,6 +41,16 @@ public class ConfigManager {
 			messages = YamlConfiguration.loadConfiguration(messagesF);
 		}
 		
+		statsF = new File(p.getDataFolder(), "stats.yml");
+		if (!statsF.exists()){
+			try {
+				statsF.createNewFile();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		stats = YamlConfiguration.loadConfiguration(statsF);
+		
 	}
 	
 	//Copy default option
@@ -57,6 +67,7 @@ public class ConfigManager {
 	
 	public FileConfiguration getConfig(){return config;}
 	public FileConfiguration getMessages(){return messages;}
+	public FileConfiguration getStats(){return stats;}
 	
 	public void saveConfig(){
 		try{
@@ -71,5 +82,10 @@ public class ConfigManager {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	public void saveStats(){
+		try{
+			stats.save(statsF);
+		}catch(Exception e){e.printStackTrace();}
 	}
 }

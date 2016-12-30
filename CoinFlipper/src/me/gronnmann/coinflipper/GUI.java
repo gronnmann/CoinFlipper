@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +19,9 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.gronnmann.coinflipper.MessagesManager.Message;
+import me.gronnmann.coinflipper.bets.Bet;
+import me.gronnmann.coinflipper.bets.BettingManager;
+import me.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class GUI implements Listener{
@@ -158,8 +162,9 @@ public class GUI implements Listener{
 		Player p = (Player) e.getWhoClicked();
 		Bet b = BettingManager.getManager().getBet(id);
 		
+		
+		//Removal of bet
 		if (e.isRightClick() 	){
-			
 			//Own remove
 			if (p.getName().equals(b.getPlayer())){
 				if (!p.hasPermission("coinflipper.remove.self"))return;
@@ -219,10 +224,15 @@ public class GUI implements Listener{
 			return;
 		}
 		
+		
+		//Challenging
+		//Check if player challenges himself
 		if (p.getName().equals(b.getPlayer())){
 			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_CANTSELF));
 			return;
 		}
+		
+		//Check if player can afford
 		EconomyResponse response = Main.getEcomony().withdrawPlayer(p, b.getAmount());
 		if (!response.transactionSuccess()){
 			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_NOMONEY));
@@ -231,6 +241,24 @@ public class GUI implements Listener{
 		
 		final double winAmount = b.getAmount()*2;
 		final String winner = BettingManager.getManager().challengeBet(b, p);
+		
+		
+		//Add money stats
+		OfflinePlayer p1 = Bukkit.getOfflinePlayer(p.getName());
+		OfflinePlayer p2 = Bukkit.getOfflinePlayer(b.getPlayer());
+		
+		StatsManager.getManager().getStats(p1.getUniqueId().toString()).addMoneySpent(b.getAmount());
+		StatsManager.getManager().getStats(p2.getUniqueId().toString()).addMoneySpent(b.getAmount());
+		
+		if (winner.equals(p1.getName())){
+			StatsManager.getManager().getStats(p1.getUniqueId().toString()).addMoneyWon(winAmount);
+		}else{
+			StatsManager.getManager().getStats(p2.getUniqueId().toString()).addMoneyWon(winAmount);
+		}
+		//Money stats end
+		
+		
+		//Create animations & give money
 		Main.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winAmount);
 		this.generateAnimations(p.getName(), b.getPlayer(), winner);
 		

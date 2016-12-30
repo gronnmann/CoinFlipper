@@ -1,9 +1,14 @@
-package me.gronnmann.coinflipper;
+package me.gronnmann.coinflipper.bets;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import me.gronnmann.coinflipper.GUI;
+import me.gronnmann.coinflipper.Main;
+import me.gronnmann.coinflipper.stats.StatsManager;
 
 public class BettingManager {
 	private BettingManager(){}
@@ -69,8 +74,12 @@ public class BettingManager {
 		Random rn = new Random();
 		int r = rn.nextInt(2);
 		if (r == 0){
+			StatsManager.getManager().getStats(p).addLose();
+			StatsManager.getManager().getStats(Bukkit.getOfflinePlayer(b.getPlayer()).getUniqueId().toString()).addWin();
 			return b.getPlayer();
 		}else{
+			StatsManager.getManager().getStats(p).addWin();
+			StatsManager.getManager().getStats(Bukkit.getOfflinePlayer(b.getPlayer()).getUniqueId().toString()).addLose();
 			return p.getName();
 		}
 	}
