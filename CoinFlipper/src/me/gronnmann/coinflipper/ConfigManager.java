@@ -3,6 +3,7 @@ package me.gronnmann.coinflipper;
 import java.io.File;
 import java.io.InputStream;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -24,9 +25,26 @@ public class ConfigManager {
 		configF = new File(p.getDataFolder(), "config.yml");
 		if (!configF.exists()){
 			p.saveDefaultConfig();
+			config = YamlConfiguration.loadConfiguration(configF);
+			
+			String packageName = Bukkit.getServer().getClass().getPackage().getName();
+			int vID = Integer.parseInt(packageName.split("_")[1]);
+			if (vID < 9){
+				config.set("sound_while_choosing", "CLICK");
+				config.set("sound_winner_chosen", "FIREWORK_BLAST");
+			}
+			
+			
+			this.saveConfig();
+			
+		}else{
+			config = YamlConfiguration.loadConfiguration(configF);
 		}
-		config = YamlConfiguration.loadConfiguration(configF);
-		this.saveConfig();
+		
+		String packageName = Bukkit.getServer().getClass().getPackage().getName();
+		String vID = packageName.split("_")[1];
+		
+		
 		
 		//Messages
 		messagesF = new File(p.getDataFolder(), "messages.yml");

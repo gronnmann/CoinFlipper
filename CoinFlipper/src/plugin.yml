@@ -1,5 +1,5 @@
 name: CoinFlipper
-version: 1.2
+version: 1.2_5
 author: gronnmann
 main: me.gronnmann.coinflipper.Main
 depend: [Vault]

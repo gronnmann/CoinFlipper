@@ -21,7 +21,7 @@ public class Main extends JavaPlugin{
 		ConfigManager.getManager().setup(this);
 		GUI.getInstance().setup(this);
 		StatsManager.getManager().load();
-
+		
 		this.getCommand("coinflipper").setExecutor(new CommandsManager());
 		
 		

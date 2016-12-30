@@ -78,8 +78,16 @@ public class GUI implements Listener{
 		sm1.setOwner(p1);sk1.setItemMeta(sm1);
 		sm2.setOwner(p2);sk2.setItemMeta(sm2);
 		
+		String invName = "CoinFlipper: " + p1 + " vs. " + p2;
+		String packageName = Bukkit.getServer().getClass().getPackage().getName();
+		int vID = Integer.parseInt(packageName.split("_")[1]);
 		
-		Inventory inv = Bukkit.createInventory(null, 45, "CoinFlipper: " + p1 + " vs. " + p2);
+		if (invName.length() > 32 && vID < 9){
+			invName = "CoinFlipper Game";
+		}
+		
+		
+		Inventory inv = Bukkit.createInventory(null, 45, invName);
 		
 		ItemStack gpG = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte)5);
 		for (int i = 0;i <= 44; i++){
@@ -315,11 +323,11 @@ class Animation extends BukkitRunnable{
 			if (phase == 30){
 				try{
 					Player p = Bukkit.getPlayer(s1);
-					p.playSound(p.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_winner_chosen")), 1F, 1F);
+					p.playSound(p.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_winner_chosen").toUpperCase()), 1F, 1F);
 				}catch(Exception e){}
 				try{
 					Player p2 = Bukkit.getPlayer(s2);
-					p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_winner_chosen")) , 1F, 1F);
+					p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_winner_chosen").toUpperCase()) , 1F, 1F);
 				}catch(Exception e){}
 			}
 			ItemStack win = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte)4);
@@ -467,11 +475,11 @@ class Animation extends BukkitRunnable{
 		
 		try{
 			Player p = Bukkit.getPlayer(s1);
-			p.playSound(p.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing")) , 1F, 1F);
+			p.playSound(p.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
 		}catch(Exception e){}
 		try{
 			Player p2 = Bukkit.getPlayer(s2);
-			p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing")) , 1F, 1F);
+			p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
 		}catch(Exception e){}
 		
 	}
