@@ -1,11 +1,11 @@
-package me.gronnmann.coinflipper;
+package io.github.gronnmann.coinflipper;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.gronnmann.coinflipper.bets.BettingTimer;
-import me.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.coinflipper.bets.BettingTimer;
+import io.github.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.Economy;
 
 

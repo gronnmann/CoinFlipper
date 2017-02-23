@@ -1,4 +1,4 @@
-package me.gronnmann.coinflipper;
+package io.github.gronnmann.coinflipper;
 
 import org.bukkit.ChatColor;
 

@@ -1,4 +1,4 @@
-package me.gronnmann.coinflipper;
+package io.github.gronnmann.coinflipper;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -6,11 +6,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.gronnmann.coinflipper.MessagesManager.Message;
-import me.gronnmann.coinflipper.bets.Bet;
-import me.gronnmann.coinflipper.bets.BettingManager;
-import me.gronnmann.coinflipper.stats.Stats;
-import me.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.bets.Bet;
+import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.stats.Stats;
+import io.github.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 

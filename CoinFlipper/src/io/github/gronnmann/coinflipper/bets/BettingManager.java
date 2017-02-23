@@ -1,4 +1,4 @@
-package me.gronnmann.coinflipper.bets;
+package io.github.gronnmann.coinflipper.bets;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -6,9 +6,9 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import me.gronnmann.coinflipper.GUI;
-import me.gronnmann.coinflipper.Main;
-import me.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.coinflipper.GUI;
+import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.stats.StatsManager;
 
 public class BettingManager {
 	private BettingManager(){}
@@ -21,7 +21,18 @@ public class BettingManager {
 	
 	
 	public Bet createBet(Player p, int side, double amount){
-		Bet b = new Bet(p.getName(), side, amount, this.getNextAvaibleID());
+		//Booster
+		int booster = 0;
+		for (int i = 0;i<=100;i++){
+			if (p.hasPermission("coinflipper.boost."+i)){
+				if (i > booster){
+					booster=i;
+				}
+			}
+		}
+		
+		//Rest
+		Bet b = new Bet(p.getName(), side, amount, this.getNextAvaibleID(), booster);
 		bets.add(b);
 		return b;
 	}
@@ -71,9 +82,13 @@ public class BettingManager {
 	}
 	
 	public String challengeBet(Bet b, Player p){
+		
+		int[] chances = this.getChances(p, b);
+		
 		Random rn = new Random();
-		int r = rn.nextInt(2);
-		if (r == 0){
+		int r = rn.nextInt(chances[0]+chances[1]);
+		
+		if (r <= chances[1]){
 			StatsManager.getManager().getStats(p).addLose();
 			StatsManager.getManager().getStats(Bukkit.getOfflinePlayer(b.getPlayer()).getUniqueId().toString()).addWin();
 			return b.getPlayer();
@@ -82,6 +97,43 @@ public class BettingManager {
 			StatsManager.getManager().getStats(Bukkit.getOfflinePlayer(b.getPlayer()).getUniqueId().toString()).addLose();
 			return p.getName();
 		}
+	}
+	
+	public int[] getChances(Player p1, Bet b){
+		int i1 = 50;
+		int i2  = 50;
+		
+		int booster1 = 0, booster2 = 0;
+		
+		for (int i = 0; i<=100;i++){
+			if (p1.hasPermission("coinflipper.boost."+i)){
+				if (i > booster1){
+					booster1 = i;
+				}
+			}
+		}
+		booster2 = b.getBooster();
+		
+		System.out.println("Booster owner:"+booster2);
+		System.out.println("Booster player: " + booster1);
+		
+		if (booster1 == 0 && booster2 != 0){
+			i2 = booster2;
+			i1 = 100-booster2;
+		}
+		else if (booster1 != 0 && booster2 == 0){
+			i1 = booster1;
+			i2 = 100-booster1;
+		}
+		else if (booster1 != 0 && booster2 != 0){
+			i1 = booster1;
+			i2 = booster2;
+		}
+		
+		
+		int[] returned = {i1, i2};
+		return returned;
+		
 	}
 	
 	public ArrayList<Bet> getBets(){

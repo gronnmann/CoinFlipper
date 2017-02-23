@@ -1,19 +1,20 @@
-package me.gronnmann.coinflipper.bets;
+package io.github.gronnmann.coinflipper.bets;
 
-import me.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.ConfigManager;
 
 public class Bet {
 	private String player;
-	private int bet, id, minsRemaining;
+	private int bet, id, minsRemaining, booster;
 	private double amount;
 	
 	
-	public Bet(String player, int bet, double amount, int id){
+	public Bet(String player, int bet, double amount, int id, int booster){
 		this.player = player;
 		this.bet = bet;
 		this.amount = amount;
 		this.id = id;
 		this.minsRemaining = ConfigManager.getManager().getConfig().getInt("time_expire");
+		this.booster = booster;
 	}
 	
 	public String getPlayer(){
@@ -28,6 +29,9 @@ public class Bet {
 	public int getID(){
 		return id;
 	}
+	public int getBooster(){
+		return booster;
+	}	
 	public int getTimeRemaining(){
 		return minsRemaining;
 	}

@@ -1,8 +1,8 @@
-package me.gronnmann.coinflipper.bets;
+package io.github.gronnmann.coinflipper.bets;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.gronnmann.coinflipper.GUI;
+import io.github.gronnmann.coinflipper.GUI;
 
 public class BettingTimer extends BukkitRunnable{
 	public void run(){

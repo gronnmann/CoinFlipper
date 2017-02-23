@@ -1,4 +1,4 @@
-package me.gronnmann.coinflipper.stats;
+package io.github.gronnmann.coinflipper.stats;
 
 import java.util.HashMap;
 
@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import me.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.ConfigManager;
 
 public class StatsManager implements Listener{
 	private StatsManager(){}

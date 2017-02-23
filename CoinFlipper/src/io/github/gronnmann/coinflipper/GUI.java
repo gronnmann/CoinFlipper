@@ -1,4 +1,4 @@
-package me.gronnmann.coinflipper;
+package io.github.gronnmann.coinflipper;
 
 import java.util.ArrayList;
 
@@ -18,10 +18,10 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.gronnmann.coinflipper.MessagesManager.Message;
-import me.gronnmann.coinflipper.bets.Bet;
-import me.gronnmann.coinflipper.bets.BettingManager;
-import me.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.bets.Bet;
+import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class GUI implements Listener{

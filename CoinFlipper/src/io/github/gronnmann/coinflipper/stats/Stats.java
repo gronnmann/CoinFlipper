@@ -1,4 +1,4 @@
-package me.gronnmann.coinflipper.stats;
+package io.github.gronnmann.coinflipper.stats;
 
 import java.text.DecimalFormat;
 
