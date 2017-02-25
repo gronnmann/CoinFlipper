@@ -11,7 +11,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import com.google.common.io.Files;
 
 public class MessagesManager {
-	public enum Message {NO_PERMISSION, CMD_PLAYER_ONLY, HEADS, TAILS, WRONG_MONEY, MIN_BET, MAX_BET, 
+	public enum Message {NO_PERMISSION, CMD_PLAYER_ONLY, PLAYER_NOT_FOUND, HEADS, TAILS, WRONG_MONEY, MIN_BET, MAX_BET, 
 		SYNTAX_L1, SYNTAX_L2, SYNTAX_L3, SYNTAX_L4,
 		PLACE_SUCCESSFUL, PLACE_FAILED_ALREADYGAME,PLACE_FAILED_NOMONEY,
 		CLEAR_SUCCESSFUL, CLEAR_FAILED_NOBETS,
