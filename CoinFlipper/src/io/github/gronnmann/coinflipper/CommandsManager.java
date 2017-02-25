@@ -16,7 +16,8 @@ import net.milkbowl.vault.economy.EconomyResponse;
 
 public class CommandsManager implements CommandExecutor{
 	
-	private String help = getMsg(Message.SYNTAX);
+	private String help = getMsg(Message.SYNTAX_L1)+"\n"+getMsg(Message.SYNTAX_L2)+"\n"+
+			getMsg(Message.SYNTAX_L3)+"\n"+getMsg(Message.SYNTAX_L4)+"\n";
 	
 	private String getMsg(Message msg){
 		return MessagesManager.getMessage(msg);
@@ -134,12 +135,13 @@ public class CommandsManager implements CommandExecutor{
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
 				}
+				
 				Stats pS = StatsManager.getManager().getStats(p);
 				if (pS == null){
 					p.sendMessage(getMsg(Message.STATS_NOSTATS));
 					return true;
 				}
-				String statsMessage = getMsg(Message.STATS_STATS) + "\n"+ 
+				String statsMessage = getMsg(Message.STATS_STATS).replaceAll("%PLAYER%", p.getName()) + "\n"+ 
 						getMsg(Message.STATS_GAMESWON).replaceAll("%AMOUNT%", pS.getGamesWon()+"") + "\n" +
 						getMsg(Message.STATS_GAMESLOST).replaceAll("%AMOUNT%", pS.getGamesLost()+"")+ "\n" +
 						getMsg(Message.STATS_WINPERCENTAGE).replaceAll("%AMOUNT%", pS.getWinPercentage()+"")+ "\n" +
