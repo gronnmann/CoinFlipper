@@ -1,9 +1,18 @@
 package io.github.gronnmann.coinflipper;
 
+import java.io.File;
+import java.net.URL;
+
+import org.apache.commons.io.FileUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import com.google.common.io.Files;
 
 public class MessagesManager {
-	public enum Message {NO_PERMISSION, CMD_PLAYER_ONLY, HEADS, TAILS, WRONG_MONEY, SYNTAX, MIN_BET, MAX_BET, 
+	public enum Message {NO_PERMISSION, CMD_PLAYER_ONLY, HEADS, TAILS, WRONG_MONEY, MIN_BET, MAX_BET, 
+		SYNTAX_L1, SYNTAX_L2, SYNTAX_L3, SYNTAX_L4,
 		PLACE_SUCCESSFUL, PLACE_FAILED_ALREADYGAME,PLACE_FAILED_NOMONEY,
 		CLEAR_SUCCESSFUL, CLEAR_FAILED_NOBETS,
 		HELP_ITEM_L1,HELP_ITEM_L2,HELP_ITEM_L3, HELP_ITEM_L4,
@@ -16,42 +25,35 @@ public class MessagesManager {
 	public static String getMessage(Message msg){
 		
 		try{
-			if (msg.equals(Message.SYNTAX)){
-				String syntax = ConfigManager.getManager().getMessages().getString("SYNTAX_L1") +"\n"+ 
-						ConfigManager.getManager().getMessages().getString("SYNTAX_L2") +"\n"+
-						ConfigManager.getManager().getMessages().getString("SYNTAX_L3") + "\n"+
-						ConfigManager.getManager().getMessages().getString("SYNTAX_L4");
-				return ChatColor.translateAlternateColorCodes('&', syntax);
-			}
 			return ChatColor.translateAlternateColorCodes('&', ConfigManager.getManager().getMessages().getString(msg.toString()));
 		}catch(Exception e){
-			if (msg.equals(Message.SYNTAX)){
-				if (ConfigManager.getManager().getMessages().getString(msg.toString()+"_L1") == null){
-					ConfigManager.getManager().getMessages().set(msg.toString()+"_L1", 
-							"Default message avaible at: https://www.spigotmc.org/resources/coinflipper.33916/");
-				}
-				if (ConfigManager.getManager().getMessages().getString(msg.toString()+"_L2") == null){
-					ConfigManager.getManager().getMessages().set(msg.toString()+"_L2", 
-							"Default message avaible at: https://www.spigotmc.org/resources/coinflipper.33916/");
-				}
-				if (ConfigManager.getManager().getMessages().getString(msg.toString()+"_L3") == null){
-					ConfigManager.getManager().getMessages().set(msg.toString()+"_L3", 
-							"Default message avaible at: https://www.spigotmc.org/resources/coinflipper.33916/");
-				}
-				if (ConfigManager.getManager().getMessages().getString(msg.toString()+"_L4") == null){
-					ConfigManager.getManager().getMessages().set(msg.toString()+"_L4", 
-							"Default message avaible at: https://www.spigotmc.org/resources/coinflipper.33916/");
-				}
-			}else{
-				ConfigManager.getManager().getMessages().set(msg.toString(), 
-						"Default message avaible at: https://www.spigotmc.org/resources/coinflipper.33916/");
-			}
-			
+			ConfigManager.getManager().getMessages().set(msg.toString(), 
+						MessagesManager.getOrginalMessage(msg.toString()));
 			ConfigManager.getManager().saveMessages();
 			System.out.println("[CoinFlipper] Message " + msg.toString() + " not found. Creating blank space for new.");
 			return getMessage(msg);
 		}
 		
 		
+	}
+	
+	public static String getOrginalMessage(String msg){
+		try{
+		//File tempFolder = Files.createTempDir();
+		File temp = File.createTempFile("tempMsg", ".yml");
+		
+		URL messagesOrginal = new URL("https://raw.githubusercontent.com/gronnmann/CoinFlipper/master/CoinFlipper/src/messages.yml");
+		FileUtils.copyURLToFile(messagesOrginal, temp);
+		
+		FileConfiguration messagesOrg = YamlConfiguration.loadConfiguration(temp);
+		
+		return messagesOrg.getString(msg);
+		
+		
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("[CoinFlipper] Download of default message for " + msg + " failed. Please get orginal at https://www.spigotmc.org/resources/coinflipper.33916/");
+			return "Message " + msg + " missing. Please fill it out or find orginal at https://www.spigotmc.org/resources/coinflipper.33916/";
+		}
 	}
 }
