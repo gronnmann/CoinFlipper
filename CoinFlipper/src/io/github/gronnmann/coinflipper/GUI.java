@@ -247,7 +247,10 @@ public class GUI implements Listener{
 			return;
 		}
 		
-		final double winAmount = b.getAmount()*2;
+		double winAmount = b.getAmount()*2;
+		final double tax = ConfigManager.getManager().getConfig().getDouble("tax_percentage");
+		winAmount = (100-tax)*winAmount/100;
+		
 		final String winner = BettingManager.getManager().challengeBet(b, p);
 		
 		
@@ -270,11 +273,12 @@ public class GUI implements Listener{
 		Main.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winAmount);
 		this.generateAnimations(p.getName(), b.getPlayer(), winner);
 		
+		final double finalAmount = winAmount;
 		Bukkit.getScheduler().scheduleAsyncDelayedTask(pl, new Runnable(){
 			public void run(){
 				Player winnerP = Bukkit.getPlayer(winner);
 			if (winnerP != null){
-				winnerP.sendMessage(MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winAmount+""));
+				winnerP.sendMessage(MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", finalAmount+""));
 			}
 			}
 		}, 60);
