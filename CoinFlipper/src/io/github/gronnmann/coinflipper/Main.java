@@ -5,6 +5,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
+import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.BettingTimer;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
@@ -25,6 +26,7 @@ public class Main extends JavaPlugin{
 		StatsManager.getManager().load();
 		
 		AnimationFileManager.getManager().setup(this);
+		AnimationGUI.getManager().setup();
 		
 		this.getCommand("coinflipper").setExecutor(new CommandsManager());
 		
@@ -36,7 +38,8 @@ public class Main extends JavaPlugin{
 		Bukkit.getPluginManager().registerEvents(GUI.getInstance(), this);
 		Bukkit.getPluginManager().registerEvents(StatsManager.getManager(), this);
 		
-		Bukkit.getPluginManager().registerEvents(AnimationsManager.getManager(), this);
+		///Bukkit.getPluginManager().registerEvents(AnimationsManager.getManager(), this);
+		Bukkit.getPluginManager().registerEvents(AnimationGUI.getManager(), this);
 		
 	}
 	

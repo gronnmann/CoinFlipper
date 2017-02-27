@@ -11,6 +11,7 @@ SYNTAX_L1: '&6Syntax:'
 SYNTAX_L2: '&a/coinflipper [amount] [heads/tails] &e- &ePlaces a CoinFlipper game'
 SYNTAX_L3: '&a/coinflipper gui &e- &eOpens the GUI'
 SYNTAX_L4: '&a/coinflipper stats &e- View your stats'
+SYNTAX_L5: '&a/coinflipper animation &e- Create or delete animations.'
 
 MIN_BET: '&cPlease provide a bet over &a$%MIN_BET%' #Message when player places bet under minimum
 MAX_BET: '&cPlease provide a bet under &a$%MAX_BET%' #Message when player places bet over maximum

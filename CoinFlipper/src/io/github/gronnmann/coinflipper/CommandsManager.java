@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.animations.AnimationGUI;
+import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.stats.Stats;
@@ -17,7 +19,7 @@ import net.milkbowl.vault.economy.EconomyResponse;
 public class CommandsManager implements CommandExecutor{
 	
 	private String help = getMsg(Message.SYNTAX_L1)+"\n"+getMsg(Message.SYNTAX_L2)+"\n"+
-			getMsg(Message.SYNTAX_L3)+"\n"+getMsg(Message.SYNTAX_L4)+"\n";
+			getMsg(Message.SYNTAX_L3)+"\n"+getMsg(Message.SYNTAX_L4)+"\n" + getMsg(Message.SYNTAX_L5);
 	
 	private String getMsg(Message msg){
 		return MessagesManager.getMessage(msg);
@@ -150,7 +152,15 @@ public class CommandsManager implements CommandExecutor{
 						getMsg(Message.STATS_MONEYEARNED).replaceAll("%AMOUNT%", pS.getMoneyEarned()+"");
 				p.sendMessage(statsMessage);
 						
-			}else{
+			}else if (args[0].equalsIgnoreCase("animation")||args[0].equalsIgnoreCase("anim")){
+				if (!p.hasPermission("coinflipper.animation")){
+					p.sendMessage(getMsg(Message.NO_PERMISSION));
+					return true;
+				}
+				AnimationGUI.getManager().openGUI(p);
+			}
+			
+			else{
 				p.sendMessage(help);
 				return true;
 			}

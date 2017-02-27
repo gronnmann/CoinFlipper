@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -16,25 +17,24 @@ import io.github.gronnmann.coinflipper.MessagesManager.Message;
 
 public class AnimationRunnable extends BukkitRunnable{
 	String s1, s2, winner;
-	ItemStack sk1, sk2;
 	private int phase;
 	private double winMoney;
 	
+
 	PersonalizedAnimation animation;
 	
 	
-	public AnimationRunnable(String s1, String s2, String winner, String animationS){
+	public AnimationRunnable(String s1, String s2, String winner, double winMoney, String animationS, String inventoryName){
 		this.s1 = s1;
 		this.s2 = s2;
 		this.winner = winner;
-		this.sk1 = sk1;
-		this.sk2 = sk2;
 		phase = 0;
 		this.winMoney = winMoney;
 		
-		animation = new PersonalizedAnimation(AnimationFileManager.getManager().getAnimationFile(animationS), s1, s2, winner);
+				
+		Animation anim = AnimationsManager.getManager().getAnimation(animationS);
 		
-		
+		animation = new PersonalizedAnimation(anim, winner, s1, s2, inventoryName);
 	}
 	
 	
@@ -73,12 +73,13 @@ public class AnimationRunnable extends BukkitRunnable{
 		
 		
 		//Sound click
-		try{
-			p1.playSound(p1.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
-		}catch(Exception e){}
-		try{
-			p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
-		}catch(Exception e){}
-		
+		if (phase < 30){
+			try{
+				p1.playSound(p1.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
+			}catch(Exception e){}
+			try{
+				p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
+			}catch(Exception e){}
+		}
 	}
 }

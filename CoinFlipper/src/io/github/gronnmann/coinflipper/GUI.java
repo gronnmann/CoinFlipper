@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,12 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
-
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
-import io.github.gronnmann.coinflipper.animations.Animation;
 import io.github.gronnmann.coinflipper.animations.AnimationRunnable;
-import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
@@ -74,13 +69,6 @@ public class GUI implements Listener{
 	
 	private void generateAnimations(String p1, String p2, String winner, double moneyWon){
 		
-		ItemStack sk1 = new ItemStack(Material.SKULL_ITEM, 1, (byte)3);
-		ItemStack sk2 = new ItemStack(Material.SKULL_ITEM, 1, (byte)3);
-		SkullMeta sm1 = (SkullMeta) sk1.getItemMeta();
-		SkullMeta sm2 = (SkullMeta) sk2.getItemMeta();
-		sm1.setOwner(p1);sk1.setItemMeta(sm1);
-		sm2.setOwner(p2);sk2.setItemMeta(sm2);
-		
 		String invName = "CoinFlipper: " + p1 + " vs. " + p2;
 		String packageName = Bukkit.getServer().getClass().getPackage().getName();
 		int vID = Integer.parseInt(packageName.split("_")[1]);
@@ -90,26 +78,8 @@ public class GUI implements Listener{
 		}
 		
 		
-		Inventory inv = Bukkit.createInventory(null, 45, invName);
-		
-		ItemStack gpG = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte)5);
-		for (int i = 0;i <= 44; i++){
-			inv.setItem(i, gpG);
-		}
-		
-		try{
-			Bukkit.getPlayer(p1).openInventory(inv);
-			
-		}catch(Exception e){}
-		
-		try{
-			Bukkit.getPlayer(p2).openInventory(inv);
-			
-		}catch(Exception e){}
-		
-		AnimationsManager.getManager().createAnimation("default");
-		
-		final AnimationRunnable animation = new AnimationRunnable(p1, p2, winner, "default");
+		final AnimationRunnable animation = new AnimationRunnable(p1, p2, winner, moneyWon, ConfigManager.getManager().getConfig().getString("animation_used"),
+				invName);
 		animation.runTaskTimer(pl, 0, 2);
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(pl, new Runnable(){
 			public void run(){
@@ -150,10 +120,17 @@ public class GUI implements Listener{
 		return skull;
 	}
 	
+	@EventHandler
+	public void gameAntiClicker(InventoryClickEvent e){
+		if (e.getInventory().getName().contains("CoinFlipper") && (e.getInventory().getName().contains("vs")||
+				e.getInventory().getName().contains("Game"))){
+			e.setCancelled(true);
+		}
+	}
 	
 	@EventHandler
 	public void onInvClick(InventoryClickEvent e){
-		if (!e.getInventory().getName().contains("CoinFlipper"))return;
+		if (!e.getInventory().getName().contains("CoinFlipper Selection"))return;
 		e.setCancelled(true);
 		if (e.getCurrentItem() == null)return;
 		if (e.getCurrentItem().getItemMeta()==null)return;

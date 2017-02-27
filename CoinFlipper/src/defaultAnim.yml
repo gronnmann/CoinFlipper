@@ -1,0 +1,6988 @@
+animation:
+  '0':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '1':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '2':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '3':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '4':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '5':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '6':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '7':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '8':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '9':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 13
+  '10':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 13
+  '11':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '12':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '13':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '14':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '15':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '16':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '17':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '18':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '19':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 13
+  '20':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 13
+  '21':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '22':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '23':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '24':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '25':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '26':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '27':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '28':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: STONE_HOE
+      data: 0
+      name: §9Player 2 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 5
+  '29':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 13
+  '30':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '22':
+      material: WOOD_HOE
+      data: 0
+      name: §9Player 1 Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 5
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 13
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 13
+  '31':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '32':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '33':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '34':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '35':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '36':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '37':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '38':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '39':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '40':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '41':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '42':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 4
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 4
+  '43':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14
+  '44':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14
+  '45':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14
+  '46':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14
+  '47':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14
+  '48':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14
+  '49':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14
+  '50':
+    '0':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '1':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '2':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '3':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '4':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '5':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '6':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '7':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '8':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '9':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '10':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '11':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '12':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '13':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '14':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '15':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '16':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '17':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '18':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '19':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '20':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '21':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '22':
+      material: DIAMOND_HOE
+      data: 0
+      name: §bWinner Skull
+    '23':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '24':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '25':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '26':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '27':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '28':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '29':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '30':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '31':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '32':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '33':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '34':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '35':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '36':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '37':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '38':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '39':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '40':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '41':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '42':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '43':
+      material: STAINED_GLASS_PANE
+      data: 14
+    '44':
+      material: STAINED_GLASS_PANE
+      data: 14

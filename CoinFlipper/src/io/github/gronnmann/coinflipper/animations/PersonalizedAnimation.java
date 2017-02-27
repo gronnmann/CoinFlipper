@@ -1,82 +1,61 @@
 package io.github.gronnmann.coinflipper.animations;
 
-import java.util.ArrayList;
-
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 
+import io.github.gronnmann.utils.InventoryUtils;
+import io.github.gronnmann.utils.ItemUtils;
 import net.md_5.bungee.api.ChatColor;
 
-
-public class PersonalizedAnimation extends Animation{
-
-	private String p1, p2, winner;
+public class PersonalizedAnimation {
 	
-	private ArrayList<Inventory> frames = new ArrayList<Inventory>();
+	private String p1, p2, winner, inventoryName;
+	private Animation animation;
+	private ItemStack p1Skull, p2Skull, winnerSkull;
 	
-	public PersonalizedAnimation(FileConfiguration animationFile, String p1, String p2, String winner) {
-		super(animationFile);
-		
+	public PersonalizedAnimation(Animation animation, String winner, String p1, String p2, String inventoryName){
 		this.p1 = p1;
 		this.p2 = p2;
 		this.winner = winner;
-
-		frames = (ArrayList<Inventory>) animationInventory.clone();
-	}
-	
-	public void prepare(){
-		ItemStack p1skull = new ItemStack(Material.SKULL_ITEM, 1, (short)3);
-		ItemStack p2skull = new ItemStack(Material.SKULL_ITEM,1,(short)3);
-		SkullMeta p1sm = (SkullMeta)p1skull.getItemMeta();
-		SkullMeta p2sm = (SkullMeta)p2skull.getItemMeta();
-		p1sm.setDisplayName(ChatColor.AQUA + p1);
-		p2sm.setDisplayName(ChatColor.AQUA + p2);
-		p1skull.setItemMeta(p1sm);
-		p2skull.setItemMeta(p2sm);
+		this.inventoryName = inventoryName;
+		this.animation = animation;
 		
+		p1Skull = ItemUtils.getSkull(p1);
+		p2Skull = ItemUtils.getSkull(p2);
+		winnerSkull = ItemUtils.getSkull(winner);
 		
-		ItemStack winSkull = new ItemStack(Material.SKULL_ITEM,1,(short)3);
-		SkullMeta winM = (SkullMeta)winSkull.getItemMeta();
+		p1Skull = ItemUtils.setName(p1Skull, ChatColor.BLUE + p1);
+		p2Skull = ItemUtils.setName(p2Skull, ChatColor.BLUE + p2);
+		winnerSkull = ItemUtils.setName(winnerSkull, ChatColor.AQUA.toString() + ChatColor.BOLD + "WINNER: " + ChatColor.BLUE + p1);
 		
-		if (winner.equals(p1)){
-			winM.setDisplayName(ChatColor.BLUE.toString() + ChatColor.BOLD + "WINNER: " + ChatColor.AQUA + p1);
-		}else{
-			winM.setDisplayName(ChatColor.BLUE.toString() + ChatColor.BOLD + "WINNER: " + ChatColor.AQUA + p2);
-		}
-		
-		winSkull.setItemMeta(winM);
-		
-		for (Inventory inv : frames){
-			
-			for (int slot = 0; slot <= 44; slot++){
-				ItemStack i = inv.getItem(slot);
-				if (i != null ){
-					if (i.getType().equals(Material.WOOD_HOE)){
-						inv.setItem(slot, p1skull);
-					}
-					if (i.getType().equals(Material.STONE_HOE)){
-						inv.setItem(slot, p2skull);
-					}
-					if (i.getType().equals(Material.DIAMOND_HOE)){
-						inv.setItem(slot, winSkull);
-					}
-				}
-			}
-		}
 	}
 	
 	public Inventory getFrame(int frame){
-		return frames.get(frame);
+		Inventory fram = animation.getFrame(frame);
+		fram = InventoryUtils.changeName(fram, inventoryName);
+		for (int slot = 0; slot <= 44; slot++){
+			ItemStack item = fram.getItem(slot);
+			if (item != null){
+				
+				if (item.getType().equals(Material.WOOD_HOE)){
+					fram.setItem(slot, p1Skull);
+				}
+				else if (item.getType().equals(Material.STONE_HOE)){
+					fram.setItem(slot, p2Skull);
+				}else if (item.getType().equals(Material.DIAMOND_HOE)){
+					fram.setItem(slot, winnerSkull);
+				}else{
+					if (frame < 30){
+						fram.setItem(slot, ItemUtils.setName(item, ChatColor.YELLOW + "Rolling..."));
+					}else{
+						fram.setItem(slot, ItemUtils.setName(item, ChatColor.GREEN + "Winner chosen."));
+					}
+				}
+				
+			}
+		}
+		
+		return fram;
 	}
-	
-	public void clear(){
-		frames.clear();
-		p1 = null;
-		p2 = null;
-		winner = null;
-	}
-	
 }
