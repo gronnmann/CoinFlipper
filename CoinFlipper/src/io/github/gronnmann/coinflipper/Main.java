@@ -4,6 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
+import io.github.gronnmann.coinflipper.animations.AnimationGUI;
+import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.BettingTimer;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.Economy;
@@ -22,6 +25,9 @@ public class Main extends JavaPlugin{
 		GUI.getInstance().setup(this);
 		StatsManager.getManager().load();
 		
+		AnimationFileManager.getManager().setup(this);
+		AnimationGUI.getManager().setup();
+		
 		this.getCommand("coinflipper").setExecutor(new CommandsManager());
 		
 		
@@ -31,10 +37,16 @@ public class Main extends JavaPlugin{
 		
 		Bukkit.getPluginManager().registerEvents(GUI.getInstance(), this);
 		Bukkit.getPluginManager().registerEvents(StatsManager.getManager(), this);
+		
+		///Bukkit.getPluginManager().registerEvents(AnimationsManager.getManager(), this);
+		Bukkit.getPluginManager().registerEvents(AnimationGUI.getManager(), this);
+		
 	}
 	
 	public void onDisable(){
 		StatsManager.getManager().save();
+		
+		AnimationsManager.getManager().save();
 	}
 	
 	public boolean enableEconomy(){

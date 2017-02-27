@@ -4,3 +4,4 @@ time_expire: 60
 tax_percentage: 5
 sound_while_choosing: BLOCK_DISPENSER_DISPENSE
 sound_winner_chosen: ENTITY_FIREWORK_BLAST
+animation_used: default
