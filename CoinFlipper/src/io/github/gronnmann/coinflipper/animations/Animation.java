@@ -19,11 +19,14 @@ public class Animation {
 	
 	private FileConfiguration animationFile;
 	private File file;
+	private boolean isDefault;
 	
 	public Animation(FileConfiguration animationFile, File file){
 		this.animationFile = animationFile;
 		this.file = file;
+		this.isDefault = false;
 	}
+	
 	public ArrayList<Inventory> animationInventory = new ArrayList<Inventory>();
 	
 	public void copy(Animation copyInto){
@@ -113,5 +116,13 @@ public class Animation {
 	
 	public File getFile(){
 		return file;
+	}
+	
+	public boolean isDefault(){
+		return isDefault;
+	}
+	
+	protected void setDefault(boolean bool){
+		this.isDefault = bool;
 	}
 }

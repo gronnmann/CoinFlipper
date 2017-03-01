@@ -39,8 +39,8 @@ public class AnimationGUI implements Listener{
 		main = Bukkit.createInventory(null, 54, "CoinFlipper Animations");
 		
 		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL,  ChatColor.GREEN + ChatColor.BOLD.toString()+ "Create", 5));
-		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, ChatColor.GREEN + ChatColor.BOLD.toString() + "Delete", 14));
-		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, ChatColor.GREEN + ChatColor.BOLD.toString() + "Clone", 11));
+		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, ChatColor.RED + ChatColor.BOLD.toString() + "Delete", 14));
+		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, ChatColor.BLUE + ChatColor.BOLD.toString() + "Clone", 11));
 		InventoryUtils.fillWithItem(main, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ".", 10), 36, 44);
 		
 		
@@ -53,7 +53,16 @@ public class AnimationGUI implements Listener{
 		}
 		for (Animation ani : AnimationsManager.getManager().getAnimations()){
 			if (slot > 35)return;
-			main.setItem(slot, ItemUtils.createItem(Material.CLAY_BALL, ani.getName()));
+			
+			if (ani.isDefault()){
+				ItemStack defaultAnim = ItemUtils.createItem(Material.CLAY, ani.getName());
+				ItemUtils.setLore(defaultAnim, ChatColor.YELLOW + "Default animation");
+				main.setItem(slot, defaultAnim);
+				
+				
+			}else{
+				main.setItem(slot, ItemUtils.createItem(Material.CLAY_BALL, ani.getName()));
+			}
 			slot++;
 		}
 	}
@@ -70,6 +79,9 @@ public class AnimationGUI implements Listener{
 	@EventHandler
 	public void mainMenuClicker(InventoryClickEvent e){
 		if (!e.getInventory().getName().contains("CoinFlipper Animations"))return;
+		
+		if (e.isRightClick())return;
+		
 		if (e.getClickedInventory() == e.getWhoClicked().getInventory())return;
 		e.setCancelled(true);
 		if (e.getCurrentItem() == null)return;
@@ -97,15 +109,51 @@ public class AnimationGUI implements Listener{
 		
 	}
 	
+	@EventHandler
+	public void defaultSetter(InventoryClickEvent e){
+		if (!e.getInventory().getName().contains("CoinFlipper Animations"))return;
+		
+		if (!e.isRightClick())return;
+		
+		e.setCancelled(true);
+		
+		if (!(e.getCurrentItem().getType().equals(Material.CLAY_BALL)))return;
+		
+		String name = e.getCurrentItem().getItemMeta().getDisplayName();
+		Animation animation = AnimationsManager.getManager().getAnimation(name);
+		if (animation == null)return;
+		
+		AnimationsManager.getManager().setDefault(animation);
+		
+		this.reloadAnimations();
+			
+	}
+	
+	
 	public Inventory getAnimationSelectorList(){
 		Inventory selectorList = Bukkit.createInventory(null, 54, "CoinFlipper: Choose animation");
 		
 		int slot = 0;
 		for (Animation ani : AnimationsManager.getManager().getAnimations()){
 			if (slot > 44)break;
-			selectorList.setItem(slot, ItemUtils.createItem(Material.CLAY_BALL, ani.getName()));
+			if (ani.isDefault()){
+				ItemStack defaultAnim = ItemUtils.createItem(Material.CLAY, ani.getName());
+				ItemUtils.setLore(defaultAnim, ChatColor.YELLOW + "Default animation");
+				selectorList.setItem(slot, defaultAnim);
+			}else{
+				selectorList.setItem(slot, ItemUtils.createItem(Material.CLAY_BALL, ani.getName()));
+			}
+			
+			
+			
 			slot++;
+			
+			if (slot == BACK){
+				slot++;
+			}
 		}
+		
+		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, "Back", 1));
 		
 		return selectorList;
 	}
@@ -117,8 +165,19 @@ public class AnimationGUI implements Listener{
 		
 		if (animI.getType().equals(Material.AIR))return;
 		
-		String animName = animI.getItemMeta().getDisplayName();
+		e.setCancelled(true);
+		
 		Player p = (Player) e.getWhoClicked();
+		
+		if (e.getSlot() == BACK){
+			accessMode.remove(p.getName());
+			this.openGUI(p);
+			return;
+			
+		}
+		
+		String animName = animI.getItemMeta().getDisplayName();
+		
 		
 		Animation anim = AnimationsManager.getManager().getAnimation(animName);
 		if (anim == null)return;
@@ -126,6 +185,8 @@ public class AnimationGUI implements Listener{
 		if (!accessMode.containsKey(p.getName()))return;
 		
 		int mode = accessMode.get(p.getName());
+		
+		accessMode.remove(p.getName());
 		
 		switch(mode){
 		case 1:
@@ -140,7 +201,6 @@ public class AnimationGUI implements Listener{
 		default: return;
 		}
 		
-		e.setCancelled(true);
 	}
 	
 	@EventHandler

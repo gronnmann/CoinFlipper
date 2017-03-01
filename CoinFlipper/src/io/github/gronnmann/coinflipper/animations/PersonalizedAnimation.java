@@ -47,7 +47,12 @@ public class PersonalizedAnimation {
 					fram.setItem(slot, winnerSkull);
 				}else{
 					if (frame < 30){
-						fram.setItem(slot, ItemUtils.setName(item, ChatColor.YELLOW + "Rolling..."));
+						if (frame % 2 == 0){
+							fram.setItem(slot, ItemUtils.setName(item, ChatColor.YELLOW + "Rolling..."));
+						}else{
+							fram.setItem(slot, ItemUtils.setName(item, ChatColor.GOLD + "Rolling..."));
+						}
+						
 					}else{
 						fram.setItem(slot, ItemUtils.setName(item, ChatColor.GREEN + "Winner chosen."));
 					}

@@ -50,10 +50,12 @@ public class AnimationsManager{
 		animations.remove(anim);
 	}
 	
-	public void loadAnimation(FileConfiguration config, File file){
+	public Animation loadAnimation(FileConfiguration config, File file){
 		Animation animation = new Animation(config, file);
 		animation.draw();
 		animations.add(animation);
+		
+		return animation;
 	}
 	
 	public Animation getAnimation(String name){
@@ -68,8 +70,28 @@ public class AnimationsManager{
 		return animations;
 	}
 	
+	public Animation getDefault(){
+		for (Animation anim : animations){
+			if (anim.isDefault()){
+				return anim;
+			}
+		}
+		return null;
+	}
+	
+	public void setDefault(Animation anim){
+		for (Animation a : animations){
+			a.setDefault(false);
+		}
+		anim.setDefault(true);
+		
+		ConfigManager.getManager().getConfig().set("animation_default", anim.getName());
+		ConfigManager.getManager().saveConfig();
+	}
+	
 	public Animation getAnimationToUse(Player p){
-		Animation animUsed = this.getAnimation(ConfigManager.getManager().getConfig().getString("animation_default"));
+		Animation animUsed = this.getDefault();
+		
 		
 		for (Animation anim : animations){
 			if (p.hasPermission("coinflipper.animations."+ anim.getName()) ){

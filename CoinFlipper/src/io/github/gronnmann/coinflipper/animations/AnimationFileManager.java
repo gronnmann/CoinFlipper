@@ -42,7 +42,12 @@ public class AnimationFileManager {
 		
 		for (File animationF : animationFolder.listFiles()){
 			FileConfiguration animation = YamlConfiguration.loadConfiguration(animationF);
-			AnimationsManager.getManager().loadAnimation(animation, animationF);
+			Animation anim = AnimationsManager.getManager().loadAnimation(animation, animationF);
+			
+			//Default setter
+			if (anim.getName().equals(ConfigManager.getManager().getConfig().getString("animation_default"))){
+				AnimationsManager.getManager().setDefault(anim);
+			}
 		}
 	}
 	
