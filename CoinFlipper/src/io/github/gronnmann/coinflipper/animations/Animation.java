@@ -19,11 +19,16 @@ public class Animation {
 	
 	private FileConfiguration animationFile;
 	private File file;
+	
 	public Animation(FileConfiguration animationFile, File file){
 		this.animationFile = animationFile;
 		this.file = file;
 	}
 	public ArrayList<Inventory> animationInventory = new ArrayList<Inventory>();
+	
+	public void copy(Animation copyInto){
+		copyInto.animationInventory = (ArrayList<Inventory>) this.animationInventory.clone();
+	}
 	
 	public void draw(){
 		//Draw for every frame

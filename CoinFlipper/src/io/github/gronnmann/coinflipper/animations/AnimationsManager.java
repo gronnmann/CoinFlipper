@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Listener;
+import org.bukkit.entity.Player;
+
+import io.github.gronnmann.coinflipper.ConfigManager;
 
 public class AnimationsManager{
 	private AnimationsManager(){}
@@ -43,6 +45,11 @@ public class AnimationsManager{
 		animations.remove(anim);
 	}
 	
+	public void removeAnimation(Animation anim){
+		anim.getFile().delete();
+		animations.remove(anim);
+	}
+	
 	public void loadAnimation(FileConfiguration config, File file){
 		Animation animation = new Animation(config, file);
 		animation.draw();
@@ -59,5 +66,18 @@ public class AnimationsManager{
 	}
 	public ArrayList<Animation> getAnimations(){
 		return animations;
+	}
+	
+	public Animation getAnimationToUse(Player p){
+		Animation animUsed = this.getAnimation(ConfigManager.getManager().getConfig().getString("animation_default"));
+		
+		for (Animation anim : animations){
+			if (p.hasPermission("coinflipper.animations."+ anim.getName()) ){
+				animUsed = anim;
+			}
+		}
+		
+		return animUsed;
+		
 	}
 }

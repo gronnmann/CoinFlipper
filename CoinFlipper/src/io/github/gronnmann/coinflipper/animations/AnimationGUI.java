@@ -25,9 +25,10 @@ public class AnimationGUI implements Listener{
 		return mng;
 	}
 	
-	private HashMap<String, Integer> nameRetrieving = new HashMap<String, Integer>();
+	private HashMap<String, Integer> accessMode = new HashMap<String, Integer>();
+	private HashMap<String, String> copyBase = new HashMap<String, String>();
 	
-	public static int SLOT_NEW = 47, SLOT_DELETE = 51;
+	public static int SLOT_NEW = 47, SLOT_DELETE = 51, SLOT_COPY = 49;
 	
 	public static int NEXT = 53, CURRENT = 52, PREV = 51, BACK = 45, P1I = 47, P2I = 48, WINNER = 49, CLONEPREV = 46;
 	
@@ -39,6 +40,7 @@ public class AnimationGUI implements Listener{
 		
 		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL,  ChatColor.GREEN + ChatColor.BOLD.toString()+ "Create", 5));
 		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, ChatColor.GREEN + ChatColor.BOLD.toString() + "Delete", 14));
+		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, ChatColor.GREEN + ChatColor.BOLD.toString() + "Clone", 11));
 		InventoryUtils.fillWithItem(main, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ".", 10), 36, 44);
 		
 		
@@ -77,21 +79,78 @@ public class AnimationGUI implements Listener{
 		if (e.getSlot() == SLOT_NEW){
 			p.closeInventory();
 			p.sendMessage(ChatColor.YELLOW + "Please write the name you want the animation to create.");
-			nameRetrieving.put(p.getName(), 0);
+			accessMode.put(p.getName(), 0);
 		}else if (e.getSlot() == SLOT_DELETE){
-			p.closeInventory();
-			p.sendMessage(ChatColor.YELLOW + "Please write the name of the animation you want to delete.");
-			nameRetrieving.put(p.getName(), 1);
-		}else{
+			p.openInventory(this.getAnimationSelectorList());
+			accessMode.put(p.getName(), 1);
+		}else if (e.getSlot() == SLOT_COPY){
+			p.openInventory(this.getAnimationSelectorList());
+			accessMode.put(p.getName(), 2);
+		}
+		else{
 			String name = e.getCurrentItem().getItemMeta().getDisplayName();
 			Animation animation = AnimationsManager.getManager().getAnimation(name);
 			if (animation == null)return;
 			
-			p.openInventory(this.getEditor(animation, 0));
-			
+			p.openInventory(this.getEditor(animation, 0));	
 		}
 		
 	}
+	
+	public Inventory getAnimationSelectorList(){
+		Inventory selectorList = Bukkit.createInventory(null, 54, "CoinFlipper: Choose animation");
+		
+		int slot = 0;
+		for (Animation ani : AnimationsManager.getManager().getAnimations()){
+			if (slot > 44)break;
+			selectorList.setItem(slot, ItemUtils.createItem(Material.CLAY_BALL, ani.getName()));
+			slot++;
+		}
+		
+		return selectorList;
+	}
+	
+	@EventHandler
+	public void copyOrDelete(InventoryClickEvent e){
+		if (!(e.getInventory().getName().equals("CoinFlipper: Choose animation")))return;
+		ItemStack animI = e.getCurrentItem();
+		
+		if (animI.getType().equals(Material.AIR))return;
+		
+		String animName = animI.getItemMeta().getDisplayName();
+		Player p = (Player) e.getWhoClicked();
+		
+		Animation anim = AnimationsManager.getManager().getAnimation(animName);
+		if (anim == null)return;
+		
+		if (!accessMode.containsKey(p.getName()))return;
+		
+		int mode = accessMode.get(p.getName());
+		
+		switch(mode){
+		case 1:
+			AnimationsManager.getManager().removeAnimation(anim);
+			p.sendMessage(ChatColor.GREEN + "Successfully removed animation " + anim.getName());
+			p.openInventory(this.getAnimationSelectorList());
+			break;
+		case 2:
+			copyBase.put(p.getName(), anim.getName());
+			p.closeInventory();
+			p.sendMessage(ChatColor.YELLOW + "Please write the name of the new copied animation.");
+		default: return;
+		}
+		
+		e.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void leaveDelOrCopy(InventoryCloseEvent e){
+		if (!(e.getInventory().getName().equals("CoinFlipper: Choose animation")))return;
+		if (accessMode.containsKey(e.getPlayer().getName())){
+			accessMode.remove(e.getPlayer().getName());
+		}
+	}
+	
 	
 	public Inventory getEditor(Animation animation, int frame){
 		Inventory editor = Bukkit.createInventory(null, 54, "Animation editor: " + animation.getName() + " " + frame);
@@ -161,6 +220,7 @@ public class AnimationGUI implements Listener{
 			e.setCursor(e.getCurrentItem().clone());
 		}
 		if (e.getSlot() == CLONEPREV){
+			if (frameId == 0)return;
 			for (int i = 0;i <= 44; i++){
 				e.getInventory().setItem(i, anim.getFrame(frameId-1).getItem(i));
 			}
@@ -184,33 +244,30 @@ public class AnimationGUI implements Listener{
 	//Name getter
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e){
-		if (nameRetrieving.containsKey(e.getPlayer().getName())){
+		String animation = e.getMessage().split(" ")[0];
+		if (accessMode.containsKey(e.getPlayer().getName()) && accessMode.get(e.getPlayer().getName()) == 0){
 			e.setCancelled(true);
-			String animation = e.getMessage().split(" ")[0];
 			
-			if (nameRetrieving.get(e.getPlayer().getName()) == 0){
-				if (AnimationsManager.getManager().getAnimation(animation) != null){
-					e.getPlayer().sendMessage(ChatColor.RED + "An animation with name " + animation + " already exists.");
-					return;
-				}
-				AnimationsManager.getManager().createAnimation(animation);
-				e.getPlayer().sendMessage(ChatColor.GREEN + "New animation with name " + animation + " generated.");
-				
-				
-			}else{
-				if (AnimationsManager.getManager().getAnimation(animation) == null){
-					e.getPlayer().sendMessage(ChatColor.RED + "Animation with name " + animation + " doesn't exist.");
-					return;
-				}
-				AnimationsManager.getManager().removeAnimation(animation);
-				e.getPlayer().sendMessage(ChatColor.GREEN + "Animation " + animation + " deleted.");
+			
+			
+			if (AnimationsManager.getManager().getAnimation(animation) != null){
+				e.getPlayer().sendMessage(ChatColor.RED + "An animation with name " + animation + " already exists.");
+			return;
 			}
-			
-			
-			nameRetrieving.remove(e.getPlayer().getName());
-			
+			AnimationsManager.getManager().createAnimation(animation);
+			e.getPlayer().sendMessage(ChatColor.GREEN + "New animation with name " + animation + " generated.");	
+			accessMode.remove(e.getPlayer().getName());
 			
 		}
+			
+		if (copyBase.containsKey(e.getPlayer().getName())){
+			Animation copied = AnimationsManager.getManager().createAnimation(animation);
+			AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
+			e.getPlayer().sendMessage(ChatColor.GREEN + "Animation copied successfully.");
+			copyBase.remove(e.getPlayer().getName());
+			e.setCancelled(true);
+		}
+			
+			
 	}
-	
 }

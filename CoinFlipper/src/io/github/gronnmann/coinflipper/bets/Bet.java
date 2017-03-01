@@ -1,20 +1,23 @@
 package io.github.gronnmann.coinflipper.bets;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.animations.Animation;
 
 public class Bet {
 	private String player;
 	private int bet, id, minsRemaining, booster;
+	private Animation animation;
 	private double amount;
 	
 	
-	public Bet(String player, int bet, double amount, int id, int booster){
+	public Bet(String player, int bet, double amount, int id, int booster, Animation animation){
 		this.player = player;
 		this.bet = bet;
 		this.amount = amount;
 		this.id = id;
 		this.minsRemaining = ConfigManager.getManager().getConfig().getInt("time_expire");
 		this.booster = booster;
+		this.animation = animation;
 	}
 	
 	public String getPlayer(){
@@ -37,6 +40,9 @@ public class Bet {
 	}
 	public void setTimeRemaining(int time){
 		this.minsRemaining = time;
+	}
+	public Animation getAnimation(){
+		return animation;
 	}
 }
 

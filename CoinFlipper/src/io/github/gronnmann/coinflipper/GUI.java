@@ -67,7 +67,7 @@ public class GUI implements Listener{
 		p.openInventory(selectionScreen);
 	}
 	
-	private void generateAnimations(String p1, String p2, String winner, double moneyWon){
+	private void generateAnimations(String p1, String p2, String winner, double moneyWon, String anim){
 		
 		String invName = "CoinFlipper: " + p1 + " vs. " + p2;
 		String packageName = Bukkit.getServer().getClass().getPackage().getName();
@@ -78,7 +78,7 @@ public class GUI implements Listener{
 		}
 		
 		
-		final AnimationRunnable animation = new AnimationRunnable(p1, p2, winner, moneyWon, ConfigManager.getManager().getConfig().getString("animation_used"),
+		final AnimationRunnable animation = new AnimationRunnable(p1, p2, winner, moneyWon, anim,
 				invName);
 		animation.runTaskTimer(pl, 0, 2);
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(pl, new Runnable(){
@@ -253,7 +253,7 @@ public class GUI implements Listener{
 		
 		//Create animations & give money
 		Main.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winAmount);
-		this.generateAnimations(p.getName(), b.getPlayer(), winner, winAmount);
+		this.generateAnimations(p.getName(), b.getPlayer(), winner, winAmount, b.getAnimation().getName());
 		
 		BettingManager.getManager().removeBet(b);
 		this.refreshGameManager();
