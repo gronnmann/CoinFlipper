@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.GUI;
 import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.animations.Animation;
+import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 
 public class BettingManager {
@@ -31,8 +33,10 @@ public class BettingManager {
 			}
 		}
 		
+		Animation animation = AnimationsManager.getManager().getAnimationToUse(p);
+		
 		//Rest
-		Bet b = new Bet(p.getName(), side, amount, this.getNextAvaibleID(), booster);
+		Bet b = new Bet(p.getName(), side, amount, this.getNextAvaibleID(), booster, animation);
 		bets.add(b);
 		return b;
 	}
@@ -113,9 +117,6 @@ public class BettingManager {
 			}
 		}
 		booster2 = b.getBooster();
-		
-		System.out.println("Booster owner:"+booster2);
-		System.out.println("Booster player: " + booster1);
 		
 		if (booster1 == 0 && booster2 != 0){
 			i2 = booster2;

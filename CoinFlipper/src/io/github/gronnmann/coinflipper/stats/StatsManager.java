@@ -52,17 +52,38 @@ public class StatsManager implements Listener{
 	}
 	
 	public Stats getStats(Player p){
+		if (!stats.containsKey(p.getUniqueId().toString())){
+			this.createClearStats(p);
+		}
+		
 		return stats.get(p.getUniqueId().toString());
 	}
 	public Stats getStats(String uuid){
+		if (!stats.containsKey(uuid)){
+			this.createClearStats(uuid);
+		}
+		
 		return stats.get(uuid);
 	}
 	
 	@EventHandler
 	public void createStatsIfNew(PlayerJoinEvent e){
 		if (!stats.containsKey(e.getPlayer().getUniqueId().toString())){
+			this.createClearStats(e.getPlayer());
+		}
+	}
+	
+	private void createClearStats(Player p){
+		if (!stats.containsKey(p.getUniqueId().toString())){
 			Stats clean = new Stats(0, 0, 0, 0);
-			stats.put(e.getPlayer().getUniqueId().toString(),clean);
+			stats.put(p.getUniqueId().toString(),clean);
+		}
+	}
+	
+	private void createClearStats(String uuid){
+		if (!stats.containsKey(uuid)){
+			Stats clean = new Stats(0, 0, 0, 0);
+			stats.put(uuid ,clean);
 		}
 	}
 }
