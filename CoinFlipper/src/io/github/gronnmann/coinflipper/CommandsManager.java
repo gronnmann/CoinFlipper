@@ -1,5 +1,6 @@
 package io.github.gronnmann.coinflipper;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,6 +12,7 @@ import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -99,6 +101,13 @@ public class CommandsManager implements CommandExecutor{
 			}
 			
 			
+			BetPlaceEvent placeEvent = new BetPlaceEvent(p, i, side);			
+			Bukkit.getPluginManager().callEvent(placeEvent);
+			
+			if (placeEvent.isCancelled()){
+				Main.getEcomony().depositPlayer(p.getName(), i);
+				return true;
+			}
 			
 			p.sendMessage(getMsg(Message.PLACE_SUCCESSFUL));
 			BettingManager.getManager().createBet(p, side, i);

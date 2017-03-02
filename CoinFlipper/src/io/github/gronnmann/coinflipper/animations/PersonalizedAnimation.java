@@ -27,7 +27,7 @@ public class PersonalizedAnimation {
 		
 		p1Skull = ItemUtils.setName(p1Skull, ChatColor.BLUE + p1);
 		p2Skull = ItemUtils.setName(p2Skull, ChatColor.BLUE + p2);
-		winnerSkull = ItemUtils.setName(winnerSkull, ChatColor.AQUA.toString() + ChatColor.BOLD + "WINNER: " + ChatColor.BLUE + p1);
+		winnerSkull = ItemUtils.setName(winnerSkull, ChatColor.AQUA.toString() + ChatColor.BOLD + "WINNER: " + ChatColor.BLUE + winner);
 		
 	}
 	
