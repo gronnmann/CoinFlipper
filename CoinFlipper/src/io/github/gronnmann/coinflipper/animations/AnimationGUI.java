@@ -164,6 +164,8 @@ public class AnimationGUI implements Listener{
 		if (!(e.getInventory().getName().equals("CoinFlipper: Choose animation")))return;
 		ItemStack animI = e.getCurrentItem();
 		
+		if (animI == null)return;
+		
 		if (animI.getType().equals(Material.AIR))return;
 		
 		e.setCancelled(true);
