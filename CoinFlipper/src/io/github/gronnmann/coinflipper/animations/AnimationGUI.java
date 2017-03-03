@@ -14,6 +14,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.gronnmann.coinflipper.MessagesManager;
+import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.utils.InventoryUtils;
 import io.github.gronnmann.utils.ItemUtils;
 
@@ -37,9 +39,9 @@ public class AnimationGUI implements Listener{
 	public void setup(){
 		main = Bukkit.createInventory(null, 54, "CoinFlipper Animations");
 		
-		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL,  ChatColor.GREEN + ChatColor.BOLD.toString()+ "Create", 5));
-		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, ChatColor.RED + ChatColor.BOLD.toString() + "Delete", 14));
-		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, ChatColor.BLUE + ChatColor.BOLD.toString() + "Clone", 11));
+		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CREATE), 5));
+		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_DELETE), 14));
+		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CLONE), 11));
 		InventoryUtils.fillWithItem(main, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ".", 10), 36, 44);
 		
 		
@@ -55,7 +57,7 @@ public class AnimationGUI implements Listener{
 			
 			if (ani.isDefault()){
 				ItemStack defaultAnim = ItemUtils.createItem(Material.CLAY, ani.getName());
-				ItemUtils.setLore(defaultAnim, ChatColor.YELLOW + "Default animation");
+				ItemUtils.setLore(defaultAnim, MessagesManager.getMessage(Message.ANIMATION_GUI_DEFANIM));
 				main.setItem(slot, defaultAnim);
 				
 				
@@ -89,7 +91,7 @@ public class AnimationGUI implements Listener{
 		
 		if (e.getSlot() == SLOT_NEW){
 			p.closeInventory();
-			p.sendMessage(ChatColor.YELLOW + "Please write the name you want the animation to create.");
+			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_GIVENAME));
 			accessMode.put(p.getName(), 0);
 		}else if (e.getSlot() == SLOT_DELETE){
 			p.openInventory(this.getAnimationSelectorList());
@@ -137,7 +139,7 @@ public class AnimationGUI implements Listener{
 			if (slot > 44)break;
 			if (ani.isDefault()){
 				ItemStack defaultAnim = ItemUtils.createItem(Material.CLAY, ani.getName());
-				ItemUtils.setLore(defaultAnim, ChatColor.YELLOW + "Default animation");
+				ItemUtils.setLore(defaultAnim, MessagesManager.getMessage(Message.ANIMATION_GUI_DEFANIM));
 				selectorList.setItem(slot, defaultAnim);
 			}else{
 				selectorList.setItem(slot, ItemUtils.createItem(Material.CLAY_BALL, ani.getName()));
@@ -152,7 +154,7 @@ public class AnimationGUI implements Listener{
 			}
 		}
 		
-		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, "Back", 1));
+		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
 		
 		return selectorList;
 	}
@@ -190,13 +192,13 @@ public class AnimationGUI implements Listener{
 		switch(mode){
 		case 1:
 			AnimationsManager.getManager().removeAnimation(anim);
-			p.sendMessage(ChatColor.GREEN + "Successfully removed animation " + anim.getName());
+			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_SUCCESS).replaceAll("%ANIMATION%", anim.getName()));
 			p.openInventory(this.getAnimationSelectorList());
 			break;
 		case 2:
 			copyBase.put(p.getName(), anim.getName());
 			p.closeInventory();
-			p.sendMessage(ChatColor.YELLOW + "Please write the name of the new copied animation.");
+			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_GIVENAME));
 		default: return;
 		}
 		
@@ -216,22 +218,22 @@ public class AnimationGUI implements Listener{
 		
 		editor.setContents(animation.getFrame(frame).getContents());
 		
-		ItemStack next = ItemUtils.createItem(Material.ARROW, ChatColor.GOLD + "Next");
-		ItemStack prev = ItemUtils.createItem(Material.ARROW, ChatColor.GOLD + "Previous");
-		ItemStack current = ItemUtils.createItem(Material.GLASS, ChatColor.YELLOW + "Current frame: " + frame);
+		ItemStack next = ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_NEXT));
+		ItemStack prev = ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_PREV));
+		ItemStack current = ItemUtils.createItem(Material.GLASS, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_CURRENT).replaceAll("%FRAME%", frame+""));
 		current.setAmount(frame);
 		
 		editor.setItem(PREV, prev);
 		editor.setItem(CURRENT, current);
 		editor.setItem(NEXT, next);
 		
-		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, "Back", 1));
+		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
 		
-		editor.setItem(P1I, ItemUtils.createItem(Material.WOOD_HOE, ChatColor.BLUE + "Player 1 Skull"));
-		editor.setItem(P2I, ItemUtils.createItem(Material.STONE_HOE, ChatColor.BLUE + "Player 2 Skull"));
-		editor.setItem(WINNER, ItemUtils.createItem(Material.DIAMOND_HOE, ChatColor.AQUA + "Winner Skull"));
+		editor.setItem(P1I, ItemUtils.createItem(Material.WOOD_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_P1HEAD)));
+		editor.setItem(P2I, ItemUtils.createItem(Material.STONE_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_P2HEAD)));
+		editor.setItem(WINNER, ItemUtils.createItem(Material.DIAMOND_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_WINNERHEAD)));
 		
-		editor.setItem(CLONEPREV, ItemUtils.createItem(Material.PAPER, ChatColor.LIGHT_PURPLE + "Copy last frame"));
+		editor.setItem(CLONEPREV, ItemUtils.createItem(Material.PAPER, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_COPYLAST)));
 		
 		return editor;
 	}
@@ -310,11 +312,11 @@ public class AnimationGUI implements Listener{
 			
 			
 			if (AnimationsManager.getManager().getAnimation(animation) != null){
-				e.getPlayer().sendMessage(ChatColor.RED + "An animation with name " + animation + " already exists.");
+				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_ALREADYEXISTS).replaceAll("%ANIMATION%", animation));
 			return;
 			}
 			AnimationsManager.getManager().createAnimation(animation);
-			e.getPlayer().sendMessage(ChatColor.GREEN + "New animation with name " + animation + " generated.");	
+			e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_SUCCESS).replaceAll("%ANIMATION%", animation));	
 			accessMode.remove(e.getPlayer().getName());
 			
 		}
@@ -322,7 +324,7 @@ public class AnimationGUI implements Listener{
 		if (copyBase.containsKey(e.getPlayer().getName())){
 			Animation copied = AnimationsManager.getManager().createAnimation(animation);
 			AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
-			e.getPlayer().sendMessage(ChatColor.GREEN + "Animation copied successfully.");
+			e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
 			copyBase.remove(e.getPlayer().getName());
 			e.setCancelled(true);
 		}

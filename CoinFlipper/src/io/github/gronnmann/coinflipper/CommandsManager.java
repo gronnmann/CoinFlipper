@@ -75,7 +75,7 @@ public class CommandsManager implements CommandExecutor{
 			}else if (args[1].equalsIgnoreCase("tails")||args[1].equalsIgnoreCase("t")||args[1].equalsIgnoreCase(getMsg(Message.TAILS))){
 				side = 0;
 			}else{
-				p.sendMessage(ChatColor.RED + "Please choose a site. (heads/tails)");
+				p.sendMessage(getMsg(Message.PLACE_TRIAL_PICKSIDE));
 				return true;
 			}
 			

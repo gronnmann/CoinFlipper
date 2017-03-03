@@ -54,7 +54,7 @@ public class AnimationRunnable extends BukkitRunnable{
 				p1.openInventory(animation.getFrame(phase));
 			}else{
 				if (phase == 1){
-					p1.sendMessage(ChatColor.YELLOW + "A CoinFlipper game you participate in has been started, but you are in combat.");
+					p1.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
 				}
 			}
 		}
@@ -64,7 +64,7 @@ public class AnimationRunnable extends BukkitRunnable{
 			}
 			else{
 				if (phase == 1){
-					p2.sendMessage(ChatColor.YELLOW + "A CoinFlipper game you participate in has been started, but you are in combat.");
+					p2.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
 				}
 			}
 		}

@@ -16,6 +16,7 @@ SYNTAX_L5: '&a/coinflipper animation &e- Create or delete animations.'
 MIN_BET: '&cPlease provide a bet over &a$%MIN_BET%' #Message when player places bet under minimum
 MAX_BET: '&cPlease provide a bet under &a$%MAX_BET%' #Message when player places bet over maximum
 
+PLACE_TRIAL_PICKSIDE: '&cPlease choose a site. (heads/tails)'
 PLACE_SUCCESSFUL: '&aSuccessfully placed a CoinFlipper game.' #Message when player places bet
 PLACE_FAILED_ALREADYGAME: '&cYou already have a CoinFlipper game in progress.' #Message when player tries to place bet but already has one in progress
 PLACE_FAILED_NOMONEY: '&cYou don''t have enough money to do this.' #Message when player tries to place bet but doesn't have enough money
@@ -45,6 +46,7 @@ BET_CHALLENGE_CANTSELF: '&cYou can''t challenge your own bet!'
 BET_CHALLENGE_NOMONEY: '&cYou can''t afford to challenge this bet.'
 
 BET_WON: '&aYou have won your bet with the value $%MONEY%'
+BET_START_COMBAT: '&eA CoinFlipper game you participate in is running but you are in combat.'
 
 STATS_NOSTATS: '&cYou have no stats to be found. Please relog to get it.'
 STATS_STATS: '&6&l%PLAYER%''s Statistics:'
@@ -54,3 +56,30 @@ STATS_WINPERCENTAGE: '&2Win percentage: &a%AMOUNT%%'
 STATS_MONEYWON: '&2Money won: &a$%AMOUNT%'
 STATS_MONEYSPENT: '&2Money spent: &a$%AMOUNT%'
 STATS_MONEYEARNED: '&2Money earned: &a$%AMOUNT%'
+
+ANIMATION_CREATE_GIVENAME: '&ePlease write the name you want the animation to create.'
+ANIMATION_CREATE_ALREADYEXISTS: '&cAn animation with name %ANIMATION% already exists.'
+ANIMATION_CREATE_SUCCESS: '&aNew animation with name %ANIMATION% generated.'
+ANIMATION_CLONE_GIVENAME: '&ePlease write the name of the new copied animation.'
+ANIMATION_CLONE_SUCCESS: '&aAnimation copied successfully.'
+ANIMATION_REMOVE_SUCCESS: '&aSuccessfully removed animation %ANIMATION%.'
+
+ANIMATION_GUI_CREATE: '&a&lCreate'
+ANIMATION_GUI_DELETE: '&c&lDelete'
+ANIMATION_GUI_CLONE: '&9&lClone'
+ANIMATION_GUI_DEFANIM: '&eDefault animation'
+
+ANIMATION_FRAMEEDITOR_BACK: '&c&lBack'
+ANIMATION_FRAMEEDITOR_COPYLAST: '&dCopy last frame'
+ANIMATION_FRAMEEDITOR_P1HEAD: '&9Player 1 Skull'
+ANIMATION_FRAMEEDITOR_P2HEAD: '&9Player 2 Skull'
+ANIMATION_FRAMEEDITOR_WINNERHEAD: '&9Winner Skull'
+ANIMATION_FRAMEEDITOR_NEXT: '&6Next'
+ANIMATION_FRAMEEDITOR_CURRENT: '&eCurrent frame: %FRAME%'
+ANIMATION_FRAMEEDITOR_PREV: '&6Previous'
+
+ANIMATION_ROLL_P1SKULL: '&9%PLAYER%'
+ANIMATION_ROLL_P2SKULL: '&9%PLAYER%'
+ANIMATION_ROLL_WINNERSKULL: '&b&lWinner: &9%PLAYER%'
+ANIMATION_ROLL_ROLLING: 'Rolling...'
+ANIMATION_ROLL_WINNERCHOSEN: '&aWinner chosen.'
