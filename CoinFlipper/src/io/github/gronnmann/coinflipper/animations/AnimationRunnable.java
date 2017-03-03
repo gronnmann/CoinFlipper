@@ -14,6 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.hook.HookManager;
 
 public class AnimationRunnable extends BukkitRunnable{
 	String s1, s2, winner;
@@ -49,10 +50,23 @@ public class AnimationRunnable extends BukkitRunnable{
 		Player p2 = Bukkit.getPlayer(s2);
 		
 		if (p1 != null){
-			p1.openInventory(animation.getFrame(phase));
+			if (!HookManager.getManager().isTagged(p1)){
+				p1.openInventory(animation.getFrame(phase));
+			}else{
+				if (phase == 1){
+					p1.sendMessage(ChatColor.YELLOW + "A CoinFlipper game you participate in has been started, but you are in combat.");
+				}
+			}
 		}
 		if (p2 != null){
-			p2.openInventory(animation.getFrame(phase));
+			if (!HookManager.getManager().isTagged(p1)){
+				p2.openInventory(animation.getFrame(phase));
+			}
+			else{
+				if (phase == 1){
+					p2.sendMessage(ChatColor.YELLOW + "A CoinFlipper game you participate in has been started, but you are in combat.");
+				}
+			}
 		}
 		
 		

@@ -30,6 +30,11 @@ public class Stats {
 	}
 	public double getWinPercentage(){
 		double total = gamesWon+gamesLost;
+		
+		if (total == 0){
+			return 0;
+		}
+		
 		double percentage1 = (gamesWon/total) * 100;
 		DecimalFormat df = new DecimalFormat("##0.00");
 		

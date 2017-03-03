@@ -8,6 +8,7 @@ import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.BettingTimer;
+import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.Economy;
 
@@ -27,6 +28,8 @@ public class Main extends JavaPlugin{
 		
 		AnimationFileManager.getManager().setup(this);
 		AnimationGUI.getManager().setup();
+		
+		HookManager.getManager().registerHooks();
 		
 		this.getCommand("coinflipper").setExecutor(new CommandsManager());
 		
