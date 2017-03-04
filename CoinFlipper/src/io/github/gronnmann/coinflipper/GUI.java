@@ -20,6 +20,7 @@ import io.github.gronnmann.coinflipper.animations.AnimationRunnable;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.utils.GeneralUtils;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class GUI implements Listener{
@@ -34,7 +35,7 @@ public class GUI implements Listener{
 	private ArrayList<String> removers = new ArrayList<String>();
 	public void setup(Plugin pl){
 		this.pl = pl;
-		selectionScreen = Bukkit.createInventory(null, 54, "CoinFlipper Selection");
+		selectionScreen = Bukkit.createInventory(null, 54, MessagesManager.getMessage(Message.GUI_SELECTION));
 		
 	}
 	
@@ -69,12 +70,12 @@ public class GUI implements Listener{
 	
 	private void generateAnimations(String p1, String p2, String winner, double moneyWon, String anim){
 		
-		String invName = "CoinFlipper: " + p1 + " vs. " + p2;
+		String invName = MessagesManager.getMessage(Message.GUI_GAME).replaceAll("%PLAYER1%", p1).replaceAll("%PLAYER2%", p2);
 		String packageName = Bukkit.getServer().getClass().getPackage().getName();
 		int vID = Integer.parseInt(packageName.split("_")[1]);
 		
 		if (invName.length() > 32 && vID < 9){
-			invName = "CoinFlipper Game";
+			invName = MessagesManager.getMessage(Message.GUI_GAME_18);
 		}
 		
 		
@@ -122,19 +123,18 @@ public class GUI implements Listener{
 	
 	@EventHandler
 	public void gameAntiClicker(InventoryClickEvent e){
-		if (e.getInventory().getName().contains("CoinFlipper") && (e.getInventory().getName().contains("vs")||
-				e.getInventory().getName().contains("Game"))){
+		if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_GAME_18))||
+				e.getInventory().getName().contains(MessagesManager.getMessage(Message.GUI_GAME).split(" ")[0])){
 			e.setCancelled(true);
 		}
 	}
 	
 	@EventHandler
 	public void onInvClick(InventoryClickEvent e){
-		if (!e.getInventory().getName().contains("CoinFlipper Selection"))return;
+		if (!e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_SELECTION)))return;
 		e.setCancelled(true);
 		if (e.getCurrentItem() == null)return;
 		if (e.getCurrentItem().getItemMeta()==null)return;
-		if (e.getInventory().getName().contains("Game"))return;
 		if (e.getSlot() == 48){
 			
 		}
@@ -145,9 +145,9 @@ public class GUI implements Listener{
 		if (!(e.getCurrentItem().getType().equals(Material.SKULL_ITEM)))return;
 		
 		ItemStack item = e.getCurrentItem();
-		String ID = ChatColor.stripColor(item.getItemMeta().getDisplayName().split(" ")[1]);
-		ID = ID.replaceAll("#", "");	
-		int id = Integer.parseInt(ID);
+		String ID = ChatColor.stripColor(item.getItemMeta().getDisplayName());
+		ID = ID.replaceAll("#", "");
+		int id = GeneralUtils.getIntInString(ID);
 		
 		Player p = (Player) e.getWhoClicked();
 		Bet b = BettingManager.getManager().getBet(id);

@@ -2,6 +2,13 @@ CMD_PLAYER_ONLY: 'This command is for players only' #Which message should be dis
 NO_PERMISSION: '&cYou don''t have permission to use this command!' #Displayed when player has no permission
 PLAYER_NOT_FOUND: '&cPlayer not found.'
 
+#Commands after /cf
+CMD_HELP: 'help'
+CMD_GUI: 'gui'
+CMD_STATS: 'stats'
+CMD_ANIMATION: 'animation'
+CMD_CLEAR: 'clear'
+
 HEADS: 'Heads'
 TAILS: 'Tails'
 
@@ -56,6 +63,13 @@ STATS_WINPERCENTAGE: '&2Win percentage: &a%AMOUNT%%'
 STATS_MONEYWON: '&2Money won: &a$%AMOUNT%'
 STATS_MONEYSPENT: '&2Money spent: &a$%AMOUNT%'
 STATS_MONEYEARNED: '&2Money earned: &a$%AMOUNT%'
+
+#GUI NAMES
+GUI_SELECTION: 'CoinFlipper Selection'
+GUI_GAME: 'CoinFlipper: %PLAYER1% vs %PLAYER2%' #Default inventory name for CoinFlipper games. NOTE: The first word must be something exclusive,
+#else people can steal the items in the inventory
+GUI_GAME_18: 'CoinFlipper Game' #Inventory name displayed if the server is on 1.8 or lower and GUI_NAME message exceeds 32 characters(else errors will forecome)
+
 
 ANIMATION_CREATE_GIVENAME: '&ePlease write the name you want the animation to create.'
 ANIMATION_CREATE_ALREADYEXISTS: '&cAn animation with name %ANIMATION% already exists.'

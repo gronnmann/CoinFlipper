@@ -116,21 +116,21 @@ public class CommandsManager implements CommandExecutor{
 			
 			
 		}else if (args.length == 1){
-			if (args[0].equalsIgnoreCase("help")){
+			if (args[0].equalsIgnoreCase(getMsg(Message.CMD_HELP))){
 				if (!p.hasPermission("coinflipper.help")){
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
 				}
 				p.sendMessage(help);
 				return true;
-			}else if (args[0].equalsIgnoreCase("gui")){
+			}else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_GUI))){
 				if (!p.hasPermission("coinflipper.gui")){
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
 				}
 				GUI.getInstance().openGameManager(p);
 				return true;
-			}else if (args[0].equalsIgnoreCase("clear")){
+			}else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_CLEAR))){
 				if (!p.hasPermission("coinflipper.clear")){
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
@@ -141,7 +141,7 @@ public class CommandsManager implements CommandExecutor{
 				}
 				BettingManager.getManager().clearBets();
 				p.sendMessage(getMsg(Message.CLEAR_SUCCESSFUL));
-			}else if (args[0].equalsIgnoreCase("stats")){
+			}else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_STATS))){
 				if (!p.hasPermission("coinflipper.stats")){
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
@@ -161,7 +161,7 @@ public class CommandsManager implements CommandExecutor{
 						getMsg(Message.STATS_MONEYEARNED).replaceAll("%AMOUNT%", pS.getMoneyEarned()+"");
 				p.sendMessage(statsMessage);
 						
-			}else if (args[0].equalsIgnoreCase("animation")||args[0].equalsIgnoreCase("anim")){
+			}else if (args[0].equalsIgnoreCase("animation")||args[0].equalsIgnoreCase("anim")||args[0].equalsIgnoreCase(getMsg(Message.CMD_ANIMATION))){
 				if (!p.hasPermission("coinflipper.animation")){
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
