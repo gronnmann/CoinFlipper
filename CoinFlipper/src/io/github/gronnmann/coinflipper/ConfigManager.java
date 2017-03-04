@@ -14,8 +14,8 @@ public class ConfigManager {
 	public static ConfigManager getManager(){return mng;}
 	
 	private Plugin pl;
-	private File configF, messagesF, statsF;
-	private FileConfiguration config, messages, stats;
+	private File configF, messagesF, statsF, betsF;
+	private FileConfiguration config, messages, stats, bets;
 	
 	public void setup(Plugin p){
 		
@@ -69,6 +69,16 @@ public class ConfigManager {
 		}
 		stats = YamlConfiguration.loadConfiguration(statsF);
 		
+		betsF = new File(p.getDataFolder(), "bets.yml");
+		if (!betsF.exists()){
+			try {
+				betsF.createNewFile();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		bets = YamlConfiguration.loadConfiguration(betsF);
+		
 	}
 	
 	//Copy default option
@@ -86,6 +96,7 @@ public class ConfigManager {
 	public FileConfiguration getConfig(){return config;}
 	public FileConfiguration getMessages(){return messages;}
 	public FileConfiguration getStats(){return stats;}
+	public FileConfiguration getBets() {return bets;}
 	
 	public void saveConfig(){
 		try{
@@ -104,6 +115,11 @@ public class ConfigManager {
 	public void saveStats(){
 		try{
 			stats.save(statsF);
+		}catch(Exception e){e.printStackTrace();}
+	}
+	public void saveBets(){
+		try{
+			bets.save(betsF);
 		}catch(Exception e){e.printStackTrace();}
 	}
 }

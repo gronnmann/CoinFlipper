@@ -20,6 +20,7 @@ public class Bet {
 		this.animation = animation;
 	}
 	
+	
 	public String getPlayer(){
 		return player;
 	}

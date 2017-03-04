@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.GUI;
 import io.github.gronnmann.coinflipper.Main;
 import io.github.gronnmann.coinflipper.animations.Animation;
@@ -18,8 +20,41 @@ public class BettingManager {
 	public static BettingManager getManager(){
 		return manager;
 	}
+	private FileConfiguration conf;
 	
 	private ArrayList<Bet> bets = new ArrayList<Bet>();
+	
+	public void load(){
+		conf = ConfigManager.getManager().getBets();
+		
+		if (conf.getConfigurationSection("bets") == null)return;
+		for (String ids : conf.getConfigurationSection("bets").getKeys(false)){
+			int booster = conf.getInt("bets."+ids+".booster");
+			String player = conf.getString("bets."+ids+".player");
+			double money = conf.getDouble("bets."+ids+".money");
+			int side = conf.getInt("bets."+ids+".side");
+			int time = conf.getInt("bets."+ids+".time");
+			Animation animation = AnimationsManager.getManager().getAnimation(conf.getString("bets."+ids+".animation"));
+			
+			Bet bet = new Bet(player, side, money, Integer.parseInt(ids), booster, animation);
+			bet.setTimeRemaining(time);
+			
+			bets.add(bet);
+		}
+	}
+	
+	public void save(){
+		for (Bet b : bets){
+			conf.set("bets."+b.getID()+".booster", b.getBooster());
+			conf.set("bets."+b.getID()+".player", b.getPlayer());
+			conf.set("bets."+b.getID()+".money", b.getAmount());
+			conf.set("bets."+b.getID()+".side", b.getSide());
+			conf.set("bets."+b.getID()+".time", b.getTimeRemaining());
+			conf.set("bets."+b.getID()+".animation", b.getAnimation().getName());
+		}
+		
+		ConfigManager.getManager().saveBets();
+	}
 	
 	
 	public Bet createBet(Player p, int side, double amount){

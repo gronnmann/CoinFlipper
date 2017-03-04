@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
+import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.bets.BettingTimer;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
@@ -20,9 +21,18 @@ public class Main extends JavaPlugin{
 	
 	public void onEnable(){
 		
-		if (!enableEconomy()){Bukkit.getPluginManager().disablePlugin(this);}
+		if (!enableEconomy()){
+			
+			int i = 0;
+			while (i < 4){
+				i++;
+				System.out.println("[CoinFlipper] Vault/Economy plugins not found. Disabling.");
+			}
+			Bukkit.getPluginManager().disablePlugin(this);
+		}
 		
 		ConfigManager.getManager().setup(this);
+		BettingManager.getManager().load();
 		GUI.getInstance().setup(this);
 		StatsManager.getManager().load();
 		
@@ -48,6 +58,7 @@ public class Main extends JavaPlugin{
 	
 	public void onDisable(){
 		StatsManager.getManager().save();
+		BettingManager.getManager().save();
 		
 		AnimationsManager.getManager().save();
 	}
