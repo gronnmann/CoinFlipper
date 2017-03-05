@@ -16,6 +16,10 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.events.AnimationCloneEvent;
+import io.github.gronnmann.coinflipper.events.AnimationCreateEvent;
+import io.github.gronnmann.coinflipper.events.AnimationDeleteEvent;
+import io.github.gronnmann.coinflipper.events.AnimationFrameChangeEvent;
 import io.github.gronnmann.utils.InventoryUtils;
 import io.github.gronnmann.utils.ItemUtils;
 
@@ -193,6 +197,10 @@ public class AnimationGUI implements Listener{
 		
 		switch(mode){
 		case 1:
+			
+			AnimationDeleteEvent delEvent = new AnimationDeleteEvent(anim);
+			if (delEvent.isCancelled())return;
+			
 			AnimationsManager.getManager().removeAnimation(anim);
 			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_SUCCESS).replaceAll("%ANIMATION%", anim.getName()));
 			p.openInventory(this.getAnimationSelectorList());
@@ -267,12 +275,23 @@ public class AnimationGUI implements Listener{
 		
 		if (e.getSlot() == NEXT){
 			if (frameId == 50)return;
+			
+			AnimationFrameChangeEvent frameChange = new AnimationFrameChangeEvent(anim, frameId, frameId+1);
+			Bukkit.getPluginManager().callEvent(frameChange);
+			if (frameChange.isCancelled())return;
+			
+			
 			this.saveFrame(anim, frameId, e.getInventory());
 			p.openInventory(this.getEditor(anim, frameId+1));
 			
 		}
 		if (e.getSlot() == PREV){
 			if (frameId == 0 )return;
+			
+			AnimationFrameChangeEvent frameChange = new AnimationFrameChangeEvent(anim, frameId, frameId-1);
+			Bukkit.getPluginManager().callEvent(frameChange);
+			if (frameChange.isCancelled())return;
+			
 			this.saveFrame(anim, frameId, e.getInventory());
 			p.openInventory(this.getEditor(anim, frameId-1));
 		}
@@ -317,18 +336,31 @@ public class AnimationGUI implements Listener{
 				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_ALREADYEXISTS).replaceAll("%ANIMATION%", animation));
 			return;
 			}
-			AnimationsManager.getManager().createAnimation(animation);
-			e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_SUCCESS).replaceAll("%ANIMATION%", animation));	
+			
+			AnimationCreateEvent createEvent = new AnimationCreateEvent(animation);
+			Bukkit.getPluginManager().callEvent(createEvent);
+			
+			if (!createEvent.isCancelled()){
+				AnimationsManager.getManager().createAnimation(animation);
+				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_SUCCESS).replaceAll("%ANIMATION%", animation));
+			}
 			accessMode.remove(e.getPlayer().getName());
 			
 		}
 			
 		if (copyBase.containsKey(e.getPlayer().getName())){
-			Animation copied = AnimationsManager.getManager().createAnimation(animation);
-			AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
-			e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
+			
+			AnimationCloneEvent cloneEvent = new AnimationCloneEvent(animation, AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())));
+			Bukkit.getPluginManager().callEvent(cloneEvent);
+			
+			if (!cloneEvent.isCancelled()){
+				Animation copied = AnimationsManager.getManager().createAnimation(animation);
+				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
+				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
+			}
 			copyBase.remove(e.getPlayer().getName());
 			e.setCancelled(true);
+			
 		}
 			
 			

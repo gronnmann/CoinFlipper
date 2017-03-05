@@ -19,6 +19,8 @@ import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.animations.AnimationRunnable;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.events.BetChallengeEvent;
+import io.github.gronnmann.coinflipper.events.BetPlayEvent;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.GeneralUtils;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -229,6 +231,11 @@ public class GUI implements Listener{
 			return;
 		}
 		
+		BetChallengeEvent chEvent = new BetChallengeEvent(p, b);
+		Bukkit.getPluginManager().callEvent(chEvent);
+		
+		if (chEvent.isCancelled())return;
+		
 		double winAmount = b.getAmount()*2;
 		final double tax = ConfigManager.getManager().getConfig().getDouble("tax_percentage");
 		winAmount = (100-tax)*winAmount/100;
@@ -248,8 +255,10 @@ public class GUI implements Listener{
 		}else{
 			StatsManager.getManager().getStats(p2.getUniqueId().toString()).addMoneyWon(winAmount);
 		}
-		//Money stats end
 		
+		//Call event
+		BetPlayEvent bpe = new BetPlayEvent(p.getName(), b.getPlayer(), winner, b.getAnimation(), winAmount, b);
+		Bukkit.getPluginManager().callEvent(bpe);
 		
 		//Create animations & give money
 		Main.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winAmount);

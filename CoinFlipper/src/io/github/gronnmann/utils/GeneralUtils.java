@@ -16,4 +16,14 @@ public class GeneralUtils {
 		}
 		return Integer.parseInt(string.split(" ")[foundId]);
 	}
+	
+	public static boolean isInt(String str){
+		try{
+			Integer.parseInt(str);
+			
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
 }
