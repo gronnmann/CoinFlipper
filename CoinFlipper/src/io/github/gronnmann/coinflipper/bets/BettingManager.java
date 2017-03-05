@@ -13,6 +13,7 @@ import io.github.gronnmann.coinflipper.Main;
 import io.github.gronnmann.coinflipper.animations.Animation;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.utils.Debug;
 
 public class BettingManager {
 	private BettingManager(){}
@@ -124,6 +125,9 @@ public class BettingManager {
 		
 		int[] chances = this.getChances(p, b);
 		
+		Debug.print("Betowner chances: " + chances[1]);
+		Debug.print("Challenger chances: " + chances[0]);
+		
 		Random rn = new Random();
 		int r = rn.nextInt(chances[0]+chances[1]);
 		
@@ -139,6 +143,13 @@ public class BettingManager {
 	}
 	
 	public int[] getChances(Player p1, Bet b){
+		
+		if (ConfigManager.getManager().getConfig().getString("boosters_enabled") != null){
+			if (!ConfigManager.getManager().getConfig().getBoolean("boosters_enabled")){
+				return new int[]{50, 50};
+			}
+		}
+		
 		int i1 = 50;
 		int i2  = 50;
 		
