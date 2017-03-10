@@ -1,4 +1,4 @@
-Everything in io.github.gronnmann.coinflipper is licensed under:  
+Everything in io.github.gronnmann.coinflipper (except the metrics) is licensed under:  
 MIT License
 
 Copyright (c) 2017 Gronnmann
@@ -23,3 +23,8 @@ SOFTWARE.
 
 Everything in io.github.gronnmann.utils is licensed under:  
 The Public Domain (you can do whatever you want with that)
+
+Everything in io.github.gronnmann.coinflipper.metrics belongs to bMetrics,  
+which is available at https://bstats.org/. It is available under the  
+following licence:  
+https://github.com/BtoBastian/bStats-Metrics/blob/master/LICENSE
