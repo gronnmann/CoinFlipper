@@ -8,6 +8,7 @@ CMD_GUI: 'gui'
 CMD_STATS: 'stats'
 CMD_ANIMATION: 'animation'
 CMD_CLEAR: 'clear'
+CMD_RELOAD: 'reload'
 
 HEADS: 'Heads'
 TAILS: 'Tails'

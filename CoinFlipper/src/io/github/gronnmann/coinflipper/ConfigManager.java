@@ -6,6 +6,7 @@ import java.io.InputStream;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.file.YamlConfigurationOptions;
 import org.bukkit.plugin.Plugin;
 
 public class ConfigManager {
@@ -121,5 +122,12 @@ public class ConfigManager {
 		try{
 			bets.save(betsF);
 		}catch(Exception e){e.printStackTrace();}
+	}
+	
+	public void reload(){
+		config = YamlConfiguration.loadConfiguration(configF);
+		messages = YamlConfiguration.loadConfiguration(messagesF);
+		stats = YamlConfiguration.loadConfiguration(statsF);
+		bets = YamlConfiguration.loadConfiguration(betsF);
 	}
 }

@@ -168,6 +168,14 @@ public class CommandsManager implements CommandExecutor{
 				}
 				AnimationGUI.getManager().openGUI(p);
 			}
+			else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_RELOAD))){
+				if (!p.hasPermission("coinflipper.reload")){
+					p.sendMessage(getMsg(Message.NO_PERMISSION));
+					return true;
+				}
+				ConfigManager.getManager().reload();
+				p.sendMessage(ChatColor.GREEN + "Configs reloaded successfully.");
+			}
 			
 			else{
 				p.sendMessage(help);
