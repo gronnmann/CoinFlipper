@@ -65,6 +65,8 @@ STATS_MONEYWON: '&2Money won: &a$%AMOUNT%'
 STATS_MONEYSPENT: '&2Money spent: &a$%AMOUNT%'
 STATS_MONEYEARNED: '&2Money earned: &a$%AMOUNT%'
 
+RELOAD_SUCCESS: '&aCoinFlipper Files reloaded successfully.'
+
 #GUI NAMES
 GUI_SELECTION: 'CoinFlipper Selection'
 GUI_GAME: 'CoinFlipper: %PLAYER1% vs %PLAYER2%' #Default inventory name for CoinFlipper games. NOTE: The first word must be something exclusive,

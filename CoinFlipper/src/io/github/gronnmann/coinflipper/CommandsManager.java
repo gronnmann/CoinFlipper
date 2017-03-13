@@ -174,7 +174,7 @@ public class CommandsManager implements CommandExecutor{
 					return true;
 				}
 				ConfigManager.getManager().reload();
-				p.sendMessage(ChatColor.GREEN + "Configs reloaded successfully.");
+				p.sendMessage(getMsg(Message.RELOAD_SUCCESS));
 			}
 			
 			else{
