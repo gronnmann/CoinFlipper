@@ -215,12 +215,12 @@ public class BettingManager {
 			return false;
 		}
 		
-		if (mon < ConfigManager.getManager().getConfig().getInt("min_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MIN_BET).replaceAll("%MIN_BET%", ConfigManager.getManager().getConfig().getInt("min_amount")+""));
+		if (mon < ConfigManager.getManager().getConfig().getDouble("min_amount")){
+			p.sendMessage(MessagesManager.getMessage(Message.MIN_BET).replaceAll("%MIN_BET%", ConfigManager.getManager().getConfig().getDouble("min_amount")+""));
 			return true;
 		}
-		if (mon > ConfigManager.getManager().getConfig().getInt("max_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MAX_BET).replaceAll("%MAX_BET%", ConfigManager.getManager().getConfig().getInt("max_amount")+""));
+		if (mon > ConfigManager.getManager().getConfig().getDouble("max_amount")){
+			p.sendMessage(MessagesManager.getMessage(Message.MAX_BET).replaceAll("%MAX_BET%", ConfigManager.getManager().getConfig().getDouble("max_amount")+""));
 			return true;
 		}
 		

@@ -22,6 +22,7 @@ import org.bukkit.material.Wool;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.utils.GeneralUtils;
 import io.github.gronnmann.utils.ItemUtils;
 
 public class CreationGUI implements Listener{
@@ -160,7 +161,7 @@ public class CreationGUI implements Listener{
 		ItemStack headNew = ItemUtils.getSkull(player.getName());
 		ItemUtils.setName(headNew, MessagesManager.getMessage(Message.MENU_HEAD_GAME).replaceAll("%ID%", ""));
 		ItemUtils.addToLore(headNew, MessagesManager.getMessage(Message.MENU_HEAD_PLAYER).replaceAll("%PLAYER%", player.getName()));
-		ItemUtils.addToLore(headNew, MessagesManager.getMessage(Message.MENU_HEAD_MONEY).replaceAll("%MONEY%", data.getMoney()+""));
+		ItemUtils.addToLore(headNew, MessagesManager.getMessage(Message.MENU_HEAD_MONEY).replaceAll("%MONEY%", GeneralUtils.getFormatted(data.getMoney())));
 		ItemUtils.addToLore(headNew, MessagesManager.getMessage(Message.MENU_HEAD_SIDE).replaceAll("%SIDE%", side));
 		
 		inv.setItem(BET_FINALIZE, headNew);
