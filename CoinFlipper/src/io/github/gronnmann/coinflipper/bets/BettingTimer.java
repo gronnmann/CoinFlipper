@@ -2,7 +2,7 @@ package io.github.gronnmann.coinflipper.bets;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import io.github.gronnmann.coinflipper.GUI;
+import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 
 public class BettingTimer extends BukkitRunnable{
 	public void run(){
@@ -14,6 +14,6 @@ public class BettingTimer extends BukkitRunnable{
 				BettingManager.getManager().removeBet(b);
 			}
 		}
-		GUI.getInstance().refreshGameManager();
+		SelectionScreen.getInstance().refreshGameManager();
 	}
 }

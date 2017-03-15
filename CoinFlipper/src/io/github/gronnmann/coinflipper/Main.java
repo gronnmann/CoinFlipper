@@ -9,6 +9,8 @@ import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.bets.BettingTimer;
+import io.github.gronnmann.coinflipper.gui.CreationGUI;
+import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.metrics.BStats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
@@ -33,14 +35,18 @@ public class Main extends JavaPlugin{
 		}
 		
 		ConfigManager.getManager().setup(this);
-		BettingManager.getManager().load();
-		GUI.getInstance().setup(this);
+		SelectionScreen.getInstance().setup(this);
 		StatsManager.getManager().load();
 		
 		AnimationFileManager.getManager().setup(this);
 		AnimationGUI.getManager().setup();
 		
+		BettingManager.getManager().load();
+		
 		HookManager.getManager().registerHooks();
+		
+		
+		CreationGUI.getInstance().generatePreset();
 		
 		this.getCommand("coinflipper").setExecutor(new CommandsManager());
 		
@@ -49,10 +55,12 @@ public class Main extends JavaPlugin{
 		task.runTaskTimerAsynchronously(this, 0, 60*20);
 		
 		
-		Bukkit.getPluginManager().registerEvents(GUI.getInstance(), this);
+		Bukkit.getPluginManager().registerEvents(SelectionScreen.getInstance(), this);
+		Bukkit.getPluginManager().registerEvents(CreationGUI.getInstance(), this);
+		
 		Bukkit.getPluginManager().registerEvents(StatsManager.getManager(), this);
 		
-		///Bukkit.getPluginManager().registerEvents(AnimationsManager.getManager(), this);
+		
 		Bukkit.getPluginManager().registerEvents(AnimationGUI.getManager(), this);
 		
 		//Start metrics

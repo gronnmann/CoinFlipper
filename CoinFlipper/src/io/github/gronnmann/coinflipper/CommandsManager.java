@@ -13,6 +13,7 @@ import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
+import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -59,15 +60,6 @@ public class CommandsManager implements CommandExecutor{
 				return true;
 			}
 			
-			if (i < ConfigManager.getManager().getConfig().getInt("min_amount")){
-				p.sendMessage(getMsg(Message.MIN_BET).replaceAll("%MIN_BET%", ConfigManager.getManager().getConfig().getInt("min_amount")+""));
-				return true;
-			}
-			if (i > ConfigManager.getManager().getConfig().getInt("max_amount")){
-				p.sendMessage(getMsg(Message.MAX_BET).replaceAll("%MAX_BET%", ConfigManager.getManager().getConfig().getInt("max_amount")+""));
-				return true;
-			}
-			
 			
 			int side = -1;
 			if (args[1].equalsIgnoreCase("heads")||args[1].equalsIgnoreCase("h")||args[1].equalsIgnoreCase(getMsg(Message.HEADS))){
@@ -80,43 +72,12 @@ public class CommandsManager implements CommandExecutor{
 			}
 			
 			
-			boolean isAlreadyThere = false;
-			
-			for (Bet b : BettingManager.getManager().getBets()){
-				if (b.getPlayer().equals(p.getName())){
-					isAlreadyThere = true;
-				}
-			}
-			
-			if (isAlreadyThere){
-				p.sendMessage(getMsg(Message.PLACE_FAILED_ALREADYGAME));
-				return true;
-			}
-			
-			
-			EconomyResponse response = Main.getEcomony().withdrawPlayer(p.getName(), i);
-			if (!response.transactionSuccess()){
-				p.sendMessage(getMsg(Message.PLACE_FAILED_NOMONEY));
-				return true;
-			}
-			
-			
-			BetPlaceEvent placeEvent = new BetPlaceEvent(p, i, side);			
-			Bukkit.getPluginManager().callEvent(placeEvent);
-			
-			if (placeEvent.isCancelled()){
-				Main.getEcomony().depositPlayer(p.getName(), i);
-				return true;
-			}
-			
-			p.sendMessage(getMsg(Message.PLACE_SUCCESSFUL));
 			BettingManager.getManager().createBet(p, side, i);
-			GUI.getInstance().refreshGameManager();
 			
 			
 			
 		}else if (args.length == 1){
-			if (args[0].equalsIgnoreCase(getMsg(Message.CMD_HELP))){
+			if (args[0].equalsIgnoreCase(getMsg(Message.CMD_HELP)) || args[0].equalsIgnoreCase("?")){
 				if (!p.hasPermission("coinflipper.help")){
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
@@ -128,7 +89,7 @@ public class CommandsManager implements CommandExecutor{
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
 				}
-				GUI.getInstance().openGameManager(p);
+				SelectionScreen.getInstance().openGameManager(p);
 				return true;
 			}else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_CLEAR))){
 				if (!p.hasPermission("coinflipper.clear")){
@@ -183,7 +144,11 @@ public class CommandsManager implements CommandExecutor{
 			}
 		}
 		else{
-			p.sendMessage(help);
+			if (!p.hasPermission("coinflipper.gui")){
+				p.sendMessage(getMsg(Message.NO_PERMISSION));
+				return true;
+			}
+			SelectionScreen.getInstance().openGameManager(p);
 			return true;
 		}
 		 

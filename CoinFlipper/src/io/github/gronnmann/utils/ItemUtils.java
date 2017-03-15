@@ -52,8 +52,10 @@ public class ItemUtils {
 	}
 	public static ItemStack addToLore(ItemStack item, String lore){
 		ItemMeta itemMeta = item.getItemMeta();
-		
-		List<String> lored = itemMeta.getLore();
+		List<String> lored = new ArrayList<String>();
+		if (itemMeta.getLore() != null){
+			lored = itemMeta.getLore();
+		}
 		lored.add(lore);
 		itemMeta.setLore(lored);
 		

@@ -8,12 +8,16 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.GUI;
 import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.MessagesManager;
+import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.animations.Animation;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
+import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
+import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.Debug;
+import net.milkbowl.vault.economy.EconomyResponse;
 
 public class BettingManager {
 	private BettingManager(){}
@@ -45,6 +49,7 @@ public class BettingManager {
 	}
 	
 	public void save(){
+		conf.set("bets", null);
 		for (Bet b : bets){
 			conf.set("bets."+b.getID()+".booster", b.getBooster());
 			conf.set("bets."+b.getID()+".player", b.getPlayer());
@@ -58,7 +63,7 @@ public class BettingManager {
 	}
 	
 	
-	public Bet createBet(Player p, int side, double amount){
+	public Bet addBet(Player p, int side, double amount){
 		//Booster
 		int booster = 0;
 		for (int i = 0;i<=100;i++){
@@ -76,6 +81,7 @@ public class BettingManager {
 		bets.add(b);
 		return b;
 	}
+	
 	
 	
 	public int getNextAvaibleID(){
@@ -192,7 +198,52 @@ public class BettingManager {
 			Main.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
 		}
 		bets.clear();
-		GUI.getInstance().refreshGameManager();
+		SelectionScreen.getInstance().refreshGameManager();
+	}
+	
+	public boolean createBet(Player p, int side, double mon){
+		boolean isAlreadyThere = false;
+		
+		for (Bet b : BettingManager.getManager().getBets()){
+			if (b.getPlayer().equals(p.getName())){
+				isAlreadyThere = true;
+			}
+		}
+		
+		if (isAlreadyThere){
+			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_ALREADYGAME));
+			return false;
+		}
+		
+		if (mon < ConfigManager.getManager().getConfig().getInt("min_amount")){
+			p.sendMessage(MessagesManager.getMessage(Message.MIN_BET).replaceAll("%MIN_BET%", ConfigManager.getManager().getConfig().getInt("min_amount")+""));
+			return true;
+		}
+		if (mon > ConfigManager.getManager().getConfig().getInt("max_amount")){
+			p.sendMessage(MessagesManager.getMessage(Message.MAX_BET).replaceAll("%MAX_BET%", ConfigManager.getManager().getConfig().getInt("max_amount")+""));
+			return true;
+		}
+		
+		
+		EconomyResponse response = Main.getEcomony().withdrawPlayer(p.getName(), mon);
+		if (!response.transactionSuccess()){
+			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_NOMONEY));
+			return false;
+		}
+		
+		
+		BetPlaceEvent placeEvent = new BetPlaceEvent(p, mon, side);			
+		Bukkit.getPluginManager().callEvent(placeEvent);
+		
+		if (placeEvent.isCancelled()){
+			Main.getEcomony().depositPlayer(p.getName(), mon);
+			return false;
+		}
+		
+		p.sendMessage(MessagesManager.getMessage(Message.PLACE_SUCCESSFUL));
+		this.addBet(p, side, mon);
+		SelectionScreen.getInstance().refreshGameManager();
+		return true;
 	}
 	
 }
