@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -49,8 +50,6 @@ public class SelectionScreen implements Listener{
 		selectionScreen = Bukkit.createInventory(null, 54, MessagesManager.getMessage(Message.GUI_SELECTION));
 		
 	}
-	
-	public ArrayList<ItemStack> itemsInGame = new ArrayList<ItemStack>();
 	
 	public void refreshGameManager(){
 		int amo = 0;
@@ -135,17 +134,26 @@ public class SelectionScreen implements Listener{
 		return skull;
 	}
 	
+	
+	public ArrayList<Inventory> protectedInvs = new ArrayList<Inventory>();
 	@EventHandler
 	public void gameAntiClicker(InventoryClickEvent e){
-		if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_GAME_18))||
+		/*if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_GAME_18))||
 				e.getInventory().getName().contains(MessagesManager.getMessage(Message.GUI_GAME).split(" ")[0])){
 			e.setCancelled(true);
-		}
-		
-		if (itemsInGame.contains(e.getCurrentItem())){
+		}*/
+		if (protectedInvs.contains(e.getInventory())){
 			e.setCancelled(true);
 		}
 	}
+	@EventHandler
+	public void removeFromProtected(InventoryCloseEvent e){
+		if (protectedInvs.contains(e.getInventory())){
+			Debug.print("Removing inventory: " + e.getInventory().getName());
+			protectedInvs.remove(e.getInventory());
+		}
+	}
+	
 	
 	@EventHandler
 	public void onInvClick(InventoryClickEvent e){

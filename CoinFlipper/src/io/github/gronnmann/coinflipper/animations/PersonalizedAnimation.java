@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
+import io.github.gronnmann.utils.Debug;
 import io.github.gronnmann.utils.InventoryUtils;
 import io.github.gronnmann.utils.ItemUtils;
 import net.md_5.bungee.api.ChatColor;
@@ -35,15 +36,6 @@ public class PersonalizedAnimation {
 		Inventory fram = animation.getFrame(frame);
 		fram = InventoryUtils.changeName(fram, inventoryName);
 		
-		if (frame > 1){
-			Inventory lastFram = this.getFrame(frame-1);
-			for (ItemStack lastItem : lastFram.getContents()){
-				if (lastItem != null){
-					SelectionScreen.getInstance().itemsInGame.remove(lastItem);
-				}
-			}
-		}
-		
 		for (int slot = 0; slot <= 44; slot++){
 			ItemStack item = fram.getItem(slot);
 			if (item != null){
@@ -71,8 +63,8 @@ public class PersonalizedAnimation {
 			}
 		}
 		
-		for (ItemStack toTag : fram.getContents()){
-			SelectionScreen.getInstance().itemsInGame.add(toTag);
+		if (frame > 40){
+			SelectionScreen.getInstance().protectedInvs.add(fram);
 		}
 		
 		return fram;
