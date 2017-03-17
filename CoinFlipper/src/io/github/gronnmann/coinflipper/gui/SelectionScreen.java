@@ -116,7 +116,7 @@ public class SelectionScreen implements Listener{
 		sm.setOwner(b.getPlayer());
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_PLAYER).replaceAll("%PLAYER%", b.getPlayer()));
-		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_MONEY).replaceAll("%MONEY%", GeneralUtils.getFormatted(b.getAmount())));
+		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_MONEY).replaceAll("%MONEY%", GeneralUtils.getFormattedNumbers(b.getAmount())));
 		int hours = b.getTimeRemaining()/60;
 		int mins = b.getTimeRemaining()-hours*60;
 		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_TIMEREMAINING).replaceAll("%HOURS%", hours+"").replaceAll("%MINUTES%", mins+""));

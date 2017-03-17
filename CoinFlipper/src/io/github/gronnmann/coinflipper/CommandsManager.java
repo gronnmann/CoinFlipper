@@ -16,6 +16,8 @@ import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.utils.ReflectionUtils;
+import io.github.gronnmann.utils.ReflectionUtils.TitleType;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 

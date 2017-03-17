@@ -53,7 +53,9 @@ BET_REMOVE_OTHER_NOTIFICATION: '&cYour bet has been removed'
 BET_CHALLENGE_CANTSELF: '&cYou can''t challenge your own bet!'
 BET_CHALLENGE_NOMONEY: '&cYou can''t afford to challenge this bet.'
 
-BET_WON: '&aYou have won your bet with the value $%MONEY%'
+BET_WON: '&aYou have won your bet against &e%LOSER% &awith the value &e$%MONEY%'
+BET_LOST: '&cYou have lost your bet against &e%WINNER% &cwith the value &e$%MONEY%'
+
 BET_START_COMBAT: '&eA CoinFlipper game you participate in is running but you are in combat.'
 
 STATS_NOSTATS: '&cYou have no stats to be found. Please relog to get it.'

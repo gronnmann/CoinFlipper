@@ -6,7 +6,7 @@ public class GeneralUtils {
 		return Integer.parseInt(found);
 	}
 	
-	public static String getFormatted(double number){
+	public static String getFormattedNumbers(double number){
 		/*
 		 * Code partly by aioobe on StackOverflow
 		 * http://stackoverflow.com/questions/9769554/how-to-convert-number-into-k-thousands-m-million-and-b-billion-suffix-in-jsp
@@ -30,5 +30,7 @@ public class GeneralUtils {
 		}
 	}
 	
-	
+	public static String getJsonString(String field, String value){
+		return "{\""+field+"\":\"" + value + "\"}";
+	}
 }

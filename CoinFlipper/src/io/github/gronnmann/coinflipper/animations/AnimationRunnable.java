@@ -79,9 +79,22 @@ public class AnimationRunnable extends BukkitRunnable{
 				try{
 					p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_winner_chosen").toUpperCase()) , 1F, 1F);
 				}catch(Exception e){}
+				
+				String loser = s1;
+				if (s1.equals(winner)){
+					loser = s2;
+				}
+				
+				
 				Player win = Bukkit.getPlayer(winner);
 				if (win != null){
-						win.sendMessage(MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winMoney+""));
+						win.sendMessage(MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+								winner).replaceAll("%LOSER%", loser));
+				}
+				Player los = Bukkit.getPlayer(loser);
+				if (los != null){
+					los.sendMessage(MessagesManager.getMessage(Message.BET_LOST).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+							winner).replaceAll("%LOSER%", loser));
 				}
 		}
 		
