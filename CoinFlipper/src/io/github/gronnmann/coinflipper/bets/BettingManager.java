@@ -201,16 +201,29 @@ public class BettingManager {
 		SelectionScreen.getInstance().refreshGameManager();
 	}
 	
-	public boolean createBet(Player p, int side, double mon){
-		boolean isAlreadyThere = false;
+	public boolean isAlreadyThere(Player p){
 		
+		int limit = 1;
+		int bets = 0;
+		
+		if (ConfigManager.getManager().getConfig().getString("bets_per_player") != null){
+			limit = ConfigManager.getManager().getConfig().getInt("bets_per_player");
+		}
+			
 		for (Bet b : BettingManager.getManager().getBets()){
 			if (b.getPlayer().equals(p.getName())){
-				isAlreadyThere = true;
+				bets++;
 			}
 		}
 		
-		if (isAlreadyThere){
+		if (bets >= limit){
+			return true;
+		}else return false;
+	}
+	
+	public boolean createBet(Player p, int side, double mon){
+		
+		if (isAlreadyThere(p)){
 			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_ALREADYGAME));
 			return false;
 		}

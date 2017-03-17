@@ -9,6 +9,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.YamlConfigurationOptions;
 import org.bukkit.plugin.Plugin;
 
+import io.github.gronnmann.utils.Debug;
+
 public class ConfigManager {
 	private ConfigManager(){}
 	private static ConfigManager mng = new ConfigManager();
@@ -41,9 +43,6 @@ public class ConfigManager {
 		}else{
 			config = YamlConfiguration.loadConfiguration(configF);
 		}
-		
-		String packageName = Bukkit.getServer().getClass().getPackage().getName();
-		String vID = packageName.split("_")[1];
 		
 		
 		
@@ -79,8 +78,47 @@ public class ConfigManager {
 			}
 		}
 		bets = YamlConfiguration.loadConfiguration(betsF);
+	}
+	
+	public void configUpdate(){
+		
+		
+		
+		String ver = pl.getDescription().getVersion();
+		double pluginVer = Double.parseDouble(ver);
+		double configVer = config.getDouble("config_version");
+		
+		Debug.print("Current plugin version: " + pluginVer + ", Current config version: " + configVer);
+		
+		if (pluginVer > configVer){
+			try{
+				InputStream newConfigStream = pl.getClass().getResourceAsStream("/config.yml");
+				
+				if (newConfigStream == null)return;
+				
+				FileConfiguration newConfig = YamlConfiguration.loadConfiguration(newConfigStream);
+				
+				System.out.println("[CoinFlipper] Old config found. Updating...");
+				
+				for (String field : newConfig.getConfigurationSection("").getKeys(false)){
+					if (config.get(field) == null){
+						config.set(field, newConfig.get(field));
+						System.out.println("[CoinFlipper] Adding field '" + field + "' with value '" + newConfig.get(field) + "'");
+					}
+				}
+				
+				config.set("config_version", Double.parseDouble(pl.getDescription().getVersion()));
+				
+				this.saveConfig();
+				
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 		
 	}
+	
 	
 	//Copy default option
 	public void copyDefaults(FileConfiguration file, String resource){

@@ -26,7 +26,7 @@ MAX_BET: '&cPlease provide a bet under &a$%MAX_BET%' #Message when player places
 
 PLACE_TRIAL_PICKSIDE: '&cPlease choose a site. (heads/tails)'
 PLACE_SUCCESSFUL: '&aSuccessfully placed a CoinFlipper game.' #Message when player places bet
-PLACE_FAILED_ALREADYGAME: '&cYou already have a CoinFlipper game in progress.' #Message when player tries to place bet but already has one in progress
+PLACE_FAILED_ALREADYGAME: '&cYou have reached your limit of CoinFlipper games simultaneously.' #Message when player tries to place bet but already has one in progress
 PLACE_FAILED_NOMONEY: '&cYou don''t have enough money to do this.' #Message when player tries to place bet but doesn't have enough money
 
 CLEAR_SUCCESSFUL: '&aCleared all bets' #Message when player clears bets

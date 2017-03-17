@@ -3,8 +3,10 @@ package io.github.gronnmann.utils;
 import java.io.File;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+
 
 public class Debug {
 	public static void print(String message){
@@ -14,6 +16,6 @@ public class Debug {
 		if (utilsConfig.getString("debug") == null)return;
 		if (!utilsConfig.getBoolean("debug"))return;
 		
-		System.out.println(message);
+		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + message);
 	}
 }

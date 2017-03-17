@@ -35,6 +35,8 @@ public class Main extends JavaPlugin{
 		}
 		
 		ConfigManager.getManager().setup(this);
+		ConfigManager.getManager().configUpdate();
+		
 		SelectionScreen.getInstance().setup(this);
 		StatsManager.getManager().load();
 		
