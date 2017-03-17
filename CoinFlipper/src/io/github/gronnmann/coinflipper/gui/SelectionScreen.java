@@ -50,6 +50,8 @@ public class SelectionScreen implements Listener{
 		
 	}
 	
+	public ArrayList<ItemStack> itemsInGame = new ArrayList<ItemStack>();
+	
 	public void refreshGameManager(){
 		int amo = 0;
 		selectionScreen.clear();
@@ -137,6 +139,10 @@ public class SelectionScreen implements Listener{
 	public void gameAntiClicker(InventoryClickEvent e){
 		if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_GAME_18))||
 				e.getInventory().getName().contains(MessagesManager.getMessage(Message.GUI_GAME).split(" ")[0])){
+			e.setCancelled(true);
+		}
+		
+		if (itemsInGame.contains(e.getCurrentItem())){
 			e.setCancelled(true);
 		}
 	}

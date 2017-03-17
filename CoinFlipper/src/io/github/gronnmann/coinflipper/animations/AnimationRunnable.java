@@ -15,6 +15,8 @@ import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.hook.HookManager;
+import io.github.gronnmann.utils.ReflectionUtils;
+import io.github.gronnmann.utils.ReflectionUtils.TitleType;
 
 public class AnimationRunnable extends BukkitRunnable{
 	String s1, s2, winner;
@@ -55,6 +57,11 @@ public class AnimationRunnable extends BukkitRunnable{
 			}else{
 				if (phase == 1){
 					p1.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
+					
+					ReflectionUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
+							TitleType.TITLE, 20, 40, 20);
+					ReflectionUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_START_COMBAT), 
+							TitleType.SUBTITLE, 20, 40, 20);
 				}
 			}
 		}
@@ -65,6 +72,11 @@ public class AnimationRunnable extends BukkitRunnable{
 			else{
 				if (phase == 1){
 					p2.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
+					
+					ReflectionUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
+							TitleType.TITLE, 20, 40, 20);
+					ReflectionUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_START_COMBAT), 
+							TitleType.SUBTITLE, 20, 40, 20);
 				}
 			}
 		}
@@ -88,13 +100,22 @@ public class AnimationRunnable extends BukkitRunnable{
 				
 				Player win = Bukkit.getPlayer(winner);
 				if (win != null){
-						win.sendMessage(MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
-								winner).replaceAll("%LOSER%", loser));
+					
+					String winMsg = MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+							winner).replaceAll("%LOSER%", loser);
+					win.sendMessage(winMsg);
+					
+					ReflectionUtils.sendTitle(win, MessagesManager.getMessage(Message.BET_TITLE_VICTORY), TitleType.TITLE, 20, 60, 20);
+					ReflectionUtils.sendTitle(win, winMsg, TitleType.SUBTITLE, 20, 60, 20);
 				}
 				Player los = Bukkit.getPlayer(loser);
 				if (los != null){
-					los.sendMessage(MessagesManager.getMessage(Message.BET_LOST).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
-							winner).replaceAll("%LOSER%", loser));
+					String losMsg = MessagesManager.getMessage(Message.BET_LOST).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+							winner).replaceAll("%LOSER%", loser);
+					los.sendMessage(losMsg);
+					
+					ReflectionUtils.sendTitle(los, MessagesManager.getMessage(Message.BET_TITLE_LOSS), TitleType.TITLE, 20, 60, 20);
+					ReflectionUtils.sendTitle(los, losMsg, TitleType.SUBTITLE, 20, 60, 20);
 				}
 		}
 		

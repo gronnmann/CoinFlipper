@@ -17,7 +17,7 @@ public class ReflectionUtils {
 			Method sendPacket = connection.getClass().getMethod("sendPacket", getServerClass("Packet"));
 			Debug.print( packet.getClass().getName());
 			
-			sendPacket.invoke(player, packet);
+			sendPacket.invoke(connection, packet);
 			
 			
 		} catch (Exception e) {
@@ -40,7 +40,7 @@ public class ReflectionUtils {
 	
 	
 	//Titles
-	public static void sendTitle(Player player, String title, TitleType type){
+	public static void sendTitle(Player player, String title, TitleType type, int fadeIn, int stay, int fadeOut){
 		//PacketPlayOutTitle titleP = new PacketPlayOutTitle(EnumTitleAction.TITLE, ChatSerializer.a("{\"text\":\"Test\"}"));
 		//((CraftPlayer) player).getHandle().playerConnection.sendPacket(titleP);
 		
@@ -53,7 +53,7 @@ public class ReflectionUtils {
 			Object message = getServerClass("IChatBaseComponent$ChatSerializer").getMethod("a", String.class)
 					.invoke(null, GeneralUtils.getJsonString("text", title));
 			
-			Object titlePacket = titleConst.newInstance(titleType, message, 20, 20, 40);
+			Object titlePacket = titleConst.newInstance(titleType, message, fadeIn, stay, fadeOut);
 			
 			sendPacket(player, titlePacket);
 			

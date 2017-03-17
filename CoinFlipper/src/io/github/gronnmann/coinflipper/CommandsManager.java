@@ -85,6 +85,7 @@ public class CommandsManager implements CommandExecutor{
 					return true;
 				}
 				p.sendMessage(help);
+				
 				return true;
 			}else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_GUI))){
 				if (!p.hasPermission("coinflipper.gui")){
