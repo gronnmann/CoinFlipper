@@ -14,6 +14,7 @@ import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.metrics.BStats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.utils.VersionUtils;
 import net.milkbowl.vault.economy.Economy;
 
 
@@ -64,6 +65,18 @@ public class Main extends JavaPlugin{
 		
 		
 		Bukkit.getPluginManager().registerEvents(AnimationGUI.getManager(), this);
+		
+		int versionResponse = VersionUtils.versionFromGithub(this, "https://raw.githubusercontent.com/gronnmann/CoinFlipper/master/CoinFlipper/src/plugin.yml");
+		
+		if (versionResponse == VersionUtils.VERSION_NEWER){
+			System.out.println("[CoinFlipper] You are running an experimental version of CoinFlipper.");
+			System.out.println("[CoinFlipper] Expect bugs");
+		}else if (versionResponse == VersionUtils.VERSION_OLDER){
+			System.out.println("[CoinFlipper] You are using an old CoinFlipper version. Please update for best stability at:");
+			System.out.println("[CoinFlipper] https://www.spigotmc.org/resources/coinflipper.33916/");
+		}
+		
+		
 		
 		//Start metrics
 		BStats metrics = new BStats(this);

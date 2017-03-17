@@ -129,5 +129,14 @@ public class AnimationRunnable extends BukkitRunnable{
 				p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
 			}catch(Exception e){}
 		}
+		
+		if (phase == 50){
+			if (p1 != null && ConfigManager.getManager().getConfig().getBoolean("gui_auto_close")){
+				p1.closeInventory();
+			}
+			if (p2 != null && ConfigManager.getManager().getConfig().getBoolean("gui_auto_close")){
+				p2.closeInventory();
+			}
+		}
 	}
 }
