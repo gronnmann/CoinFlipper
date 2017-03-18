@@ -11,6 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import io.github.gronnmann.coinflipper.gui.GameInventoryHolder;
 import io.github.gronnmann.utils.ItemUtils;
 
 
@@ -37,14 +38,14 @@ public class Animation {
 		//Draw for every frame
 		if (animationFile.getString("animation") == null){
 			for (int frame = 0; frame <= 50; frame++){
-				Inventory frameInv = Bukkit.createInventory(null, 45);
+				Inventory frameInv = Bukkit.createInventory(new GameInventoryHolder(), 45);
 				animationInventory.add(frame, frameInv);
 			}
 			return;
 		}
 		
 		for (int frame = 0; frame <= 50; frame++){
-			Inventory frameInv = Bukkit.createInventory(null, 45);
+			Inventory frameInv = Bukkit.createInventory(new GameInventoryHolder(), 45);
 			//For every slot
 			for (int slot = 0; slot <= 44; slot++){
 				Material forSlot = null;

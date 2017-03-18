@@ -135,25 +135,16 @@ public class SelectionScreen implements Listener{
 	}
 	
 	
-	public ArrayList<Inventory> protectedInvs = new ArrayList<Inventory>();
 	@EventHandler
 	public void gameAntiClicker(InventoryClickEvent e){
 		/*if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_GAME_18))||
 				e.getInventory().getName().contains(MessagesManager.getMessage(Message.GUI_GAME).split(" ")[0])){
 			e.setCancelled(true);
 		}*/
-		if (protectedInvs.contains(e.getInventory())){
+		if (e.getInventory().getHolder() instanceof GameInventoryHolder){
 			e.setCancelled(true);
 		}
 	}
-	@EventHandler
-	public void removeFromProtected(InventoryCloseEvent e){
-		if (protectedInvs.contains(e.getInventory())){
-			Debug.print("Removing inventory: " + e.getInventory().getName());
-			protectedInvs.remove(e.getInventory());
-		}
-	}
-	
 	
 	@EventHandler
 	public void onInvClick(InventoryClickEvent e){

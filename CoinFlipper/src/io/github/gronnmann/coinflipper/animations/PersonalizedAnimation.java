@@ -63,10 +63,6 @@ public class PersonalizedAnimation {
 			}
 		}
 		
-		if (frame > 40){
-			SelectionScreen.getInstance().protectedInvs.add(fram);
-		}
-		
 		return fram;
 	}
 }
