@@ -40,23 +40,25 @@ public class CreationGUI implements Listener{
 	
 	
 	public void generatePreset(){
-		preset = Bukkit.createInventory(null, 45, "CoinFlipper Creation");
+		preset = Bukkit.createInventory(null, 45, MessagesManager.getMessage(Message.CREATION_NAME));
 		
-		preset.setItem(BET_AMOUNT, ItemUtils.createItem(Material.EMERALD, ChatColor.BLUE + ChatColor.BOLD.toString() + "Money: " + ChatColor.AQUA + "0"));
-		preset.setItem(BET_SIDE, ItemUtils.createItem(Material.WOOL, ChatColor.BLUE + ChatColor.BOLD.toString() +"Side: " + ChatColor.AQUA + "TAILS", 0));
+		preset.setItem(BET_AMOUNT, ItemUtils.createItem(Material.EMERALD, MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", 0+"")));
+		preset.setItem(BET_SIDE, ItemUtils.createItem(Material.WOOL, ChatColor.BLUE + MessagesManager.getMessage(Message.CREATION_SIDE).replaceAll("%SIDE%", "TAILS")));
 		preset.setItem(BET_FINALIZE, ItemUtils.createItem(Material.SKULL_ITEM, ChatColor.BLUE + ChatColor.BOLD.toString() +"Bet", 3));
 		
-		String howToAdd = ChatColor.GREEN + "Left click to add this to your bet.";
-		String howToRemove = ChatColor.RED + "Right click to subtract this from your bet.";
+		String howToAdd = MessagesManager.getMessage(Message.CREATION_MONEY_LEFTTOADD);
+		String howToRemove = MessagesManager.getMessage(Message.CREATION_MONEY_RIGHTTOREMOVE);
 		
-		preset.setItem(MON_1, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, ChatColor.AQUA +"$1"), howToAdd), howToRemove));
-		preset.setItem(MON_10, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, ChatColor.AQUA +"$10"), howToAdd), howToRemove));
-		preset.setItem(MON_100, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, ChatColor.AQUA +"$100"), howToAdd), howToRemove));
-		preset.setItem(MON_1000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, ChatColor.AQUA +"$1000"), howToAdd), howToRemove));
-		preset.setItem(MON_10000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, ChatColor.AQUA +"$10000"), howToAdd), howToRemove));
-		preset.setItem(MON_100000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, ChatColor.AQUA +"$100000"), howToAdd), howToRemove));
+		String c = MessagesManager.getMessage(Message.CREATION_MONEY_COLOR);
 		
-		preset.setItem(MON_CUSTOM,ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, ChatColor.AQUA +"Custom value"), ChatColor.GREEN + "Input custom value."));
+		preset.setItem(MON_1, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T1)), howToAdd), howToRemove));
+		preset.setItem(MON_10, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T2)), howToAdd), howToRemove));
+		preset.setItem(MON_100, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T3)), howToAdd), howToRemove));
+		preset.setItem(MON_1000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T4)), howToAdd), howToRemove));
+		preset.setItem(MON_10000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T5)), howToAdd), howToRemove));
+		preset.setItem(MON_100000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T6)), howToAdd), howToRemove));
+		
+		preset.setItem(MON_CUSTOM,ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM)), MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_DESC)));
 		
 		preset.setItem(SIDE_HEADS, ItemUtils.createItem(Material.WOOL, ChatColor.AQUA + MessagesManager.getMessage(Message.HEADS).toUpperCase(), 15));
 		preset.setItem(SIDE_TAILS, ItemUtils.createItem(Material.WOOL, ChatColor.AQUA + MessagesManager.getMessage(Message.TAILS).toUpperCase(), 0));
@@ -78,7 +80,7 @@ public class CreationGUI implements Listener{
 	public void mapRemover2(InventoryCloseEvent e){
 		if (customMon.contains(e.getPlayer().getName()))return;
 		
-		if (e.getInventory().getName().equals("CoinFlipper Creation")){
+		if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.CREATION_NAME))){
 			data.remove(e.getPlayer().getName());
 		}
 	}
@@ -90,7 +92,7 @@ public class CreationGUI implements Listener{
 			data.remove(player.getPlayer().getName());
 		}
 		
-		Inventory pInv = Bukkit.createInventory(null, 45, "CoinFlipper Creation");
+		Inventory pInv = Bukkit.createInventory(null, 45, MessagesManager.getMessage(Message.CREATION_NAME));
 		pInv.setContents(preset.getContents());
 		pInv.setItem(BET_FINALIZE, ItemUtils.setName(ItemUtils.getSkull(player.getName()), ChatColor.BLUE + ChatColor.BOLD.toString() + "Bet"));
 		
@@ -108,7 +110,7 @@ public class CreationGUI implements Listener{
 	@EventHandler
 	public void clickManager(InventoryClickEvent e){
 		if (e.getClickedInventory() == null)return;
-		if (!e.getClickedInventory().getName().equals("CoinFlipper Creation"))return;
+		if (!e.getClickedInventory().getName().equals(MessagesManager.getMessage(Message.CREATION_NAME)))return;
 		e.setCancelled(true);
 		CreationData data = this.data.get(e.getWhoClicked().getName());
 		if (data == null)return;
@@ -125,7 +127,7 @@ public class CreationGUI implements Listener{
 		}
 		if (e.getSlot() == MON_CUSTOM){
 			customMon.add(e.getWhoClicked().getName());
-			e.getWhoClicked().sendMessage(ChatColor.GREEN + "Please specify how much money you want to set your bet to!");
+			e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_SPEC));
 			e.getWhoClicked().closeInventory();
 			return;
 			
@@ -147,16 +149,17 @@ public class CreationGUI implements Listener{
 		
 		Inventory inv = data.getInventory();
 		
-		String side = String.valueOf(data.getSide()).replaceAll("0", "TAILS").replaceAll("1", "HEADS");
+		String side = String.valueOf(data.getSide()).replaceAll("0", MessagesManager.getMessage(Message.TAILS).toUpperCase())
+				.replaceAll("1", MessagesManager.getMessage(Message.HEADS).toUpperCase());
 		
 		if (data.getSide() == 0){
-			inv.setItem(BET_SIDE, ItemUtils.createItem(Material.WOOL, ChatColor.BLUE + ChatColor.BOLD.toString() + "Side: " + ChatColor.AQUA + side, 0));
+			inv.setItem(BET_SIDE, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.CREATION_SIDE).replaceAll("%SIDE%", side), 0));
 		}else{
-			inv.setItem(BET_SIDE, ItemUtils.createItem(Material.WOOL, ChatColor.BLUE + ChatColor.BOLD.toString() + "Side: " + ChatColor.AQUA + side, 15));
+			inv.setItem(BET_SIDE, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.CREATION_SIDE).replaceAll("%SIDE%", side), 15));
 		}
 
 		
-		ItemUtils.setName(inv.getItem(BET_AMOUNT), ChatColor.BLUE + ChatColor.BOLD.toString() + "Money: " + ChatColor.AQUA + data.getMoney());
+		ItemUtils.setName(inv.getItem(BET_AMOUNT), MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", data.getMoney() + ""));
 		
 		ItemStack headNew = ItemUtils.getSkull(player.getName());
 		ItemUtils.setName(headNew, MessagesManager.getMessage(Message.MENU_HEAD_GAME).replaceAll("%ID%", ""));

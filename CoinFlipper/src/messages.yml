@@ -78,6 +78,27 @@ GUI_GAME: 'CoinFlipper: %PLAYER1% vs %PLAYER2%' #Default inventory name for Coin
 #else people can steal the items in the inventory
 GUI_GAME_18: 'CoinFlipper Game' #Inventory name displayed if the server is on 1.8 or lower and GUI_NAME message exceeds 32 characters(else errors will forecome)
 
+CREATION_NAME: 'CoinFlipper Creation'
+
+CREATION_MONEY: '&9&lMoney: &3%MONEY%'
+CREATION_SIDE: '&9&lSide: &3%SIDE%'
+CREATION_BET: '&9&lBet'
+
+CREATION_MONEY_COLOR: '&3'
+CREATION_MONEY_T1: '$1'
+CREATION_MONEY_T2: '$10'
+CREATION_MONEY_T3: '$100'
+CREATION_MONEY_T4: '$1000'
+CREATION_MONEY_T5: '$10000'
+CREATION_MONEY_T6: '$100000'
+CREATION_MONEY_LEFTTOADD: '&aLeft click to add this to your bet'
+CREATION_MONEY_RIGHTTOREMOVE: '&cRight click to remove this from your bet.'
+
+CREATION_MONEY_CUSTOM: 'Custom value'
+CREATION_MONEY_CUSTOM_DESC: '&aEnter custom value'
+CREATION_MONEY_CUSTOM_SPEC: '&aPlease specify how much money you want to set your bet to'
+CREATION_MONEY_CUSTOM_NOTNUM: '&cPlease specify a number'
+CREATION_MONEY_CUSTOM_SUCCESS: '&aBet money sat to: &e%MONEY%'
 
 ANIMATION_CREATE_GIVENAME: '&ePlease write the name you want the animation to create.'
 ANIMATION_CREATE_ALREADYEXISTS: '&cAn animation with name %ANIMATION% already exists.'
