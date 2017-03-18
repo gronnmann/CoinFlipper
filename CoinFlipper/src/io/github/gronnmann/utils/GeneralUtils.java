@@ -17,7 +17,7 @@ public class GeneralUtils {
 		
 		Debug.print(exp + "");
 		
-		return String.format("%.1f %c", number / Math.pow(1000, exp), "kMBT".charAt(exp-1));
+		return String.format("%.1f %c", number / Math.pow(1000, exp), "kMBTQ".charAt(exp-1));
 	}
 	
 	public static boolean isInt(String str){

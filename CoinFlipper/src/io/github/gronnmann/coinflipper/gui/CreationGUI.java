@@ -116,7 +116,7 @@ public class CreationGUI implements Listener{
 		if (data == null)return;
 		
 		if (e.getSlot() <= 5){
-			int money = Integer.valueOf(ChatColor.stripColor(e.getInventory().getItem(e.getSlot()).getItemMeta().getDisplayName())
+			double money = Double.valueOf(ChatColor.stripColor(e.getInventory().getItem(e.getSlot()).getItemMeta().getDisplayName())
 					.replaceAll("[^\\d]", ""));
 			
 			if (e.isRightClick()){
@@ -159,7 +159,7 @@ public class CreationGUI implements Listener{
 		}
 
 		
-		ItemUtils.setName(inv.getItem(BET_AMOUNT), MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", data.getMoney() + ""));
+		ItemUtils.setName(inv.getItem(BET_AMOUNT), MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", GeneralUtils.getFormattedNumbers(data.getMoney())));
 		
 		ItemStack headNew = ItemUtils.getSkull(player.getName());
 		ItemUtils.setName(headNew, MessagesManager.getMessage(Message.MENU_HEAD_GAME).replaceAll("%ID%", ""));
