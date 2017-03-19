@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="E:/Users/Barti/Programowanie/Library/Vault.jar"/>
 	<classpathentry kind="lib" path="E:/Users/Barti/Programowanie/Library/CombatTagPlus(1).jar"/>
 	<classpathentry kind="lib" path="E:/Users/Barti/Programowanie/Library/PvPManager.jar"/>
+	<classpathentry kind="lib" path="E:/Users/Barti/Programowanie/Library/ProtocolLib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

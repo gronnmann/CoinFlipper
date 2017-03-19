@@ -23,8 +23,12 @@ import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.hook.HookManager;
+import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
+import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.utils.GeneralUtils;
 import io.github.gronnmann.utils.ItemUtils;
+import me.gronnmann.utils.signinput.SignInputEvent;
 
 public class CreationGUI implements Listener{
 	private CreationGUI(){}
@@ -130,6 +134,11 @@ public class CreationGUI implements Listener{
 			customMon.add(e.getWhoClicked().getName());
 			e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_SPEC));
 			e.getWhoClicked().closeInventory();
+			
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib)){
+				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
+			}
+			
 			return;
 			
 		}else if (e.getSlot() == SIDE_HEADS){
@@ -170,6 +179,30 @@ public class CreationGUI implements Listener{
 		
 		inv.setItem(BET_FINALIZE, headNew);
 		
+	}
+	
+	@EventHandler
+	public void protocolLibHookInput(SignInputEvent e){
+		
+		if (!HookManager.getManager().isHooked(HookType.ProtocolLib))return;
+		
+		Player p = e.getPlayer();
+		if (!customMon.contains(p.getName()) || !data.containsKey(p.getName()))return;
+		try{
+			double mon = Double.parseDouble(e.getLine(0));
+			
+			data.get(p.getName()).setMoney(mon);
+			
+			p.sendMessage(ChatColor.GREEN + "Bet money sat to: " + ChatColor.YELLOW + "$" + mon);
+			
+			p.openInventory(data.get(p.getName()).getInventory());
+			
+			this.refreshInventory(p);
+			customMon.remove(e.getPlayer().getName());
+		}catch(Exception ex){
+			p.sendMessage(ChatColor.RED + "Please specify a number.");
+			HookProtocolLib.getHook().openSignInput(e.getPlayer());
+		}
 	}
 	
 	@EventHandler

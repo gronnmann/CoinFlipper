@@ -15,9 +15,14 @@ public class HookManager {
 	
 	private HashMap<HookType, Boolean> hooks = new HashMap<>();
 	
-	public enum HookType {CombatTagPlus, PvPManager};
+	public enum HookType {CombatTagPlus, PvPManager, ProtocolLib};
 	
-	public void registerHooks(){
+	private Plugin pl;
+	
+	public void registerHooks(Plugin pl){
+		
+		this.pl = pl;
+		
 		for (HookType type : HookType.values()){
 			hooks.put(type, false);
 		}
@@ -30,6 +35,11 @@ public class HookManager {
 		Plugin PvPManager = Bukkit.getPluginManager().getPlugin("PvPManager");
 		if (!(PvPManager == null)){
 			this.setHooked(HookType.PvPManager);
+		}
+		
+		Plugin ProtocolLib = Bukkit.getPluginManager().getPlugin("ProtocolLib");
+		if (!(ProtocolLib == null)){
+			this.setHooked(HookType.ProtocolLib);
 		}
 	}
 	
@@ -46,6 +56,9 @@ public class HookManager {
 			break;
 		case PvPManager:
 			HookPvpManager.getHook().register();
+			break;
+		case ProtocolLib:
+			HookProtocolLib.getHook().register(pl);
 			break;
 		}
 		

@@ -46,7 +46,7 @@ public class Main extends JavaPlugin{
 		
 		BettingManager.getManager().load();
 		
-		HookManager.getManager().registerHooks();
+		HookManager.getManager().registerHooks(this);
 		
 		
 		CreationGUI.getInstance().generatePreset();
