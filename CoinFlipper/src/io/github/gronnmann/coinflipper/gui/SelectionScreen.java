@@ -74,7 +74,7 @@ public class SelectionScreen implements Listener{
 		help.setItemMeta(helpM);
 		selectionScreen.setItem(49, help);
 		
-		selectionScreen.setItem(CREATE, ItemUtils.createItem(Material.STAINED_GLASS_PANE, "Create", 5));
+		selectionScreen.setItem(CREATE, ItemUtils.createItem(Material.STAINED_GLASS_PANE, MessagesManager.getMessage(Message.CREATE), 5));
 	}
 	
 	public void openGameManager(Player p){

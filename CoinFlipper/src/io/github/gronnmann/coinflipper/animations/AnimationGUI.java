@@ -20,8 +20,12 @@ import io.github.gronnmann.coinflipper.events.AnimationCloneEvent;
 import io.github.gronnmann.coinflipper.events.AnimationCreateEvent;
 import io.github.gronnmann.coinflipper.events.AnimationDeleteEvent;
 import io.github.gronnmann.coinflipper.events.AnimationFrameChangeEvent;
+import io.github.gronnmann.coinflipper.hook.HookManager;
+import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
+import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.utils.InventoryUtils;
 import io.github.gronnmann.utils.ItemUtils;
+import me.gronnmann.utils.signinput.SignInputEvent;
 
 public class AnimationGUI implements Listener{
 	private AnimationGUI(){}
@@ -97,6 +101,11 @@ public class AnimationGUI implements Listener{
 			p.closeInventory();
 			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_GIVENAME));
 			accessMode.put(p.getName(), 0);
+			
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib)){
+				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
+			}
+			
 		}else if (e.getSlot() == SLOT_DELETE){
 			p.openInventory(this.getAnimationSelectorList());
 			accessMode.put(p.getName(), 1);
@@ -209,6 +218,10 @@ public class AnimationGUI implements Listener{
 			copyBase.put(p.getName(), anim.getName());
 			p.closeInventory();
 			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_GIVENAME));
+			
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib)){
+				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
+			}
 		default: return;
 		}
 		
@@ -322,8 +335,51 @@ public class AnimationGUI implements Listener{
 		this.saveFrame(anim, frameId, e.getInventory());
 	}
 	
+	//Name getter #1
+	@EventHandler
+	public void signInputSupport(SignInputEvent e){
+		
+		if (!HookManager.getManager().isHooked(HookType.ProtocolLib))return;
+		
+		String animation = e.getLine(0);
+		
+		if (accessMode.containsKey(e.getPlayer().getName()) && accessMode.get(e.getPlayer().getName()) == 0){
+			
+			
+			
+			if (AnimationsManager.getManager().getAnimation(animation) != null){
+				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_ALREADYEXISTS).replaceAll("%ANIMATION%", animation));
+			return;
+			}
+			
+			AnimationCreateEvent createEvent = new AnimationCreateEvent(animation);
+			Bukkit.getPluginManager().callEvent(createEvent);
+			
+			if (!createEvent.isCancelled()){
+				AnimationsManager.getManager().createAnimation(animation);
+				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_SUCCESS).replaceAll("%ANIMATION%", animation));
+			}
+			accessMode.remove(e.getPlayer().getName());
+			
+		}
+			
+		if (copyBase.containsKey(e.getPlayer().getName())){
+			
+			AnimationCloneEvent cloneEvent = new AnimationCloneEvent(animation, AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())));
+			Bukkit.getPluginManager().callEvent(cloneEvent);
+			
+			if (!cloneEvent.isCancelled()){
+				Animation copied = AnimationsManager.getManager().createAnimation(animation);
+				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
+				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
+			}
+			copyBase.remove(e.getPlayer().getName());
+			
+		}
+	}
 	
-	//Name getter
+	
+	//Name getter #2
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e){
 		String animation = e.getMessage().split(" ")[0];
