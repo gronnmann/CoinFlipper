@@ -19,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.Wool;
 
+import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
@@ -136,7 +137,7 @@ public class CreationGUI implements Listener{
 		}else if (e.getSlot() == SIDE_TAILS){
 			data.setSide(0);
 		}else if (e.getSlot() == BET_FINALIZE){
-			BettingManager.getManager().createBet((Player) e.getWhoClicked(), data.getSide(), data.getMoney());
+			GamesManager.getManager().createGame((Player) e.getWhoClicked(), data.getSide(), data.getMoney());
 		}
 		
 		this.refreshInventory((Player) e.getWhoClicked());

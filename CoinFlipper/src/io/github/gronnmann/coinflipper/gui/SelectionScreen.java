@@ -18,6 +18,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.Main;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
@@ -137,10 +138,6 @@ public class SelectionScreen implements Listener{
 	
 	@EventHandler
 	public void gameAntiClicker(InventoryClickEvent e){
-		/*if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_GAME_18))||
-				e.getInventory().getName().contains(MessagesManager.getMessage(Message.GUI_GAME).split(" ")[0])){
-			e.setCancelled(true);
-		}*/
 		if (e.getInventory().getHolder() instanceof GameInventoryHolder){
 			e.setCancelled(true);
 		}
@@ -237,6 +234,11 @@ public class SelectionScreen implements Listener{
 			return;
 		}
 		
+		if (GamesManager.getManager().isSpinning(b.getPlayer())){
+			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_ALREADYSPINNING));
+			return;
+		}
+		
 		//Check if player can afford
 		EconomyResponse response = Main.getEcomony().withdrawPlayer(p, b.getAmount());
 		if (!response.transactionSuccess()){
@@ -279,6 +281,9 @@ public class SelectionScreen implements Listener{
 		Debug.print(p.getName());
 		Debug.print(b.getPlayer());
 		Debug.print(b.getAnimation().getName());
+		
+		GamesManager.getManager().setSpinning(p.getName(), true);
+		GamesManager.getManager().setSpinning(b.getPlayer(), true);
 		
 		this.generateAnimations(p.getName(), b.getPlayer(), winner, winAmount, b.getAnimation().getName());
 		

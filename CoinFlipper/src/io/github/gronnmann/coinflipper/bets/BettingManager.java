@@ -221,44 +221,6 @@ public class BettingManager {
 		}else return false;
 	}
 	
-	public boolean createBet(Player p, int side, double mon){
-		
-		if (isAlreadyThere(p)){
-			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_ALREADYGAME));
-			return false;
-		}
-		
-		if (mon < ConfigManager.getManager().getConfig().getDouble("min_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MIN_BET).replaceAll("%MIN_BET%", ConfigManager.getManager().getConfig().getDouble("min_amount")+""));
-			return true;
-		}
-		if (mon > ConfigManager.getManager().getConfig().getDouble("max_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MAX_BET).replaceAll("%MAX_BET%", ConfigManager.getManager().getConfig().getDouble("max_amount")+""));
-			return true;
-		}
-		
-		
-		EconomyResponse response = Main.getEcomony().withdrawPlayer(p.getName(), mon);
-		if (!response.transactionSuccess()){
-			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_NOMONEY));
-			return false;
-		}
-		
-		
-		BetPlaceEvent placeEvent = new BetPlaceEvent(p, mon, side);			
-		Bukkit.getPluginManager().callEvent(placeEvent);
-		
-		if (placeEvent.isCancelled()){
-			Main.getEcomony().depositPlayer(p.getName(), mon);
-			return false;
-		}
-		
-		p.sendMessage(MessagesManager.getMessage(Message.PLACE_SUCCESSFUL));
-		this.addBet(p, side, mon);
-		SelectionScreen.getInstance().refreshGameManager();
-		return true;
-	}
-	
 }
 
 

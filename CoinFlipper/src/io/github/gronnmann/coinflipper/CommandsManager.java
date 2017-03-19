@@ -74,7 +74,7 @@ public class CommandsManager implements CommandExecutor{
 			}
 			
 			
-			BettingManager.getManager().createBet(p, side, i);
+			GamesManager.getManager().createGame(p, side, i);
 			
 			
 			

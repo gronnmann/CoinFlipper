@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.hook.HookManager;
@@ -131,6 +132,10 @@ public class AnimationRunnable extends BukkitRunnable{
 		}
 		
 		if (phase == 50){
+			
+			GamesManager.getManager().setSpinning(s1, false);
+			GamesManager.getManager().setSpinning(s2, false);
+			
 			if (p1 != null && ConfigManager.getManager().getConfig().getBoolean("gui_auto_close")){
 				p1.closeInventory();
 			}

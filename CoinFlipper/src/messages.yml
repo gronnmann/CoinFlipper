@@ -51,6 +51,7 @@ BET_REMOVE_OTHER_SUCCESSFUL: '&aSuccessfully removed %PLAYER%''s bet.'
 BET_REMOVE_OTHER_NOTIFICATION: '&cYour bet has been removed'
 
 BET_CHALLENGE_CANTSELF: '&cYou can''t challenge your own bet!'
+BET_CHALLENGE_ALREADYSPINNING: '&cThe player you are trying to challenge is already in a CoinFlipper game.'
 BET_CHALLENGE_NOMONEY: '&cYou can''t afford to challenge this bet.'
 
 BET_TITLE_VICTORY: '&aVictory'
