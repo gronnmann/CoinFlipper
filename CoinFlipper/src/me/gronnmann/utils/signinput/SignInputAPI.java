@@ -13,6 +13,9 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.BlockPosition;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
+
+import io.github.gronnmann.utils.Debug;
 
 public class SignInputAPI {
 	
@@ -40,17 +43,37 @@ public class SignInputAPI {
 
 
 class SignChangeDetector extends PacketAdapter{
+	
+	String packageName = Bukkit.getServer().getClass().getPackage().getName();
+	int vID = Integer.parseInt(packageName.split("_")[1]);
+	
 	public SignChangeDetector(Plugin pl, ListenerPriority priority){
 		super(pl, priority, PacketType.Play.Client.UPDATE_SIGN);
 	}
 	
 	public void onPacketReceiving(PacketEvent e){
-		String[] signLines = e.getPacket().getStringArrays().read(0);
+		String[] signLine;
 		Player who = e.getPlayer();
 		
 		if (e.getPacket().getBlockPositionModifier().read(0).equals(new BlockPosition(0, 928, 0))){
-			Bukkit.getPluginManager().callEvent(new SignInputEvent(signLines, who));
+			
+			if (vID < 9){
+				WrappedChatComponent[] text = e.getPacket().getChatComponentArrays().read(0);
+				
+				String[] lines = {text[0].toString().split("\"")[1],
+						text[1].toString().split("\"")[1],
+						text[2].toString().split("\"")[1],
+						text[3].toString().split("\"")[1]};
+				
+				signLine = lines;
+				
+			}else{
+				signLine = e.getPacket().getStringArrays().read(0);
+			}
+			
+			Bukkit.getPluginManager().callEvent(new SignInputEvent(signLine, who));
 		}
+		
 	}
 	
 }
