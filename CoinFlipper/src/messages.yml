@@ -37,7 +37,7 @@ HELP_ITEM_L2: '&eLeft-click to challenge flip'
 HELP_ITEM_L3: '&eRight-click to remove your flip'
 HELP_ITEM_L4: '&e''/coinflipper help'' for more help with the commands.'
 
-CREATE: 'Create'
+CREATE: '&eCreate'
 
 MENU_HEAD_GAME: '&6Game #%ID%'
 MENU_HEAD_PLAYER: '&2Player: &a%PLAYER%'
