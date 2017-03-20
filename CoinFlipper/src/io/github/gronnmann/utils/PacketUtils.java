@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class ReflectionUtils {
+public class PacketUtils {
 	
 	public enum TitleType{TITLE, SUBTITLE}
 	

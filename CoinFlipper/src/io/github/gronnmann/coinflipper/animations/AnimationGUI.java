@@ -25,7 +25,7 @@ import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.utils.InventoryUtils;
 import io.github.gronnmann.utils.ItemUtils;
-import me.gronnmann.utils.signinput.SignInputEvent;
+import io.github.gronnmann.utils.signinput.SignInputEvent;
 
 public class AnimationGUI implements Listener{
 	private AnimationGUI(){}

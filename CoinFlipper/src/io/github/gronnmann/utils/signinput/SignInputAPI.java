@@ -1,4 +1,4 @@
-package me.gronnmann.utils.signinput;
+package io.github.gronnmann.utils.signinput;
 
 import java.lang.reflect.InvocationTargetException;
 

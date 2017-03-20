@@ -6,7 +6,7 @@ import org.bukkit.plugin.Plugin;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 
-import me.gronnmann.utils.signinput.SignInputAPI;
+import io.github.gronnmann.utils.signinput.SignInputAPI;
 
 public class HookProtocolLib {
 	private HookProtocolLib(){}

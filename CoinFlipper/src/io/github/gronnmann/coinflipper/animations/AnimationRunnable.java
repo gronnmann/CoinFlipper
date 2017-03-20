@@ -16,8 +16,8 @@ import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.hook.HookManager;
-import io.github.gronnmann.utils.ReflectionUtils;
-import io.github.gronnmann.utils.ReflectionUtils.TitleType;
+import io.github.gronnmann.utils.PacketUtils;
+import io.github.gronnmann.utils.PacketUtils.TitleType;
 
 public class AnimationRunnable extends BukkitRunnable{
 	String s1, s2, winner;
@@ -59,9 +59,9 @@ public class AnimationRunnable extends BukkitRunnable{
 				if (phase == 1){
 					p1.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
 					
-					ReflectionUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
+					PacketUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
 							TitleType.TITLE, 20, 40, 20);
-					ReflectionUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_START_COMBAT), 
+					PacketUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_START_COMBAT), 
 							TitleType.SUBTITLE, 20, 40, 20);
 				}
 			}
@@ -74,9 +74,9 @@ public class AnimationRunnable extends BukkitRunnable{
 				if (phase == 1){
 					p2.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
 					
-					ReflectionUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
+					PacketUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
 							TitleType.TITLE, 20, 40, 20);
-					ReflectionUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_START_COMBAT), 
+					PacketUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_START_COMBAT), 
 							TitleType.SUBTITLE, 20, 40, 20);
 				}
 			}
@@ -106,8 +106,8 @@ public class AnimationRunnable extends BukkitRunnable{
 							winner).replaceAll("%LOSER%", loser);
 					win.sendMessage(winMsg);
 					
-					ReflectionUtils.sendTitle(win, MessagesManager.getMessage(Message.BET_TITLE_VICTORY), TitleType.TITLE, 20, 60, 20);
-					ReflectionUtils.sendTitle(win, winMsg, TitleType.SUBTITLE, 20, 60, 20);
+					PacketUtils.sendTitle(win, MessagesManager.getMessage(Message.BET_TITLE_VICTORY), TitleType.TITLE, 20, 60, 20);
+					PacketUtils.sendTitle(win, winMsg, TitleType.SUBTITLE, 20, 60, 20);
 				}
 				Player los = Bukkit.getPlayer(loser);
 				if (los != null){
@@ -115,8 +115,8 @@ public class AnimationRunnable extends BukkitRunnable{
 							winner).replaceAll("%LOSER%", loser);
 					los.sendMessage(losMsg);
 					
-					ReflectionUtils.sendTitle(los, MessagesManager.getMessage(Message.BET_TITLE_LOSS), TitleType.TITLE, 20, 60, 20);
-					ReflectionUtils.sendTitle(los, losMsg, TitleType.SUBTITLE, 20, 60, 20);
+					PacketUtils.sendTitle(los, MessagesManager.getMessage(Message.BET_TITLE_LOSS), TitleType.TITLE, 20, 60, 20);
+					PacketUtils.sendTitle(los, losMsg, TitleType.SUBTITLE, 20, 60, 20);
 				}
 		}
 		

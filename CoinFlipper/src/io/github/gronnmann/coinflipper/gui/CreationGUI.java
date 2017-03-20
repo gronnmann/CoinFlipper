@@ -28,7 +28,7 @@ import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.utils.GeneralUtils;
 import io.github.gronnmann.utils.ItemUtils;
-import me.gronnmann.utils.signinput.SignInputEvent;
+import io.github.gronnmann.utils.signinput.SignInputEvent;
 
 public class CreationGUI implements Listener{
 	private CreationGUI(){}
@@ -42,6 +42,7 @@ public class CreationGUI implements Listener{
 	private int BET_FINALIZE = 44, BET_AMOUNT = 8, BET_SIDE = 26;
 	private int MON_1 = 0, MON_10 = 1, MON_100 = 2, MON_1000 = 3, MON_10000 = 4, MON_100000 = 5, MON_CUSTOM = 6;
 	private int SIDE_HEADS = 18, SIDE_TAILS = 19;
+	private int BACK = 36;
 	
 	
 	public void generatePreset(){
@@ -67,6 +68,8 @@ public class CreationGUI implements Listener{
 		
 		preset.setItem(SIDE_HEADS, ItemUtils.createItem(Material.WOOL, ChatColor.AQUA + MessagesManager.getMessage(Message.HEADS).toUpperCase(), 15));
 		preset.setItem(SIDE_TAILS, ItemUtils.createItem(Material.WOOL, ChatColor.AQUA + MessagesManager.getMessage(Message.TAILS).toUpperCase(), 0));
+		
+		preset.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
 	}
 	
 	
@@ -147,6 +150,8 @@ public class CreationGUI implements Listener{
 			data.setSide(0);
 		}else if (e.getSlot() == BET_FINALIZE){
 			GamesManager.getManager().createGame((Player) e.getWhoClicked(), data.getSide(), data.getMoney());
+		}else if (e.getSlot() == BACK){
+			SelectionScreen.getInstance().openGameManager((Player) e.getWhoClicked());
 		}
 		
 		this.refreshInventory((Player) e.getWhoClicked());
