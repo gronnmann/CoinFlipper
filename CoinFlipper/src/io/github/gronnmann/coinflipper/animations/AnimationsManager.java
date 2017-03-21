@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.utils.Debug;
 
 public class AnimationsManager{
 	private AnimationsManager(){}
@@ -21,6 +22,8 @@ public class AnimationsManager{
 	public void save(){
 		for (Animation ani : animations){
 			ani.save();
+			
+			Debug.print("Saving animation: " + ani.getName());
 		}
 	}
 	

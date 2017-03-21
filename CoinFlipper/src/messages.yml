@@ -93,7 +93,7 @@ CREATION_MONEY_T2: '$10'
 CREATION_MONEY_T3: '$100'
 CREATION_MONEY_T4: '$1000'
 CREATION_MONEY_T5: '$10000'
-CREATION_MONEY_T6: '$100000'
+CREATION_MONEY_MAX: 'Maximum bet'
 CREATION_MONEY_LEFTTOADD: '&aLeft click to add this to your bet'
 CREATION_MONEY_RIGHTTOREMOVE: '&cRight click to remove this from your bet.'
 

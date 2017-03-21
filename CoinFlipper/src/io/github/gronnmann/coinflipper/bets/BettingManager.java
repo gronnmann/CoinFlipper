@@ -57,6 +57,8 @@ public class BettingManager {
 			conf.set("bets."+b.getID()+".side", b.getSide());
 			conf.set("bets."+b.getID()+".time", b.getTimeRemaining());
 			conf.set("bets."+b.getID()+".animation", b.getAnimation().getName());
+			
+			Debug.print("Saving bet ID: " + b.getID() + " with owner: " + b.getPlayer());
 		}
 		
 		ConfigManager.getManager().saveBets();

@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.utils.Debug;
 
 public class StatsManager implements Listener{
 	private StatsManager(){}
@@ -47,6 +48,9 @@ public class StatsManager implements Listener{
 			statsC.set("stats."+players+".moneySpent", stats.get(players).getMoneySpent());
 			statsC.set("stats."+players+".moneyWon", stats.get(players).getMoneyWon());
 			ConfigManager.getManager().saveStats();
+			
+			Debug.print("Saving stats for: " + players);
+			
 		}
 		ConfigManager.getManager().saveStats();
 	}

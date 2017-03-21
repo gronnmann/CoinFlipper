@@ -19,7 +19,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.Wool;
 
+import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.GamesManager;
+import io.github.gronnmann.coinflipper.Main;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
@@ -40,7 +42,7 @@ public class CreationGUI implements Listener{
 	}
 	
 	private int BET_FINALIZE = 44, BET_AMOUNT = 8, BET_SIDE = 26;
-	private int MON_1 = 0, MON_10 = 1, MON_100 = 2, MON_1000 = 3, MON_10000 = 4, MON_100000 = 5, MON_CUSTOM = 6;
+	private int MON_1 = 0, MON_10 = 1, MON_100 = 2, MON_1000 = 3, MON_10000 = 4, MON_100000 = 6, MON_CUSTOM = 5;
 	private int SIDE_HEADS = 18, SIDE_TAILS = 19;
 	private int BACK = 36;
 	
@@ -62,7 +64,7 @@ public class CreationGUI implements Listener{
 		preset.setItem(MON_100, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T3)), howToAdd), howToRemove));
 		preset.setItem(MON_1000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T4)), howToAdd), howToRemove));
 		preset.setItem(MON_10000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T5)), howToAdd), howToRemove));
-		preset.setItem(MON_100000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_T6)), howToAdd), howToRemove));
+		preset.setItem(MON_100000, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_MAX)), howToAdd), howToRemove));
 		
 		preset.setItem(MON_CUSTOM,ItemUtils.addToLore(ItemUtils.createItem(Material.EMERALD, c + MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM)), MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_DESC)));
 		
@@ -70,6 +72,17 @@ public class CreationGUI implements Listener{
 		preset.setItem(SIDE_TAILS, ItemUtils.createItem(Material.WOOL, ChatColor.AQUA + MessagesManager.getMessage(Message.TAILS).toUpperCase(), 0));
 		
 		preset.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
+	}
+	
+	private double getMaxMoney(String player){
+		double use = ConfigManager.getManager().getConfig().getDouble("max_amount");
+		double plMon = Main.getEcomony().getBalance(player);
+		
+		if (plMon < use){
+			use = plMon;
+		}
+		return use;
+		
 	}
 	
 	
@@ -123,7 +136,7 @@ public class CreationGUI implements Listener{
 		CreationData data = this.data.get(e.getWhoClicked().getName());
 		if (data == null)return;
 		
-		if (e.getSlot() <= 5){
+		if (e.getSlot() <= 4){
 			double money = Double.valueOf(ChatColor.stripColor(e.getInventory().getItem(e.getSlot()).getItemMeta().getDisplayName())
 					.replaceAll("[^\\d]", ""));
 			
@@ -144,7 +157,16 @@ public class CreationGUI implements Listener{
 			
 			return;
 			
-		}else if (e.getSlot() == SIDE_HEADS){
+		}else if (e.getSlot() == MON_100000){
+			if (e.isRightClick()){
+				data.setMoney(0);
+			}else{
+				data.setMoney(this.getMaxMoney(e.getWhoClicked().getName()));
+			}
+		}
+		
+		
+		else if (e.getSlot() == SIDE_HEADS){
 			data.setSide(1);
 		}else if (e.getSlot() == SIDE_TAILS){
 			data.setSide(0);
