@@ -15,7 +15,6 @@ public class PacketUtils {
 			Object playerHandle = player.getClass().getMethod("getHandle").invoke(player);
 			Object connection = playerHandle.getClass().getField("playerConnection").get(playerHandle);
 			Method sendPacket = connection.getClass().getMethod("sendPacket", getServerClass("Packet"));
-			Debug.print( packet.getClass().getName());
 			
 			sendPacket.invoke(connection, packet);
 			

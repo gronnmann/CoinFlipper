@@ -7,17 +7,14 @@ public class GeneralUtils {
 	}
 	
 	public static String getFormattedNumbers(double number){
-		/*
-		 * Code partly by aioobe on StackOverflow
-		 * http://stackoverflow.com/questions/9769554/how-to-convert-number-into-k-thousands-m-million-and-b-billion-suffix-in-jsp
-		 */
 		
 		if (number < 1000)return number+"";
-		int exp = (int) (Math.log(number)/Math.log(1000));
 		
-		Debug.print(exp + "");
+		int exponent = (int) (Math.log(number)/Math.log(1000));
 		
-		return String.format("%.1f %c", number / Math.pow(1000, exp), "kMBTQ".charAt(exp-1));
+		char numSuffix = "kMBTQ".charAt(exponent-1);
+		
+		return String.format("%d %c", number/Math.pow(1000, exponent), numSuffix);
 	}
 	
 	public static boolean isInt(String str){
@@ -33,4 +30,5 @@ public class GeneralUtils {
 	public static String getJsonString(String field, String value){
 		return "{\""+field+"\":\"" + value + "\"}";
 	}
+	
 }
