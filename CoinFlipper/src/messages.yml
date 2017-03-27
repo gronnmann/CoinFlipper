@@ -60,6 +60,7 @@ BET_TITLE_VICTORY: '&aVictory'
 BET_TITLE_LOSS: '&cLoss'
 BET_WON: '&aYou have won your bet against &e%LOSER% &awith the value &e$%MONEY%'
 BET_LOST: '&cYou have lost your bet against &e%WINNER% &cwith the value &e$%MONEY%'
+HIGH_GAME_BROADCAST: '&e%WINNER% &ajust won a bet worth &e$%MONEY% &a against &e%LOSER%&a.'
 
 BET_TITLE_COMBAT: '&cCombat'
 BET_START_COMBAT: '&eA CoinFlipper game you participate in is running but you are in combat.'

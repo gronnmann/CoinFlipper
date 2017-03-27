@@ -118,6 +118,16 @@ public class AnimationRunnable extends BukkitRunnable{
 					PacketUtils.sendTitle(los, MessagesManager.getMessage(Message.BET_TITLE_LOSS), TitleType.TITLE, 20, 60, 20);
 					PacketUtils.sendTitle(los, losMsg, TitleType.SUBTITLE, 20, 60, 20);
 				}
+				
+				if ( !(ConfigManager.getManager().getConfig().getString("value_needed_to_broadcast") == null) && 
+						winMoney >= ConfigManager.getManager().getConfig().getDouble("value_needed_to_broadcast") && 
+						ConfigManager.getManager().getConfig().getDouble("value_needed_to_broadcast") != 0){
+					
+					Bukkit.broadcastMessage(MessagesManager.getMessage(Message.HIGH_GAME_BROADCAST)
+							.replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+									winner).replaceAll("%LOSER%", loser));
+					
+				}
 		}
 		
 		

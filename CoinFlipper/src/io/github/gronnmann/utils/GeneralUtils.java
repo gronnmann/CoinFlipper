@@ -14,7 +14,7 @@ public class GeneralUtils {
 		
 		char numSuffix = "kMBTQ".charAt(exponent-1);
 		
-		return String.format("%d %c", number/Math.pow(1000, exponent), numSuffix);
+		return String.format("%.01f %c", number/Math.pow(1000, exponent), numSuffix);
 	}
 	
 	public static boolean isInt(String str){
