@@ -4,7 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
 
 public class PacketUtils {
 	
@@ -60,6 +62,48 @@ public class PacketUtils {
 			e.printStackTrace();
 		}
 				
+	}
+	
+	public static void sendWorldBorder(Player player, Location center, int size){
+		
+		
+		
+	/*
+	 * Orginal WorldBorder code:
+	 	WorldBorder border = new WorldBorder();
+		border.setCenter(center.getX(), center.getZ());
+		border.setSize(size);
+		
+		PacketPlayOutWorldBorder packet = new PacketPlayOutWorldBorder(border, EnumWorldBorderAction.INITIALIZE);
+		
+		import net.minecraft.server.v1_9_R1.PacketPlayOutWorldBorder;
+		import net.minecraft.server.v1_9_R1.PacketPlayOutWorldBorder.EnumWorldBorderAction;
+		import net.minecraft.server.v1_9_R1.WorldBorder;
+	*/
+		
+		try{
+		
+			Object worldBorder = getServerClass("WorldBorder").newInstance();
+			
+			Method setCenter = worldBorder.getClass().getMethod("setCenter", double.class, double.class);
+			setCenter.invoke(worldBorder, center.getX(), center.getZ());
+			
+			Method setSize = worldBorder.getClass().getMethod("setSize", double.class);
+			setSize.invoke(worldBorder, size);
+			
+			Constructor<?> worldBorderPacketConstructor = getServerClass("PacketPlayOutWorldBorder").getConstructor(
+					getServerClass("WorldBorder"), getServerClass("PacketPlayOutWorldBorder$EnumWorldBorderAction"));
+			
+			Object initializeEnum = getServerClass("PacketPlayOutWorldBorder$EnumWorldBorderAction").getField("INITIALIZE").get(null);
+			
+			Object worldBorderPacket = worldBorderPacketConstructor.newInstance(worldBorder, initializeEnum);
+			
+			
+			sendPacket(player, worldBorderPacket);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	
