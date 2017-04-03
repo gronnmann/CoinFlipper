@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
@@ -59,7 +61,9 @@ public class SQLManager {
 			
 		}
 		
-		
+		for (Player oPl : Bukkit.getOnlinePlayers()){
+			this.loadStats(oPl.getUniqueId().toString());
+		}
 		
 		
 	}
