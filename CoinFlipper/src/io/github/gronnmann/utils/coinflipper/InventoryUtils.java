@@ -1,4 +1,4 @@
-package io.github.gronnmann.utils;
+package io.github.gronnmann.utils.coinflipper;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;

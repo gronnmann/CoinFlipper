@@ -1,4 +1,4 @@
-package io.github.gronnmann.utils;
+package io.github.gronnmann.utils.coinflipper;
 
 public class GeneralUtils {
 	public static int getIntInString(String string){

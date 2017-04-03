@@ -1,4 +1,4 @@
-package io.github.gronnmann.utils.signinput;
+package io.github.gronnmann.utils.signinput.coinflipper;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

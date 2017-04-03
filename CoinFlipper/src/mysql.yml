@@ -1,0 +1,4 @@
+server: '0.0.0.0:0000'
+database: 'coinflipper'
+user: 'user'
+password: 'password'

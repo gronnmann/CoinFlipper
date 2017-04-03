@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.utils.Debug;
+import io.github.gronnmann.utils.coinflipper.Debug;
 
 public class AnimationsManager{
 	private AnimationsManager(){}

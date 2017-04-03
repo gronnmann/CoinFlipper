@@ -23,9 +23,9 @@ import io.github.gronnmann.coinflipper.events.AnimationFrameChangeEvent;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
-import io.github.gronnmann.utils.InventoryUtils;
-import io.github.gronnmann.utils.ItemUtils;
-import io.github.gronnmann.utils.signinput.SignInputEvent;
+import io.github.gronnmann.utils.coinflipper.InventoryUtils;
+import io.github.gronnmann.utils.coinflipper.ItemUtils;
+import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
 
 public class AnimationGUI implements Listener{
 	private AnimationGUI(){}

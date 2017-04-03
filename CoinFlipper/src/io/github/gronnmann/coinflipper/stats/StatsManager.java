@@ -9,7 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.utils.Debug;
+import io.github.gronnmann.coinflipper.mysql.SQLManager;
+import io.github.gronnmann.utils.coinflipper.Debug;
 
 public class StatsManager implements Listener{
 	private StatsManager(){}
@@ -43,11 +44,17 @@ public class StatsManager implements Listener{
 	//Called when plugin is disabled to save all stats
 	public void save(){
 		for (String players : stats.keySet()){
-			statsC.set("stats."+players+".gamesWon", stats.get(players).getGamesWon());
-			statsC.set("stats."+players+".gamesLost", stats.get(players).getGamesLost());
-			statsC.set("stats."+players+".moneySpent", stats.get(players).getMoneySpent());
-			statsC.set("stats."+players+".moneyWon", stats.get(players).getMoneyWon());
-			ConfigManager.getManager().saveStats();
+			
+			if (SQLManager.getManager().isEnabled()){
+				SQLManager.getManager().saveStats(players, stats.get(players));
+				
+			}else{
+				statsC.set("stats."+players+".gamesWon", stats.get(players).getGamesWon());
+				statsC.set("stats."+players+".gamesLost", stats.get(players).getGamesLost());
+				statsC.set("stats."+players+".moneySpent", stats.get(players).getMoneySpent());
+				statsC.set("stats."+players+".moneyWon", stats.get(players).getMoneyWon());
+				ConfigManager.getManager().saveStats();
+			}
 			
 			Debug.print("Saving stats for: " + players);
 			
@@ -62,6 +69,11 @@ public class StatsManager implements Listener{
 		
 		return stats.get(p.getUniqueId().toString());
 	}
+	
+	public void setStats(String uuid, Stats s){
+		stats.put(uuid, s);
+	}
+	
 	public Stats getStats(String uuid){
 		if (!stats.containsKey(uuid)){
 			this.createClearStats(uuid);
@@ -73,7 +85,12 @@ public class StatsManager implements Listener{
 	@EventHandler
 	public void createStatsIfNew(PlayerJoinEvent e){
 		if (!stats.containsKey(e.getPlayer().getUniqueId().toString())){
-			this.createClearStats(e.getPlayer());
+			
+			if (SQLManager.getManager().isEnabled()){
+				SQLManager.getManager().loadStats(e.getPlayer().getUniqueId().toString());
+			}else{
+				this.createClearStats(e.getPlayer());
+			}
 		}
 	}
 	

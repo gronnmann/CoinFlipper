@@ -1,4 +1,4 @@
-package io.github.gronnmann.utils;
+package io.github.gronnmann.utils.coinflipper;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

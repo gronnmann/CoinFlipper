@@ -28,9 +28,9 @@ import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.events.BetChallengeEvent;
 import io.github.gronnmann.coinflipper.events.BetPlayEvent;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
-import io.github.gronnmann.utils.Debug;
-import io.github.gronnmann.utils.GeneralUtils;
-import io.github.gronnmann.utils.ItemUtils;
+import io.github.gronnmann.utils.coinflipper.Debug;
+import io.github.gronnmann.utils.coinflipper.GeneralUtils;
+import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class SelectionScreen implements Listener{

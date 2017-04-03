@@ -13,8 +13,9 @@ import io.github.gronnmann.coinflipper.gui.CreationGUI;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.metrics.BStats;
+import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
-import io.github.gronnmann.utils.VersionUtils;
+import io.github.gronnmann.utils.coinflipper.VersionUtils;
 import net.milkbowl.vault.economy.Economy;
 
 
@@ -22,8 +23,13 @@ public class Main extends JavaPlugin{
 	
 	private static Economy economy;
 	
+	private static Main main;
+	
+	
 	
 	public void onEnable(){
+		
+		main = this;
 		
 		if (!enableEconomy()){
 			
@@ -76,6 +82,7 @@ public class Main extends JavaPlugin{
 			System.out.println("[CoinFlipper] https://www.spigotmc.org/resources/coinflipper.33916/");
 		}
 		
+		SQLManager.getManager().setup();
 		
 		
 		//Start metrics
@@ -102,5 +109,9 @@ public class Main extends JavaPlugin{
 	
 	public static Economy getEcomony(){
 		return economy;
+	}
+	
+	public static Main getMain(){
+		return main;
 	}
 }

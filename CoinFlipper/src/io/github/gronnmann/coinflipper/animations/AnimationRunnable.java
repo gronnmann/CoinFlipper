@@ -16,8 +16,8 @@ import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.hook.HookManager;
-import io.github.gronnmann.utils.PacketUtils;
-import io.github.gronnmann.utils.PacketUtils.TitleType;
+import io.github.gronnmann.utils.coinflipper.PacketUtils;
+import io.github.gronnmann.utils.coinflipper.PacketUtils.TitleType;
 
 public class AnimationRunnable extends BukkitRunnable{
 	String s1, s2, winner;

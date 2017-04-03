@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import io.github.gronnmann.coinflipper.gui.GameInventoryHolder;
-import io.github.gronnmann.utils.ItemUtils;
+import io.github.gronnmann.utils.coinflipper.ItemUtils;
 
 
 public class Animation {

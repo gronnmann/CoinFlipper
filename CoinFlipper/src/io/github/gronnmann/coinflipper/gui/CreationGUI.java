@@ -28,9 +28,9 @@ import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
-import io.github.gronnmann.utils.GeneralUtils;
-import io.github.gronnmann.utils.ItemUtils;
-import io.github.gronnmann.utils.signinput.SignInputEvent;
+import io.github.gronnmann.utils.coinflipper.GeneralUtils;
+import io.github.gronnmann.utils.coinflipper.ItemUtils;
+import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
 
 public class CreationGUI implements Listener{
 	private CreationGUI(){}

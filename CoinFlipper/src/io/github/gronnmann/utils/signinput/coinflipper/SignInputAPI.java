@@ -1,4 +1,4 @@
-package io.github.gronnmann.utils.signinput;
+package io.github.gronnmann.utils.signinput.coinflipper;
 
 import java.lang.reflect.InvocationTargetException;
 

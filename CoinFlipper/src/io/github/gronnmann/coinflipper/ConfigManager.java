@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.YamlConfigurationOptions;
 import org.bukkit.plugin.Plugin;
 
-import io.github.gronnmann.utils.Debug;
+import io.github.gronnmann.utils.coinflipper.Debug;
 
 public class ConfigManager {
 	private ConfigManager(){}
@@ -17,8 +17,8 @@ public class ConfigManager {
 	public static ConfigManager getManager(){return mng;}
 	
 	private Plugin pl;
-	private File configF, messagesF, statsF, betsF;
-	private FileConfiguration config, messages, stats, bets;
+	private File configF, messagesF, statsF, betsF, mysqlF;
+	private FileConfiguration config, messages, stats, bets, mysql;
 	
 	public void setup(Plugin p){
 		
@@ -78,6 +78,19 @@ public class ConfigManager {
 			}
 		}
 		bets = YamlConfiguration.loadConfiguration(betsF);
+		
+		mysqlF = new File(p.getDataFolder(), "mysql.yml");
+		if (!mysqlF.exists()){
+			try{
+				mysqlF.createNewFile();
+				mysql = YamlConfiguration.loadConfiguration(mysqlF);
+				this.copyDefaults(mysql, "/mysql.yml");
+				this.saveMySQL();
+			}catch(Exception e){e.printStackTrace();}
+		}else{
+			mysql = YamlConfiguration.loadConfiguration(mysqlF);
+		}
+		
 	}
 	
 	public void configUpdate(){
@@ -136,6 +149,7 @@ public class ConfigManager {
 	public FileConfiguration getMessages(){return messages;}
 	public FileConfiguration getStats(){return stats;}
 	public FileConfiguration getBets() {return bets;}
+	public FileConfiguration getMySQL(){return mysql;}
 	
 	public void saveConfig(){
 		try{
@@ -161,11 +175,17 @@ public class ConfigManager {
 			bets.save(betsF);
 		}catch(Exception e){e.printStackTrace();}
 	}
+	public void saveMySQL(){
+		try{
+			mysql.save(mysqlF);
+		}catch(Exception e){e.printStackTrace();}
+	}
 	
 	public void reload(){
 		config = YamlConfiguration.loadConfiguration(configF);
 		messages = YamlConfiguration.loadConfiguration(messagesF);
 		stats = YamlConfiguration.loadConfiguration(statsF);
 		bets = YamlConfiguration.loadConfiguration(betsF);
+		mysql = YamlConfiguration.loadConfiguration(mysqlF);
 	}
 }

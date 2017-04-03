@@ -7,9 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
-import io.github.gronnmann.utils.Debug;
-import io.github.gronnmann.utils.InventoryUtils;
-import io.github.gronnmann.utils.ItemUtils;
+import io.github.gronnmann.utils.coinflipper.Debug;
+import io.github.gronnmann.utils.coinflipper.InventoryUtils;
+import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import net.md_5.bungee.api.ChatColor;
 
 public class PersonalizedAnimation {

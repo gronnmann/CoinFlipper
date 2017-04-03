@@ -16,7 +16,7 @@ import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
-import io.github.gronnmann.utils.Debug;
+import io.github.gronnmann.utils.coinflipper.Debug;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class BettingManager {

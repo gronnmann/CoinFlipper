@@ -1,4 +1,5 @@
 config_version: none
+mysql_enabled: false
 min_amount: 300
 max_amount: 1000000
 time_expire: 60
