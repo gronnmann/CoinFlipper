@@ -2,6 +2,7 @@ package io.github.gronnmann.coinflipper;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -109,7 +110,9 @@ public class ConfigManager {
 				
 				if (newConfigStream == null)return;
 				
-				FileConfiguration newConfig = YamlConfiguration.loadConfiguration(newConfigStream);
+				InputStreamReader newConfigStreamReader = new InputStreamReader(newConfigStream);
+				
+				FileConfiguration newConfig = YamlConfiguration.loadConfiguration(newConfigStreamReader);
 				
 				System.out.println("[CoinFlipper] Old config found. Updating...");
 				
@@ -124,6 +127,8 @@ public class ConfigManager {
 				
 				this.saveConfig();
 				
+				newConfigStreamReader.close();
+				newConfigStream.close();
 				
 			}catch(Exception e){
 				e.printStackTrace();
@@ -139,7 +144,8 @@ public class ConfigManager {
 		file.options().copyDefaults(true);
 		try{
 			str = pl.getClass().getResourceAsStream(resource);
-			FileConfiguration defaults = YamlConfiguration.loadConfiguration(str);
+			InputStreamReader strR = new InputStreamReader(str);
+			FileConfiguration defaults = YamlConfiguration.loadConfiguration(strR);
 			file.setDefaults(defaults);
 			str.close();
 		}catch(Exception e){e.printStackTrace();}
