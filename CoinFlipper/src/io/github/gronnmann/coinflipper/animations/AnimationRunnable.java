@@ -16,11 +16,12 @@ import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.hook.HookManager;
+import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.PacketUtils;
 import io.github.gronnmann.utils.coinflipper.PacketUtils.TitleType;
 
 public class AnimationRunnable extends BukkitRunnable{
-	String s1, s2, winner;
+	private String s1, s2, winner, winMoneyFormatted;
 	private int phase;
 	private double winMoney;
 	
@@ -32,8 +33,9 @@ public class AnimationRunnable extends BukkitRunnable{
 		this.s1 = s1;
 		this.s2 = s2;
 		this.winner = winner;
-		phase = 0;
+		this.phase = 0;
 		this.winMoney = winMoney;
+		this.winMoneyFormatted = GeneralUtils.getFormattedNumbers(winMoney);
 		
 				
 		Animation anim = AnimationsManager.getManager().getAnimation(animationS);
@@ -102,7 +104,7 @@ public class AnimationRunnable extends BukkitRunnable{
 				Player win = Bukkit.getPlayer(winner);
 				if (win != null){
 					
-					String winMsg = MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+					String winMsg = MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
 							winner).replaceAll("%LOSER%", loser);
 					win.sendMessage(winMsg);
 					
@@ -111,7 +113,7 @@ public class AnimationRunnable extends BukkitRunnable{
 				}
 				Player los = Bukkit.getPlayer(loser);
 				if (los != null){
-					String losMsg = MessagesManager.getMessage(Message.BET_LOST).replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+					String losMsg = MessagesManager.getMessage(Message.BET_LOST).replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
 							winner).replaceAll("%LOSER%", loser);
 					los.sendMessage(losMsg);
 					
@@ -124,7 +126,7 @@ public class AnimationRunnable extends BukkitRunnable{
 						ConfigManager.getManager().getConfig().getDouble("value_needed_to_broadcast") != 0){
 					
 					Bukkit.broadcastMessage(MessagesManager.getMessage(Message.HIGH_GAME_BROADCAST)
-							.replaceAll("%MONEY%", winMoney+"").replaceAll("%WINNER%",
+							.replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
 									winner).replaceAll("%LOSER%", loser));
 					
 				}

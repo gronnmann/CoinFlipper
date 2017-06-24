@@ -16,6 +16,7 @@ import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.PacketUtils;
 import io.github.gronnmann.utils.coinflipper.PacketUtils.TitleType;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -120,9 +121,9 @@ public class CommandsManager implements CommandExecutor{
 						getMsg(Message.STATS_GAMESWON).replaceAll("%AMOUNT%", pS.getGamesWon()+"") + "\n" +
 						getMsg(Message.STATS_GAMESLOST).replaceAll("%AMOUNT%", pS.getGamesLost()+"")+ "\n" +
 						getMsg(Message.STATS_WINPERCENTAGE).replaceAll("%AMOUNT%", pS.getWinPercentage()+"")+ "\n" +
-						getMsg(Message.STATS_MONEYWON).replaceAll("%AMOUNT%", pS.getMoneyWon()+"")+ "\n" +
-						getMsg(Message.STATS_MONEYSPENT).replaceAll("%AMOUNT%", pS.getMoneySpent()+"")+ "\n" +
-						getMsg(Message.STATS_MONEYEARNED).replaceAll("%AMOUNT%", pS.getMoneyEarned()+"");
+						getMsg(Message.STATS_MONEYWON).replaceAll("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneyWon()))+ "\n" +
+						getMsg(Message.STATS_MONEYSPENT).replaceAll("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneySpent()))+ "\n" +
+						getMsg(Message.STATS_MONEYEARNED).replaceAll("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneyEarned()));
 				p.sendMessage(statsMessage);
 						
 			}else if (args[0].equalsIgnoreCase("animation")||args[0].equalsIgnoreCase("anim")||args[0].equalsIgnoreCase(getMsg(Message.CMD_ANIMATION))){

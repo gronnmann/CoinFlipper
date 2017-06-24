@@ -1,5 +1,9 @@
 package io.github.gronnmann.utils.coinflipper;
 
+import java.text.DecimalFormat;
+
+import io.github.gronnmann.coinflipper.ConfigManager;
+
 public class GeneralUtils {
 	public static int getIntInString(String string){
 		String found = string.replaceAll("[^\\d]", "");
@@ -10,11 +14,21 @@ public class GeneralUtils {
 		
 		if (number < 1000)return number+"";
 		
-		int exponent = (int) (Math.log(number)/Math.log(1000));
+		if (ConfigManager.getManager().getConfig().getBoolean("formatting_shorten_money")){
+			int exponent = (int) (Math.log(number)/Math.log(1000));
 		
-		char numSuffix = "kMBTQ".charAt(exponent-1);
+			char numSuffix = "kMBT".charAt(exponent-1);
 		
-		return String.format("%.01f %c", number/Math.pow(1000, exponent), numSuffix);
+			return String.format("%.01f %c", number/Math.pow(1000, exponent), numSuffix);
+		}else{
+			DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
+			return formatter.format(number);
+		}
+		
+		
+		
+		
+		
 	}
 	
 	public static boolean isInt(String str){
