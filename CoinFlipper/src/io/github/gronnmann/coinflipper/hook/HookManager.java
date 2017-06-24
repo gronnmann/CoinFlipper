@@ -27,6 +27,11 @@ public class HookManager {
 			hooks.put(type, false);
 		}
 		
+		Plugin ProtocolLib = Bukkit.getPluginManager().getPlugin("ProtocolLib");
+		if (!(ProtocolLib == null)){
+			this.setHooked(HookType.ProtocolLib);
+		}
+		
 		Plugin combatTagPlus = Bukkit.getPluginManager().getPlugin("CombatTagPlus");
 		if (!(combatTagPlus == null)){
 			this.setHooked(HookType.CombatTagPlus);
@@ -37,10 +42,7 @@ public class HookManager {
 			this.setHooked(HookType.PvPManager);
 		}
 		
-		Plugin ProtocolLib = Bukkit.getPluginManager().getPlugin("ProtocolLib");
-		if (!(ProtocolLib == null)){
-			this.setHooked(HookType.ProtocolLib);
-		}
+		
 	}
 	
 	private void setHooked(HookType hook){
