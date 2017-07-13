@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -20,6 +19,7 @@ import org.bukkit.plugin.Plugin;
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.MaterialsManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.animations.AnimationRunnable;
@@ -61,9 +61,9 @@ public class SelectionScreen implements Listener{
 			amo++;
 		}
 		for (int i = 45; i <= 53; i++){
-			selectionScreen.setItem(i, ItemUtils.createItem(Material.STAINED_GLASS_PANE, " ", 10));
+			selectionScreen.setItem(i, ItemUtils.createItem(MaterialsManager.getMaterial("selection_filling"), " ", MaterialsManager.getData("selection_filling")));
 		}
-		ItemStack help = new ItemStack(Material.BOOK);
+		ItemStack help = new ItemStack(MaterialsManager.getMaterial("selection_syntax"));
 		ItemMeta helpM = help.getItemMeta();
 		helpM.setDisplayName(ChatColor.BOLD + MessagesManager.getMessage(Message.HELP_ITEM_L1));
 		ArrayList<String> lores = new ArrayList<String>();
@@ -74,7 +74,8 @@ public class SelectionScreen implements Listener{
 		help.setItemMeta(helpM);
 		selectionScreen.setItem(49, help);
 		
-		selectionScreen.setItem(CREATE, ItemUtils.createItem(Material.STAINED_GLASS_PANE, MessagesManager.getMessage(Message.CREATE), 5));
+		selectionScreen.setItem(CREATE, ItemUtils.createItem(MaterialsManager.getMaterial("selection_create"), MessagesManager.getMessage(Message.CREATE), 
+				MaterialsManager.getData("selection_create")));
 	}
 	
 	public void openGameManager(Player p){

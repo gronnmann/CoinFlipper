@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.file.YamlConfigurationOptions;
 import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.utils.coinflipper.Debug;
@@ -18,8 +17,8 @@ public class ConfigManager {
 	public static ConfigManager getManager(){return mng;}
 	
 	private Plugin pl;
-	private File configF, messagesF, statsF, betsF, mysqlF;
-	private FileConfiguration config, messages, stats, bets, mysql;
+	private File configF, messagesF, statsF, betsF, mysqlF, materialsF;
+	private FileConfiguration config, messages, stats, bets, mysql, materials;
 	
 	public void setup(Plugin p){
 		
@@ -92,6 +91,18 @@ public class ConfigManager {
 			mysql = YamlConfiguration.loadConfiguration(mysqlF);
 		}
 		
+		materialsF = new File(p.getDataFolder(), "materials.yml");
+		if (!materialsF.exists()){
+			try{
+				materialsF.createNewFile();
+				materials = YamlConfiguration.loadConfiguration(materialsF);
+				this.copyDefaults(materials, "/materials.yml");
+				this.saveMySQL();
+			}catch(Exception e){e.printStackTrace();}
+		}else{
+			materials = YamlConfiguration.loadConfiguration(materialsF);
+		}
+		
 	}
 	
 	public void configUpdate(){
@@ -156,6 +167,7 @@ public class ConfigManager {
 	public FileConfiguration getStats(){return stats;}
 	public FileConfiguration getBets() {return bets;}
 	public FileConfiguration getMySQL(){return mysql;}
+	public FileConfiguration getMaterials(){return materials;}
 	
 	public void saveConfig(){
 		try{
@@ -186,6 +198,11 @@ public class ConfigManager {
 			mysql.save(mysqlF);
 		}catch(Exception e){e.printStackTrace();}
 	}
+	public void saveMaterials(){
+		try{
+			materials.save(materialsF);
+		}catch(Exception e){e.printStackTrace();}
+	}
 	
 	public void reload(){
 		config = YamlConfiguration.loadConfiguration(configF);
@@ -193,5 +210,6 @@ public class ConfigManager {
 		stats = YamlConfiguration.loadConfiguration(statsF);
 		bets = YamlConfiguration.loadConfiguration(betsF);
 		mysql = YamlConfiguration.loadConfiguration(mysqlF);
+		materials = YamlConfiguration.loadConfiguration(materialsF);
 	}
 }

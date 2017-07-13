@@ -1,25 +1,21 @@
 package io.github.gronnmann.coinflipper;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
-import io.github.gronnmann.coinflipper.animations.AnimationsManager;
-import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
-import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
+import io.github.gronnmann.coinflipper.gui.CreationGUI;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
+import io.github.gronnmann.coinflipper.hook.HookManager;
+import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
-import io.github.gronnmann.utils.coinflipper.PacketUtils;
-import io.github.gronnmann.utils.coinflipper.PacketUtils.TitleType;
-import net.milkbowl.vault.economy.EconomyResponse;
 
 
 public class CommandsManager implements CommandExecutor{
@@ -138,7 +134,17 @@ public class CommandsManager implements CommandExecutor{
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
 				}
+				System.out.println("[CoinFlipper] Attempting to reload CoinFlipper (requested by " + p.getName() + ")");
 				ConfigManager.getManager().reload();
+				MaterialsManager.setup(Main.getMain());
+				SelectionScreen.getInstance().setup(Main.getMain());
+				StatsManager.getManager().load();
+				AnimationFileManager.getManager().setup(Main.getMain());
+				AnimationGUI.getManager().setup();
+				BettingManager.getManager().load();
+				HookManager.getManager().registerHooks(Main.getMain());
+				CreationGUI.getInstance().generatePreset();
+				
 				p.sendMessage(getMsg(Message.RELOAD_SUCCESS));
 			}
 			

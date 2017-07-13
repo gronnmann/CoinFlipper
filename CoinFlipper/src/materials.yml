@@ -1,0 +1,20 @@
+back: INK_SACK
+back_data: 1
+
+selection_filling: STAINED_GLASS_PANE
+selection_filling_data: 10
+
+selection_create: STAINED_GLASS_PANE
+selection_create_data: 5
+
+selection_syntax: BOOK
+selection_syntax_data: 0
+
+creation_money: EMERALD
+creation_money_data: 0
+
+creation_side_heads: WOOL
+creation_side_heads_data: 15
+
+creation_side_tails: WOOL
+creation_side_tails_data: 0

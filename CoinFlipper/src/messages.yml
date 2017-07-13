@@ -102,6 +102,8 @@ CREATION_MONEY_CUSTOM: 'Custom value'
 CREATION_MONEY_CUSTOM_DESC: '&aEnter custom value'
 CREATION_MONEY_CUSTOM_SPEC: '&aPlease specify how much money you want to set your bet to'
 CREATION_MONEY_CUSTOM_NOTNUM: '&cPlease specify a number'
+CREATION_MONEY_CUSTOM_TOOMUCH: '&cThe amount you specified is too big.'
+CREATION_MONEY_CUSTOM_TOOLITTLE: '&cThe amount you specified is too small.'
 CREATION_MONEY_CUSTOM_SUCCESS: '&aBet money sat to: &e%MONEY%'
 
 ANIMATION_CREATE_GIVENAME: '&ePlease write the name you want the animation to create.'

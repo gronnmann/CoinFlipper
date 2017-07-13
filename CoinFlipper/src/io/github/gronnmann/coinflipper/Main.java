@@ -44,6 +44,8 @@ public class Main extends JavaPlugin{
 		ConfigManager.getManager().setup(this);
 		ConfigManager.getManager().configUpdate();
 		
+		MaterialsManager.setup(this);
+		
 		SelectionScreen.getInstance().setup(this);
 		StatsManager.getManager().load();
 		
@@ -86,7 +88,7 @@ public class Main extends JavaPlugin{
 		
 		
 		//Start metrics
-		BStats metrics = new BStats(this);
+		new BStats(this);
 		
 	}
 	

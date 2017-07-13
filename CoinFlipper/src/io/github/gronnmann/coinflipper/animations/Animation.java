@@ -9,8 +9,6 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
 import io.github.gronnmann.coinflipper.gui.GameInventoryHolder;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 
