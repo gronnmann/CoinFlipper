@@ -148,7 +148,7 @@ public class CreationGUI implements Listener{
 			e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_SPEC));
 			e.getWhoClicked().closeInventory();
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib)){
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")){
 				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
 			}
 			
@@ -208,7 +208,7 @@ public class CreationGUI implements Listener{
 	@EventHandler
 	public void protocolLibHookInput(SignInputEvent e){
 		
-		if (!HookManager.getManager().isHooked(HookType.ProtocolLib))return;
+		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input"))return;
 		
 		Player p = e.getPlayer();
 		if (!customMon.contains(p.getName()) || !data.containsKey(p.getName()))return;
@@ -229,14 +229,14 @@ public class CreationGUI implements Listener{
 			
 			
 			
-			p.sendMessage(ChatColor.GREEN + "Bet money sat to: " + ChatColor.YELLOW + "$" + mon);
+			p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS).replaceAll("%MONEY%", mon+""));
 			
 			p.openInventory(data.get(p.getName()).getInventory());
 			
 			this.refreshInventory(p);
 			customMon.remove(e.getPlayer().getName());
 		}catch(Exception ex){
-			p.sendMessage(ChatColor.RED + "Please specify a number.");
+			p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOTNUM));
 			HookProtocolLib.getHook().openSignInput(e.getPlayer());
 		}
 	}
@@ -261,14 +261,14 @@ public class CreationGUI implements Listener{
 			
 			
 			
-			p.sendMessage(ChatColor.GREEN + "Bet money sat to: " + ChatColor.YELLOW + "$" + mon);
+			p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS).replaceAll("%MONEY%", mon+""));
 			
 			p.openInventory(data.get(p.getName()).getInventory());
 			
 			this.refreshInventory(p);
 			customMon.remove(e.getPlayer().getName());
 		}catch(Exception ex){
-			p.sendMessage(ChatColor.RED + "Please specify a number.");
+			p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOTNUM));
 		}
 	}
 }

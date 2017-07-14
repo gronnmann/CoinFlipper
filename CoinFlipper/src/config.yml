@@ -12,3 +12,4 @@ animation_default: default
 bets_per_player: 1
 gui_auto_close: true
 value_needed_to_broadcast: 100000
+sign_input: true

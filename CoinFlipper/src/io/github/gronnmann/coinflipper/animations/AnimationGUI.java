@@ -13,6 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.events.AnimationCloneEvent;
@@ -101,7 +102,7 @@ public class AnimationGUI implements Listener{
 			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_GIVENAME));
 			accessMode.put(p.getName(), 0);
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib)){
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")){
 				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
 			}
 			
@@ -218,7 +219,7 @@ public class AnimationGUI implements Listener{
 			p.closeInventory();
 			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_GIVENAME));
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib)){
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")){
 				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
 			}
 		default: return;
@@ -338,7 +339,7 @@ public class AnimationGUI implements Listener{
 	@EventHandler
 	public void signInputSupport(SignInputEvent e){
 		
-		if (!HookManager.getManager().isHooked(HookType.ProtocolLib))return;
+		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input"))return;
 		
 		String animation = e.getLine(0);
 		
