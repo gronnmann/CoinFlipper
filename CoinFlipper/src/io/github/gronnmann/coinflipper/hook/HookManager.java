@@ -15,7 +15,7 @@ public class HookManager {
 	
 	private HashMap<HookType, Boolean> hooks = new HashMap<>();
 	
-	public enum HookType {CombatTagPlus, PvPManager, ProtocolLib};
+	public enum HookType {CombatTagPlus, PvPManager, ProtocolLib, ChatPerWorld};
 	
 	private Plugin pl;
 	
@@ -42,6 +42,10 @@ public class HookManager {
 			this.setHooked(HookType.PvPManager);
 		}
 		
+		Plugin ChatPerWorld = Bukkit.getPluginManager().getPlugin("ChatPerWorld");
+		if (!(ChatPerWorld == null)){
+			this.setHooked(HookType.ChatPerWorld);
+		}
 		
 	}
 	
@@ -61,6 +65,8 @@ public class HookManager {
 			break;
 		case ProtocolLib:
 			HookProtocolLib.getHook().register(pl);
+			break;
+		case ChatPerWorld:
 			break;
 		}
 		

@@ -34,10 +34,19 @@ public class CommandsManager implements CommandExecutor{
 			return true;
 		}
 		
-		
-		
-		
 		Player p = (Player)sender;
+		
+		boolean enabledInWorld = true;
+		for (String world : ConfigManager.getManager().getConfig().getString("disabled_worlds").split(",")){
+			if (p.getWorld().getName().equals(world)){
+				enabledInWorld = false;
+			}
+		}
+		
+		if (!enabledInWorld){
+			p.sendMessage(MessagesManager.getMessage(Message.DISABLED_IN_WORLD));
+			return true;
+		}
 		
 		/*/cf place [amount] [head/tails]
 		 * cf gui

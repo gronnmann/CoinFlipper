@@ -1,6 +1,7 @@
 CMD_PLAYER_ONLY: 'This command is for players only' #Which message should be displayed when console tries to use player-only commands
 NO_PERMISSION: '&cYou don''t have permission to use this command!' #Displayed when player has no permission
 PLAYER_NOT_FOUND: '&cPlayer not found.'
+DISABLED_IN_WORLD: '&cCoinFlipper is disabled in this world.'
 
 #Commands after /cf
 CMD_HELP: 'help'
