@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -47,7 +48,7 @@ public class CreationGUI implements Listener{
 	public void generatePreset(){
 		preset = Bukkit.createInventory(null, 45, MessagesManager.getMessage(Message.CREATION_NAME));
 		
-		preset.setItem(BET_AMOUNT, ItemUtils.createItem(MaterialsManager.getMaterial("creation_money"), MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", 0+""), MaterialsManager.getData("creation_money")));
+		preset.setItem(BET_AMOUNT, ItemUtils.createItem(MaterialsManager.getMaterial("creation_money_value"), MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", 0+""), MaterialsManager.getData("creation_money_value")));
 		preset.setItem(BET_SIDE, ItemUtils.createItem(MaterialsManager.getMaterial("creation_side_tails"), ChatColor.BLUE + MessagesManager.getMessage(Message.CREATION_SIDE).replaceAll("%SIDE%", "TAILS"),MaterialsManager.getData("creation_side_tails")));
 		preset.setItem(BET_FINALIZE, ItemUtils.createItem(Material.SKULL_ITEM, ChatColor.BLUE + ChatColor.BOLD.toString() +"Bet", 3));
 		
@@ -224,6 +225,11 @@ public class CreationGUI implements Listener{
 				HookProtocolLib.getHook().openSignInput(e.getPlayer());
 				return;
 			}
+			if (mon > Main.getEcomony().getBalance(e.getPlayer())){
+				p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOMONEY));
+				HookProtocolLib.getHook().openSignInput(e.getPlayer());
+				return;
+			}
 			
 			data.get(p.getName()).setMoney(mon);
 			
@@ -254,6 +260,10 @@ public class CreationGUI implements Listener{
 				return;
 			}else if (mon > ConfigManager.getManager().getConfig().getDouble("max_amount")){
 				p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_TOOMUCH));
+				return;
+			}
+			if (mon > Main.getEcomony().getBalance(e.getPlayer())){
+				p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOMONEY));
 				return;
 			}
 			

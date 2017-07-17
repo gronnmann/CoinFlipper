@@ -13,6 +13,9 @@ selection_syntax_data: 0
 creation_money: EMERALD
 creation_money_data: 0
 
+creation_money_value: EMERALD
+creation_money_value_data: 0
+
 creation_side_heads: WOOL
 creation_side_heads_data: 15
 
