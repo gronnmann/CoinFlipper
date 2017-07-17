@@ -15,10 +15,18 @@ public class GeneralUtils {
 		if (number < 1000)return number+"";
 		
 		if (ConfigManager.getManager().getConfig().getBoolean("formatting_shorten_money")){
+			
+			
 			int exponent = (int) (Math.log(number)/Math.log(1000));
-		
+			
+			if (exponent > 4){
+				exponent = 4;
+			}
+			
 			char numSuffix = "kMBT".charAt(exponent-1);
 		
+			Debug.print("Formatting exponent: " + exponent);
+			
 			return String.format("%.01f %c", number/Math.pow(1000, exponent), numSuffix);
 		}else{
 			DecimalFormat formatter = new DecimalFormat("#,###,##0.00");

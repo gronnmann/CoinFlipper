@@ -9,6 +9,7 @@ import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
+import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class GamesManager {
@@ -40,11 +41,11 @@ public class GamesManager {
 		}
 		
 		if (mon < ConfigManager.getManager().getConfig().getDouble("min_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MIN_BET).replaceAll("%MIN_BET%", ConfigManager.getManager().getConfig().getDouble("min_amount")+""));
+			p.sendMessage(MessagesManager.getMessage(Message.MIN_BET).replaceAll("%MIN_BET%", GeneralUtils.getFormattedNumbers(ConfigManager.getManager().getConfig().getDouble("min_amount"))));
 			return true;
 		}
 		if (mon > ConfigManager.getManager().getConfig().getDouble("max_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MAX_BET).replaceAll("%MAX_BET%", ConfigManager.getManager().getConfig().getDouble("max_amount")+""));
+			p.sendMessage(MessagesManager.getMessage(Message.MAX_BET).replaceAll("%MAX_BET%", GeneralUtils.getFormattedNumbers(ConfigManager.getManager().getConfig().getDouble("max_amount"))));
 			return true;
 		}
 		
