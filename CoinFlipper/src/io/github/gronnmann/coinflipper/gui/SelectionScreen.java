@@ -276,8 +276,7 @@ public class SelectionScreen implements Listener{
 		BetPlayEvent bpe = new BetPlayEvent(p.getName(), b.getPlayer(), winner, b.getAnimation(), winAmount, b);
 		Bukkit.getPluginManager().callEvent(bpe);
 		
-		//Create animations & give money
-		Main.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winAmount);
+		//Create animations
 		
 		Debug.print(p.getName());
 		Debug.print(b.getPlayer());
