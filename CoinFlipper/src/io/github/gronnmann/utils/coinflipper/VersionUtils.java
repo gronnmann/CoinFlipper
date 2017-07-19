@@ -27,6 +27,8 @@ public class VersionUtils {
 			
 			Debug.print("Current version: " + nowV + ", Newest available: " + urlV);
 			
+			temp.delete();
+			
 			if (nowV < urlV){
 				return VERSION_OLDER;
 			}else if (nowV > urlV){
