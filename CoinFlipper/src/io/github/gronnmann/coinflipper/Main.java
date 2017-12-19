@@ -1,6 +1,8 @@
 package io.github.gronnmann.coinflipper;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,12 +12,15 @@ import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.bets.BettingTimer;
 import io.github.gronnmann.coinflipper.gui.CreationGUI;
+import io.github.gronnmann.coinflipper.gui.FileEditSelector;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.metrics.BStats;
 import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.coinflipper.VersionUtils;
+import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryManager;
 import net.milkbowl.vault.economy.Economy;
 
 
@@ -45,8 +50,9 @@ public class Main extends JavaPlugin{
 		ConfigManager.getManager().configUpdate();
 		
 		MaterialsManager.setup(this);
-		
+				
 		SelectionScreen.getInstance().setup(this);
+		FileEditSelector.getInstance().setup(this);
 		StatsManager.getManager().load();
 		
 		AnimationFileManager.getManager().setup(this);
@@ -66,7 +72,10 @@ public class Main extends JavaPlugin{
 		task.runTaskTimerAsynchronously(this, 0, 60*20);
 		
 		
+		Bukkit.getPluginManager().registerEvents(new PagedInventoryManager(), this);
+		
 		Bukkit.getPluginManager().registerEvents(SelectionScreen.getInstance(), this);
+		Bukkit.getPluginManager().registerEvents(FileEditSelector.getInstance(), this);
 		Bukkit.getPluginManager().registerEvents(CreationGUI.getInstance(), this);
 		
 		Bukkit.getPluginManager().registerEvents(StatsManager.getManager(), this);

@@ -242,7 +242,7 @@ public class CreationGUI implements Listener{
 			this.refreshInventory(p);
 			customMon.remove(e.getPlayer().getName());
 		}catch(Exception ex){
-			p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOTNUM));
+			p.sendMessage(MessagesManager.getMessage(Message.INPUT_NOTNUM));
 			HookProtocolLib.getHook().openSignInput(e.getPlayer());
 		}
 	}
@@ -278,7 +278,7 @@ public class CreationGUI implements Listener{
 			this.refreshInventory(p);
 			customMon.remove(e.getPlayer().getName());
 		}catch(Exception ex){
-			p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOTNUM));
+			p.sendMessage(MessagesManager.getMessage(Message.INPUT_NOTNUM));
 		}
 	}
 }

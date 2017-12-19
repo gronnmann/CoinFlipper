@@ -2,6 +2,7 @@ package io.github.gronnmann.coinflipper.stats;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,19 +26,21 @@ public class StatsManager implements Listener{
 	public void load(){
 		statsC = ConfigManager.getManager().getStats();
 		
-		if (statsC.getConfigurationSection("stats") == null)return;
-		for (String allStats : statsC.getConfigurationSection("stats").getKeys(false)){
-			int gamesWon = statsC.getInt("stats." + allStats + ".gamesWon");
-			int gamesLost = statsC.getInt("stats." + allStats + ".gamesLost");
-			double moneyUsed = statsC.getDouble("stats." + allStats + ".moneySpent");
-			double moneyWon = statsC.getDouble("stats." + allStats + ".moneyWon");
-			Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
-			
-			stats.put(allStats, statsS);
-			
-			
-		}
 		
+		for (Player oPl : Bukkit.getOnlinePlayers()){
+			if (SQLManager.getManager().isEnabled()){
+				SQLManager.getManager().loadStats(oPl.getUniqueId().toString());
+			}else{
+				int gamesWon = statsC.getInt("stats." + oPl.getUniqueId().toString() + ".gamesWon");
+				int gamesLost = statsC.getInt("stats." + oPl.getUniqueId().toString() + ".gamesLost");
+				double moneyUsed = statsC.getDouble("stats." + oPl.getUniqueId().toString() + ".moneySpent");
+				double moneyWon = statsC.getDouble("stats." + oPl.getUniqueId().toString() + ".moneyWon");
+				Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
+				
+				stats.put(oPl.getUniqueId().toString(), statsS);
+				this.createClearStats(oPl);
+			}
+		}
 	}
 	
 	
@@ -64,7 +67,21 @@ public class StatsManager implements Listener{
 	
 	public Stats getStats(Player p){
 		if (!stats.containsKey(p.getUniqueId().toString())){
-			this.createClearStats(p);
+			try{
+				if (SQLManager.getManager().isEnabled()){
+					SQLManager.getManager().loadStats(p.getUniqueId().toString());
+				}else{
+					int gamesWon = statsC.getInt("stats." + p.getUniqueId().toString() + ".gamesWon");
+					int gamesLost = statsC.getInt("stats." + p.getUniqueId().toString() + ".gamesLost");
+					double moneyUsed = statsC.getDouble("stats." + p.getUniqueId().toString() + ".moneySpent");
+					double moneyWon = statsC.getDouble("stats." + p.getUniqueId().toString() + ".moneyWon");
+					Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
+					
+					stats.put(p.getUniqueId().toString(), statsS);
+				}
+			}catch(Exception e){
+				this.createClearStats(p);
+			}
 		}
 		
 		return stats.get(p.getUniqueId().toString());
@@ -75,10 +92,21 @@ public class StatsManager implements Listener{
 	}
 	
 	public Stats getStats(String uuid){
-		if (!stats.containsKey(uuid)){
+		try{
+			if (SQLManager.getManager().isEnabled()){
+				SQLManager.getManager().loadStats(uuid);
+			}else{
+				int gamesWon = statsC.getInt("stats." + uuid + ".gamesWon");
+				int gamesLost = statsC.getInt("stats." + uuid + ".gamesLost");
+				double moneyUsed = statsC.getDouble("stats." + uuid + ".moneySpent");
+				double moneyWon = statsC.getDouble("stats." + uuid + ".moneyWon");
+				Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
+				
+				stats.put(uuid, statsS);
+			}
+		}catch(Exception e){
 			this.createClearStats(uuid);
 		}
-		
 		return stats.get(uuid);
 	}
 	
@@ -86,9 +114,19 @@ public class StatsManager implements Listener{
 	public void createStatsIfNew(PlayerJoinEvent e){
 		if (!stats.containsKey(e.getPlayer().getUniqueId().toString())){
 			
-			if (SQLManager.getManager().isEnabled()){
-				SQLManager.getManager().loadStats(e.getPlayer().getUniqueId().toString());
-			}else{
+			try{
+				if (SQLManager.getManager().isEnabled()){
+					SQLManager.getManager().loadStats(e.getPlayer().getUniqueId().toString());
+				}else{
+					int gamesWon = statsC.getInt("stats." + e.getPlayer().getUniqueId().toString() + ".gamesWon");
+					int gamesLost = statsC.getInt("stats." + e.getPlayer().getUniqueId().toString() + ".gamesLost");
+					double moneyUsed = statsC.getDouble("stats." + e.getPlayer().getUniqueId().toString() + ".moneySpent");
+					double moneyWon = statsC.getDouble("stats." + e.getPlayer().getUniqueId().toString() + ".moneyWon");
+					Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
+					
+					stats.put(e.getPlayer().getUniqueId().toString(), statsS);
+				}
+			}catch(Exception ex){
 				this.createClearStats(e.getPlayer());
 			}
 		}
@@ -96,6 +134,7 @@ public class StatsManager implements Listener{
 	
 	private void createClearStats(Player p){
 		if (!stats.containsKey(p.getUniqueId().toString())){
+			Debug.print("Creating new stats for " + p.getName());
 			Stats clean = new Stats(0, 0, 0, 0);
 			stats.put(p.getUniqueId().toString(),clean);
 		}
@@ -103,6 +142,7 @@ public class StatsManager implements Listener{
 	
 	private void createClearStats(String uuid){
 		if (!stats.containsKey(uuid)){
+			Debug.print("Creating new stats for " + uuid);
 			Stats clean = new Stats(0, 0, 0, 0);
 			stats.put(uuid ,clean);
 		}

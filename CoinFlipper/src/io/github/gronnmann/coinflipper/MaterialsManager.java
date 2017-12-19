@@ -24,7 +24,7 @@ public class MaterialsManager {
 			System.out.println("[CoinFlipper] Could not get material " + name + ". Attempting to copy defaults.");
 			return MaterialsManager.updateMaterial(name);
 		}
-		return Material.valueOf(file.getString(name));
+		return Material.valueOf(file.getString(name).toUpperCase());
 	}
 	public static int getData(String name){
 		if (!file.contains(name+"_data")){
@@ -46,7 +46,7 @@ public class MaterialsManager {
 			
 			if (newConfig.contains(name)){
 				file.set(name, newConfig.get(name));
-				System.out.println("[CoinFlipper] Fixed missing material " + name + " (" + newConfig.getString(name) + ")");
+				System.out.println("[CoinFlipper] Fixed missing material " + name + " (" + newConfig.getString(name).toUpperCase() + ")");
 			}else{
 				file.set(name, Material.AIR);
 				System.out.println("[CoinFlipper] Could not generate default material with ID " +
@@ -68,7 +68,7 @@ public class MaterialsManager {
 			newConfigStreamReader.close();
 			newConfigStream.close();
 			
-			return Material.valueOf(file.getString(name));
+			return Material.valueOf(file.getString(name).toUpperCase());
 			
 		}catch(Exception e){
 			e.printStackTrace();

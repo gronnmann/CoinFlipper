@@ -10,6 +10,7 @@ CMD_STATS: 'stats'
 CMD_ANIMATION: 'animation'
 CMD_CLEAR: 'clear'
 CMD_RELOAD: 'reload'
+CMD_CONFIG: 'config'
 
 HEADS: 'Heads'
 TAILS: 'Tails'
@@ -79,6 +80,7 @@ RELOAD_SUCCESS: '&aCoinFlipper Files reloaded successfully.'
 
 #GUI NAMES
 GUI_SELECTION: 'CoinFlipper Selection'
+GUI_CONFIGURATOR: 'CoinFlipper Configurator'
 GUI_GAME: 'CoinFlipper: %PLAYER1% vs %PLAYER2%' #Default inventory name for CoinFlipper games. NOTE: The first word must be something exclusive,
 #else people can steal the items in the inventory
 GUI_GAME_18: 'CoinFlipper Game' #Inventory name displayed if the server is on 1.8 or lower and GUI_NAME message exceeds 32 characters(else errors will forecome)
@@ -102,7 +104,6 @@ CREATION_MONEY_RIGHTTOREMOVE: '&cRight click to remove this from your bet.'
 CREATION_MONEY_CUSTOM: 'Custom value'
 CREATION_MONEY_CUSTOM_DESC: '&aEnter custom value'
 CREATION_MONEY_CUSTOM_SPEC: '&aPlease specify how much money you want to set your bet to'
-CREATION_MONEY_CUSTOM_NOTNUM: '&cPlease specify a number'
 CREATION_MONEY_CUSTOM_TOOMUCH: '&cThe amount you specified is too big.'
 CREATION_MONEY_CUSTOM_TOOLITTLE: '&cThe amount you specified is too small.'
 CREATION_MONEY_CUSTOM_NOMONEY: '&cYou can''t afford this bet.'
@@ -134,3 +135,8 @@ ANIMATION_ROLL_P2SKULL: '&9%PLAYER%'
 ANIMATION_ROLL_WINNERSKULL: '&b&lWinner: &9%PLAYER%'
 ANIMATION_ROLL_ROLLING: 'Rolling...'
 ANIMATION_ROLL_WINNERCHOSEN: '&aWinner chosen.'
+
+INPUT_NOTNUM: '&cPlease specify a number'
+
+CONFIGURATOR_SPEC: '&aPleace specify the new value for %CVAR%'
+CONFIGURATOR_EDIT_SUCCESSFUL: '&aSuccessfully changed value of &e%CVAR% &ato &e%VALUE%'

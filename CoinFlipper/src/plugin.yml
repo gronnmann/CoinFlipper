@@ -1,9 +1,9 @@
 name: CoinFlipper
-version: 1.99
+version: 2.0
 author: gronnmann
 main: io.github.gronnmann.coinflipper.Main
 depend: [Vault]
-softdepend: [ProtocolLib, CombatTagPlus, PvPManager, ChatPerWorld, CombatLogX]
+softdepend: [ProtocolLib, CombatTagPlus, PvPManager, ChatPerWorld, CombatLogX, PlaceholderAPI]
 commands:
     coinflipper:
         aliases: [ cf, coinflip ]

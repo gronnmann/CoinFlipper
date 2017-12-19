@@ -10,6 +10,7 @@ import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.gui.CreationGUI;
+import io.github.gronnmann.coinflipper.gui.FileEditSelector;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.mysql.SQLManager;
@@ -100,7 +101,15 @@ public class CommandsManager implements CommandExecutor{
 				}
 				SelectionScreen.getInstance().openGameManager(p);
 				return true;
-			}else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_CLEAR))){
+			}else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_CONFIG))){
+				if (!p.hasPermission("coinflipper.config")){
+					p.sendMessage(getMsg(Message.NO_PERMISSION));
+					return true;
+				}
+				FileEditSelector.getInstance().openConfigurator(p);
+				return true;
+			}
+			else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_CLEAR))){
 				if (!p.hasPermission("coinflipper.clear")){
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;

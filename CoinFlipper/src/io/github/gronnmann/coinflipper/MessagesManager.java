@@ -1,16 +1,15 @@
 package io.github.gronnmann.coinflipper;
 
-import java.io.File;
-import java.net.URL;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import org.apache.commons.io.FileUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class MessagesManager {
 	public enum Message {NO_PERMISSION, CMD_PLAYER_ONLY, PLAYER_NOT_FOUND, DISABLED_IN_WORLD, HEADS, TAILS, WRONG_MONEY, MIN_BET, MAX_BET, 
-		CMD_GUI, CMD_STATS, CMD_ANIMATION, CMD_CLEAR, CMD_HELP, CMD_RELOAD,
+		CMD_GUI, CMD_STATS, CMD_ANIMATION, CMD_CLEAR, CMD_HELP, CMD_RELOAD, CMD_CONFIG,
 		SYNTAX_L1, SYNTAX_L2, SYNTAX_L3, SYNTAX_L4, SYNTAX_L5,
 		PLACE_TRIAL_PICKSIDE,PLACE_SUCCESSFUL, PLACE_FAILED_ALREADYGAME,PLACE_FAILED_NOMONEY,
 		CLEAR_SUCCESSFUL, CLEAR_FAILED_NOBETS,
@@ -23,7 +22,7 @@ public class MessagesManager {
 		MENU_HEAD_PLAYER, MENU_HEAD_MONEY, MENU_HEAD_TIMEREMAINING, MENU_HEAD_GAME, MENU_HEAD_SIDE,
 		STATS_NOSTATS, STATS_STATS, STATS_GAMESWON, STATS_GAMESLOST, STATS_WINPERCENTAGE, STATS_MONEYWON, STATS_MONEYSPENT, STATS_MONEYEARNED,
 		RELOAD_SUCCESS,
-		GUI_SELECTION, GUI_GAME, GUI_GAME_18,
+		GUI_SELECTION, GUI_CONFIGURATOR, GUI_GAME, GUI_GAME_18,
 		ANIMATION_CREATE_GIVENAME, ANIMATION_CREATE_ALREADYEXISTS, ANIMATION_CREATE_SUCCESS,ANIMATION_CLONE_SUCCESS , ANIMATION_CLONE_GIVENAME, 
 		ANIMATION_REMOVE_SUCCESS, 
 		ANIMATION_GUI_CREATE, ANIMATION_GUI_DELETE, ANIMATION_GUI_CLONE, ANIMATION_GUI_DEFANIM, 
@@ -33,7 +32,9 @@ public class MessagesManager {
 		CREATION_NAME, CREATION_MONEY, CREATION_SIDE, CREATION_BET,
 		CREATION_MONEY_COLOR, CREATION_MONEY_T1, CREATION_MONEY_T2, CREATION_MONEY_T3, CREATION_MONEY_T4, CREATION_MONEY_T5, CREATION_MONEY_MAX,
 		CREATION_MONEY_LEFTTOADD, CREATION_MONEY_RIGHTTOREMOVE,
-		CREATION_MONEY_CUSTOM, CREATION_MONEY_CUSTOM_DESC, CREATION_MONEY_CUSTOM_SPEC, CREATION_MONEY_CUSTOM_TOOMUCH, CREATION_MONEY_CUSTOM_TOOLITTLE, CREATION_MONEY_CUSTOM_NOTNUM, CREATION_MONEY_CUSTOM_NOMONEY, CREATION_MONEY_CUSTOM_SUCCESS,
+		CREATION_MONEY_CUSTOM, CREATION_MONEY_CUSTOM_DESC, CREATION_MONEY_CUSTOM_SPEC, CREATION_MONEY_CUSTOM_TOOMUCH, CREATION_MONEY_CUSTOM_TOOLITTLE, CREATION_MONEY_CUSTOM_NOMONEY, CREATION_MONEY_CUSTOM_SUCCESS,
+		INPUT_NOTNUM,
+		CONFIGURATOR_EDIT_SUCCESSFUL, CONFIGURATOR_SPEC,
 		
 	
 	}
@@ -56,18 +57,25 @@ public class MessagesManager {
 	
 	public static String getOrginalMessage(String msg){
 		try{
-		//File tempFolder = Files.createTempDir();
-		File temp = File.createTempFile("tempMsg", ".yml");
+
 		
-		URL messagesOrginal = new URL("https://raw.githubusercontent.com/gronnmann/CoinFlipper/master/CoinFlipper/src/messages.yml");
-		FileUtils.copyURLToFile(messagesOrginal, temp);
+		InputStream defaultFile = Main.getMain().getClass().getResourceAsStream("/messages.yml");
 		
-		FileConfiguration messagesOrg = YamlConfiguration.loadConfiguration(temp);
+		if (defaultFile == null)return "Message " + msg + " missing. Please fill it out or find orginal at https://www.spigotmc.org/resources/coinflipper.33916/";
+
+		InputStreamReader fileReader = new InputStreamReader(defaultFile);
+				
+		FileConfiguration messagesOrg = YamlConfiguration.loadConfiguration(fileReader);
 		
-		if (messagesOrg.getString(msg) == null){
+		String msgS = messagesOrg.getString(msg);
+		
+		fileReader.close();
+		defaultFile.close();
+		
+		if (msgS == null){
 			return "Message " + msg + " missing. Please fill it out or find orginal at https://www.spigotmc.org/resources/coinflipper.33916/";
 		}
-		return messagesOrg.getString(msg);
+		return msgS;
 		
 		
 		}catch(Exception e){

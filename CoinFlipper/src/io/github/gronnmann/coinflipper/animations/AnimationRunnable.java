@@ -20,7 +20,7 @@ import io.github.gronnmann.utils.coinflipper.PacketUtils.TitleType;
 
 public class AnimationRunnable extends BukkitRunnable{
 	private String s1, s2, winner, winMoneyFormatted;
-	private int phase;
+	private int phase, winFrame;
 	private double winMoney;
 	
 
@@ -35,6 +35,8 @@ public class AnimationRunnable extends BukkitRunnable{
 		this.winMoney = winMoney;
 		this.winMoneyFormatted = GeneralUtils.getFormattedNumbers(winMoney);
 		
+		this.winFrame = 30;
+		this.winFrame = ConfigManager.getManager().getConfig().getInt("frame_winner_chosen");
 				
 		Animation anim = AnimationsManager.getManager().getAnimation(animationS);
 		
@@ -84,7 +86,7 @@ public class AnimationRunnable extends BukkitRunnable{
 		
 		
 		
-		if (phase == 30){
+		if (phase == winFrame){
 			
 			//Give money
 			
@@ -155,7 +157,7 @@ public class AnimationRunnable extends BukkitRunnable{
 		
 		
 		//Sound click
-		if (phase < 30){
+		if (phase < winFrame){
 			try{
 				p1.playSound(p1.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
 			}catch(Exception e){}
