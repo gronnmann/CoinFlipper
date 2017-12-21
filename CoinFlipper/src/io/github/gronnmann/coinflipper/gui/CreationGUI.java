@@ -212,7 +212,14 @@ public class CreationGUI implements Listener{
 		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input"))return;
 		
 		Player p = e.getPlayer();
+		
 		if (!customMon.contains(p.getName()) || !data.containsKey(p.getName()))return;
+		
+		if (e.getLine(0).equalsIgnoreCase("exit")){
+			p.openInventory(data.get(p.getName()).getInventory());
+			return;
+		}
+		
 		try{
 			double mon = Double.parseDouble(e.getLine(0));
 			
@@ -250,8 +257,17 @@ public class CreationGUI implements Listener{
 	@EventHandler
 	public void customValue(AsyncPlayerChatEvent e){
 		Player p = e.getPlayer();
+		
+		
+		
 		if (!customMon.contains(p.getName()) || !data.containsKey(p.getName()))return;
 		e.setCancelled(true);
+		
+		if (e.getMessage().equalsIgnoreCase("exit")){
+			p.openInventory(data.get(p.getName()).getInventory());
+			return;
+		}
+		
 		try{
 			double mon = Double.parseDouble(e.getMessage());
 			

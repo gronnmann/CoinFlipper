@@ -145,12 +145,17 @@ public class SelectionScreen implements Listener{
 	}
 	
 	@EventHandler
-	public void onInvClick(InventoryClickEvent e){
+	public void detectClicks(InventoryClickEvent e){
 		if (!e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_SELECTION)))return;
 		e.setCancelled(true);
 		if (e.getCurrentItem() == null)return;
 		if (e.getCurrentItem().getItemMeta()==null)return;
 		if (e.getSlot() == CREATE){
+			
+			if (Main.getEcomony().getBalance(e.getWhoClicked().getName()) < ConfigManager.getManager().getConfig().getDouble("min_amount")){
+				e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.PLACE_NOT_POSSIBLE_NOMONEY).replaceAll("%MINMON%", ConfigManager.getManager().getConfig().getDouble("min_amount")+""));
+				return;
+			}
 			CreationGUI.getInstance().openInventory((Player) e.getWhoClicked());
 		}
 		

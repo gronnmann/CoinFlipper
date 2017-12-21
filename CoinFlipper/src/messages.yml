@@ -30,6 +30,7 @@ PLACE_TRIAL_PICKSIDE: '&cPlease choose a site. (heads/tails)'
 PLACE_SUCCESSFUL: '&aSuccessfully placed a CoinFlipper game.' #Message when player places bet
 PLACE_FAILED_ALREADYGAME: '&cYou have reached your limit of CoinFlipper games simultaneously.' #Message when player tries to place bet but already has one in progress
 PLACE_FAILED_NOMONEY: '&cYou don''t have enough money to do this.' #Message when player tries to place bet but doesn't have enough money
+PLACE_NOT_POSSIBLE_NOMONEY: '&cYou need atleast &e$%MINMON% &cto place bets.'
 
 CLEAR_SUCCESSFUL: '&aCleared all bets' #Message when player clears bets
 CLEAR_FAILED_NOBETS: '&cThere are no bets to clear.' #Message when there's no bets to clear
@@ -103,7 +104,7 @@ CREATION_MONEY_RIGHTTOREMOVE: '&cRight click to remove this from your bet.'
 
 CREATION_MONEY_CUSTOM: 'Custom value'
 CREATION_MONEY_CUSTOM_DESC: '&aEnter custom value'
-CREATION_MONEY_CUSTOM_SPEC: '&aPlease specify how much money you want to set your bet to'
+CREATION_MONEY_CUSTOM_SPEC: '&aPlease specify how much money you want to set your bet to. Exit typing &e''exit''&a.'
 CREATION_MONEY_CUSTOM_TOOMUCH: '&cThe amount you specified is too big.'
 CREATION_MONEY_CUSTOM_TOOLITTLE: '&cThe amount you specified is too small.'
 CREATION_MONEY_CUSTOM_NOMONEY: '&cYou can''t afford this bet.'
