@@ -11,6 +11,11 @@ CMD_ANIMATION: 'animation'
 CMD_CLEAR: 'clear'
 CMD_RELOAD: 'reload'
 CMD_CONFIG: 'config'
+CMD_CONVERT: 'convert'
+
+CONVERT_START: '&a[CoinFlipper] Converting .yml stats to SQLite...'
+CONVERT_SUCCESS: '&a[CoinFlipper] Done'
+CONVERT_FAIL: '&c[CoinFlipper] Converting failed. Please see console for more information.'
 
 HEADS: 'Heads'
 TAILS: 'Tails'

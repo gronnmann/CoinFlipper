@@ -106,6 +106,10 @@ public class Main extends JavaPlugin{
 		BettingManager.getManager().save();
 		
 		AnimationsManager.getManager().save();
+		
+		try{
+			SQLManager.getManager().getSQLConnection().close();
+		}catch(Exception e){e.printStackTrace();}
 	}
 	
 	public boolean enableEconomy(){

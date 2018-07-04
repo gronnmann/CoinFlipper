@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
+import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
 
 public class ConfigManager {
@@ -50,10 +51,12 @@ public class ConfigManager {
 		messagesF = new File(p.getDataFolder(), "messages.yml");
 		if (!messagesF.exists()){
 			try{
-				messagesF.createNewFile();
+				pl.saveResource("messages.yml", false);
+				//messagesF.createNewFile();
 				messages = YamlConfiguration.loadConfiguration(messagesF);
-				this.copyDefaults(messages, "/messages.yml");
-				this.saveMessages();
+				/*this.copyDefaults(messages, "/messages.yml");
+				this.saveMessages();*/
+				
 			}catch(Exception e){e.printStackTrace();}
 		}else{
 			messages = YamlConfiguration.loadConfiguration(messagesF);
@@ -82,10 +85,11 @@ public class ConfigManager {
 		mysqlF = new File(p.getDataFolder(), "mysql.yml");
 		if (!mysqlF.exists()){
 			try{
-				mysqlF.createNewFile();
+				//mysqlF.createNewFile();
+				pl.saveResource("mysql.yml", false);
 				mysql = YamlConfiguration.loadConfiguration(mysqlF);
-				this.copyDefaults(mysql, "/mysql.yml");
-				this.saveMySQL();
+				/*this.copyDefaults(mysql, "/mysql.yml");
+				this.saveMySQL();*/
 			}catch(Exception e){e.printStackTrace();}
 		}else{
 			mysql = YamlConfiguration.loadConfiguration(mysqlF);
@@ -94,10 +98,11 @@ public class ConfigManager {
 		materialsF = new File(p.getDataFolder(), "materials.yml");
 		if (!materialsF.exists()){
 			try{
-				materialsF.createNewFile();
+				//materialsF.createNewFile();
+				pl.saveResource("materials.yml", false);
 				materials = YamlConfiguration.loadConfiguration(materialsF);
-				this.copyDefaults(materials, "/materials.yml");
-				this.saveMySQL();
+				/*this.copyDefaults(materials, "/materials.yml");
+				this.saveMaterials();*/
 			}catch(Exception e){e.printStackTrace();}
 		}else{
 			materials = YamlConfiguration.loadConfiguration(materialsF);
@@ -114,6 +119,7 @@ public class ConfigManager {
 		double configVer = config.getDouble("config_version");
 		
 		Debug.print("Current plugin version: " + pluginVer + ", Current config version: " + configVer);
+		
 		
 		if (pluginVer > configVer){
 			try{

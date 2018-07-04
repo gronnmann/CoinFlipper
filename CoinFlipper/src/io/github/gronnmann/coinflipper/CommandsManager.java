@@ -166,6 +166,24 @@ public class CommandsManager implements CommandExecutor{
 				p.sendMessage(getMsg(Message.RELOAD_SUCCESS));
 			}
 			
+			else if (args[0].equalsIgnoreCase(getMsg(Message.CMD_CONVERT))){
+				if (!p.hasPermission("coinflipper.convert")){
+					p.sendMessage(getMsg(Message.NO_PERMISSION));
+					return true;
+				}
+				
+				p.sendMessage(getMsg(Message.CONVERT_START));
+				
+				if (StatsManager.getManager().convertToSQLite()){
+					p.sendMessage(getMsg(Message.CONVERT_SUCCESS));
+				}else{
+					p.sendMessage(getMsg(Message.CONVERT_FAIL));
+				}
+				
+				
+				return true;
+			}
+			
 			else{
 				p.sendMessage(help);
 				return true;

@@ -10,7 +10,11 @@ import org.bukkit.entity.Player;
 
 public class PacketUtils {
 	
-	public enum TitleType{TITLE, SUBTITLE}
+	public enum TitleType{TITLE, SUBTITLE, ACTIONBAR}
+	
+	private static String getJsonString(String field, String value){
+		return "{\""+field+"\":\"" + value + "\"}";
+	}
 	
 	public static void sendPacket(Player player, Object packet){
 		try {
@@ -52,7 +56,7 @@ public class PacketUtils {
 			
 			Object titleType = getServerClass("PacketPlayOutTitle$EnumTitleAction").getField(type.toString()).get(null);
 			Object message = getServerClass("IChatBaseComponent$ChatSerializer").getMethod("a", String.class)
-					.invoke(null, GeneralUtils.getJsonString("text", title));
+					.invoke(null, getJsonString("text", title));
 			
 			Object titlePacket = titleConst.newInstance(titleType, message, fadeIn, stay, fadeOut);
 			

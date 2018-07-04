@@ -22,6 +22,8 @@ public class StatsManager implements Listener{
 	private HashMap<String, Stats> stats = new HashMap<String, Stats>();
 	private FileConfiguration statsC;
 	
+	//STILL INCLUDES METHOD BEFORE SQLITE WAS ADDED
+	
 	//Called when plugin is enabled to fetch all stats
 	public void load(){
 		statsC = ConfigManager.getManager().getStats();
@@ -88,12 +90,16 @@ public class StatsManager implements Listener{
 	}
 	
 	public void setStats(String uuid, Stats s){
+		if (stats.containsKey(uuid)){
+			stats.remove(uuid);
+		}
 		stats.put(uuid, s);
 	}
 	
 	public Stats getStats(String uuid){
 		try{
 			if (SQLManager.getManager().isEnabled()){
+				if (stats.containsKey(uuid))return stats.get(uuid);
 				SQLManager.getManager().loadStats(uuid);
 			}else{
 				int gamesWon = statsC.getInt("stats." + uuid + ".gamesWon");
@@ -132,7 +138,7 @@ public class StatsManager implements Listener{
 		}
 	}
 	
-	private void createClearStats(Player p){
+	public void createClearStats(Player p){
 		if (!stats.containsKey(p.getUniqueId().toString())){
 			Debug.print("Creating new stats for " + p.getName());
 			Stats clean = new Stats(0, 0, 0, 0);
@@ -140,11 +146,41 @@ public class StatsManager implements Listener{
 		}
 	}
 	
-	private void createClearStats(String uuid){
+	public void createClearStats(String uuid){
 		if (!stats.containsKey(uuid)){
 			Debug.print("Creating new stats for " + uuid);
 			Stats clean = new Stats(0, 0, 0, 0);
 			stats.put(uuid ,clean);
 		}
+	}
+	
+	public boolean convertToSQLite(){
+		if (statsC == null)return false;
+		try{
+			for (String allStats : statsC.getConfigurationSection("stats").getKeys(false)){
+				int gamesWon = statsC.getInt("stats." + allStats + ".gamesWon");
+				int gamesLost = statsC.getInt("stats." + allStats + ".gamesLost");
+				double moneyUsed = statsC.getDouble("stats." + allStats + ".moneySpent");
+				double moneyWon = statsC.getDouble("stats." + allStats + ".moneyWon");
+				Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
+				
+				Debug.print("Converting: " + allStats);
+				
+				SQLManager.getManager().saveStats(allStats, statsS);
+			}
+			
+			
+			stats.clear();
+			
+			for (Player oPl : Bukkit.getOnlinePlayers()){
+				SQLManager.getManager().loadStats(oPl.getUniqueId().toString());
+			}
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		
 	}
 }

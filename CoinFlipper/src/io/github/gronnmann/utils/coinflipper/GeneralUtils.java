@@ -3,6 +3,7 @@ package io.github.gronnmann.utils.coinflipper;
 import java.text.DecimalFormat;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.Main;
 
 public class GeneralUtils {
 	public static int getIntInString(String string){
@@ -29,6 +30,7 @@ public class GeneralUtils {
 			
 			return String.format("%.01f %c", number/Math.pow(1000, exponent), numSuffix);
 		}else{
+			//return Main.getEcomony().format(number);
 			DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
 			return formatter.format(number);
 		}

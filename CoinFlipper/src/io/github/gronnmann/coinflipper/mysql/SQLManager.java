@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.sqlite.util.StringUtils;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.Main;
@@ -15,6 +16,7 @@ import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.mysql.coinflipper.MySQL;
+import io.github.gronnmann.utils.mysql.coinflipper.SQLite;
 
 public class SQLManager {
 	private SQLManager(){}
@@ -23,7 +25,8 @@ public class SQLManager {
 		return mng;
 	}
 	
-	private MySQL sql;
+	private MySQL msql;
+	private SQLite sqli;
 	private Connection conn;
 	private boolean enabled;
 	
@@ -31,35 +34,62 @@ public class SQLManager {
 		
 		enabled = ConfigManager.getManager().getConfig().getBoolean("mysql_enabled");
 		
-		if (!enabled)return;
-		
-		System.out.println("[CoinFlipper] Connecting to MySQL...");
-		
-		FileConfiguration conf = ConfigManager.getManager().getMySQL();
-		
-		sql = new MySQL(conf.getString("server"),
-				conf.getString("database"),
-				conf.getString("user"),
-				conf.getString("password"));
-		
-		conn = sql.getConnection();
 		
 		
-		if (!sql.tableExists("coinflipper_stats")){
-			try{
+		if (!enabled){
+			System.out.println("[CoinFlipper] Connecting to SQLite...");
+			
+			sqli = new SQLite(Main.getMain(), "stats");
+			
+			conn = sqli.getConnection();
+			
+			if (!sqli.tableExists("coinflipper_stats")){
+				try{
+					
+					PreparedStatement createCoinFlipperTable = conn.prepareStatement(
+							"create table coinflipper_stats(uuid char(36), gamesWon int, gamesLost int, moneySpent double, moneyWon double)"
+							);
+					
+					createCoinFlipperTable.execute();
+					
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				
-				PreparedStatement createCoinFlipperTable = conn.prepareStatement(
-						"create table coinflipper_stats(uuid char(36), gamesWon int, gamesLost int, moneySpent double, moneyWon double)"
-						);
-				
-				createCoinFlipperTable.execute();
-				
-				
-			}catch(Exception e){
-				e.printStackTrace();
 			}
 			
+		}else{
+			System.out.println("[CoinFlipper] Connecting to MySQL...");
+			
+			FileConfiguration conf = ConfigManager.getManager().getMySQL();
+			
+			msql = new MySQL(conf.getString("server"),
+					conf.getString("database"),
+					conf.getString("user"),
+					conf.getString("password"));
+			
+			conn = msql.getConnection();
+			
+			
+			if (!msql.tableExists("coinflipper_stats")){
+				try{
+					
+					PreparedStatement createCoinFlipperTable = conn.prepareStatement(
+							"create table coinflipper_stats(uuid char(36), gamesWon int, gamesLost int, moneySpent double, moneyWon double)"
+							);
+					
+					createCoinFlipperTable.execute();
+					
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+			}
 		}
+		
+			
 		
 		for (Player oPl : Bukkit.getOnlinePlayers()){
 			this.loadStats(oPl.getUniqueId().toString());
@@ -82,7 +112,10 @@ public class SQLManager {
 							);	
 				ResultSet res = getStats.executeQuery();
 					
-				if (!res.next())return;
+				if (!res.next()){
+					StatsManager.getManager().createClearStats(uuid);
+					return;
+				}
 					
 				Stats loadedStats = new Stats(
 						res.getInt("gamesWon"),
@@ -130,12 +163,14 @@ public class SQLManager {
 	public Connection getSQLConnection(){
 		return conn;
 	}
-	public MySQL getSQL(){
-		return sql;
+	public MySQL getMySQL(){
+		return msql;
 	}
 	
 	public boolean isEnabled(){
-		return enabled;
+		//Little workaround for SQLite to always work.
+		return true;
+		//return enabled;
 	}
 	
 }
