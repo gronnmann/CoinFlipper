@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -23,6 +24,7 @@ import io.github.gronnmann.coinflipper.MaterialsManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.animations.AnimationRunnable;
+import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.events.BetChallengeEvent;
@@ -48,7 +50,7 @@ public class SelectionScreen implements Listener{
 	
 	public void setup(Plugin pl){
 		this.pl = pl;
-		selectionScreen = Bukkit.createInventory(null, 54, MessagesManager.getMessage(Message.GUI_SELECTION));
+		selectionScreen = Bukkit.createInventory(new SelectionScreenHolder(), 54, MessagesManager.getMessage(Message.GUI_SELECTION));
 		
 	}
 	
@@ -146,7 +148,7 @@ public class SelectionScreen implements Listener{
 	
 	@EventHandler
 	public void detectClicks(InventoryClickEvent e){
-		if (!e.getInventory().getName().equals(MessagesManager.getMessage(Message.GUI_SELECTION)))return;
+		if (!(e.getInventory().getHolder() instanceof SelectionScreenHolder))return;
 		e.setCancelled(true);
 		if (e.getCurrentItem() == null)return;
 		if (e.getCurrentItem().getItemMeta()==null)return;
@@ -281,6 +283,12 @@ public class SelectionScreen implements Listener{
 		BetPlayEvent bpe = new BetPlayEvent(p.getName(), b.getPlayer(), winner, b.getAnimation(), winAmount, b);
 		Bukkit.getPluginManager().callEvent(bpe);
 		
+		
+		
+		if (b.getAnimation() == null){
+			b.setAnimation(AnimationsManager.getManager().getDefault());
+		}
+		
 		//Create animations
 		
 		Debug.print(p.getName());
@@ -299,3 +307,11 @@ public class SelectionScreen implements Listener{
 	
 }
 
+class SelectionScreenHolder implements InventoryHolder{
+
+	@Override
+	public Inventory getInventory() {
+		return null;
+	}
+	
+}

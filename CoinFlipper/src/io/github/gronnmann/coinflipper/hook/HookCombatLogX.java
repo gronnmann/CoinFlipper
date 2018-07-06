@@ -1,8 +1,8 @@
 package io.github.gronnmann.coinflipper.hook;
 
-import com.SirBlobman.combatlogx.Combat;
-
 import org.bukkit.entity.Player;
+
+import com.SirBlobman.combatlogx.Combat;
 
 public class HookCombatLogX {
 	private HookCombatLogX(){}

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +14,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
@@ -46,7 +46,7 @@ public class CreationGUI implements Listener{
 	
 	
 	public void generatePreset(){
-		preset = Bukkit.createInventory(null, 45, MessagesManager.getMessage(Message.CREATION_NAME));
+		preset = Bukkit.createInventory(new CreationGUIHolder(), 45, MessagesManager.getMessage(Message.CREATION_NAME));
 		
 		preset.setItem(BET_AMOUNT, ItemUtils.createItem(MaterialsManager.getMaterial("creation_money_value"), MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", 0+""), MaterialsManager.getData("creation_money_value")));
 		preset.setItem(BET_SIDE, ItemUtils.createItem(MaterialsManager.getMaterial("creation_side_tails"), ChatColor.BLUE + MessagesManager.getMessage(Message.CREATION_SIDE).replaceAll("%SIDE%", "TAILS"),MaterialsManager.getData("creation_side_tails")));
@@ -99,7 +99,7 @@ public class CreationGUI implements Listener{
 	public void mapRemover2(InventoryCloseEvent e){
 		if (customMon.contains(e.getPlayer().getName()))return;
 		
-		if (e.getInventory().getName().equals(MessagesManager.getMessage(Message.CREATION_NAME))){
+		if (e.getInventory().getHolder() instanceof CreationGUIHolder){
 			data.remove(e.getPlayer().getName());
 		}
 	}
@@ -111,7 +111,7 @@ public class CreationGUI implements Listener{
 			data.remove(player.getPlayer().getName());
 		}
 		
-		Inventory pInv = Bukkit.createInventory(null, 45, MessagesManager.getMessage(Message.CREATION_NAME));
+		Inventory pInv = Bukkit.createInventory(new CreationGUIHolder(), 45, MessagesManager.getMessage(Message.CREATION_NAME));
 		pInv.setContents(preset.getContents());
 		pInv.setItem(BET_FINALIZE, ItemUtils.setName(ItemUtils.getSkull(player.getName()), ChatColor.BLUE + ChatColor.BOLD.toString() + "Bet"));
 		
@@ -129,7 +129,7 @@ public class CreationGUI implements Listener{
 	@EventHandler
 	public void clickManager(InventoryClickEvent e){
 		if (e.getClickedInventory() == null)return;
-		if (!e.getClickedInventory().getName().equals(MessagesManager.getMessage(Message.CREATION_NAME)))return;
+		if (!(e.getInventory().getHolder() instanceof CreationGUIHolder))return;
 		e.setCancelled(true);
 		CreationData data = this.data.get(e.getWhoClicked().getName());
 		if (data == null)return;
@@ -297,4 +297,13 @@ public class CreationGUI implements Listener{
 			p.sendMessage(MessagesManager.getMessage(Message.INPUT_NOTNUM));
 		}
 	}
+}
+
+class CreationGUIHolder implements InventoryHolder{
+
+	@Override
+	public Inventory getInventory() {
+		return null;
+	}
+	
 }

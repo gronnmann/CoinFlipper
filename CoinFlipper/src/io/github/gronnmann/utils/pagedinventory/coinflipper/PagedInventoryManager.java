@@ -40,7 +40,7 @@ public class PagedInventoryManager implements Listener{
 			e.getWhoClicked().openInventory(inv.redirectToBack);
 			Bukkit.getPluginManager().callEvent(new PagedInventoryCloseEvent(e.getClickedInventory(), inv, p));
 		}else{
-			Bukkit.getPluginManager().callEvent(new PagedInventoryClickEvent(e.getClickedInventory(), inv, p, e.getSlot(), e.getCurrentItem(), e.getClick()));
+			Bukkit.getPluginManager().callEvent(new PagedInventoryClickEvent(e.getClickedInventory(), inv, p, e.getSlot(), e.getCurrentItem(), e.getClick(), e.isLeftClick()));
 			
 		}
 	}

@@ -1,4 +1,4 @@
-package io.github.gronnmann.coinflipper.gui.configeditor;
+package io.github.gronnmann.coinflipper.gui.configurationeditor.config;
 
 import java.util.HashMap;
 

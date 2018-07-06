@@ -1,4 +1,4 @@
-package io.github.gronnmann.coinflipper.gui;
+package io.github.gronnmann.coinflipper.gui.configurationeditor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,9 +13,12 @@ import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
-import io.github.gronnmann.coinflipper.gui.configeditor.BooleanChooser;
-import io.github.gronnmann.coinflipper.gui.configeditor.ConfigEditor;
-import io.github.gronnmann.coinflipper.gui.configeditor.SoundChooser;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.config.BooleanChooser;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.config.ConfigEditor;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.config.SoundChooser;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.materials.MaterialChooser;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.materials.MaterialEditor;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.messages.MessageEditor;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 
 public class FileEditSelector implements Listener{
@@ -26,15 +29,19 @@ public class FileEditSelector implements Listener{
 	}
 	
 	private Plugin pl;
-	private Inventory selectionScreen;
+	public Inventory selectionScreen;
 	
-	int CONFIG = 4;
+	int CONFIG = 4, MATERIALS = 6, MESSAGES = 2;
 		
 	public void setup(Plugin pl){
 		this.pl = pl;
 		selectionScreen = Bukkit.createInventory(new FileEditSelectorHolder(), 9, MessagesManager.getMessage(Message.GUI_CONFIGURATOR));
 		
+		selectionScreen.setItem(MESSAGES, ItemUtils.createItem(Material.PAPER, ChatColor.GOLD + "messages.yml"));
+		
 		selectionScreen.setItem(CONFIG, ItemUtils.createItem(Material.INK_SACK, ChatColor.GOLD + "config.yml",10));
+		
+		selectionScreen.setItem(MATERIALS, ItemUtils.createItem(Material.GRASS, ChatColor.GOLD + "materials.yml"));
 		
 		ConfigEditor.getInstance().setup(pl);
 		Bukkit.getPluginManager().registerEvents(ConfigEditor.getInstance(), pl);
@@ -44,6 +51,17 @@ public class FileEditSelector implements Listener{
 		
 		SoundChooser.getInstance().setup();
 		Bukkit.getPluginManager().registerEvents(SoundChooser.getInstance(), pl);
+		
+		
+		MaterialEditor.getInstance().setup(pl);
+		Bukkit.getPluginManager().registerEvents(MaterialEditor.getInstance(), pl);
+		
+		MaterialChooser.getInstance().setup();
+		Bukkit.getPluginManager().registerEvents(MaterialChooser.getInstance(), pl);
+		
+		
+		MessageEditor.getInstance().setup(pl);
+		Bukkit.getPluginManager().registerEvents(MessageEditor.getInstance(), pl);
 		
 		
 		
@@ -61,6 +79,11 @@ public class FileEditSelector implements Listener{
 		
 		if (e.getSlot() == CONFIG){
 			ConfigEditor.getInstance().openEditor((Player) e.getWhoClicked());
+		}
+		else if (e.getSlot() == MATERIALS){
+			MaterialEditor.getInstance().openEditor((Player)e.getWhoClicked());
+		}else if (e.getSlot() == MESSAGES){
+			MessageEditor.getInstance().openEditor((Player)e.getWhoClicked());
 		}
 		
 	}

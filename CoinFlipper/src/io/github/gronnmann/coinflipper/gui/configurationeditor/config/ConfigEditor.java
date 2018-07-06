@@ -1,4 +1,4 @@
-package io.github.gronnmann.coinflipper.gui.configeditor;
+package io.github.gronnmann.coinflipper.gui.configurationeditor.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +26,8 @@ import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.gui.CreationGUI;
-import io.github.gronnmann.coinflipper.gui.FileEditSelector;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
@@ -61,7 +61,7 @@ public class ConfigEditor implements Listener{
 			howManySlots++;
 		}
 		
-		int size = ((howManySlots/9)+1)*9;
+		int size = ((howManySlots/9)+2)*9;
 		
 		if (size > 54){
 			size = 54;
@@ -133,14 +133,6 @@ public class ConfigEditor implements Listener{
 			}
 			System.out.println("[CoinFlipper] Attempting to reload CoinFlipper (requested by " + p.getName() + ")");
 			ConfigManager.getManager().reload();
-			MaterialsManager.setup(Main.getMain());
-			SelectionScreen.getInstance().setup(Main.getMain());
-			StatsManager.getManager().load();
-			AnimationFileManager.getManager().setup(Main.getMain());
-			AnimationGUI.getManager().setup();
-			BettingManager.getManager().load();
-			HookManager.getManager().registerHooks(Main.getMain());
-			CreationGUI.getInstance().generatePreset();
 			
 			p.sendMessage(MessagesManager.getMessage(Message.RELOAD_SUCCESS));
 			
@@ -200,6 +192,11 @@ public class ConfigEditor implements Listener{
 		Player p = e.getPlayer();
 		if (!cvarsEdited.containsKey(p.getName()))return;
 		e.setCancelled(true);
+		if (e.getMessage().equals("exit")){
+			cvarsEdited.remove(p.getName());
+			openEditor(p);
+			return;
+		}
 		processEditing(p, e.getMessage());
 	}
 	

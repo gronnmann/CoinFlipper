@@ -9,6 +9,12 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
+import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
+import io.github.gronnmann.coinflipper.animations.AnimationGUI;
+import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.gui.CreationGUI;
+import io.github.gronnmann.coinflipper.gui.SelectionScreen;
+import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
 
@@ -217,5 +223,12 @@ public class ConfigManager {
 		bets = YamlConfiguration.loadConfiguration(betsF);
 		mysql = YamlConfiguration.loadConfiguration(mysqlF);
 		materials = YamlConfiguration.loadConfiguration(materialsF);
+		
+		MaterialsManager.setup(pl);
+		SelectionScreen.getInstance().setup(pl);
+		AnimationFileManager.getManager().setup(pl);
+		AnimationGUI.getManager().setup();
+		BettingManager.getManager().load();
+		CreationGUI.getInstance().generatePreset();
 	}
 }

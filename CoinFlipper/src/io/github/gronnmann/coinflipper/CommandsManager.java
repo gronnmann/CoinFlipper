@@ -10,8 +10,8 @@ import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.gui.CreationGUI;
-import io.github.gronnmann.coinflipper.gui.FileEditSelector;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.Stats;
@@ -154,14 +154,6 @@ public class CommandsManager implements CommandExecutor{
 				}
 				System.out.println("[CoinFlipper] Attempting to reload CoinFlipper (requested by " + p.getName() + ")");
 				ConfigManager.getManager().reload();
-				MaterialsManager.setup(Main.getMain());
-				SelectionScreen.getInstance().setup(Main.getMain());
-				StatsManager.getManager().load();
-				AnimationFileManager.getManager().setup(Main.getMain());
-				AnimationGUI.getManager().setup();
-				BettingManager.getManager().load();
-				HookManager.getManager().registerHooks(Main.getMain());
-				CreationGUI.getInstance().generatePreset();
 				
 				p.sendMessage(getMsg(Message.RELOAD_SUCCESS));
 			}

@@ -25,14 +25,16 @@ public class PagedInventoryClickEvent extends Event{
 	private ItemStack item;
 	private int slot;
 	private ClickType type;
+	private boolean left;
 	
-	public PagedInventoryClickEvent(Inventory page, PagedInventory inv, Player clicker, int slot, ItemStack item, ClickType type) {
+	public PagedInventoryClickEvent(Inventory page, PagedInventory inv, Player clicker, int slot, ItemStack item, ClickType type, boolean left) {
 		this.pInv = inv;
 		this.page = page;
 		this.cl = clicker;
 		this.slot = slot;
 		this.item = item;
 		this.type = type;
+		this.left = left;
 	}
 	
 	public PagedInventory getPagedInventory(){
@@ -57,6 +59,11 @@ public class PagedInventoryClickEvent extends Event{
 		return type;
 	}
 	
-	
+	public boolean isLeftClick(){
+		return left;
+	}
+	public boolean isRightClick(){
+		return !left;
+	}
 	
 }

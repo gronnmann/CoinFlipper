@@ -45,5 +45,8 @@ public class Bet {
 	public Animation getAnimation(){
 		return animation;
 	}
+	public void setAnimation(Animation animation){
+		this.animation = animation;
+	}
 }
 

@@ -146,3 +146,8 @@ INPUT_NOTNUM: '&cPlease specify a number'
 
 CONFIGURATOR_SPEC: '&aPleace specify the new value for %CVAR%'
 CONFIGURATOR_EDIT_SUCCESSFUL: '&aSuccessfully changed value of &e%CVAR% &ato &e%VALUE%'
+
+CONFIGURATOR_MESSAGE_PREVIEW: '&ePlease preview new message for %CVAR%'
+CONFIGURATOR_MESSAGE_CONFIRM: '&a&lConfirm'
+CONFIGURATOR_MESSAGE_CHANGE: '&6&lChange'
+CONFIGURATOR_MESSAGE_CANCEL: '&c&lCancel'

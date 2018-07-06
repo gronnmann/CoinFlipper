@@ -41,7 +41,7 @@ public class PagedInventory implements Inventory{
 	
 	public static int NEXT = 50, PREV = 48, CURRENT = 49, BACK = 45;
 	
-	private static int usableSlots = 45;
+	public static int usableSlots = 45;
 	
 	public PagedInventory(String name, ItemStack next, ItemStack last, ItemStack back, String id, Inventory redirectToBack){
 		

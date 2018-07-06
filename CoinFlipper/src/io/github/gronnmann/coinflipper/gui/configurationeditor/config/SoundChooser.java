@@ -1,4 +1,4 @@
-package io.github.gronnmann.coinflipper.gui.configeditor;
+package io.github.gronnmann.coinflipper.gui.configurationeditor.config;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -93,7 +93,7 @@ public class SoundChooser implements Listener{
 	@EventHandler
 	public void selectNewSound(PagedInventoryClickEvent e){
 		if (!(e.getPagedInventory().getId().equals("sound_choose")))return;
-		
+		if (e.getSlot() >= PagedInventory.usableSlots)return;
 		
 		ItemStack item = e.getCurrentItem();
 		
