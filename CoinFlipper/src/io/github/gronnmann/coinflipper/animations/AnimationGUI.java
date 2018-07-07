@@ -11,6 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
@@ -21,8 +22,8 @@ import io.github.gronnmann.coinflipper.events.AnimationCreateEvent;
 import io.github.gronnmann.coinflipper.events.AnimationDeleteEvent;
 import io.github.gronnmann.coinflipper.events.AnimationFrameChangeEvent;
 import io.github.gronnmann.coinflipper.hook.HookManager;
-import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
+import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.utils.coinflipper.InventoryUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
@@ -45,7 +46,7 @@ public class AnimationGUI implements Listener{
 	private Inventory main;
 	
 	public void setup(){
-		main = Bukkit.createInventory(null, 54, "CoinFlipper Animations");
+		main = Bukkit.createInventory(new AnimationSelectorInventoryHolder(), 54, "CoinFlipper Animations");
 		
 		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CREATE), 5));
 		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_DELETE), 14));
@@ -87,7 +88,7 @@ public class AnimationGUI implements Listener{
 	//Clicker
 	@EventHandler
 	public void mainMenuClicker(InventoryClickEvent e){
-		if (!e.getInventory().getName().contains("CoinFlipper Animations"))return;
+		if (!(e.getInventory().getHolder() instanceof AnimationSelectorInventoryHolder))return;
 		
 		if (e.isRightClick())return;
 		
@@ -125,7 +126,7 @@ public class AnimationGUI implements Listener{
 	
 	@EventHandler
 	public void defaultSetter(InventoryClickEvent e){
-		if (!e.getInventory().getName().contains("CoinFlipper Animations"))return;
+		if (!(e.getInventory().getHolder() instanceof AnimationSelectorInventoryHolder))return;
 		
 		if (!e.isRightClick())return;
 		
@@ -145,7 +146,7 @@ public class AnimationGUI implements Listener{
 	
 	
 	public Inventory getAnimationSelectorList(){
-		Inventory selectorList = Bukkit.createInventory(null, 54, "CoinFlipper: Choose animation");
+		Inventory selectorList = Bukkit.createInventory(new AnimationChooserInventoryHolder(), 54, "CoinFlipper: Choose animation");
 		
 		int slot = 0;
 		for (Animation ani : AnimationsManager.getManager().getAnimations()){
@@ -174,7 +175,7 @@ public class AnimationGUI implements Listener{
 	
 	@EventHandler
 	public void copyOrDelete(InventoryClickEvent e){
-		if (!(e.getInventory().getName().equals("CoinFlipper: Choose animation")))return;
+		if (!(e.getInventory().getHolder() instanceof AnimationChooserInventoryHolder))return;
 		ItemStack animI = e.getCurrentItem();
 		
 		if (animI == null)return;
@@ -202,7 +203,6 @@ public class AnimationGUI implements Listener{
 		
 		int mode = accessMode.get(p.getName());
 		
-		accessMode.remove(p.getName());
 		
 		switch(mode){
 		case 1:
@@ -210,11 +210,23 @@ public class AnimationGUI implements Listener{
 			AnimationDeleteEvent delEvent = new AnimationDeleteEvent(anim);
 			if (delEvent.isCancelled())return;
 			
+			if (AnimationsManager.getManager().getDefault().equals(anim)){
+				p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_CANT_REMOVE_DEFAULT));
+				return;
+			}
+			
+			if (AnimationsManager.getManager().getAnimations().size() <= 1){
+				p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_CANT_REMOVE_ALL));
+				return;
+			}
+			
 			AnimationsManager.getManager().removeAnimation(anim);
 			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_SUCCESS).replaceAll("%ANIMATION%", anim.getName()));
-			p.openInventory(this.getAnimationSelectorList());
+			accessMode.remove(p.getName());
+			openGUI(p);
 			break;
 		case 2:
+			accessMode.remove(p.getName());
 			copyBase.put(p.getName(), anim.getName());
 			p.closeInventory();
 			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_GIVENAME));
@@ -229,7 +241,7 @@ public class AnimationGUI implements Listener{
 	
 	@EventHandler
 	public void leaveDelOrCopy(InventoryCloseEvent e){
-		if (!(e.getInventory().getName().equals("CoinFlipper: Choose animation")))return;
+		if (!(e.getInventory().getHolder() instanceof AnimationChooserInventoryHolder))return;
 		if (accessMode.containsKey(e.getPlayer().getName())){
 			accessMode.remove(e.getPlayer().getName());
 		}
@@ -237,7 +249,7 @@ public class AnimationGUI implements Listener{
 	
 	
 	public Inventory getEditor(Animation animation, int frame){
-		Inventory editor = Bukkit.createInventory(null, 54, "Animation editor: " + animation.getName() + " " + frame);
+		Inventory editor = Bukkit.createInventory(new AnimationEditorInventoryHolder(), 54, "Animation editor: " + animation.getName() + " " + frame);
 		
 		editor.setContents(animation.getFrame(frame).getContents());
 		
@@ -273,7 +285,7 @@ public class AnimationGUI implements Listener{
 	
 	@EventHandler
 	public void editorManagement(InventoryClickEvent e){
-		if (!e.getInventory().getName().contains("Animation editor"))return;
+		if (!(e.getInventory().getHolder() instanceof AnimationEditorInventoryHolder))return;
 		for (int i = 45; i <= 53; i++){
 			if (e.getSlot() == i){
 				e.setCancelled(true);
@@ -325,7 +337,7 @@ public class AnimationGUI implements Listener{
 	//Save on close
 	@EventHandler
 	public void closeSaver(InventoryCloseEvent e){
-		if (!e.getInventory().getName().contains("Animation editor"))return;
+		if (!(e.getInventory().getHolder() instanceof AnimationEditorInventoryHolder))return;
 		
 		int frameId = Integer.parseInt(e.getInventory().getName().split(" ")[3]);
 		
@@ -356,7 +368,7 @@ public class AnimationGUI implements Listener{
 			Bukkit.getPluginManager().callEvent(createEvent);
 			
 			if (!createEvent.isCancelled()){
-				AnimationsManager.getManager().createAnimation(animation);
+				AnimationsManager.getManager().createAnimation(animation).save();;
 				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_SUCCESS).replaceAll("%ANIMATION%", animation));
 			}
 			accessMode.remove(e.getPlayer().getName());
@@ -371,7 +383,10 @@ public class AnimationGUI implements Listener{
 			if (!cloneEvent.isCancelled()){
 				Animation copied = AnimationsManager.getManager().createAnimation(animation);
 				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
+				copied.save();
+				copied.draw();
 				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
+				openGUI(e.getPlayer());
 			}
 			copyBase.remove(e.getPlayer().getName());
 			
@@ -413,6 +428,7 @@ public class AnimationGUI implements Listener{
 				Animation copied = AnimationsManager.getManager().createAnimation(animation);
 				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
 				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
+				openGUI(e.getPlayer());
 			}
 			copyBase.remove(e.getPlayer().getName());
 			e.setCancelled(true);
@@ -421,4 +437,31 @@ public class AnimationGUI implements Listener{
 			
 			
 	}
+}
+
+class AnimationChooserInventoryHolder implements InventoryHolder{
+
+	@Override
+	public Inventory getInventory() {
+		return null;
+	}
+	
+}
+
+class AnimationEditorInventoryHolder implements InventoryHolder{
+
+	@Override
+	public Inventory getInventory() {
+		return null;
+	}
+	
+}
+
+class AnimationSelectorInventoryHolder implements InventoryHolder{
+
+	@Override
+	public Inventory getInventory() {
+		return null;
+	}
+	
 }

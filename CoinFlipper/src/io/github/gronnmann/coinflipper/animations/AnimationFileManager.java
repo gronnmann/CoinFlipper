@@ -33,22 +33,25 @@ public class AnimationFileManager {
 		}
 		
 		if (creation){
-			File defaultAnim = new File(animationFolder, "default.yml");
-			FileConfiguration animation = YamlConfiguration.loadConfiguration(defaultAnim);
-			ConfigManager.getManager().copyDefaults(animation, "/defaultAnim.yml");
-			
-			AnimationsManager.getManager().loadAnimation(animation, defaultAnim);
+			AnimationsManager.getManager().recreateNewDefault();
 		}
+		
+		int animCount = 0;
 		
 		for (File animationF : animationFolder.listFiles()){
 			FileConfiguration animation = YamlConfiguration.loadConfiguration(animationF);
 			Animation anim = AnimationsManager.getManager().loadAnimation(animation, animationF);
-			
+			animCount++;
 			//Default setter
 			if (anim.getName().equals(ConfigManager.getManager().getConfig().getString("animation_default"))){
 				AnimationsManager.getManager().setDefault(anim);
 			}
 		}
+		
+		if (animCount == 0){
+			AnimationsManager.getManager().recreateNewDefault();
+		}
+		
 	}
 	
 	public File getAnimationFolder(){

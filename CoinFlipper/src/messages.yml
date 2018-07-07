@@ -120,6 +120,8 @@ ANIMATION_CREATE_ALREADYEXISTS: '&cAn animation with name %ANIMATION% already ex
 ANIMATION_CREATE_SUCCESS: '&aNew animation with name %ANIMATION% generated.'
 ANIMATION_CLONE_GIVENAME: '&ePlease write the name of the new copied animation.'
 ANIMATION_CLONE_SUCCESS: '&aAnimation copied successfully.'
+ANIMATION_REMOVE_CANT_REMOVE_DEFAULT: '&cYou can''t remove an default animation.'
+ANIMATION_REMOVE_CANT_REMOVE_ALL: '&cYou can''t remove the last remaining animation.'
 ANIMATION_REMOVE_SUCCESS: '&aSuccessfully removed animation %ANIMATION%.'
 
 ANIMATION_GUI_CREATE: '&a&lCreate'

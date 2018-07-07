@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.Main;
 import io.github.gronnmann.utils.coinflipper.Debug;
 
 public class AnimationsManager{
@@ -79,7 +80,9 @@ public class AnimationsManager{
 				return anim;
 			}
 		}
-		return null;
+		
+		
+		return recreateNewDefault();
 	}
 	
 	public void setDefault(Animation anim){
@@ -104,5 +107,30 @@ public class AnimationsManager{
 		
 		return animUsed;
 		
+	}
+	
+	public Animation recreateNewDefault(){
+		System.out.println("[CoinFlipper] No default animations found. Creating a new blank.");
+		
+		//ConfigManager.getManager().copyDefaults(animation, "/defaultAnim.yml");
+		//animation.options().copyDefaults(true);
+		
+		File defaultAnim = new File(AnimationFileManager.getManager().animationFolder, "default.yml");
+		
+		if (!defaultAnim.exists()){
+			Main.getMain().saveResource("animations/default.yml", false);
+		}
+		
+		FileConfiguration animation = YamlConfiguration.loadConfiguration(defaultAnim);
+		
+		try {
+			animation.save(defaultAnim);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Animation newAnim = AnimationsManager.getManager().loadAnimation(animation, defaultAnim);
+		
+		return newAnim;
 	}
 }
