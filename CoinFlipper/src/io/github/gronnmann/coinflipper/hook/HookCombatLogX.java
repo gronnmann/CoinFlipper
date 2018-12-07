@@ -2,7 +2,7 @@ package io.github.gronnmann.coinflipper.hook;
 
 import org.bukkit.entity.Player;
 
-import com.SirBlobman.combatlogx.Combat;
+import com.SirBlobman.combatlogx.utility.CombatUtil;
 
 public class HookCombatLogX {
 	private HookCombatLogX(){}
@@ -15,6 +15,6 @@ public class HookCombatLogX {
 	
 	
 	public boolean isTagged(Player pl){
-	    return Combat.isInCombat(pl);
+	    return CombatUtil.isInCombat(pl);
 	}
 }
