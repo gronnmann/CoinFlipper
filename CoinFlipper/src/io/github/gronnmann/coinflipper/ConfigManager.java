@@ -37,9 +37,8 @@ public class ConfigManager {
 			p.saveDefaultConfig();
 			config = YamlConfiguration.loadConfiguration(configF);
 			
-			String packageName = Bukkit.getServer().getClass().getPackage().getName();
-			int vID = Integer.parseInt(packageName.split("_")[1]);
-			if (vID < 9){
+			
+			if (Main.versionId < 9){
 				config.set("sound_while_choosing", "CLICK");
 				config.set("sound_winner_chosen", "FIREWORK_BLAST");
 			}

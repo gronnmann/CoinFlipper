@@ -1,6 +1,5 @@
 package io.github.gronnmann.coinflipper.gui.configurationeditor.messages;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Material;
@@ -9,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -18,14 +18,12 @@ import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
-import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventory;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryClickEvent;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
@@ -36,13 +34,24 @@ public class MessageEditor implements Listener{
 		return instance;
 	}
 	
+	
+	/*
+	 * Feature disabled due to bugs
+	 * To enable:
+	 * 	Uncomment in FileEditSelector.java
+	 * 		L63
+	 * 		L64
+	 * 		L85-87
+	 * 		L40
+	 */
+	
 	private Plugin pl;
 	protected PagedInventory selectionScreen;
 	private FileConfiguration config;
 	
 	
 	
-	int RELOAD;
+	private int RELOAD;
 	
 	public void setup(Plugin pl){
 		this.pl = pl;
@@ -212,7 +221,18 @@ public class MessageEditor implements Listener{
 		cancel.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_CANCEL))));
 		cancel.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "cancel"));
 		
-		p.spigot().sendMessage(new ComponentBuilder(confirm).append(" ").append(change).append(" ").append(cancel).create());
+		TextComponent combined = new TextComponent();
+		combined.addExtra(confirm);
+		combined.addExtra(" ");
+		combined.addExtra(change);
+		combined.addExtra(" ");
+		combined.addExtra(cancel);
+		
+		
+		//p.spigot().sendMessage(new ComponentBuilder(confirm.toLegacyText()).append(" ").append(change.toLegacyText()).append(" ").append(cancel.toLegacyText()).create());
+		p.spigot().sendMessage(confirm);
+		p.spigot().sendMessage(change);
+		p.spigot().sendMessage(cancel);
 		ready.put(p.getName(), msg);
 	}
 	
@@ -239,6 +259,12 @@ public class MessageEditor implements Listener{
 		openEditor(p);
 	}
 	
+	
+	@EventHandler
+	public void handleLeave(PlayerQuitEvent e) {
+		cvarsEdited.remove(e.getPlayer().getName());
+		ready.remove(e.getPlayer().getName());
+	}
 }
 
 class MessagesEditorHolder implements InventoryHolder{

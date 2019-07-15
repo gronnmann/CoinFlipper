@@ -37,7 +37,7 @@ public class FileEditSelector implements Listener{
 		this.pl = pl;
 		selectionScreen = Bukkit.createInventory(new FileEditSelectorHolder(), 9, MessagesManager.getMessage(Message.GUI_CONFIGURATOR));
 		
-		selectionScreen.setItem(MESSAGES, ItemUtils.createItem(Material.PAPER, ChatColor.GOLD + "messages.yml"));
+		//selectionScreen.setItem(MESSAGES, ItemUtils.createItem(Material.PAPER, ChatColor.GOLD + "messages.yml"));
 		
 		selectionScreen.setItem(CONFIG, ItemUtils.createItem(Material.INK_SACK, ChatColor.GOLD + "config.yml",10));
 		
@@ -60,8 +60,8 @@ public class FileEditSelector implements Listener{
 		Bukkit.getPluginManager().registerEvents(MaterialChooser.getInstance(), pl);
 		
 		
-		MessageEditor.getInstance().setup(pl);
-		Bukkit.getPluginManager().registerEvents(MessageEditor.getInstance(), pl);
+		//MessageEditor.getInstance().setup(pl);
+		//Bukkit.getPluginManager().registerEvents(MessageEditor.getInstance(), pl);
 		
 		
 		
@@ -82,9 +82,9 @@ public class FileEditSelector implements Listener{
 		}
 		else if (e.getSlot() == MATERIALS){
 			MaterialEditor.getInstance().openEditor((Player)e.getWhoClicked());
-		}else if (e.getSlot() == MESSAGES){
+		}/*else if (e.getSlot() == MESSAGES){
 			MessageEditor.getInstance().openEditor((Player)e.getWhoClicked());
-		}
+		}*/
 		
 	}
 	
