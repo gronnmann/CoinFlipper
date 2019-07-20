@@ -155,7 +155,7 @@ public class StatsManager implements Listener{
 	}
 	
 	public boolean convertToSQLite(){
-		if (statsC == null)return false;
+		if (statsC == null || statsC.getConfigurationSection("stats").getKeys(false) == null)return false;
 		try{
 			for (String allStats : statsC.getConfigurationSection("stats").getKeys(false)){
 				int gamesWon = statsC.getInt("stats." + allStats + ".gamesWon");

@@ -26,6 +26,7 @@ import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
+import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
@@ -149,7 +150,13 @@ public class CreationGUI implements Listener{
 			e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_SPEC));
 			e.getWhoClicked().closeInventory();
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")){
+			Debug.print("Using PL: " + HookManager.getManager().isHooked(HookType.ProtocolLib));
+			Debug.print("Sign input: " + ConfigManager.getManager().getConfig().getBoolean("sign_input"));
+			
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")
+					&& Main.versionId <= 12){
+				Debug.print("sign");
+				
 				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
 			}
 			

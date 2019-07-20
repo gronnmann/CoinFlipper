@@ -18,6 +18,7 @@ import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.metrics.BStats;
 import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
+import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.coinflipper.VersionUtils;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryManager;
@@ -29,6 +30,8 @@ public class Main extends JavaPlugin{
 	private static Economy economy;
 	
 	private static Main main;
+	
+	public static int versionId;
 	
 	
 	
@@ -45,6 +48,10 @@ public class Main extends JavaPlugin{
 			}
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
+		
+		String packageName = Bukkit.getServer().getClass().getPackage().getName();
+		versionId = Integer.parseInt(packageName.split("_")[1]);
+		Debug.print("Minecraft version detected: " + versionId);
 		
 		ConfigManager.getManager().setup(this);
 		ConfigManager.getManager().configUpdate();
