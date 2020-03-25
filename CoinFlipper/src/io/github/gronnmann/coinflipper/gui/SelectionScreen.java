@@ -19,7 +19,7 @@ import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.GamesManager;
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.MaterialsManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
@@ -154,7 +154,8 @@ public class SelectionScreen implements Listener{
 		if (e.getCurrentItem().getItemMeta()==null)return;
 		if (e.getSlot() == CREATE){
 			
-			if (Main.getEcomony().getBalance(e.getWhoClicked().getName()) < ConfigManager.getManager().getConfig().getDouble("min_amount")){
+			if (CoinFlipper.getEcomony().getBalance(e.getWhoClicked().getName())
+					< ConfigManager.getManager().getConfig().getDouble("min_amount")){
 				e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.PLACE_NOT_POSSIBLE_NOMONEY).replaceAll("%MINMON%", ConfigManager.getManager().getConfig().getDouble("min_amount")+""));
 				return;
 			}
@@ -182,7 +183,7 @@ public class SelectionScreen implements Listener{
 					BettingManager.getManager().removeBet(b);
 					this.refreshGameManager();
 					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_SELF_SUCCESSFUL));
-					Main.getEcomony().depositPlayer(p.getName(), b.getAmount());
+					CoinFlipper.getEcomony().depositPlayer(p.getName(), b.getAmount());
 				}else{
 					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_SELF_CONFIRM));
 					removers.add(p.getName());
@@ -214,7 +215,7 @@ public class SelectionScreen implements Listener{
 						bP.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_NOTIFICATION));
 					}
 					
-					Main.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
+					CoinFlipper.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
 				}else{
 					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_CONFIRM).replaceAll("%PLAYER%", b.getPlayer()));
 					removers.add(p.getName());
@@ -248,7 +249,7 @@ public class SelectionScreen implements Listener{
 		}
 		
 		//Check if player can afford
-		EconomyResponse response = Main.getEcomony().withdrawPlayer(p, b.getAmount());
+		EconomyResponse response = CoinFlipper.getEcomony().withdrawPlayer(p, b.getAmount());
 		if (!response.transactionSuccess()){
 			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_NOMONEY));
 			return;

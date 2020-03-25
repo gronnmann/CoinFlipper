@@ -1,7 +1,7 @@
 name: CoinFlipper
-version: 2.4_3
+version: 2.5
 author: gronnmann
-main: io.github.gronnmann.coinflipper.Main
+main: io.github.gronnmann.coinflipper.CoinFlipper
 depend: [Vault]
 softdepend: [ProtocolLib, CombatTagPlus, PvPManager, ChatPerWorld, CombatLogX, PlaceholderAPI]
 commands:

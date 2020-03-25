@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.animations.Animation;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
@@ -193,7 +193,7 @@ public class BettingManager {
 	
 	public void clearBets(){
 		for (Bet b : bets){
-			Main.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
+			CoinFlipper.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
 		}
 		bets.clear();
 		SelectionScreen.getInstance().refreshGameManager();

@@ -2,8 +2,10 @@ package io.github.gronnmann.utils.coinflipper;
 
 import java.text.DecimalFormat;
 
+import org.bukkit.Bukkit;
+
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 
 public class GeneralUtils {
 	public static int getIntInString(String string){
@@ -67,6 +69,12 @@ public class GeneralUtils {
 	
 	public static String getJsonString(String field, String value){
 		return "{\""+field+"\":\"" + value + "\"}";
+	}
+	
+	
+	public static int getMinecraftVersion() {
+		String packageName = Bukkit.getServer().getClass().getPackage().getName();
+		return Integer.parseInt(packageName.split("_")[1]);
 	}
 	
 }

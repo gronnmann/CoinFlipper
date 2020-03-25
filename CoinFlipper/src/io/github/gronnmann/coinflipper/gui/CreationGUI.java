@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.GamesManager;
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.MaterialsManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
@@ -75,7 +75,7 @@ public class CreationGUI implements Listener{
 	
 	private double getMaxMoney(String player){
 		double use = ConfigManager.getManager().getConfig().getDouble("max_amount");
-		double plMon = Main.getEcomony().getBalance(player);
+		double plMon = CoinFlipper.getEcomony().getBalance(player);
 		
 		if (plMon < use){
 			use = plMon;
@@ -154,7 +154,7 @@ public class CreationGUI implements Listener{
 			Debug.print("Sign input: " + ConfigManager.getManager().getConfig().getBoolean("sign_input"));
 			
 			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")
-					&& Main.versionId <= 12){
+					&& CoinFlipper.versionId <= 12){
 				Debug.print("sign");
 				
 				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
@@ -239,7 +239,7 @@ public class CreationGUI implements Listener{
 				HookProtocolLib.getHook().openSignInput(e.getPlayer());
 				return;
 			}
-			if (mon > Main.getEcomony().getBalance(e.getPlayer())){
+			if (mon > CoinFlipper.getEcomony().getBalance(e.getPlayer())){
 				p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOMONEY));
 				HookProtocolLib.getHook().openSignInput(e.getPlayer());
 				return;
@@ -285,7 +285,7 @@ public class CreationGUI implements Listener{
 				p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_TOOMUCH));
 				return;
 			}
-			if (mon > Main.getEcomony().getBalance(e.getPlayer())){
+			if (mon > CoinFlipper.getEcomony().getBalance(e.getPlayer())){
 				p.sendMessage(MessagesManager.getMessage(Message.CREATION_MONEY_CUSTOM_NOMONEY));
 				return;
 			}

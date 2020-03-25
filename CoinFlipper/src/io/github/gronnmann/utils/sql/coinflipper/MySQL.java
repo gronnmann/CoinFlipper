@@ -1,4 +1,4 @@
-package io.github.gronnmann.utils.mysql.coinflipper;
+package io.github.gronnmann.utils.sql.coinflipper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

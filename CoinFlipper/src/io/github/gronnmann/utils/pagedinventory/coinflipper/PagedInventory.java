@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
+import io.github.gronnmann.utils.coinflipper.ReflectionUtils;
 import net.md_5.bungee.api.ChatColor;
 
 public class PagedInventory implements Inventory{
@@ -72,7 +73,7 @@ public class PagedInventory implements Inventory{
 		
 		int count = sizePages();
 		
-		Inventory nextPage = Bukkit.createInventory(copyFrom.getHolder(), copyFrom.getSize(), copyFrom.getName());
+		Inventory nextPage = Bukkit.createInventory(copyFrom.getHolder(), copyFrom.getSize(), ReflectionUtils.getInventoryName(copyFrom));
 		
 		nextPage.setContents(copyFrom.getContents());
 		
@@ -148,7 +149,7 @@ public class PagedInventory implements Inventory{
 		return null;
 	}
 
-	@Override
+	
 	public HashMap<Integer, ? extends ItemStack> all(int arg0) {
 		// TODO Auto-generated method stub
 		return null;
@@ -265,7 +266,7 @@ public class PagedInventory implements Inventory{
 		return invs.get(invToUse).getItem(slotToUse);
 	}
 
-	@Override
+	
 	public Location getLocation() {
 		// TODO Auto-generated method stub
 		return null;
@@ -288,7 +289,7 @@ public class PagedInventory implements Inventory{
 		return 0;
 	}
 
-	@Override
+	
 	public ItemStack[] getStorageContents() {
 		// TODO Auto-generated method stub
 		return null;
@@ -377,7 +378,7 @@ public class PagedInventory implements Inventory{
 		
 	}
 
-	@Override
+	
 	public void setStorageContents(ItemStack[] arg0) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		

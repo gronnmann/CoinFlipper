@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 
 public class BettingTimer extends BukkitRunnable{
@@ -27,7 +27,7 @@ public class BettingTimer extends BukkitRunnable{
 		
 		for (Bet b : toRemove){
 			
-			Main.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
+			CoinFlipper.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
 			
 			BettingManager.getManager().removeBet(b);
 		}

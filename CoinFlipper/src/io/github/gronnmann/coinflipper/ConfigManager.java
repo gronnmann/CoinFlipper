@@ -27,18 +27,18 @@ public class ConfigManager {
 	private File configF, messagesF, statsF, betsF, mysqlF, materialsF;
 	private FileConfiguration config, messages, stats, bets, mysql, materials;
 	
-	public void setup(Plugin p){
+	public void setup(){
 		
-		this.pl = p;
+		this.pl = CoinFlipper.getMain();
 		
 		//Config
-		configF = new File(p.getDataFolder(), "config.yml");
+		configF = new File(pl.getDataFolder(), "config.yml");
 		if (!configF.exists()){
-			p.saveDefaultConfig();
+			pl.saveDefaultConfig();
 			config = YamlConfiguration.loadConfiguration(configF);
 			
 			
-			if (Main.versionId < 9){
+			if (CoinFlipper.versionId < 9){
 				config.set("sound_while_choosing", "CLICK");
 				config.set("sound_winner_chosen", "FIREWORK_BLAST");
 			}
@@ -53,7 +53,7 @@ public class ConfigManager {
 		
 		
 		//Messages
-		messagesF = new File(p.getDataFolder(), "messages.yml");
+		messagesF = new File(pl.getDataFolder(), "messages.yml");
 		if (!messagesF.exists()){
 			try{
 				pl.saveResource("messages.yml", false);
@@ -67,7 +67,7 @@ public class ConfigManager {
 			messages = YamlConfiguration.loadConfiguration(messagesF);
 		}
 		
-		statsF = new File(p.getDataFolder(), "stats.yml");
+		statsF = new File(pl.getDataFolder(), "stats.yml");
 		if (!statsF.exists()){
 			try {
 				statsF.createNewFile();
@@ -77,7 +77,7 @@ public class ConfigManager {
 		}
 		stats = YamlConfiguration.loadConfiguration(statsF);
 		
-		betsF = new File(p.getDataFolder(), "bets.yml");
+		betsF = new File(pl.getDataFolder(), "bets.yml");
 		if (!betsF.exists()){
 			try {
 				betsF.createNewFile();
@@ -87,7 +87,7 @@ public class ConfigManager {
 		}
 		bets = YamlConfiguration.loadConfiguration(betsF);
 		
-		mysqlF = new File(p.getDataFolder(), "mysql.yml");
+		mysqlF = new File(pl.getDataFolder(), "mysql.yml");
 		if (!mysqlF.exists()){
 			try{
 				//mysqlF.createNewFile();
@@ -100,7 +100,7 @@ public class ConfigManager {
 			mysql = YamlConfiguration.loadConfiguration(mysqlF);
 		}
 		
-		materialsF = new File(p.getDataFolder(), "materials.yml");
+		materialsF = new File(pl.getDataFolder(), "materials.yml");
 		if (!materialsF.exists()){
 			try{
 				//materialsF.createNewFile();

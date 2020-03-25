@@ -50,7 +50,7 @@ public class GamesManager {
 		}
 		
 		
-		EconomyResponse response = Main.getEcomony().withdrawPlayer(p.getName(), mon);
+		EconomyResponse response = CoinFlipper.getEcomony().withdrawPlayer(p.getName(), mon);
 		if (!response.transactionSuccess()){
 			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_NOMONEY));
 			return false;
@@ -61,7 +61,7 @@ public class GamesManager {
 		Bukkit.getPluginManager().callEvent(placeEvent);
 		
 		if (placeEvent.isCancelled()){
-			Main.getEcomony().depositPlayer(p.getName(), mon);
+			CoinFlipper.getEcomony().depositPlayer(p.getName(), mon);
 			return false;
 		}
 		

@@ -61,7 +61,7 @@ public class MessagesManager {
 		try{
 
 		
-		InputStream defaultFile = Main.getMain().getClass().getResourceAsStream("/messages.yml");
+		InputStream defaultFile = CoinFlipper.getMain().getClass().getResourceAsStream("/messages.yml");
 		
 		if (defaultFile == null)return "Message " + msg + " missing. Please fill it out or find orginal at https://www.spigotmc.org/resources/coinflipper.33916/";
 

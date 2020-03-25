@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.GamesManager;
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.hook.HookChatPerWorld;
@@ -90,7 +90,7 @@ public class AnimationRunnable extends BukkitRunnable{
 			
 			//Give money
 			
-			Main.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winMoney);
+			CoinFlipper.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winMoney);
 			
 			//Sound
 			try{

@@ -8,15 +8,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.sqlite.util.StringUtils;
-
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
-import io.github.gronnmann.utils.mysql.coinflipper.MySQL;
-import io.github.gronnmann.utils.mysql.coinflipper.SQLite;
+import io.github.gronnmann.utils.sql.coinflipper.MySQL;
+import io.github.gronnmann.utils.sql.coinflipper.SQLite;
 
 public class SQLManager {
 	private SQLManager(){}
@@ -39,7 +37,7 @@ public class SQLManager {
 		if (!enabled){
 			System.out.println("[CoinFlipper] Connecting to SQLite...");
 			
-			sqli = new SQLite(Main.getMain(), "stats");
+			sqli = new SQLite(CoinFlipper.getMain(), "stats");
 			
 			conn = sqli.getConnection();
 			
@@ -130,7 +128,7 @@ public class SQLManager {
 				}
 				
 			}
-			}.runTaskAsynchronously(Main.getMain());
+			}.runTaskAsynchronously(CoinFlipper.getMain());
 		}
 	
 	

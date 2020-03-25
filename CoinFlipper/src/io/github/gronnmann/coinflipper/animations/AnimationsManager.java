@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.Main;
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.utils.coinflipper.Debug;
 
 public class AnimationsManager{
@@ -118,7 +118,7 @@ public class AnimationsManager{
 		File defaultAnim = new File(AnimationFileManager.getManager().animationFolder, "default.yml");
 		
 		if (!defaultAnim.exists()){
-			Main.getMain().saveResource("animations/default.yml", false);
+			CoinFlipper.getMain().saveResource("animations/default.yml", false);
 		}
 		
 		FileConfiguration animation = YamlConfiguration.loadConfiguration(defaultAnim);

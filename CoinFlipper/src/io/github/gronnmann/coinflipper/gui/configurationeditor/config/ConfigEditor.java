@@ -17,21 +17,14 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.Main;
-import io.github.gronnmann.coinflipper.MaterialsManager;
 import io.github.gronnmann.coinflipper.MessagesManager;
 import io.github.gronnmann.coinflipper.MessagesManager.Message;
-import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
-import io.github.gronnmann.coinflipper.animations.AnimationGUI;
-import io.github.gronnmann.coinflipper.bets.BettingManager;
-import io.github.gronnmann.coinflipper.gui.CreationGUI;
-import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
-import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
@@ -105,8 +98,10 @@ public class ConfigEditor implements Listener{
 		}
 	}
 	
-	public void openEditor(Player p){
-		p.openInventory(selectionScreen);
+	public void openEditor(final Player p){
+		Bukkit.getScheduler().runTask(CoinFlipper.getMain(), ()->{
+			p.openInventory(selectionScreen);
+		});
 	}
 	
 	
