@@ -84,7 +84,7 @@ public class PagedInventory implements Inventory{
 			preview = 1;
 		}
 		
-		ItemStack current = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, preview);
+		ItemStack current = new ItemStack(Material.GLASS_PANE, preview);
 		ItemUtils.setName(current, ChatColor.YELLOW.toString() + count);
 		
 		nextPage.setItem(CURRENT, current);
