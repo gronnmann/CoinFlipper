@@ -2,14 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/spigot-1.12.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/spigot-api-1.12-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/Vault.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/CombatTagPlus.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/PvPManager.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/ProtocolLib.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/ChatPerWorld.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/CombatLogX.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Bartosz/Programmering/Java/Lib/Spigot/PlaceholderAPI-2.8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mousi/Desktop/My Plugins/APIs/Plugin APIs/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mousi/Desktop/My Plugins/APIs/Spigot APIs/spigot-api-1.15.2-R0.1-SNAPSHOT-shaded.jar"/>
+	<classpathentry kind="lib" path="D:/MacOS/CombatTagPlus.jar"/>
+	<classpathentry kind="lib" path="D:/MacOS/ChatPerWorld.jar"/>
+	<classpathentry kind="lib" path="D:/PotterCraft MC/PotterCraft MC/1.15 Update/Plugins/PlaceholderAPI-2.10.4.jar"/>
+	<classpathentry kind="lib" path="D:/PotterCraft MC/PotterCraft MC/1.15 Update/Plugins/ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mousi/Desktop/My Plugins/APIs/Server Jars/minecraft_server 1.15.1.jar"/>
+	<classpathentry kind="lib" path="D:/MacOS/PvPManager.jar"/>
+	<classpathentry kind="lib" path="D:/MacOS/CombatLogX.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

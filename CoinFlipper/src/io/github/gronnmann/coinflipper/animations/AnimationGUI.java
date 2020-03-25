@@ -48,10 +48,10 @@ public class AnimationGUI implements Listener{
 	public void setup(){
 		main = Bukkit.createInventory(new AnimationSelectorInventoryHolder(), 54, "CoinFlipper Animations");
 		
-		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CREATE), 5));
-		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_DELETE), 14));
-		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CLONE), 11));
-		InventoryUtils.fillWithItem(main, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ".", 10), 36, 44);
+		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.LEGACY_WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CREATE), 5));
+		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.LEGACY_WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_DELETE), 14));
+		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.LEGACY_WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CLONE), 11));
+		InventoryUtils.fillWithItem(main, ItemUtils.createItem(Material.LEGACY_STAINED_GLASS_PANE, ".", 10), 36, 44);
 		
 		
 	}
@@ -168,7 +168,7 @@ public class AnimationGUI implements Listener{
 			}
 		}
 		
-		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
+		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SAC, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
 		
 		return selectorList;
 	}
@@ -262,9 +262,9 @@ public class AnimationGUI implements Listener{
 		editor.setItem(CURRENT, current);
 		editor.setItem(NEXT, next);
 		
-		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
+		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SAC, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
 		
-		editor.setItem(P1I, ItemUtils.createItem(Material.WOOD_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_P1HEAD)));
+		editor.setItem(P1I, ItemUtils.createItem(Material.WOODEN_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_P1HEAD)));
 		editor.setItem(P2I, ItemUtils.createItem(Material.STONE_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_P2HEAD)));
 		editor.setItem(WINNER, ItemUtils.createItem(Material.DIAMOND_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_WINNERHEAD)));
 		
@@ -293,9 +293,9 @@ public class AnimationGUI implements Listener{
 		}
 		Player p = (Player) e.getWhoClicked();
 		
-		int frameId = Integer.parseInt(e.getInventory().getName().split(" ")[3]);
+		int frameId = Integer.parseInt(e.getView().getTitle().split(" ")[3]);
 		
-		String animationName = e.getInventory().getName().split(" ")[2];
+		String animationName = e.getView().getTitle().split(" ")[2];
 		Animation anim = AnimationsManager.getManager().getAnimation(animationName);
 		
 		if (e.getSlot() == NEXT){
@@ -339,9 +339,9 @@ public class AnimationGUI implements Listener{
 	public void closeSaver(InventoryCloseEvent e){
 		if (!(e.getInventory().getHolder() instanceof AnimationEditorInventoryHolder))return;
 		
-		int frameId = Integer.parseInt(e.getInventory().getName().split(" ")[3]);
+		int frameId = Integer.parseInt(e.getView().getTitle().split(" ")[3]);
 		
-		String animationName = e.getInventory().getName().split(" ")[2];
+		String animationName = e.getView().getTitle().split(" ")[2];
 		Animation anim = AnimationsManager.getManager().getAnimation(animationName);
 		
 		this.saveFrame(anim, frameId, e.getInventory());

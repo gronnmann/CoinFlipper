@@ -3,10 +3,11 @@ package io.github.gronnmann.utils.coinflipper;
 import java.io.File;
 import java.net.URL;
 
-import org.apache.commons.io.FileUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 import org.bukkit.plugin.Plugin;
+
 
 public class VersionUtils {
 	

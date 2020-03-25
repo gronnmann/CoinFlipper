@@ -82,13 +82,13 @@ public class ConfigEditor implements Listener{
 			if (cvars.equals("config_version"))continue;
 			
 			
-			selectionScreen.setItem(index, ItemUtils.setLore(ItemUtils.createItem(Material.THIN_GLASS, ChatColor.GOLD + cvars), ChatColor.YELLOW + "Value: " + 
+			selectionScreen.setItem(index, ItemUtils.setLore(ItemUtils.createItem(Material.GLASS_PANE, ChatColor.GOLD + cvars), ChatColor.YELLOW + "Value: " + 
 			ChatColor.GREEN + config.getString(cvars)));
 			index++;
 		}
 		
-		selectionScreen.setItem(RELOAD, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ChatColor.YELLOW.toString() + ChatColor.BOLD + "RELOAD", 4));
-		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.STAINED_GLASS_PANE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 14));
+		selectionScreen.setItem(RELOAD, ItemUtils.createItem(Material.LEGACY_STAINED_GLASS_PANE, ChatColor.YELLOW.toString() + ChatColor.BOLD + "RELOAD", 4));
+		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.LEGACY_STAINED_GLASS_PANE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 14));
 		
 	}
 	
@@ -97,7 +97,7 @@ public class ConfigEditor implements Listener{
 			
 			if (item == null)continue;
 			
-			if (item.getType().equals(Material.STAINED_GLASS_PANE))continue;
+			if (item.getType().equals(Material.LEGACY_STAINED_GLASS_PANE))continue;
 			
 			String value = config.getString(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
 			

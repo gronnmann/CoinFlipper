@@ -38,7 +38,7 @@ public class PersonalizedAnimation {
 			ItemStack item = fram.getItem(slot);
 			if (item != null){
 				
-				if (item.getType().equals(Material.WOOD_HOE)){
+				if (item.getType().equals(Material.WOODEN_HOE)){
 					fram.setItem(slot, p1Skull);
 				}
 				else if (item.getType().equals(Material.STONE_HOE)){

@@ -116,7 +116,7 @@ public class SelectionScreen implements Listener{
 	
 	
 	private ItemStack getSkull(Bet b){
-		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (byte)3);
+		ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1, (byte)3);
 		SkullMeta sm = (SkullMeta)skull.getItemMeta();
 		sm.setOwner(b.getPlayer());
 		ArrayList<String> lore = new ArrayList<String>();
@@ -162,7 +162,7 @@ public class SelectionScreen implements Listener{
 		}
 		
 		
-		if (!(e.getCurrentItem().getType().equals(Material.SKULL_ITEM)))return;
+		if (!(e.getCurrentItem().getType().equals(Material.PLAYER_HEAD)))return;
 		
 		ItemStack item = e.getCurrentItem();
 		String ID = ChatColor.stripColor(item.getItemMeta().getDisplayName());

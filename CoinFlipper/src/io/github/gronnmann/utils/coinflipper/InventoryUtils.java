@@ -18,7 +18,7 @@ public class InventoryUtils {
 	}
 	
 	public static Inventory clone(Inventory inv){
-		Inventory newInv = Bukkit.createInventory(inv.getHolder(), inv.getSize(), inv.getName());
+		Inventory newInv = Bukkit.createInventory(inv.getHolder(), inv.getSize(), "THIS IS FOR TESTING PURPOSES PLEASE CHANGE IT TO SOMETHING SUITABLE");
 		newInv.setContents(inv.getContents());
 		return newInv;
 	}

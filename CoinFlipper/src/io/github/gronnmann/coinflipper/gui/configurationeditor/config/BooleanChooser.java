@@ -46,8 +46,8 @@ public class BooleanChooser implements Listener{
 		
 		selectionScreen = Bukkit.createInventory(new BooleanChooserHolder(), 9, "CoinFlipper ");
 		
-		selectionScreen.setItem(TRUE, ItemUtils.createItem(Material.WOOL, ChatColor.GREEN.toString() + ChatColor.BOLD + "TRUE", 5));
-		selectionScreen.setItem(FALSE, ItemUtils.createItem(Material.WOOL, ChatColor.RED.toString() + ChatColor.BOLD + "FALSE", 14));
+		selectionScreen.setItem(TRUE, ItemUtils.createItem(Material.LEGACY_WOOL, ChatColor.GREEN.toString() + ChatColor.BOLD + "TRUE", 5));
+		selectionScreen.setItem(FALSE, ItemUtils.createItem(Material.LEGACY_WOOL, ChatColor.RED.toString() + ChatColor.BOLD + "FALSE", 14));
 		
 	}
 	

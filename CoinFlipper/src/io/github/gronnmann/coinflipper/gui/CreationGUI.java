@@ -51,7 +51,7 @@ public class CreationGUI implements Listener{
 		
 		preset.setItem(BET_AMOUNT, ItemUtils.createItem(MaterialsManager.getMaterial("creation_money_value"), MessagesManager.getMessage(Message.CREATION_MONEY).replaceAll("%MONEY%", 0+""), MaterialsManager.getData("creation_money_value")));
 		preset.setItem(BET_SIDE, ItemUtils.createItem(MaterialsManager.getMaterial("creation_side_tails"), ChatColor.BLUE + MessagesManager.getMessage(Message.CREATION_SIDE).replaceAll("%SIDE%", "TAILS"),MaterialsManager.getData("creation_side_tails")));
-		preset.setItem(BET_FINALIZE, ItemUtils.createItem(Material.SKULL_ITEM, ChatColor.BLUE + ChatColor.BOLD.toString() +"Bet", 3));
+		preset.setItem(BET_FINALIZE, ItemUtils.createItem(Material.PLAYER_HEAD, ChatColor.BLUE + ChatColor.BOLD.toString() +"Bet", 3));
 		
 		String howToAdd = MessagesManager.getMessage(Message.CREATION_MONEY_LEFTTOADD);
 		String howToRemove = MessagesManager.getMessage(Message.CREATION_MONEY_RIGHTTOREMOVE);

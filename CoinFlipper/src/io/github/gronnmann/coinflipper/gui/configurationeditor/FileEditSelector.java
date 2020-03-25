@@ -39,7 +39,7 @@ public class FileEditSelector implements Listener{
 		
 		//selectionScreen.setItem(MESSAGES, ItemUtils.createItem(Material.PAPER, ChatColor.GOLD + "messages.yml"));
 		
-		selectionScreen.setItem(CONFIG, ItemUtils.createItem(Material.INK_SACK, ChatColor.GOLD + "config.yml",10));
+		selectionScreen.setItem(CONFIG, ItemUtils.createItem(Material.INK_SAC, ChatColor.GOLD + "config.yml",10));
 		
 		selectionScreen.setItem(MATERIALS, ItemUtils.createItem(Material.GRASS, ChatColor.GOLD + "materials.yml"));
 		

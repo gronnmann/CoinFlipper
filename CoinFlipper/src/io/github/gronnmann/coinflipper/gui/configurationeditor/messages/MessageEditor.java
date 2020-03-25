@@ -60,7 +60,7 @@ public class MessageEditor implements Listener{
 		
 		selectionScreen = new PagedInventory("CoinFlipper messages.yml", ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_NEXT)),
 				ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_PREV)),
-				ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1),
+				ItemUtils.createItem(Material.INK_SAC, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1),
 				"coinflipper_messageeditor", FileEditSelector.getInstance().selectionScreen);
 		
 		
@@ -90,7 +90,7 @@ public class MessageEditor implements Listener{
 		}
 		
 		for (Inventory inv : selectionScreen.getPages()){
-			inv.setItem(RELOAD, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ChatColor.YELLOW.toString() + ChatColor.BOLD + "RELOAD", 4));
+			inv.setItem(RELOAD, ItemUtils.createItem(Material.LEGACY_STAINED_GLASS_PANE, ChatColor.YELLOW.toString() + ChatColor.BOLD + "RELOAD", 4));
 		}
 	}
 	

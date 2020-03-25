@@ -32,9 +32,6 @@ public class MySQL {
 			connected = false;
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 	
 	public String getServerIP(){
@@ -72,10 +69,4 @@ public class MySQL {
 			return false;
 		}
 	}
-	
-	
-	
-	
-	
-	
 }

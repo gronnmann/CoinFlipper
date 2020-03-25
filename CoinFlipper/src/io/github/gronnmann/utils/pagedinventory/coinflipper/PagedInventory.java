@@ -55,7 +55,7 @@ public class PagedInventory implements Inventory{
 		copyFrom.setItem(NEXT, next);
 		copyFrom.setItem(PREV, last);
 		
-		copyFrom.setItem(CURRENT, ItemUtils.createItem(Material.THIN_GLASS, "0"));
+		copyFrom.setItem(CURRENT, ItemUtils.createItem(Material.WHITE_STAINED_GLASS_PANE, "0"));
 		
 		copyFrom.setItem(BACK, back);
 	}
@@ -72,7 +72,7 @@ public class PagedInventory implements Inventory{
 		
 		int count = sizePages();
 		
-		Inventory nextPage = Bukkit.createInventory(copyFrom.getHolder(), copyFrom.getSize(), copyFrom.getName());
+		Inventory nextPage = Bukkit.createInventory(copyFrom.getHolder(), copyFrom.getSize(), "THIS IS MEANT TO BE THE NAME OF COPYFROM");
 		
 		nextPage.setContents(copyFrom.getContents());
 		
@@ -84,7 +84,7 @@ public class PagedInventory implements Inventory{
 			preview = 1;
 		}
 		
-		ItemStack current = new ItemStack(Material.THIN_GLASS, preview);
+		ItemStack current = new ItemStack(Material.WHITE_STAINED_GLASS_PANE, preview);
 		ItemUtils.setName(current, ChatColor.YELLOW.toString() + count);
 		
 		nextPage.setItem(CURRENT, current);
@@ -148,7 +148,6 @@ public class PagedInventory implements Inventory{
 		return null;
 	}
 
-	@Override
 	public HashMap<Integer, ? extends ItemStack> all(int arg0) {
 		// TODO Auto-generated method stub
 		return null;
@@ -178,7 +177,6 @@ public class PagedInventory implements Inventory{
 		
 	}
 
-	@Override
 	public boolean contains(int arg0) {
 		// TODO Auto-generated method stub
 		return false;
@@ -196,7 +194,6 @@ public class PagedInventory implements Inventory{
 		return false;
 	}
 
-	@Override
 	public boolean contains(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 		return false;
@@ -220,7 +217,6 @@ public class PagedInventory implements Inventory{
 		return false;
 	}
 
-	@Override
 	public int first(int arg0) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -277,9 +273,8 @@ public class PagedInventory implements Inventory{
 		return 0;
 	}
 
-	@Override
 	public String getName() {
-		return copyFrom.getName();
+		return "copyFrom.getName();";
 	}
 
 	@Override
@@ -294,9 +289,8 @@ public class PagedInventory implements Inventory{
 		return null;
 	}
 
-	@Override
 	public String getTitle() {
-		return copyFrom.getTitle();
+		return "copyFrom.getTitle();";
 	}
 
 	@Override
@@ -322,7 +316,6 @@ public class PagedInventory implements Inventory{
 		return null;
 	}
 
-	@Override
 	public void remove(int arg0) {
 		// TODO Auto-generated method stub
 		
