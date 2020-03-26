@@ -2,23 +2,13 @@ package io.github.gronnmann.coinflipper.gui.configurationeditor.materials;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
-import io.github.gronnmann.utils.coinflipper.Debug;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventory;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryClickEvent;
@@ -32,17 +22,15 @@ public class MaterialChooser implements Listener{
 	}
 	
 	private PagedInventory selectionScreen;
-	private FileConfiguration config;
 	
 		
 	int TRUE = 3, FALSE = 5;
 	
 	public void setup(){
-		config = ConfigManager.getManager().getConfig();
 		
-		selectionScreen = new PagedInventory("Select material", ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_NEXT)),
-				ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_PREV)),
-				ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1),
+		selectionScreen = new PagedInventory("Select material", ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage()),
+				ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage()),
+				ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1),
 				"material_choose", MaterialEditor.getInstance().selectionScreen);
 		
 		for (Material material : Material.values()){

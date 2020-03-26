@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.utils.coinflipper.Debug;
 
@@ -91,7 +92,7 @@ public class AnimationsManager{
 		}
 		anim.setDefault(true);
 		
-		ConfigManager.getManager().getConfig().set("animation_default", anim.getName());
+		ConfigVar.ANIMATION_DEFAULT.setValue(anim.getName());
 		ConfigManager.getManager().saveConfig();
 	}
 	

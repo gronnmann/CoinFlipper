@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,12 +18,13 @@ import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
+import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
@@ -38,19 +38,17 @@ public class ConfigEditor implements Listener{
 	
 	private Plugin pl;
 	protected Inventory selectionScreen;
-	private FileConfiguration config;
 	
 	
 	
 	int RELOAD, BACK;
 	
-	public void setup(Plugin pl){
-		this.pl = pl;
-		config = ConfigManager.getManager().getConfig();
+	public void setup(){
+		this.pl = CoinFlipper.getMain();
 		
 		int howManySlots = 0;
 		
-		for (String cvars : config.getConfigurationSection("").getKeys(false)){
+		for (ConfigVar cvars : ConfigVar.values()){
 			howManySlots++;
 		}
 		
@@ -69,19 +67,20 @@ public class ConfigEditor implements Listener{
 		
 		int index = 0;
 		
-		for (String cvars : config.getConfigurationSection("").getKeys(false)){
+		for (ConfigVar cvarsSrc : ConfigVar.values()){
+			String cvars = cvarsSrc.getPath();
 			if (index > 54 )return;
+
+			ItemStack editItem = ItemUtils.setLore(ItemUtils.createItem(Material.THIN_GLASS, ChatColor.GOLD + cvars), ChatColor.YELLOW + "Value: " + 
+					ChatColor.GREEN + cvarsSrc.getString());
+			ItemUtils.addToLore(editItem, ChatColor.GREEN + cvarsSrc.getDescription());
 			
-			if (cvars.equals("config_version"))continue;
-			
-			
-			selectionScreen.setItem(index, ItemUtils.setLore(ItemUtils.createItem(Material.THIN_GLASS, ChatColor.GOLD + cvars), ChatColor.YELLOW + "Value: " + 
-			ChatColor.GREEN + config.getString(cvars)));
+			selectionScreen.setItem(index, editItem);
 			index++;
 		}
 		
 		selectionScreen.setItem(RELOAD, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ChatColor.YELLOW.toString() + ChatColor.BOLD + "RELOAD", 4));
-		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.STAINED_GLASS_PANE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 14));
+		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.STAINED_GLASS_PANE, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 14));
 		
 	}
 	
@@ -92,7 +91,7 @@ public class ConfigEditor implements Listener{
 			
 			if (item.getType().equals(Material.STAINED_GLASS_PANE))continue;
 			
-			String value = config.getString(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
+			String value = ConfigVar.fromPath(ChatColor.stripColor(item.getItemMeta().getDisplayName())).getString();
 			
 			ItemUtils.setLore(item, ChatColor.YELLOW + "Value: " + ChatColor.GREEN + value);
 		}
@@ -106,7 +105,7 @@ public class ConfigEditor implements Listener{
 	
 	
 	
-	public HashMap<String, String> cvarsEdited = new HashMap<String, String>();
+	public HashMap<String, ConfigVar> cvarsEdited = new HashMap<String, ConfigVar>();
 	private ArrayList<String> editingNumbers = new ArrayList<String>();
 	
 	@EventHandler
@@ -123,13 +122,13 @@ public class ConfigEditor implements Listener{
 		//Reload
 		if (e.getSlot() == RELOAD){
 			if (!p.hasPermission("coinflipper.reload")){
-				p.sendMessage(MessagesManager.getMessage(Message.NO_PERMISSION));
+				p.sendMessage(Message.NO_PERMISSION.getMessage());
 				return;
 			}
 			System.out.println("[CoinFlipper] Attempting to reload CoinFlipper (requested by " + p.getName() + ")");
 			ConfigManager.getManager().reload();
 			
-			p.sendMessage(MessagesManager.getMessage(Message.RELOAD_SUCCESS));
+			p.sendMessage(Message.RELOAD_SUCCESS.getMessage());
 			
 			openEditor(p);
 			
@@ -139,18 +138,19 @@ public class ConfigEditor implements Listener{
 			return;
 		}
 		
-		String cvar = ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName());
+		String cvarS = ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName());
+		ConfigVar cvar = ConfigVar.fromPath(cvarS);
 		
-		String value = config.getString(cvar);
+		String value = cvar.getString();
 		
 		cvarsEdited.put(p.getName(), cvar);
 		
-		e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_SPEC).replaceAll("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
+		e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replaceAll("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
 		e.getWhoClicked().closeInventory();
 		
-		if (cvar.equals("sound_while_choosing") || cvar.equals("sound_winner_chosen")){
-			SoundChooser.getInstance().refresh(config.getString(cvar));
-			SoundChooser.getInstance().openEditor(p, cvar);
+		if (cvarS.equals(ConfigVar.SOUND_WHILE_CHOOSING.getPath()) || cvarS.equals(ConfigVar.SOUND_WINNER_CHOSEN.getPath())){
+			SoundChooser.getInstance().refresh(value);
+			SoundChooser.getInstance().openEditor(p);
 			return;
 		}
 		
@@ -165,7 +165,7 @@ public class ConfigEditor implements Listener{
 			editingNumbers.add(p.getName());
 		}
 		
-		if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input") && !cvar.equals("disabled_worlds")){
+		if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean() && !(cvar == ConfigVar.DISABLED_WORLDS)){
 			HookProtocolLib.getHook().openSignInput(p);
 		}
 		
@@ -174,7 +174,7 @@ public class ConfigEditor implements Listener{
 	@EventHandler
 	public void protocolLibHookInput(SignInputEvent e){
 		
-		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input"))return;
+		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean())return;
 		
 		Player p = e.getPlayer();
 		if (!cvarsEdited.containsKey(p.getName()))return;
@@ -197,37 +197,48 @@ public class ConfigEditor implements Listener{
 	
 	public void processEditing(Player p, String newValue){
 		
+		if (newValue.equalsIgnoreCase("cancel")) {
+			cvarsEdited.remove(p.getName());
+			openEditor(p);
+			return;
+		}
 		
+		ConfigVar cvar = cvarsEdited.get(p.getName());
+		
+		if (cvar == null) {
+			Debug.print("Player edited cvar but not in cvar editor list.");
+			return;
+		}
 		
 		System.out.println("[CoinFlipper] " + p.getName() + " changed cvar " + cvarsEdited.get(p.getName()) + " value from " + 
-		config.getString(cvarsEdited.get(p.getName())) + " to " + newValue);
+			cvar.getString() + " to " + newValue);
 		
 		if (editingNumbers.contains(p.getName())){
 			if (GeneralUtils.isDouble(newValue)){
 				editingNumbers.remove(p.getName());
 				if (GeneralUtils.isInt(newValue)){
-					config.set(cvarsEdited.get(p.getName()), Integer.parseInt(newValue));
+					cvar.setValue(Integer.parseInt(newValue));
 				}else{
-					config.set(cvarsEdited.get(p.getName()), Double.parseDouble(newValue));
+					cvar.setValue(Double.parseDouble(newValue));
 				}
 				
 			}else{
-				p.sendMessage(MessagesManager.getMessage(Message.INPUT_NOTNUM));
-				if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")){
+				p.sendMessage(Message.INPUT_NOTNUM.getMessage());
+				if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean()){
 					HookProtocolLib.getHook().openSignInput(p);
 				}
 				return;
 			}
 		}
 		else if (GeneralUtils.isBoolean(newValue)){
-			config.set(cvarsEdited.get(p.getName()), Boolean.valueOf(newValue));
+			cvar.setValue(Boolean.valueOf(newValue));
 		}else{
-			config.set(cvarsEdited.get(p.getName()), newValue);
+			cvar.setValue(newValue);
 		}
 		
 		
 		ConfigManager.getManager().saveConfig();
-		p.sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL).replaceAll("%VALUE%", newValue).replace("%CVAR%", cvarsEdited.get(p.getName())));
+		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().replaceAll("%VALUE%", newValue).replace("%CVAR%", cvarsEdited.get(p.getName()).getPath()));
 		cvarsEdited.remove(p.getName());
 		
 		refresh();

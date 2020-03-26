@@ -2,6 +2,7 @@ package io.github.gronnmann.coinflipper.gui.configurationeditor.messages;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -14,9 +15,9 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventory;
@@ -46,21 +47,18 @@ public class MessageEditor implements Listener{
 	 */
 	
 	private Plugin pl;
-	protected PagedInventory selectionScreen;
-	private FileConfiguration config;
-	
+	protected PagedInventory selectionScreen;	
 	
 	
 	private int RELOAD;
 	
-	public void setup(Plugin pl){
-		this.pl = pl;
-		config = ConfigManager.getManager().getMessages();
+	public void setup(){
+		this.pl = CoinFlipper.getMain();
 		
 		
-		selectionScreen = new PagedInventory("CoinFlipper messages.yml", ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_NEXT)),
-				ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_PREV)),
-				ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1),
+		selectionScreen = new PagedInventory("CoinFlipper messages.yml", ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage()),
+				ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage()),
+				ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1),
 				"coinflipper_messageeditor", FileEditSelector.getInstance().selectionScreen);
 		
 		
@@ -72,13 +70,10 @@ public class MessageEditor implements Listener{
 			
 			String cvars = msgs.toString();
 			
-			if (config.getString(cvars) == null){
-				config.set(cvars, MessagesManager.getOrginalMessage(cvars));
-			}
 			
 			ItemStack item = ItemUtils.createItem(Material.PAPER, ChatColor.GOLD + cvars);
-			ItemUtils.addToLore(item, ChatColor.YELLOW + "Message: " + ChatColor.GREEN + ChatColor.translateAlternateColorCodes('&', config.getString(cvars)));
-			ItemUtils.addToLore(item, ChatColor.YELLOW + "Default: " + ChatColor.GREEN + ChatColor.translateAlternateColorCodes('&', MessagesManager.getOrginalMessage(cvars)));
+			ItemUtils.addToLore(item, ChatColor.YELLOW + "Message: " + ChatColor.GREEN + msgs.getMessage());
+			ItemUtils.addToLore(item, ChatColor.YELLOW + "Default: " + ChatColor.GREEN + msgs.getDefaultMessage());
 			
 			ItemUtils.addToLore(item, "");
 			
@@ -101,12 +96,13 @@ public class MessageEditor implements Listener{
 				
 				if (item == null)continue;
 				
-				String value = config.getString(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
+				Message msg = Message.valueOf(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
+				if (msg == null)continue;
 				
-				ItemUtils.addToLore(item, ChatColor.YELLOW + "Message: " + ChatColor.GREEN + ChatColor.translateAlternateColorCodes('&', value));
 				
-				ItemUtils.addToLore(item, ChatColor.YELLOW + "Default: "
-				+ ChatColor.GREEN + ChatColor.translateAlternateColorCodes('&', MessagesManager.getOrginalMessage(ChatColor.stripColor(item.getItemMeta().getDisplayName()))));
+				ItemUtils.addToLore(item, ChatColor.YELLOW + "Message: " + ChatColor.GREEN + msg.getMessage());
+				ItemUtils.addToLore(item, ChatColor.YELLOW + "Default: " + ChatColor.GREEN + msg.getDefaultMessage());
+				
 				
 				ItemUtils.addToLore(item, "");
 				
@@ -117,12 +113,14 @@ public class MessageEditor implements Listener{
 	}
 	
 	public void openEditor(Player p){
-		p.openInventory(selectionScreen.getPage(0));
+		Bukkit.getScheduler().runTask(pl, ()->{			
+			p.openInventory(selectionScreen.getPage(0));
+		});
 	}
 	
 	
 	
-	public HashMap<String, String> cvarsEdited = new HashMap<String, String>();
+	public HashMap<String, Message> cvarsEdited = new HashMap<String, Message>();
 	public HashMap<String, String> ready = new HashMap<String, String>();
 	
 	
@@ -138,27 +136,29 @@ public class MessageEditor implements Listener{
 		//Reload
 		if (e.getSlot() == RELOAD){
 			if (!p.hasPermission("coinflipper.reload")){
-				p.sendMessage(MessagesManager.getMessage(Message.NO_PERMISSION));
+				p.sendMessage(Message.NO_PERMISSION.getMessage());
 				return;
 			}
 			System.out.println("[CoinFlipper] Attempting to reload CoinFlipper (requested by " + p.getName() + ")");
 			ConfigManager.getManager().reload();
 			
-			p.sendMessage(MessagesManager.getMessage(Message.RELOAD_SUCCESS));
+			p.sendMessage(Message.RELOAD_SUCCESS.getMessage());
 			
 			openEditor(p);
 			
 			return;
 		}
 		
-		String cvar = ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName());
+		Message cvar = Message.valueOf(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()));
+		if (cvar == null)return;
+		
 		cvarsEdited.put(p.getName(), cvar);
 		
 		if (e.isLeftClick()){
-			e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_SPEC).replace("%CVAR%", cvar));
+			e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replace("%CVAR%", cvar.toString()));
 			e.getWhoClicked().closeInventory();
 		}else{
-			processEditing((Player)e.getWhoClicked(), MessagesManager.getOrginalMessage(cvar));
+			processEditing((Player)e.getWhoClicked(), cvar.getDefaultMessage());
 		}
 		
 	}
@@ -181,7 +181,7 @@ public class MessageEditor implements Listener{
 				processEditing(p, ready.get(p.getName()));
 				ready.remove(p.getName());
 			}else if (msg.equals("change")){
-				p.sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_SPEC).replace("%CVAR%", cvarsEdited.get(p.getName())));
+				p.sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replace("%CVAR%", cvarsEdited.get(p.getName()).toString()));
 			}else{
 				cvarsEdited.remove(p.getName());
 				openEditor(p);
@@ -192,33 +192,33 @@ public class MessageEditor implements Listener{
 		
 		
 		p.sendMessage("");
-		p.sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_PREVIEW).replace("%CVAR%", cvarsEdited.get(p.getName())));
+		p.sendMessage(Message.CONFIGURATOR_MESSAGE_PREVIEW.getMessage().replace("%CVAR%", cvarsEdited.get(p.getName()).toString()));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		p.sendMessage("");
-		BaseComponent[] confirmArray = TextComponent.fromLegacyText(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_CONFIRM));
+		BaseComponent[] confirmArray = TextComponent.fromLegacyText(Message.CONFIGURATOR_MESSAGE_CONFIRM.getMessage());
 		TextComponent confirm = new TextComponent();
 		for (BaseComponent comp : confirmArray){
 			confirm.addExtra(comp);
 		}
-		confirm.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_CONFIRM))));
+		confirm.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Message.CONFIGURATOR_MESSAGE_CONFIRM.getMessage())));
 		confirm.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "accept"));
 		
 		
-		BaseComponent[] changeArray = TextComponent.fromLegacyText(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_CHANGE));
+		BaseComponent[] changeArray = TextComponent.fromLegacyText(Message.CONFIGURATOR_MESSAGE_CHANGE.getMessage());
 		TextComponent change = new TextComponent();
 		for (BaseComponent comp : changeArray){
 			change.addExtra(comp);
 		}
-		change.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_CHANGE))));
+		change.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Message.CONFIGURATOR_MESSAGE_CHANGE.getMessage())));
 		change.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "change"));
 		
 		
-		BaseComponent[] cancelArray = TextComponent.fromLegacyText(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_CANCEL));
+		BaseComponent[] cancelArray = TextComponent.fromLegacyText(Message.CONFIGURATOR_MESSAGE_CANCEL.getMessage());
 		TextComponent cancel = new TextComponent();
 		for (BaseComponent comp : cancelArray){
 			cancel.addExtra(comp);
 		}
-		cancel.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessagesManager.getMessage(Message.CONFIGURATOR_MESSAGE_CANCEL))));
+		cancel.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Message.CONFIGURATOR_MESSAGE_CANCEL.getMessage())));
 		cancel.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "cancel"));
 		
 		TextComponent combined = new TextComponent();
@@ -239,20 +239,18 @@ public class MessageEditor implements Listener{
 	
 	public void processEditing(Player p, String newValue){
 		
+		Message cvar = cvarsEdited.get(p.getName());
 		
 		
 		System.out.println("[CoinFlipper] " + p.getName() + " changed cvar " + cvarsEdited.get(p.getName()) + " value from " + 
-				config.getString(cvarsEdited.get(p.getName())) + " to " + newValue);
+				cvar.getMessage() + " to " + newValue);
 		
+		cvar.setMessage(newValue);		
+		setup();
 		
-		config.set(cvarsEdited.get(p.getName()), newValue);
-		
-				
-		setup(pl);
-		
-		ConfigManager.getManager().saveMessages();
-		p.sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL).
-				replace("%VALUE%", newValue).replace("%CVAR%", cvarsEdited.get(p.getName())));
+		cvar.save();
+		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().
+				replace("%VALUE%", newValue).replace("%CVAR%", cvarsEdited.get(p.getName()).toString()));
 		cvarsEdited.remove(p.getName());
 		
 		refresh();

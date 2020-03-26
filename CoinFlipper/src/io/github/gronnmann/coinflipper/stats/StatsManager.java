@@ -26,22 +26,9 @@ public class StatsManager implements Listener{
 	
 	//Called when plugin is enabled to fetch all stats
 	public void load(){
-		statsC = ConfigManager.getManager().getStats();
-		
 		
 		for (Player oPl : Bukkit.getOnlinePlayers()){
-			if (SQLManager.getManager().isEnabled()){
-				SQLManager.getManager().loadStats(oPl.getUniqueId().toString());
-			}else{
-				int gamesWon = statsC.getInt("stats." + oPl.getUniqueId().toString() + ".gamesWon");
-				int gamesLost = statsC.getInt("stats." + oPl.getUniqueId().toString() + ".gamesLost");
-				double moneyUsed = statsC.getDouble("stats." + oPl.getUniqueId().toString() + ".moneySpent");
-				double moneyWon = statsC.getDouble("stats." + oPl.getUniqueId().toString() + ".moneyWon");
-				Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
-				
-				stats.put(oPl.getUniqueId().toString(), statsS);
-				this.createClearStats(oPl);
-			}
+			SQLManager.getManager().loadStats(oPl.getUniqueId().toString());
 		}
 	}
 	
@@ -50,21 +37,9 @@ public class StatsManager implements Listener{
 	public void save(){
 		for (String players : stats.keySet()){
 			
-			if (SQLManager.getManager().isEnabled()){
-				SQLManager.getManager().saveStats(players, stats.get(players));
-				
-			}else{
-				statsC.set("stats."+players+".gamesWon", stats.get(players).getGamesWon());
-				statsC.set("stats."+players+".gamesLost", stats.get(players).getGamesLost());
-				statsC.set("stats."+players+".moneySpent", stats.get(players).getMoneySpent());
-				statsC.set("stats."+players+".moneyWon", stats.get(players).getMoneyWon());
-				ConfigManager.getManager().saveStats();
-			}
-			
-			Debug.print("Saving stats for: " + players);
+			SQLManager.getManager().saveStats(players, stats.get(players));
 			
 		}
-		ConfigManager.getManager().saveStats();
 	}
 	
 	public Stats getStats(Player p){
@@ -118,23 +93,8 @@ public class StatsManager implements Listener{
 	
 	@EventHandler
 	public void createStatsIfNew(PlayerJoinEvent e){
-		if (!stats.containsKey(e.getPlayer().getUniqueId().toString())){
-			
-			try{
-				if (SQLManager.getManager().isEnabled()){
-					SQLManager.getManager().loadStats(e.getPlayer().getUniqueId().toString());
-				}else{
-					int gamesWon = statsC.getInt("stats." + e.getPlayer().getUniqueId().toString() + ".gamesWon");
-					int gamesLost = statsC.getInt("stats." + e.getPlayer().getUniqueId().toString() + ".gamesLost");
-					double moneyUsed = statsC.getDouble("stats." + e.getPlayer().getUniqueId().toString() + ".moneySpent");
-					double moneyWon = statsC.getDouble("stats." + e.getPlayer().getUniqueId().toString() + ".moneyWon");
-					Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
-					
-					stats.put(e.getPlayer().getUniqueId().toString(), statsS);
-				}
-			}catch(Exception ex){
-				this.createClearStats(e.getPlayer());
-			}
+		if (!stats.containsKey(e.getPlayer().getUniqueId().toString())){	
+			SQLManager.getManager().loadStats(e.getPlayer().getUniqueId().toString());
 		}
 	}
 	

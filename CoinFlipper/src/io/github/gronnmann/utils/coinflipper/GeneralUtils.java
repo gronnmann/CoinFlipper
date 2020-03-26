@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import org.bukkit.Bukkit;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.CoinFlipper;
 
 public class GeneralUtils {
@@ -17,7 +18,7 @@ public class GeneralUtils {
 		
 		if (number < 1000)return number+"";
 		
-		if (ConfigManager.getManager().getConfig().getBoolean("formatting_shorten_money")){
+		if (ConfigVar.FORMATTING_SHORTEN_MONEY.getBoolean()){
 			
 			
 			int exponent = (int) (Math.log(number)/Math.log(1000));
@@ -32,9 +33,9 @@ public class GeneralUtils {
 			
 			return String.format("%.01f %c", number/Math.pow(1000, exponent), numSuffix);
 		}else{
-			//return Main.getEcomony().format(number);
-			DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
-			return formatter.format(number);
+			return CoinFlipper.getEcomony().format(number);
+			/*DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
+			return formatter.format(number);*/
 		}
 		
 		

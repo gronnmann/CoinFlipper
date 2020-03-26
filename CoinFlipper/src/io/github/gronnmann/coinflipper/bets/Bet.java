@@ -2,6 +2,7 @@ package io.github.gronnmann.coinflipper.bets;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.animations.Animation;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 
 public class Bet {
 	private String player;
@@ -15,7 +16,7 @@ public class Bet {
 		this.bet = bet;
 		this.amount = amount;
 		this.id = id;
-		this.minsRemaining = ConfigManager.getManager().getConfig().getInt("time_expire");
+		this.minsRemaining = ConfigVar.TIME_EXPIRE.getInt();
 		this.booster = booster;
 		this.animation = animation;
 	}

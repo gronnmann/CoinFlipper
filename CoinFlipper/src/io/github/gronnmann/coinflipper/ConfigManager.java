@@ -1,6 +1,7 @@
 package io.github.gronnmann.coinflipper;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -12,8 +13,12 @@ import org.bukkit.plugin.Plugin;
 import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+import io.github.gronnmann.coinflipper.customizable.CustomMaterial;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.gui.CreationGUI;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
+import io.github.gronnmann.coinflipper.gui.configurationeditor.config.ConfigEditor;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
@@ -24,30 +29,30 @@ public class ConfigManager {
 	public static ConfigManager getManager(){return mng;}
 	
 	private Plugin pl;
-	private File configF, messagesF, statsF, betsF, mysqlF, materialsF;
-	private FileConfiguration config, messages, stats, bets, mysql, materials;
+	private File configF, messagesF, betsF, mysqlF, materialsF;
+	private FileConfiguration config, messages, bets, mysql, materials;
 	
 	public void setup(){
 		
 		this.pl = CoinFlipper.getMain();
 		
+		if (!pl.getDataFolder().exists()) {
+			pl.getDataFolder().mkdirs();
+		}
+		
 		//Config
 		configF = new File(pl.getDataFolder(), "config.yml");
-		if (!configF.exists()){
-			pl.saveDefaultConfig();
-			config = YamlConfiguration.loadConfiguration(configF);
-			
-			
-			if (CoinFlipper.versionId < 9){
-				config.set("sound_while_choosing", "CLICK");
-				config.set("sound_winner_chosen", "FIREWORK_BLAST");
+		if (!configF.exists())
+			try {
+				configF.createNewFile();
+			} catch (IOException e1) {
+				System.out.print("[CoinFlipper] Could not create config file.");
+				e1.printStackTrace();
 			}
-			
-			
-			this.saveConfig();
-			
-		}else{
-			config = YamlConfiguration.loadConfiguration(configF);
+		config = YamlConfiguration.loadConfiguration(configF);
+		
+		for (ConfigVar var : ConfigVar.values()) {
+			var.load();
 		}
 		
 		
@@ -56,26 +61,17 @@ public class ConfigManager {
 		messagesF = new File(pl.getDataFolder(), "messages.yml");
 		if (!messagesF.exists()){
 			try{
-				pl.saveResource("messages.yml", false);
-				//messagesF.createNewFile();
-				messages = YamlConfiguration.loadConfiguration(messagesF);
-				/*this.copyDefaults(messages, "/messages.yml");
-				this.saveMessages();*/
-				
-			}catch(Exception e){e.printStackTrace();}
-		}else{
-			messages = YamlConfiguration.loadConfiguration(messagesF);
-		}
-		
-		statsF = new File(pl.getDataFolder(), "stats.yml");
-		if (!statsF.exists()){
-			try {
-				statsF.createNewFile();
-			} catch (Exception e) {
+				messagesF.createNewFile();
+			}catch(Exception e){
+				System.out.println("[CoinFlipper] Could not create messages.yml");
 				e.printStackTrace();
 			}
 		}
-		stats = YamlConfiguration.loadConfiguration(statsF);
+		messages = YamlConfiguration.loadConfiguration(messagesF);
+		for (Message msg : Message.values()) {
+			msg.load();
+		}
+		
 		
 		betsF = new File(pl.getDataFolder(), "bets.yml");
 		if (!betsF.exists()){
@@ -103,61 +99,19 @@ public class ConfigManager {
 		materialsF = new File(pl.getDataFolder(), "materials.yml");
 		if (!materialsF.exists()){
 			try{
-				//materialsF.createNewFile();
-				pl.saveResource("materials.yml", false);
-				materials = YamlConfiguration.loadConfiguration(materialsF);
-				/*this.copyDefaults(materials, "/materials.yml");
-				this.saveMaterials();*/
-			}catch(Exception e){e.printStackTrace();}
-		}else{
-			materials = YamlConfiguration.loadConfiguration(materialsF);
+				materialsF.createNewFile();
+			}catch(Exception e){
+				System.out.print("[CoinFlipper] Could not create materials file.");
+				e.printStackTrace();
+			}
+		}
+		materials = YamlConfiguration.loadConfiguration(materialsF);
+		for (CustomMaterial m : CustomMaterial.values()) {
+			m.load();
 		}
 		
 	}
 	
-	public void configUpdate(){
-		
-		
-		
-		String ver = pl.getDescription().getVersion();
-		double pluginVer = Double.parseDouble(ver);
-		double configVer = config.getDouble("config_version");
-		
-		Debug.print("Current plugin version: " + pluginVer + ", Current config version: " + configVer);
-		
-		
-		if (pluginVer > configVer){
-			try{
-				InputStream newConfigStream = pl.getClass().getResourceAsStream("/config.yml");
-				
-				if (newConfigStream == null)return;
-				
-				InputStreamReader newConfigStreamReader = new InputStreamReader(newConfigStream);
-				
-				FileConfiguration newConfig = YamlConfiguration.loadConfiguration(newConfigStreamReader);
-				
-				System.out.println("[CoinFlipper] Old config found. Updating...");
-				
-				for (String field : newConfig.getConfigurationSection("").getKeys(false)){
-					if (config.get(field) == null){
-						config.set(field, newConfig.get(field));
-						System.out.println("[CoinFlipper] Adding field '" + field + "' with value '" + newConfig.get(field) + "'");
-					}
-				}
-				
-				config.set("config_version", Double.parseDouble(pl.getDescription().getVersion()));
-				
-				this.saveConfig();
-				
-				newConfigStreamReader.close();
-				newConfigStream.close();
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		
-	}
 	
 	
 	//Copy default option
@@ -175,7 +129,6 @@ public class ConfigManager {
 	
 	public FileConfiguration getConfig(){return config;}
 	public FileConfiguration getMessages(){return messages;}
-	public FileConfiguration getStats(){return stats;}
 	public FileConfiguration getBets() {return bets;}
 	public FileConfiguration getMySQL(){return mysql;}
 	public FileConfiguration getMaterials(){return materials;}
@@ -193,11 +146,6 @@ public class ConfigManager {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
-	public void saveStats(){
-		try{
-			stats.save(statsF);
-		}catch(Exception e){e.printStackTrace();}
 	}
 	public void saveBets(){
 		try{
@@ -217,17 +165,33 @@ public class ConfigManager {
 	
 	public void reload(){
 		config = YamlConfiguration.loadConfiguration(configF);
+		for (ConfigVar cvar : ConfigVar.values()) {
+			cvar.load();
+			cvar.save(true);
+		}
+		
+		materials = YamlConfiguration.loadConfiguration(materialsF);
+		for (CustomMaterial m : CustomMaterial.values()) {
+			m.load();
+			m.save(true, true);
+		}
+		
 		messages = YamlConfiguration.loadConfiguration(messagesF);
-		stats = YamlConfiguration.loadConfiguration(statsF);
+		for (Message msg : Message.values()) {
+			msg.load();
+			msg.save();
+		}
+		
+		
+		
 		bets = YamlConfiguration.loadConfiguration(betsF);
 		mysql = YamlConfiguration.loadConfiguration(mysqlF);
-		materials = YamlConfiguration.loadConfiguration(materialsF);
 		
-		MaterialsManager.setup(pl);
 		SelectionScreen.getInstance().setup(pl);
 		AnimationFileManager.getManager().setup(pl);
 		AnimationGUI.getManager().setup();
 		BettingManager.getManager().load();
 		CreationGUI.getInstance().generatePreset();
+		ConfigEditor.getInstance().setup();
 	}
 }

@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 
 public class AnimationFileManager {
 	private AnimationFileManager(){}
@@ -43,7 +44,7 @@ public class AnimationFileManager {
 			Animation anim = AnimationsManager.getManager().loadAnimation(animation, animationF);
 			animCount++;
 			//Default setter
-			if (anim.getName().equals(ConfigManager.getManager().getConfig().getString("animation_default"))){
+			if (anim.getName().equals(ConfigVar.ANIMATION_DEFAULT.getString())){
 				AnimationsManager.getManager().setDefault(anim);
 			}
 		}

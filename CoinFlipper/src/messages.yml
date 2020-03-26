@@ -60,6 +60,8 @@ BET_REMOVE_OTHER_CONFIRM: '&cRight click once more to confirm you want to remove
 BET_REMOVE_OTHER_SUCCESSFUL: '&aSuccessfully removed %PLAYER%''s bet.'
 BET_REMOVE_OTHER_NOTIFICATION: '&cYour bet has been removed'
 
+BET_EXPIRE_REFUND: '&cYour bet has expired. You have been refunded &e%MONEY%'
+
 BET_CHALLENGE_CANTSELF: '&cYou can''t challenge your own bet!'
 BET_CHALLENGE_ALREADYSPINNING: '&cThe player you are trying to challenge is already in a CoinFlipper game.'
 BET_CHALLENGE_NOMONEY: '&cYou can''t afford to challenge this bet.'

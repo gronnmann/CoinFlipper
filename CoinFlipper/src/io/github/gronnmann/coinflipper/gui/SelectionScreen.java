@@ -17,16 +17,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 
-import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.CoinFlipper;
-import io.github.gronnmann.coinflipper.MaterialsManager;
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.animations.AnimationRunnable;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.Bet;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+import io.github.gronnmann.coinflipper.customizable.CustomMaterial;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.events.BetChallengeEvent;
 import io.github.gronnmann.coinflipper.events.BetPlayEvent;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
@@ -50,7 +49,7 @@ public class SelectionScreen implements Listener{
 	
 	public void setup(Plugin pl){
 		this.pl = pl;
-		selectionScreen = Bukkit.createInventory(new SelectionScreenHolder(), 54, MessagesManager.getMessage(Message.GUI_SELECTION));
+		selectionScreen = Bukkit.createInventory(new SelectionScreenHolder(), 54, Message.GUI_SELECTION.getMessage());
 		
 	}
 	
@@ -63,21 +62,21 @@ public class SelectionScreen implements Listener{
 			amo++;
 		}
 		for (int i = 45; i <= 53; i++){
-			selectionScreen.setItem(i, ItemUtils.createItem(MaterialsManager.getMaterial("selection_filling"), " ", MaterialsManager.getData("selection_filling")));
+			selectionScreen.setItem(i, ItemUtils.createItem(CustomMaterial.SELECTION_FILLING.getMaterial(), " ", CustomMaterial.SELECTION_FILLING.getData()));
 		}
-		ItemStack help = new ItemStack(MaterialsManager.getMaterial("selection_syntax"));
+		ItemStack help = new ItemStack(CustomMaterial.SELECTION_SYNTAX.getMaterial(), 1, (short)CustomMaterial.SELECTION_SYNTAX.getData());
 		ItemMeta helpM = help.getItemMeta();
-		helpM.setDisplayName(ChatColor.BOLD + MessagesManager.getMessage(Message.HELP_ITEM_L1));
+		helpM.setDisplayName(ChatColor.BOLD + Message.HELP_ITEM_L1.getMessage());
 		ArrayList<String> lores = new ArrayList<String>();
-		lores.add(MessagesManager.getMessage(Message.HELP_ITEM_L2));
-		lores.add(MessagesManager.getMessage(Message.HELP_ITEM_L3));
-		lores.add(MessagesManager.getMessage(Message.HELP_ITEM_L4));
+		lores.add(Message.HELP_ITEM_L2.getMessage());
+		lores.add(Message.HELP_ITEM_L3.getMessage());
+		lores.add(Message.HELP_ITEM_L4.getMessage());
 		helpM.setLore(lores);
 		help.setItemMeta(helpM);
 		selectionScreen.setItem(49, help);
 		
-		selectionScreen.setItem(CREATE, ItemUtils.createItem(MaterialsManager.getMaterial("selection_create"), MessagesManager.getMessage(Message.CREATE), 
-				MaterialsManager.getData("selection_create")));
+		selectionScreen.setItem(CREATE, ItemUtils.createItem(CustomMaterial.SELECTION_CREATE.getMaterial(), Message.CREATE.getMessage(), 
+				CustomMaterial.SELECTION_CREATE.getData()));
 	}
 	
 	public void openGameManager(Player p){
@@ -87,12 +86,12 @@ public class SelectionScreen implements Listener{
 	
 	private void generateAnimations(String p1, String p2, String winner, double moneyWon, String anim){
 		
-		String invName = MessagesManager.getMessage(Message.GUI_GAME).replaceAll("%PLAYER1%", p1).replaceAll("%PLAYER2%", p2);
+		String invName = Message.GUI_GAME.getMessage().replaceAll("%PLAYER1%", p1).replaceAll("%PLAYER2%", p2);
 		String packageName = Bukkit.getServer().getClass().getPackage().getName();
 		int vID = Integer.parseInt(packageName.split("_")[1]);
 		
 		if (invName.length() > 32 && vID < 9){
-			invName = MessagesManager.getMessage(Message.GUI_GAME_18);
+			invName = Message.GUI_GAME_18.getMessage();
 		}
 		
 		
@@ -120,20 +119,20 @@ public class SelectionScreen implements Listener{
 		SkullMeta sm = (SkullMeta)skull.getItemMeta();
 		sm.setOwner(b.getPlayer());
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_PLAYER).replaceAll("%PLAYER%", b.getPlayer()));
-		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_MONEY).replaceAll("%MONEY%", GeneralUtils.getFormattedNumbers(b.getAmount())));
+		lore.add(Message.MENU_HEAD_PLAYER.getMessage().replaceAll("%PLAYER%", b.getPlayer()));
+		lore.add(Message.MENU_HEAD_MONEY.getMessage().replaceAll("%MONEY%", GeneralUtils.getFormattedNumbers(b.getAmount())));
 		int hours = b.getTimeRemaining()/60;
 		int mins = b.getTimeRemaining()-hours*60;
-		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_TIMEREMAINING).replaceAll("%HOURS%", hours+"").replaceAll("%MINUTES%", mins+""));
+		lore.add(Message.MENU_HEAD_TIMEREMAINING.getMessage().replaceAll("%HOURS%", hours+"").replaceAll("%MINUTES%", mins+""));
 		String side = ".";
 		if (b.getSide() == 0){
-			side = MessagesManager.getMessage(Message.TAILS);
+			side = Message.TAILS.getMessage();
 		}else{
-			side = MessagesManager.getMessage(Message.HEADS);
+			side = Message.HEADS.getMessage();
 		}
-		lore.add(MessagesManager.getMessage(Message.MENU_HEAD_SIDE).replaceAll("%SIDE%", side));
+		lore.add(Message.MENU_HEAD_SIDE.getMessage().replaceAll("%SIDE%", side));
 		sm.setLore(lore);
-		sm.setDisplayName(MessagesManager.getMessage(Message.MENU_HEAD_GAME).replaceAll("%ID%", b.getID()+""));
+		sm.setDisplayName(Message.MENU_HEAD_GAME.getMessage().replaceAll("%ID%", b.getID()+""));
 		skull.setItemMeta(sm);
 		return skull;
 	}
@@ -155,8 +154,8 @@ public class SelectionScreen implements Listener{
 		if (e.getSlot() == CREATE){
 			
 			if (CoinFlipper.getEcomony().getBalance(e.getWhoClicked().getName())
-					< ConfigManager.getManager().getConfig().getDouble("min_amount")){
-				e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.PLACE_NOT_POSSIBLE_NOMONEY).replaceAll("%MINMON%", ConfigManager.getManager().getConfig().getDouble("min_amount")+""));
+					< ConfigVar.MIN_AMOUNT.getDouble()){
+				e.getWhoClicked().sendMessage(Message.PLACE_NOT_POSSIBLE_NOMONEY.getMessage().replaceAll("%MINMON%", ConfigVar.MIN_AMOUNT.getDouble()+""));
 				return;
 			}
 			CreationGUI.getInstance().openInventory((Player) e.getWhoClicked());
@@ -182,10 +181,10 @@ public class SelectionScreen implements Listener{
 				if (removers.contains(p.getName())){
 					BettingManager.getManager().removeBet(b);
 					this.refreshGameManager();
-					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_SELF_SUCCESSFUL));
+					p.sendMessage(Message.BET_REMOVE_SELF_SUCCESSFUL.getMessage());
 					CoinFlipper.getEcomony().depositPlayer(p.getName(), b.getAmount());
 				}else{
-					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_SELF_CONFIRM));
+					p.sendMessage(Message.BET_REMOVE_SELF_CONFIRM.getMessage());
 					removers.add(p.getName());
 					final String pN = p.getName();
 					Bukkit.getScheduler().scheduleAsyncDelayedTask(pl, new Runnable() {
@@ -209,15 +208,15 @@ public class SelectionScreen implements Listener{
 				if (removers.contains(p.getName())){
 					BettingManager.getManager().removeBet(b);
 					this.refreshGameManager();
-					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_SUCCESSFUL).replaceAll("%PLAYER%", b.getPlayer()));
+					p.sendMessage(Message.BET_REMOVE_OTHER_SUCCESSFUL.getMessage().replaceAll("%PLAYER%", b.getPlayer()));
 					Player bP = Bukkit.getPlayer(b.getPlayer());
 					if (bP != null){
-						bP.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_NOTIFICATION));
+						bP.sendMessage(Message.BET_REMOVE_OTHER_NOTIFICATION.getMessage());
 					}
 					
 					CoinFlipper.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
 				}else{
-					p.sendMessage(MessagesManager.getMessage(Message.BET_REMOVE_OTHER_CONFIRM).replaceAll("%PLAYER%", b.getPlayer()));
+					p.sendMessage(Message.BET_REMOVE_OTHER_CONFIRM.getMessage().replaceAll("%PLAYER%", b.getPlayer()));
 					removers.add(p.getName());
 					final String pN = p.getName();
 					Bukkit.getScheduler().scheduleAsyncDelayedTask(pl, new Runnable() {
@@ -239,19 +238,19 @@ public class SelectionScreen implements Listener{
 		//Challenging
 		//Check if player challenges himself
 		if (p.getName().equals(b.getPlayer())){
-			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_CANTSELF));
+			p.sendMessage(Message.BET_CHALLENGE_CANTSELF.getMessage());
 			return;
 		}
 		
 		if (GamesManager.getManager().isSpinning(b.getPlayer())){
-			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_ALREADYSPINNING));
+			p.sendMessage(Message.BET_CHALLENGE_ALREADYSPINNING.getMessage());
 			return;
 		}
 		
 		//Check if player can afford
 		EconomyResponse response = CoinFlipper.getEcomony().withdrawPlayer(p, b.getAmount());
 		if (!response.transactionSuccess()){
-			p.sendMessage(MessagesManager.getMessage(Message.BET_CHALLENGE_NOMONEY));
+			p.sendMessage(Message.BET_CHALLENGE_NOMONEY.getMessage());
 			return;
 		}
 		
@@ -261,7 +260,7 @@ public class SelectionScreen implements Listener{
 		if (chEvent.isCancelled())return;
 		
 		double winAmount = b.getAmount()*2;
-		final double tax = ConfigManager.getManager().getConfig().getDouble("tax_percentage");
+		final double tax = ConfigVar.TAX_PERCENTAGE.getDouble();
 		winAmount = (100-tax)*winAmount/100;
 		
 		final String winner = BettingManager.getManager().challengeBet(b, p);

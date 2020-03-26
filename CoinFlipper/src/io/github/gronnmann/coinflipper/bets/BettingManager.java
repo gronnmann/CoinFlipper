@@ -11,6 +11,7 @@ import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.animations.Animation;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
@@ -26,10 +27,20 @@ public class BettingManager {
 	private ArrayList<Bet> bets = new ArrayList<Bet>();
 	
 	public void load(){
+		
+		
 		conf = ConfigManager.getManager().getBets();
 		
 		if (conf.getConfigurationSection("bets") == null)return;
 		for (String ids : conf.getConfigurationSection("bets").getKeys(false)){
+			int id = Integer.parseInt(ids);
+			boolean alreadyExist = false;
+			for (Bet b : bets) {
+				if (b.getID() == id)alreadyExist = true;
+			}
+			
+			if (alreadyExist)continue;
+			
 			int booster = conf.getInt("bets."+ids+".booster");
 			String player = conf.getString("bets."+ids+".player");
 			double money = conf.getDouble("bets."+ids+".money");
@@ -37,7 +48,7 @@ public class BettingManager {
 			int time = conf.getInt("bets."+ids+".time");
 			Animation animation = AnimationsManager.getManager().getAnimation(conf.getString("bets."+ids+".animation"));
 			
-			Bet bet = new Bet(player, side, money, Integer.parseInt(ids), booster, animation);
+			Bet bet = new Bet(player, side, money, id, booster, animation);
 			bet.setTimeRemaining(time);
 			
 			bets.add(bet);
@@ -45,7 +56,9 @@ public class BettingManager {
 	}
 	
 	public void save(){
+		
 		conf.set("bets", null);
+		
 		for (Bet b : bets){
 			conf.set("bets."+b.getID()+".booster", b.getBooster());
 			conf.set("bets."+b.getID()+".player", b.getPlayer());
@@ -148,8 +161,8 @@ public class BettingManager {
 	
 	public int[] getChances(Player p1, Bet b){
 		
-		if (ConfigManager.getManager().getConfig().getString("boosters_enabled") != null){
-			if (!ConfigManager.getManager().getConfig().getBoolean("boosters_enabled")){
+		if (ConfigVar.BOOSTERS_ENABLED.getValue() != null){
+			if (!ConfigVar.BOOSTERS_ENABLED.getBoolean()){
 				return new int[]{50, 50};
 			}
 		}
@@ -204,8 +217,8 @@ public class BettingManager {
 		int limit = 1;
 		int bets = 0;
 		
-		if (ConfigManager.getManager().getConfig().getString("bets_per_player") != null){
-			limit = ConfigManager.getManager().getConfig().getInt("bets_per_player");
+		if (ConfigVar.BETS_PER_PLAYER.getValue() != null){
+			limit = ConfigVar.BETS_PER_PLAYER.getInt();
 		}
 			
 		for (Bet b : BettingManager.getManager().getBets()){

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,8 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.customizable.CustomMaterial;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
 import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
@@ -31,7 +30,6 @@ public class MaterialEditor implements Listener{
 	
 	private Plugin pl;
 	protected Inventory selectionScreen;
-	private FileConfiguration config;
 	
 	
 	
@@ -39,14 +37,11 @@ public class MaterialEditor implements Listener{
 	
 	public void setup(Plugin pl){
 		this.pl = pl;
-		config = ConfigManager.getManager().getMaterials();
 		
 		int howManySlots = 0;
 		
-		for (String cvars : config.getConfigurationSection("").getKeys(false)){
-			if (!cvars.endsWith("_data")){
-				howManySlots++;
-			}
+		for (CustomMaterial materials : CustomMaterial.values()){
+			howManySlots++;
 		}
 		
 		int size = ((howManySlots/9)+2)*9;
@@ -64,22 +59,24 @@ public class MaterialEditor implements Listener{
 		
 		int index = 0;
 		
-		for (String cvars : config.getConfigurationSection("").getKeys(false)){
-			if (cvars.endsWith("_data"))continue;
+		for (CustomMaterial materials : CustomMaterial.values()){
+			
+			String cvars = materials.getPath();
+			
 			if (index > 54 )return;
 			
-			Material toUse = Material.valueOf(config.getString(cvars));
-			int data = config.getInt(cvars+"_data");
+			Material toUse = materials.getMaterial();
+			int data = materials.getData();
 			
 			
 			selectionScreen.setItem(index, ItemUtils.addToLore(ItemUtils.addToLore(ItemUtils.createItem(toUse, ChatColor.GOLD + cvars, data), ChatColor.YELLOW + "Material: " + 
-			ChatColor.GREEN + config.getString(cvars)), ChatColor.YELLOW + "Data: " + 
-			ChatColor.GREEN + config.getInt(cvars+"_data")));
+			ChatColor.GREEN + materials.getMaterial().toString()), ChatColor.YELLOW + "Data: " + 
+			ChatColor.GREEN + materials.getData()+""));
 			index++;
 		}
 		
 		selectionScreen.setItem(RELOAD, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ChatColor.YELLOW.toString() + ChatColor.BOLD + "RELOAD", 4));
-		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.STAINED_GLASS_PANE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 14));
+		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.STAINED_GLASS_PANE, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 14));
 		
 	}
 	
@@ -90,7 +87,7 @@ public class MaterialEditor implements Listener{
 			
 			if (item.getType().equals(Material.STAINED_GLASS_PANE))continue;
 			
-			String value = config.getString(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
+			String value = CustomMaterial.fromPath(ChatColor.stripColor(item.getItemMeta().getDisplayName())).getMaterial().toString();
 			
 			ItemUtils.setLore(item, ChatColor.YELLOW + "Value: " + ChatColor.GREEN + value);
 		}
@@ -102,7 +99,7 @@ public class MaterialEditor implements Listener{
 	
 	
 	
-	public HashMap<String, String> cvarsEdited = new HashMap<String, String>();
+	public HashMap<String, CustomMaterial> cvarsEdited = new HashMap<String, CustomMaterial>();
 	
 	@EventHandler
 	public void clickDetector(InventoryClickEvent e){
@@ -118,13 +115,13 @@ public class MaterialEditor implements Listener{
 		//Reload
 		if (e.getSlot() == RELOAD){
 			if (!p.hasPermission("coinflipper.reload")){
-				p.sendMessage(MessagesManager.getMessage(Message.NO_PERMISSION));
+				p.sendMessage(Message.NO_PERMISSION.getMessage());
 				return;
 			}
 			System.out.println("[CoinFlipper] Attempting to reload CoinFlipper (requested by " + p.getName() + ")");
 			ConfigManager.getManager().reload();
 			
-			p.sendMessage(MessagesManager.getMessage(Message.RELOAD_SUCCESS));
+			p.sendMessage(Message.RELOAD_SUCCESS.getMessage());
 			
 			openEditor(p);
 			
@@ -142,9 +139,9 @@ public class MaterialEditor implements Listener{
 		
 		
 		
-		cvarsEdited.put(p.getName(), cvar);
+		cvarsEdited.put(p.getName(), CustomMaterial.fromPath(cvar));
 		
-		e.getWhoClicked().sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_SPEC).replaceAll("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
+		e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replaceAll("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
 		e.getWhoClicked().closeInventory();
 		
 		MaterialChooser.getInstance().openEditor(p, cvar);
@@ -153,23 +150,21 @@ public class MaterialEditor implements Listener{
 	
 	public void processEditing(Player p, ItemStack newValue){
 		
-		
+		CustomMaterial cvar = cvarsEdited.get(p.getName());
 		
 		System.out.println("[CoinFlipper] " + p.getName() + " changed material " + cvarsEdited.get(p.getName()) + " value from " + 
-		config.getString(cvarsEdited.get(p.getName())) + " to " + newValue.getData().toString());
+		cvar.getMaterial().toString() + " to " + newValue.getData().toString());
 		
-		
-		config.set(cvarsEdited.get(p.getName()), newValue.getType().toString());
-		
-		config.set(cvarsEdited.get(p.getName())+"_data", newValue.getDurability());
+		cvar.setMaterial(newValue.getType());
+		cvar.setData(newValue.getDurability());
 		
 		Debug.print("Editing cvar: " + cvarsEdited.get(p.getName()) + " Material: " + newValue.getType().toString() + ", Data: " + newValue.getDurability());
 		
 		setup(pl);
 		
 		ConfigManager.getManager().saveMaterials();
-		p.sendMessage(MessagesManager.getMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL).
-				replaceAll("%VALUE%", newValue.getData().toString()).replace("%CVAR%", cvarsEdited.get(p.getName())));
+		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().
+				replaceAll("%VALUE%", newValue.getData().toString()).replace("%CVAR%", cvar.getPath()));
 		cvarsEdited.remove(p.getName());
 		
 		refresh();

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.events.BetPlaceEvent;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
@@ -36,23 +37,23 @@ public class GamesManager {
 	public boolean createGame(Player p, int side, double mon){
 		
 		if (BettingManager.getManager().isAlreadyThere(p)){
-			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_ALREADYGAME));
+			p.sendMessage(Message.PLACE_FAILED_ALREADYGAME.getMessage());
 			return false;
 		}
 		
-		if (mon < ConfigManager.getManager().getConfig().getDouble("min_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MIN_BET).replaceAll("%MIN_BET%", GeneralUtils.getFormattedNumbers(ConfigManager.getManager().getConfig().getDouble("min_amount"))));
+		if (mon < ConfigVar.MIN_AMOUNT.getDouble()){
+			p.sendMessage(Message.MIN_BET.getMessage().replaceAll("%MIN_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MIN_AMOUNT.getDouble())));
 			return true;
 		}
-		if (mon > ConfigManager.getManager().getConfig().getDouble("max_amount")){
-			p.sendMessage(MessagesManager.getMessage(Message.MAX_BET).replaceAll("%MAX_BET%", GeneralUtils.getFormattedNumbers(ConfigManager.getManager().getConfig().getDouble("max_amount"))));
+		if (mon > ConfigVar.MAX_AMOUNT.getDouble()){
+			p.sendMessage(Message.MAX_BET.getMessage().replaceAll("%MAX_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MAX_AMOUNT.getDouble())));
 			return true;
 		}
 		
 		
 		EconomyResponse response = CoinFlipper.getEcomony().withdrawPlayer(p.getName(), mon);
 		if (!response.transactionSuccess()){
-			p.sendMessage(MessagesManager.getMessage(Message.PLACE_FAILED_NOMONEY));
+			p.sendMessage(Message.PLACE_FAILED_NOMONEY.getMessage());
 			return false;
 		}
 		
@@ -65,7 +66,7 @@ public class GamesManager {
 			return false;
 		}
 		
-		p.sendMessage(MessagesManager.getMessage(Message.PLACE_SUCCESSFUL));
+		p.sendMessage(Message.PLACE_SUCCESSFUL.getMessage());
 		BettingManager.getManager().addBet(p, side, mon);
 		SelectionScreen.getInstance().refreshGameManager();
 		return true;

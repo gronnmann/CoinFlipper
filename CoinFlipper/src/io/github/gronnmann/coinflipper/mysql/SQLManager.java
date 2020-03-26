@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import io.github.gronnmann.coinflipper.ConfigManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
@@ -30,7 +31,7 @@ public class SQLManager {
 	
 	public void setup(){
 		
-		enabled = ConfigManager.getManager().getConfig().getBoolean("mysql_enabled");
+		enabled = ConfigVar.MYSQL_ENABLED.getBoolean();
 		
 		
 		

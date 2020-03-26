@@ -6,6 +6,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+
 public class HookManager {
 	private HookManager(){}
 	private static HookManager mng = new HookManager();
@@ -27,9 +30,11 @@ public class HookManager {
 			hooks.put(type, false);
 		}
 		
-		Plugin ProtocolLib = Bukkit.getPluginManager().getPlugin("ProtocolLib");
-		if (!(ProtocolLib == null)){
-			this.setHooked(HookType.ProtocolLib);
+		if (ConfigVar.SIGN_INPUT.getBoolean() && (CoinFlipper.versionId == 8 || CoinFlipper.versionId == 9)) {
+			Plugin ProtocolLib = Bukkit.getPluginManager().getPlugin("ProtocolLib");
+			if (!(ProtocolLib == null)){
+				this.setHooked(HookType.ProtocolLib);
+			}
 		}
 		
 		Plugin combatTagPlus = Bukkit.getPluginManager().getPlugin("CombatTagPlus");
@@ -68,7 +73,7 @@ public class HookManager {
 			HookPvpManager.getHook().register();
 			break;
 		case ProtocolLib:
-			HookProtocolLib.getHook().register(pl);
+			hooks.put(hook, HookProtocolLib.getHook().register(pl));
 			break;
 		case ChatPerWorld:
 			break;
@@ -76,6 +81,12 @@ public class HookManager {
 			break;
 		}
 		
+	}
+	
+	public void onDisable() {
+		if (isHooked(HookType.ProtocolLib)) {
+			HookProtocolLib.getHook().disable();
+		}
 	}
 	
 	public boolean isHooked(HookType hook){

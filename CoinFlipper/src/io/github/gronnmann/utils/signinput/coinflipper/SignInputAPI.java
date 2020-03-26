@@ -19,11 +19,13 @@ public class SignInputAPI {
 	
 	private ProtocolManager manager;
 	
-	public SignInputAPI(Plugin pl, ProtocolManager manager){
+	SignChangeDetector detector;
+	
+	public SignInputAPI(Plugin pl, ProtocolManager manager) throws Exception{
 		this.manager = manager;
 		
-		
-		manager.addPacketListener(new SignChangeDetector(pl, ListenerPriority.NORMAL));
+		this.detector = new SignChangeDetector(pl, ListenerPriority.NORMAL);
+		manager.addPacketListener(detector);
 		
 	}
 	
@@ -35,6 +37,12 @@ public class SignInputAPI {
 			manager.sendServerPacket(player, signUse);
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void disable() {
+		if (manager != null) {
+			manager.removePacketListener(detector);
 		}
 	}
 }

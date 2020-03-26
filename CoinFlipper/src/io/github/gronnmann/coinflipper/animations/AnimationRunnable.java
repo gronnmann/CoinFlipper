@@ -5,11 +5,10 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.CoinFlipper;
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.GamesManager;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.hook.HookChatPerWorld;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
@@ -36,7 +35,7 @@ public class AnimationRunnable extends BukkitRunnable{
 		this.winMoneyFormatted = GeneralUtils.getFormattedNumbers(winMoney);
 		
 		this.winFrame = 30;
-		this.winFrame = ConfigManager.getManager().getConfig().getInt("frame_winner_chosen");
+		this.winFrame = ConfigVar.FRAME_WINNER_CHOSEN.getInt();
 				
 		Animation anim = AnimationsManager.getManager().getAnimation(animationS);
 		
@@ -59,27 +58,29 @@ public class AnimationRunnable extends BukkitRunnable{
 				p1.openInventory(animation.getFrame(phase));
 			}else{
 				if (phase == 1){
-					p1.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
+					p1.sendMessage(Message.BET_START_COMBAT.getMessage());
 					
-					PacketUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
+					PacketUtils.sendTitle(p1, Message.BET_TITLE_COMBAT.getMessage(), 
 							TitleType.TITLE, 20, 40, 20);
-					PacketUtils.sendTitle(p1, MessagesManager.getMessage(Message.BET_START_COMBAT), 
+					PacketUtils.sendTitle(p1, Message.BET_START_COMBAT.getMessage(), 
 							TitleType.SUBTITLE, 20, 40, 20);
 				}
 			}
 		}
-		if (p2 != null){
-			if (!HookManager.getManager().isTagged(p1)){
-				p2.openInventory(animation.getFrame(phase));
-			}
-			else{
-				if (phase == 1){
-					p2.sendMessage(MessagesManager.getMessage(Message.BET_START_COMBAT));
-					
-					PacketUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_TITLE_COMBAT), 
-							TitleType.TITLE, 20, 40, 20);
-					PacketUtils.sendTitle(p2, MessagesManager.getMessage(Message.BET_START_COMBAT), 
-							TitleType.SUBTITLE, 20, 40, 20);
+		if (!ConfigVar.ANIMATION_ONLY_CHALLENGER.getBoolean()) {
+			if (p2 != null){
+				if (!HookManager.getManager().isTagged(p1)){
+					p2.openInventory(animation.getFrame(phase));
+				}
+				else{
+					if (phase == 1){
+						p2.sendMessage(Message.BET_START_COMBAT.getMessage());
+						
+						PacketUtils.sendTitle(p2, Message.BET_TITLE_COMBAT.getMessage(), 
+								TitleType.TITLE, 20, 40, 20);
+						PacketUtils.sendTitle(p2, Message.BET_START_COMBAT.getMessage(), 
+								TitleType.SUBTITLE, 20, 40, 20);
+					}
 				}
 			}
 		}
@@ -94,10 +95,10 @@ public class AnimationRunnable extends BukkitRunnable{
 			
 			//Sound
 			try{
-				p1.playSound(p1.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_winner_chosen").toUpperCase()), 1F, 1F);
+				p1.playSound(p1.getLocation(), Sound.valueOf(ConfigVar.SOUND_WINNER_CHOSEN.getString().toUpperCase()), 1F, 1F);
 			}catch(Exception e){}
 			try{
-				p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_winner_chosen").toUpperCase()) , 1F, 1F);				}catch(Exception e){}
+				p2.playSound(p2.getLocation(), Sound.valueOf(ConfigVar.SOUND_WINNER_CHOSEN.getString().toUpperCase()) , 1F, 1F);				}catch(Exception e){}
 			
 			String loser = s1;
 			if (s1.equals(winner)){
@@ -107,28 +108,28 @@ public class AnimationRunnable extends BukkitRunnable{
 			Player win = Bukkit.getPlayer(winner);
 			if (win != null){
 				
-				String winMsg = MessagesManager.getMessage(Message.BET_WON).replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
+				String winMsg = Message.BET_WON.getMessage().replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
 						winner).replaceAll("%LOSER%", loser);
 				win.sendMessage(winMsg);
 				
-				PacketUtils.sendTitle(win, MessagesManager.getMessage(Message.BET_TITLE_VICTORY), TitleType.TITLE, 20, 60, 20);
+				PacketUtils.sendTitle(win, Message.BET_TITLE_VICTORY.getMessage(), TitleType.TITLE, 20, 60, 20);
 				PacketUtils.sendTitle(win, winMsg, TitleType.SUBTITLE, 20, 60, 20);
 			}
 			Player los = Bukkit.getPlayer(loser);
 			if (los != null){
-				String losMsg = MessagesManager.getMessage(Message.BET_LOST).replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
+				String losMsg = Message.BET_LOST.getMessage().replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
 						winner).replaceAll("%LOSER%", loser);
 				los.sendMessage(losMsg);
 					
-				PacketUtils.sendTitle(los, MessagesManager.getMessage(Message.BET_TITLE_LOSS), TitleType.TITLE, 20, 60, 20);
+				PacketUtils.sendTitle(los, Message.BET_TITLE_LOSS.getMessage(), TitleType.TITLE, 20, 60, 20);
 				PacketUtils.sendTitle(los, losMsg, TitleType.SUBTITLE, 20, 60, 20);
 			}
 			
 			
 			//Possibly broadcast win
-			if ( !(ConfigManager.getManager().getConfig().getString("value_needed_to_broadcast") == null) && 
-					winMoney >= ConfigManager.getManager().getConfig().getDouble("value_needed_to_broadcast") && 
-					ConfigManager.getManager().getConfig().getDouble("value_needed_to_broadcast") != 0){
+			if ( !(ConfigVar.VALUE_NEEDED_TO_BROADCAST.getValue() == null) && 
+					winMoney >= ConfigVar.VALUE_NEEDED_TO_BROADCAST.getDouble() && 
+							ConfigVar.VALUE_NEEDED_TO_BROADCAST.getDouble() != -1){
 					
 				if (HookManager.getManager().isHooked(HookType.ChatPerWorld)){
 					if (Bukkit.getPlayer(winner) == null){
@@ -139,14 +140,14 @@ public class AnimationRunnable extends BukkitRunnable{
 						Debug.print("Testing player " + oPl.getName());
 						if (HookChatPerWorld.getHook().getReceivers(Bukkit.getPlayer(winner)).contains(oPl)){
 							Debug.print(oPl.getName() + " approved.");
-							oPl.sendMessage(MessagesManager.getMessage(Message.HIGH_GAME_BROADCAST)
+							oPl.sendMessage(Message.HIGH_GAME_BROADCAST.getMessage()
 									.replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
 								winner).replaceAll("%LOSER%", loser));
 						}
 					}
 				}else{
 					Debug.print("Normal broadcast.");
-					Bukkit.broadcastMessage(MessagesManager.getMessage(Message.HIGH_GAME_BROADCAST)
+					Bukkit.broadcastMessage(Message.HIGH_GAME_BROADCAST.getMessage()
 						.replaceAll("%MONEY%", winMoneyFormatted+"").replaceAll("%WINNER%",
 								winner).replaceAll("%LOSER%", loser));
 				}
@@ -159,10 +160,10 @@ public class AnimationRunnable extends BukkitRunnable{
 		//Sound click
 		if (phase < winFrame){
 			try{
-				p1.playSound(p1.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
+				p1.playSound(p1.getLocation(), Sound.valueOf(ConfigVar.SOUND_WHILE_CHOOSING.getString().toUpperCase()) , 1F, 1F);
 			}catch(Exception e){}
 			try{
-				p2.playSound(p2.getLocation(), Sound.valueOf(ConfigManager.getManager().getConfig().getString("sound_while_choosing").toUpperCase()) , 1F, 1F);
+				p2.playSound(p2.getLocation(), Sound.valueOf(ConfigVar.SOUND_WHILE_CHOOSING.getString().toUpperCase()) , 1F, 1F);
 			}catch(Exception e){}
 		}
 		
@@ -171,10 +172,10 @@ public class AnimationRunnable extends BukkitRunnable{
 			GamesManager.getManager().setSpinning(s1, false);
 			GamesManager.getManager().setSpinning(s2, false);
 			
-			if (p1 != null && ConfigManager.getManager().getConfig().getBoolean("gui_auto_close")){
+			if (p1 != null && ConfigVar.GUI_AUTO_CLOSE.getBoolean()){
 				p1.closeInventory();
 			}
-			if (p2 != null && ConfigManager.getManager().getConfig().getBoolean("gui_auto_close")){
+			if (p2 != null && ConfigVar.GUI_AUTO_CLOSE.getBoolean()){
 				p2.closeInventory();
 			}
 		}

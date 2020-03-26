@@ -4,8 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.utils.coinflipper.InventoryUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import net.md_5.bungee.api.ChatColor;
@@ -24,9 +23,9 @@ public class PersonalizedAnimation {
 		p2Skull = ItemUtils.getSkull(p2);
 		winnerSkull = ItemUtils.getSkull(winner);
 		
-		p1Skull = ItemUtils.setName(p1Skull, MessagesManager.getMessage(Message.ANIMATION_ROLL_P1SKULL).replaceAll("%PLAYER%", p1));
-		p2Skull = ItemUtils.setName(p2Skull, MessagesManager.getMessage(Message.ANIMATION_ROLL_P2SKULL).replaceAll("%PLAYER%", p2));
-		winnerSkull = ItemUtils.setName(winnerSkull, MessagesManager.getMessage(Message.ANIMATION_ROLL_WINNERSKULL).replaceAll("%PLAYER%", winner));
+		p1Skull = ItemUtils.setName(p1Skull, Message.ANIMATION_ROLL_P1SKULL.getMessage().replaceAll("%PLAYER%", p1));
+		p2Skull = ItemUtils.setName(p2Skull, Message.ANIMATION_ROLL_P2SKULL.getMessage().replaceAll("%PLAYER%", p2));
+		winnerSkull = ItemUtils.setName(winnerSkull, Message.ANIMATION_ROLL_WINNERSKULL.getMessage().replaceAll("%PLAYER%", winner));
 		
 	}
 	
@@ -48,13 +47,13 @@ public class PersonalizedAnimation {
 				}else{
 					if (frame < 30){
 						if (frame % 2 == 0){
-							fram.setItem(slot, ItemUtils.setName(item, ChatColor.YELLOW + MessagesManager.getMessage(Message.ANIMATION_ROLL_ROLLING)));
+							fram.setItem(slot, ItemUtils.setName(item, ChatColor.YELLOW + Message.ANIMATION_ROLL_ROLLING.getMessage()));
 						}else{
-							fram.setItem(slot, ItemUtils.setName(item, ChatColor.GOLD + MessagesManager.getMessage(Message.ANIMATION_ROLL_ROLLING)));
+							fram.setItem(slot, ItemUtils.setName(item, ChatColor.GOLD + Message.ANIMATION_ROLL_ROLLING.getMessage()));
 						}
 						
 					}else{
-						fram.setItem(slot, ItemUtils.setName(item, MessagesManager.getMessage(Message.ANIMATION_ROLL_WINNERCHOSEN)));
+						fram.setItem(slot, ItemUtils.setName(item, Message.ANIMATION_ROLL_WINNERCHOSEN.getMessage()));
 					}
 				}
 				

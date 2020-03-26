@@ -14,9 +14,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.MessagesManager;
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.events.AnimationCloneEvent;
 import io.github.gronnmann.coinflipper.events.AnimationCreateEvent;
 import io.github.gronnmann.coinflipper.events.AnimationDeleteEvent;
@@ -48,9 +47,9 @@ public class AnimationGUI implements Listener{
 	public void setup(){
 		main = Bukkit.createInventory(new AnimationSelectorInventoryHolder(), 54, "CoinFlipper Animations");
 		
-		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CREATE), 5));
-		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_DELETE), 14));
-		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, MessagesManager.getMessage(Message.ANIMATION_GUI_CLONE), 11));
+		main.setItem(SLOT_NEW, ItemUtils.createItem(Material.WOOL, Message.ANIMATION_GUI_CREATE.getMessage(), 5));
+		main.setItem(SLOT_DELETE, ItemUtils.createItem(Material.WOOL, Message.ANIMATION_GUI_DELETE.getMessage(), 14));
+		main.setItem(SLOT_COPY, ItemUtils.createItem(Material.WOOL, Message.ANIMATION_GUI_CLONE.getMessage(), 11));
 		InventoryUtils.fillWithItem(main, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ".", 10), 36, 44);
 		
 		
@@ -66,7 +65,7 @@ public class AnimationGUI implements Listener{
 			
 			if (ani.isDefault()){
 				ItemStack defaultAnim = ItemUtils.createItem(Material.CLAY, ani.getName());
-				ItemUtils.setLore(defaultAnim, MessagesManager.getMessage(Message.ANIMATION_GUI_DEFANIM));
+				ItemUtils.setLore(defaultAnim, Message.ANIMATION_GUI_DEFANIM.getMessage());
 				main.setItem(slot, defaultAnim);
 				
 				
@@ -100,10 +99,10 @@ public class AnimationGUI implements Listener{
 		
 		if (e.getSlot() == SLOT_NEW){
 			p.closeInventory();
-			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_GIVENAME));
+			p.sendMessage(Message.ANIMATION_CREATE_GIVENAME.getMessage());
 			accessMode.put(p.getName(), 0);
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")){
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean()){
 				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
 			}
 			
@@ -153,7 +152,7 @@ public class AnimationGUI implements Listener{
 			if (slot > 44)break;
 			if (ani.isDefault()){
 				ItemStack defaultAnim = ItemUtils.createItem(Material.CLAY, ani.getName());
-				ItemUtils.setLore(defaultAnim, MessagesManager.getMessage(Message.ANIMATION_GUI_DEFANIM));
+				ItemUtils.setLore(defaultAnim, Message.ANIMATION_GUI_DEFANIM.getMessage());
 				selectorList.setItem(slot, defaultAnim);
 			}else{
 				selectorList.setItem(slot, ItemUtils.createItem(Material.CLAY_BALL, ani.getName()));
@@ -168,7 +167,7 @@ public class AnimationGUI implements Listener{
 			}
 		}
 		
-		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
+		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1));
 		
 		return selectorList;
 	}
@@ -211,17 +210,17 @@ public class AnimationGUI implements Listener{
 			if (delEvent.isCancelled())return;
 			
 			if (AnimationsManager.getManager().getDefault().equals(anim)){
-				p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_CANT_REMOVE_DEFAULT));
+				p.sendMessage(Message.ANIMATION_REMOVE_CANT_REMOVE_DEFAULT.getMessage());
 				return;
 			}
 			
 			if (AnimationsManager.getManager().getAnimations().size() <= 1){
-				p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_CANT_REMOVE_ALL));
+				p.sendMessage(Message.ANIMATION_REMOVE_CANT_REMOVE_ALL.getMessage());
 				return;
 			}
 			
 			AnimationsManager.getManager().removeAnimation(anim);
-			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_REMOVE_SUCCESS).replaceAll("%ANIMATION%", anim.getName()));
+			p.sendMessage(Message.ANIMATION_REMOVE_SUCCESS.getMessage().replaceAll("%ANIMATION%", anim.getName()));
 			accessMode.remove(p.getName());
 			openGUI(p);
 			break;
@@ -229,9 +228,9 @@ public class AnimationGUI implements Listener{
 			accessMode.remove(p.getName());
 			copyBase.put(p.getName(), anim.getName());
 			p.closeInventory();
-			p.sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_GIVENAME));
+			p.sendMessage(Message.ANIMATION_CLONE_GIVENAME.getMessage());
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input")){
+			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean()){
 				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
 			}
 		default: return;
@@ -253,22 +252,22 @@ public class AnimationGUI implements Listener{
 		
 		editor.setContents(animation.getFrame(frame).getContents());
 		
-		ItemStack next = ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_NEXT));
-		ItemStack prev = ItemUtils.createItem(Material.ARROW, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_PREV));
-		ItemStack current = ItemUtils.createItem(Material.GLASS, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_CURRENT).replaceAll("%FRAME%", frame+""));
+		ItemStack next = ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage());
+		ItemStack prev = ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage());
+		ItemStack current = ItemUtils.createItem(Material.GLASS, Message.ANIMATION_FRAMEEDITOR_CURRENT.getMessage().replaceAll("%FRAME%", frame+""));
 		current.setAmount(frame);
 		
 		editor.setItem(PREV, prev);
 		editor.setItem(CURRENT, current);
 		editor.setItem(NEXT, next);
 		
-		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_BACK), 1));
+		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1));
 		
-		editor.setItem(P1I, ItemUtils.createItem(Material.WOOD_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_P1HEAD)));
-		editor.setItem(P2I, ItemUtils.createItem(Material.STONE_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_P2HEAD)));
-		editor.setItem(WINNER, ItemUtils.createItem(Material.DIAMOND_HOE, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_WINNERHEAD)));
+		editor.setItem(P1I, ItemUtils.createItem(Material.WOOD_HOE, Message.ANIMATION_FRAMEEDITOR_P1HEAD.getMessage()));
+		editor.setItem(P2I, ItemUtils.createItem(Material.STONE_HOE, Message.ANIMATION_FRAMEEDITOR_P2HEAD.getMessage()));
+		editor.setItem(WINNER, ItemUtils.createItem(Material.DIAMOND_HOE, Message.ANIMATION_FRAMEEDITOR_WINNERHEAD.getMessage()));
 		
-		editor.setItem(CLONEPREV, ItemUtils.createItem(Material.PAPER, MessagesManager.getMessage(Message.ANIMATION_FRAMEEDITOR_COPYLAST)));
+		editor.setItem(CLONEPREV, ItemUtils.createItem(Material.PAPER, Message.ANIMATION_FRAMEEDITOR_COPYLAST.getMessage()));
 		
 		return editor;
 	}
@@ -351,7 +350,7 @@ public class AnimationGUI implements Listener{
 	@EventHandler
 	public void signInputSupport(SignInputEvent e){
 		
-		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigManager.getManager().getConfig().getBoolean("sign_input"))return;
+		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean())return;
 		
 		String animation = e.getLine(0);
 		
@@ -360,7 +359,7 @@ public class AnimationGUI implements Listener{
 			
 			
 			if (AnimationsManager.getManager().getAnimation(animation) != null){
-				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_ALREADYEXISTS).replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replaceAll("%ANIMATION%", animation));
 			return;
 			}
 			
@@ -369,7 +368,7 @@ public class AnimationGUI implements Listener{
 			
 			if (!createEvent.isCancelled()){
 				AnimationsManager.getManager().createAnimation(animation).save();;
-				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_SUCCESS).replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replaceAll("%ANIMATION%", animation));
 			}
 			accessMode.remove(e.getPlayer().getName());
 			
@@ -385,7 +384,7 @@ public class AnimationGUI implements Listener{
 				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
 				copied.save();
 				copied.draw();
-				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
+				e.getPlayer().sendMessage(Message.ANIMATION_CLONE_SUCCESS.getMessage());
 				openGUI(e.getPlayer());
 			}
 			copyBase.remove(e.getPlayer().getName());
@@ -404,7 +403,7 @@ public class AnimationGUI implements Listener{
 			
 			
 			if (AnimationsManager.getManager().getAnimation(animation) != null){
-				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_ALREADYEXISTS).replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replaceAll("%ANIMATION%", animation));
 			return;
 			}
 			
@@ -413,7 +412,7 @@ public class AnimationGUI implements Listener{
 			
 			if (!createEvent.isCancelled()){
 				AnimationsManager.getManager().createAnimation(animation);
-				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CREATE_SUCCESS).replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replaceAll("%ANIMATION%", animation));
 			}
 			accessMode.remove(e.getPlayer().getName());
 			
@@ -427,7 +426,7 @@ public class AnimationGUI implements Listener{
 			if (!cloneEvent.isCancelled()){
 				Animation copied = AnimationsManager.getManager().createAnimation(animation);
 				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
-				e.getPlayer().sendMessage(MessagesManager.getMessage(Message.ANIMATION_CLONE_SUCCESS));
+				e.getPlayer().sendMessage(Message.ANIMATION_CLONE_SUCCESS.getMessage());
 				openGUI(e.getPlayer());
 			}
 			copyBase.remove(e.getPlayer().getName());

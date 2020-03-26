@@ -46,12 +46,9 @@ public class CoinFlipper extends JavaPlugin{
 		Debug.print("Minecraft version detected: " + versionId);
 		
 		ConfigManager.getManager().setup();
-		ConfigManager.getManager().configUpdate();
-		
-		MaterialsManager.setup(this);
 				
 		SelectionScreen.getInstance().setup(this);
-		FileEditSelector.getInstance().setup(this);
+		FileEditSelector.getInstance().setup();
 		StatsManager.getManager().load();
 		
 		AnimationFileManager.getManager().setup(this);
@@ -110,6 +107,8 @@ public class CoinFlipper extends JavaPlugin{
 		BettingManager.getManager().save();
 		
 		AnimationsManager.getManager().save();
+		
+		HookManager.getManager().onDisable();
 		
 		try{
 			SQLManager.getManager().getSQLConnection().close();

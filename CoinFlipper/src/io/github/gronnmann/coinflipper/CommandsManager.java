@@ -5,15 +5,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import io.github.gronnmann.coinflipper.MessagesManager.Message;
-import io.github.gronnmann.coinflipper.animations.AnimationFileManager;
 import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
-import io.github.gronnmann.coinflipper.gui.CreationGUI;
+import io.github.gronnmann.coinflipper.customizable.ConfigVar;
+import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
-import io.github.gronnmann.coinflipper.hook.HookManager;
-import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.Stats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
@@ -21,12 +18,11 @@ import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 
 public class CommandsManager implements CommandExecutor{
 	
-	private String help = getMsg(Message.SYNTAX_L1)+"\n"+getMsg(Message.SYNTAX_L2)+"\n"+
-			getMsg(Message.SYNTAX_L3)+"\n"+getMsg(Message.SYNTAX_L4)+"\n" + getMsg(Message.SYNTAX_L5);
 	
 	private String getMsg(Message msg){
-		return MessagesManager.getMessage(msg);
+		return msg.getMessage();
 	}
+	
 	
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String l, String[] args){
@@ -38,14 +34,14 @@ public class CommandsManager implements CommandExecutor{
 		Player p = (Player)sender;
 		
 		boolean enabledInWorld = true;
-		for (String world : ConfigManager.getManager().getConfig().getString("disabled_worlds").split(",")){
+		for (String world : ConfigVar.DISABLED_WORLDS.getString().split(",")){
 			if (p.getWorld().getName().equals(world)){
 				enabledInWorld = false;
 			}
 		}
 		
 		if (!enabledInWorld){
-			p.sendMessage(MessagesManager.getMessage(Message.DISABLED_IN_WORLD));
+			p.sendMessage(Message.DISABLED_IN_WORLD.getMessage());
 			return true;
 		}
 		
@@ -91,6 +87,8 @@ public class CommandsManager implements CommandExecutor{
 					p.sendMessage(getMsg(Message.NO_PERMISSION));
 					return true;
 				}
+				String help = getMsg(Message.SYNTAX_L1)+"\n"+getMsg(Message.SYNTAX_L2)+"\n"+
+						getMsg(Message.SYNTAX_L3)+"\n"+getMsg(Message.SYNTAX_L4)+"\n" + getMsg(Message.SYNTAX_L5);
 				p.sendMessage(help);
 				
 				return true;
@@ -177,6 +175,8 @@ public class CommandsManager implements CommandExecutor{
 			}
 			
 			else{
+				String help = getMsg(Message.SYNTAX_L1)+"\n"+getMsg(Message.SYNTAX_L2)+"\n"+
+						getMsg(Message.SYNTAX_L3)+"\n"+getMsg(Message.SYNTAX_L4)+"\n" + getMsg(Message.SYNTAX_L5);
 				p.sendMessage(help);
 				return true;
 			}
