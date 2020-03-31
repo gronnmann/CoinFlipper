@@ -121,7 +121,10 @@ public class CreationGUI implements Listener{
 		
 		refreshInventory(player);
 		
-		player.openInventory(pInv);
+		Bukkit.getScheduler().runTask(CoinFlipper.getMain(), ()->{
+			player.openInventory(pInv);
+		});
+		
 	}
 	
 	
@@ -270,7 +273,9 @@ public class CreationGUI implements Listener{
 		e.setCancelled(true);
 		
 		if (e.getMessage().equalsIgnoreCase("exit")){
-			p.openInventory(data.get(p.getName()).getInventory());
+			Bukkit.getScheduler().runTask(CoinFlipper.getMain(), ()->{
+				p.openInventory(data.get(p.getName()).getInventory());
+			});
 			return;
 		}
 		
@@ -295,7 +300,10 @@ public class CreationGUI implements Listener{
 			
 			p.sendMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS.getMessage().replaceAll("%MONEY%", mon+""));
 			
-			p.openInventory(data.get(p.getName()).getInventory());
+			Bukkit.getScheduler().runTask(CoinFlipper.getMain(), ()->{
+				p.openInventory(data.get(p.getName()).getInventory());
+			});
+			
 			
 			this.refreshInventory(p);
 			customMon.remove(e.getPlayer().getName());
