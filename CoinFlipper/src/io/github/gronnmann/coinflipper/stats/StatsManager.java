@@ -20,9 +20,7 @@ public class StatsManager implements Listener{
 	
 	
 	private HashMap<String, Stats> stats = new HashMap<String, Stats>();
-	private FileConfiguration statsC;
 	
-	//STILL INCLUDES METHOD BEFORE SQLITE WAS ADDED
 	
 	//Called when plugin is enabled to fetch all stats
 	public void load(){
@@ -45,17 +43,7 @@ public class StatsManager implements Listener{
 	public Stats getStats(Player p){
 		if (!stats.containsKey(p.getUniqueId().toString())){
 			try{
-				if (SQLManager.getManager().isEnabled()){
-					SQLManager.getManager().loadStats(p.getUniqueId().toString());
-				}else{
-					int gamesWon = statsC.getInt("stats." + p.getUniqueId().toString() + ".gamesWon");
-					int gamesLost = statsC.getInt("stats." + p.getUniqueId().toString() + ".gamesLost");
-					double moneyUsed = statsC.getDouble("stats." + p.getUniqueId().toString() + ".moneySpent");
-					double moneyWon = statsC.getDouble("stats." + p.getUniqueId().toString() + ".moneyWon");
-					Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
-					
-					stats.put(p.getUniqueId().toString(), statsS);
-				}
+				SQLManager.getManager().loadStats(p.getUniqueId().toString());
 			}catch(Exception e){
 				this.createClearStats(p);
 			}
@@ -73,18 +61,8 @@ public class StatsManager implements Listener{
 	
 	public Stats getStats(String uuid){
 		try{
-			if (SQLManager.getManager().isEnabled()){
-				if (stats.containsKey(uuid))return stats.get(uuid);
+			if (stats.containsKey(uuid))return stats.get(uuid);
 				SQLManager.getManager().loadStats(uuid);
-			}else{
-				int gamesWon = statsC.getInt("stats." + uuid + ".gamesWon");
-				int gamesLost = statsC.getInt("stats." + uuid + ".gamesLost");
-				double moneyUsed = statsC.getDouble("stats." + uuid + ".moneySpent");
-				double moneyWon = statsC.getDouble("stats." + uuid + ".moneyWon");
-				Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
-				
-				stats.put(uuid, statsS);
-			}
 		}catch(Exception e){
 			this.createClearStats(uuid);
 		}
@@ -112,35 +90,5 @@ public class StatsManager implements Listener{
 			Stats clean = new Stats(0, 0, 0, 0);
 			stats.put(uuid ,clean);
 		}
-	}
-	
-	public boolean convertToSQLite(){
-		if (statsC == null || statsC.getConfigurationSection("stats").getKeys(false) == null)return false;
-		try{
-			for (String allStats : statsC.getConfigurationSection("stats").getKeys(false)){
-				int gamesWon = statsC.getInt("stats." + allStats + ".gamesWon");
-				int gamesLost = statsC.getInt("stats." + allStats + ".gamesLost");
-				double moneyUsed = statsC.getDouble("stats." + allStats + ".moneySpent");
-				double moneyWon = statsC.getDouble("stats." + allStats + ".moneyWon");
-				Stats statsS = new Stats(gamesWon, gamesLost, moneyUsed, moneyWon);
-				
-				Debug.print("Converting: " + allStats);
-				
-				SQLManager.getManager().saveStats(allStats, statsS);
-			}
-			
-			
-			stats.clear();
-			
-			for (Player oPl : Bukkit.getOnlinePlayers()){
-				SQLManager.getManager().loadStats(oPl.getUniqueId().toString());
-			}
-			return true;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		
-		
 	}
 }
