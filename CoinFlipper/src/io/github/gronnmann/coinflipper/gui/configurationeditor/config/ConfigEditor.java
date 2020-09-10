@@ -8,9 +8,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -145,7 +147,7 @@ public class ConfigEditor implements Listener{
 		
 		cvarsEdited.put(p.getName(), cvar);
 		
-		e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replaceAll("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
+		e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replace("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
 		e.getWhoClicked().closeInventory();
 		
 		if (cvarS.equals(ConfigVar.SOUND_WHILE_CHOOSING.getPath()) || cvarS.equals(ConfigVar.SOUND_WINNER_CHOSEN.getPath())){
@@ -182,7 +184,7 @@ public class ConfigEditor implements Listener{
 		processEditing(p,e.getLine(0));
 	}
 	
-	@EventHandler
+	@EventHandler (priority = EventPriority.LOWEST)
 	public void customValue(AsyncPlayerChatEvent e){
 		Player p = e.getPlayer();
 		if (!cvarsEdited.containsKey(p.getName()))return;
@@ -238,11 +240,17 @@ public class ConfigEditor implements Listener{
 		
 		
 		ConfigManager.getManager().saveConfig();
-		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().replaceAll("%VALUE%", newValue).replace("%CVAR%", cvarsEdited.get(p.getName()).getPath()));
+		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().replace("%VALUE%", newValue).replace("%CVAR%", cvarsEdited.get(p.getName()).getPath()));
 		cvarsEdited.remove(p.getName());
 		
 		refresh();
 		openEditor(p);
+	}
+	
+	@EventHandler
+	public void stopMemoryLeaks(PlayerQuitEvent e) {
+		cvarsEdited.remove(e.getPlayer().getName());
+		editingNumbers.remove(e.getPlayer().getName());
 	}
 	
 }

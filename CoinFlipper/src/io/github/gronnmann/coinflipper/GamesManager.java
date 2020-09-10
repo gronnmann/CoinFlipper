@@ -41,13 +41,19 @@ public class GamesManager {
 			return false;
 		}
 		
+		int maxBets = ConfigVar.MAX_BETS.getInt();
+		if (BettingManager.getManager().getBets().size() >= maxBets && maxBets != -1) {
+			p.sendMessage(Message.PLACE_FAILED_MAXBETS.getMessage().replace("%NUM%", maxBets+""));
+			return false;
+		}
+		
 		if (mon < ConfigVar.MIN_AMOUNT.getDouble()){
-			p.sendMessage(Message.MIN_BET.getMessage().replaceAll("%MIN_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MIN_AMOUNT.getDouble())));
-			return true;
+			p.sendMessage(Message.MIN_BET.getMessage().replace("%MIN_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MIN_AMOUNT.getDouble())));
+			return false;
 		}
 		if (mon > ConfigVar.MAX_AMOUNT.getDouble()){
-			p.sendMessage(Message.MAX_BET.getMessage().replaceAll("%MAX_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MAX_AMOUNT.getDouble())));
-			return true;
+			p.sendMessage(Message.MAX_BET.getMessage().replace("%MAX_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MAX_AMOUNT.getDouble())));
+			return false;
 		}
 		
 		

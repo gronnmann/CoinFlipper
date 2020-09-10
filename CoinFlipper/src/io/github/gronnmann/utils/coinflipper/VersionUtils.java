@@ -1,9 +1,12 @@
 package io.github.gronnmann.utils.coinflipper;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.net.URL;
 
-import org.apache.commons.io.FileUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -18,7 +21,7 @@ public class VersionUtils {
 			File temp = File.createTempFile("tempVerCheck", ".yml");
 		
 			URL messagesOrginal = new URL(urlToPluginYml);
-			FileUtils.copyURLToFile(messagesOrginal, temp);
+			copyURLToFile(messagesOrginal, temp);
 		
 			FileConfiguration pluginyml = YamlConfiguration.loadConfiguration(temp);
 			
@@ -47,4 +50,24 @@ public class VersionUtils {
 		
 		
 	}
+	
+	
+	private static void copyURLToFile(URL url, File file) {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+			
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			
+			
+			int c;
+			while ((c = reader.read()) != -1) {
+				writer.write(((char)c));
+			}
+			reader.close();
+			writer.close();
+		}catch(Exception e) {
+			Debug.print("Failed reading URL " + url.toString() + " to file.");
+		}
+	}
+	
 }

@@ -34,7 +34,7 @@ public class BettingTimer extends BukkitRunnable{
 			
 			Player pB = Bukkit.getPlayer(b.getPlayer());
 			if (pB != null) {
-				pB.sendMessage(Message.BET_EXPIRE_REFUND.getMessage().replaceAll("%MONEY%", b.getAmount()+""));
+				pB.sendMessage(Message.BET_EXPIRE_REFUND.getMessage().replace("%MONEY%", b.getAmount()+""));
 			}
 			
 			BettingManager.getManager().removeBet(b);

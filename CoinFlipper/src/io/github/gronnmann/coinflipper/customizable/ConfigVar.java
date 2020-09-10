@@ -16,13 +16,15 @@ public enum ConfigVar {
 	SOUND_WINNER_CHOSEN ("sound_winner_chosen", "FIREWORK_BLAST", "What sound should play when a player wins" , "ENTITY_FIREWORK_BLAST", 9),
 	FRAME_WINNER_CHOSEN ("frame_winner_chosen", 30, "At which frame should the winner be chosen. Useful for custom animations."),
 	BOOSTERS_ENABLED ("boosters_enabled", false, "Should boosters be enabled"),
+	ANIMATIONS_ENABLED ("animations_enabled", true, "Should animations be enabled?"),
 	ANIMATION_DEFAULT ("animation_default", "default", "Default animation for players"),
 	BETS_PER_PLAYER ("bets_per_player", 1, "Maximum amount bets a player can place"),
 	GUI_AUTO_CLOSE ("gui_auto_close", true, "Should the GUI close automatically after flip"),
 	VALUE_NEEDED_TO_BROADCAST("value_needed_to_broadcast", 100000, "Value after which wins are broadcasted"),
-	SIGN_INPUT ("sign_input", true,  "Should the SignInputAPI be enabled (requires ProtocolLib, MC 1.8-1.9)", false, 9),
+	SIGN_INPUT ("sign_input", false,  "Should the SignInputAPI be enabled (requires ProtocolLib, MC 1.8-1.9)", false, 9),
 	DISABLED_WORLDS ("disabled_worlds", "disabledWorld1,disabledWorld2", "At which worlds should the plugin be disabled"),
-	ANIMATION_ONLY_CHALLENGER("animation_only_challenger", false, "Should the animation only play for the player who challenges the bet?");
+	ANIMATION_ONLY_CHALLENGER("animation_only_challenger", false, "Should the animation only play for the player who challenges the bet?"),
+	MAX_BETS("max_bets", -1, "How many bets should maximally be possible. Use -1 for infinity.");
 	
 	
 	private String cvar, desc; 

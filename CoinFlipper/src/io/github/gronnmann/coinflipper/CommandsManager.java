@@ -61,7 +61,7 @@ public class CommandsManager implements CommandExecutor{
 				i = Double.parseDouble(args[0]);
 				
 			}catch(Exception e){
-				p.sendMessage(getMsg(Message.WRONG_MONEY).replaceAll("%NUMBER%", args[0]));
+				p.sendMessage(getMsg(Message.WRONG_MONEY).replace("%NUMBER%", args[0]));
 				return true;
 			}
 			
@@ -129,13 +129,13 @@ public class CommandsManager implements CommandExecutor{
 					p.sendMessage(getMsg(Message.STATS_NOSTATS));
 					return true;
 				}
-				String statsMessage = getMsg(Message.STATS_STATS).replaceAll("%PLAYER%", p.getName()) + "\n"+ 
-						getMsg(Message.STATS_GAMESWON).replaceAll("%AMOUNT%", pS.getGamesWon()+"") + "\n" +
-						getMsg(Message.STATS_GAMESLOST).replaceAll("%AMOUNT%", pS.getGamesLost()+"")+ "\n" +
-						getMsg(Message.STATS_WINPERCENTAGE).replaceAll("%AMOUNT%", pS.getWinPercentage()+"")+ "\n" +
-						getMsg(Message.STATS_MONEYWON).replaceAll("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneyWon()))+ "\n" +
-						getMsg(Message.STATS_MONEYSPENT).replaceAll("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneySpent()))+ "\n" +
-						getMsg(Message.STATS_MONEYEARNED).replaceAll("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneyEarned()));
+				String statsMessage = getMsg(Message.STATS_STATS).replace("%PLAYER%", p.getName()) + "\n"+ 
+						getMsg(Message.STATS_GAMESWON).replace("%AMOUNT%", pS.getGamesWon()+"") + "\n" +
+						getMsg(Message.STATS_GAMESLOST).replace("%AMOUNT%", pS.getGamesLost()+"")+ "\n" +
+						getMsg(Message.STATS_WINPERCENTAGE).replace("%AMOUNT%", pS.getWinPercentage()+"")+ "\n" +
+						getMsg(Message.STATS_MONEYWON).replace("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneyWon()))+ "\n" +
+						getMsg(Message.STATS_MONEYSPENT).replace("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneySpent()))+ "\n" +
+						getMsg(Message.STATS_MONEYEARNED).replace("%AMOUNT%", GeneralUtils.getFormattedNumbers(pS.getMoneyEarned()));
 				p.sendMessage(statsMessage);
 						
 			}else if (args[0].equalsIgnoreCase("animation")||args[0].equalsIgnoreCase("anim")||args[0].equalsIgnoreCase(getMsg(Message.CMD_ANIMATION))){

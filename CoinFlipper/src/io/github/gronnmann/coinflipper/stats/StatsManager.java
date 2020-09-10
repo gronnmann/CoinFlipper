@@ -8,7 +8,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
@@ -19,7 +22,7 @@ public class StatsManager implements Listener{
 	public static StatsManager getManager(){return mng;}
 	
 	
-	private HashMap<String, Stats> stats = new HashMap<String, Stats>();
+	protected HashMap<String, Stats> stats = new HashMap<String, Stats>();
 	
 	
 	//Called when plugin is enabled to fetch all stats
@@ -40,17 +43,7 @@ public class StatsManager implements Listener{
 		}
 	}
 	
-	public Stats getStats(Player p){
-		if (!stats.containsKey(p.getUniqueId().toString())){
-			try{
-				SQLManager.getManager().loadStats(p.getUniqueId().toString());
-			}catch(Exception e){
-				this.createClearStats(p);
-			}
-		}
-		
-		return stats.get(p.getUniqueId().toString());
-	}
+	
 	
 	public void setStats(String uuid, Stats s){
 		if (stats.containsKey(uuid)){
@@ -59,6 +52,10 @@ public class StatsManager implements Listener{
 		stats.put(uuid, s);
 	}
 	
+	
+	public Stats getStats(Player p){
+		return getStats(p.getUniqueId().toString());	
+	}
 	public Stats getStats(String uuid){
 		try{
 			if (stats.containsKey(uuid))return stats.get(uuid);
@@ -89,6 +86,29 @@ public class StatsManager implements Listener{
 			Debug.print("Creating new stats for " + uuid);
 			Stats clean = new Stats(0, 0, 0, 0);
 			stats.put(uuid ,clean);
+		}
+	}
+	
+	@EventHandler
+	public void stopMemoryLeaks(PlayerQuitEvent e) {
+		//check if player still online after 1 min (RELOG) - if not - remove from stats
+		new StatsLeakCleaner(e.getPlayer().getName()).runTaskLaterAsynchronously(CoinFlipper.getMain(), 60*20);
+	}
+}
+
+
+class StatsLeakCleaner extends BukkitRunnable{
+	
+	String name;
+	
+	public StatsLeakCleaner(String name) {
+		this.name = name;
+	}
+	
+	public void run() {
+		if (Bukkit.getPlayer(name) == null) {
+			StatsManager.getManager().stats.remove(name);
+			Debug.print("Removed memory leak: " + name);
 		}
 	}
 }

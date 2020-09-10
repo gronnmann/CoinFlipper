@@ -7,6 +7,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 
 import io.github.gronnmann.utils.coinflipper.Debug;
+import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.signinput.coinflipper.SignInputAPI;
 
 public class HookProtocolLib {
@@ -20,7 +21,15 @@ public class HookProtocolLib {
 	private ProtocolManager mng;
 	
 	public boolean register(Plugin pl){
+		
+		if (GeneralUtils.getMinecraftVersion() < 18 || GeneralUtils.getMinecraftVersion() > 19) {
+			System.out.println("[CoinFlipper] ProtocolLib is only supported in MC 1.18 or 1.19");
+			return false;
+		}
+		
+		
 		try {
+			
 			mng = ProtocolLibrary.getProtocolManager();
 			api = new SignInputAPI(pl, mng);
 			return true;

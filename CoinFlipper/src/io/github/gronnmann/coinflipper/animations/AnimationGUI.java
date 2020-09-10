@@ -6,14 +6,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.events.AnimationCloneEvent;
@@ -25,6 +28,7 @@ import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
 import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.utils.coinflipper.InventoryUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
+import io.github.gronnmann.utils.coinflipper.ReflectionUtils;
 import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
 
 public class AnimationGUI implements Listener{
@@ -220,7 +224,7 @@ public class AnimationGUI implements Listener{
 			}
 			
 			AnimationsManager.getManager().removeAnimation(anim);
-			p.sendMessage(Message.ANIMATION_REMOVE_SUCCESS.getMessage().replaceAll("%ANIMATION%", anim.getName()));
+			p.sendMessage(Message.ANIMATION_REMOVE_SUCCESS.getMessage().replace("%ANIMATION%", anim.getName()));
 			accessMode.remove(p.getName());
 			openGUI(p);
 			break;
@@ -239,11 +243,10 @@ public class AnimationGUI implements Listener{
 	}
 	
 	@EventHandler
-	public void leaveDelOrCopy(InventoryCloseEvent e){
+	public void stopMemoryLeaks2(InventoryCloseEvent e){
 		if (!(e.getInventory().getHolder() instanceof AnimationChooserInventoryHolder))return;
-		if (accessMode.containsKey(e.getPlayer().getName())){
-			accessMode.remove(e.getPlayer().getName());
-		}
+		accessMode.remove(e.getPlayer().getName());
+		copyBase.remove(e.getPlayer().getName());
 	}
 	
 	
@@ -254,7 +257,7 @@ public class AnimationGUI implements Listener{
 		
 		ItemStack next = ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage());
 		ItemStack prev = ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage());
-		ItemStack current = ItemUtils.createItem(Material.GLASS, Message.ANIMATION_FRAMEEDITOR_CURRENT.getMessage().replaceAll("%FRAME%", frame+""));
+		ItemStack current = ItemUtils.createItem(Material.GLASS, Message.ANIMATION_FRAMEEDITOR_CURRENT.getMessage().replace("%FRAME%", frame+""));
 		current.setAmount(frame);
 		
 		editor.setItem(PREV, prev);
@@ -292,9 +295,12 @@ public class AnimationGUI implements Listener{
 		}
 		Player p = (Player) e.getWhoClicked();
 		
-		int frameId = Integer.parseInt(e.getInventory().getName().split(" ")[3]);
 		
-		String animationName = e.getInventory().getName().split(" ")[2];
+		String invName = ReflectionUtils.getInventoryName(e.getInventory());
+		
+		int frameId = Integer.parseInt(invName.split(" ")[3]);
+		
+		String animationName = invName.split(" ")[2];
 		Animation anim = AnimationsManager.getManager().getAnimation(animationName);
 		
 		if (e.getSlot() == NEXT){
@@ -338,9 +344,12 @@ public class AnimationGUI implements Listener{
 	public void closeSaver(InventoryCloseEvent e){
 		if (!(e.getInventory().getHolder() instanceof AnimationEditorInventoryHolder))return;
 		
-		int frameId = Integer.parseInt(e.getInventory().getName().split(" ")[3]);
 		
-		String animationName = e.getInventory().getName().split(" ")[2];
+		String invName = ReflectionUtils.getInventoryName(e.getInventory());
+		
+		int frameId = Integer.parseInt(invName.split(" ")[3]);
+		
+		String animationName = invName.split(" ")[2];
 		Animation anim = AnimationsManager.getManager().getAnimation(animationName);
 		
 		this.saveFrame(anim, frameId, e.getInventory());
@@ -359,7 +368,7 @@ public class AnimationGUI implements Listener{
 			
 			
 			if (AnimationsManager.getManager().getAnimation(animation) != null){
-				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replace("%ANIMATION%", animation));
 			return;
 			}
 			
@@ -368,7 +377,7 @@ public class AnimationGUI implements Listener{
 			
 			if (!createEvent.isCancelled()){
 				AnimationsManager.getManager().createAnimation(animation).save();;
-				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replace("%ANIMATION%", animation));
 			}
 			accessMode.remove(e.getPlayer().getName());
 			
@@ -394,7 +403,7 @@ public class AnimationGUI implements Listener{
 	
 	
 	//Name getter #2
-	@EventHandler
+	@EventHandler (priority = EventPriority.LOWEST)
 	public void onChat(AsyncPlayerChatEvent e){
 		String animation = e.getMessage().split(" ")[0];
 		if (accessMode.containsKey(e.getPlayer().getName()) && accessMode.get(e.getPlayer().getName()) == 0){
@@ -403,7 +412,7 @@ public class AnimationGUI implements Listener{
 			
 			
 			if (AnimationsManager.getManager().getAnimation(animation) != null){
-				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replace("%ANIMATION%", animation));
 			return;
 			}
 			
@@ -412,7 +421,7 @@ public class AnimationGUI implements Listener{
 			
 			if (!createEvent.isCancelled()){
 				AnimationsManager.getManager().createAnimation(animation);
-				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replaceAll("%ANIMATION%", animation));
+				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replace("%ANIMATION%", animation));
 			}
 			accessMode.remove(e.getPlayer().getName());
 			
@@ -436,6 +445,16 @@ public class AnimationGUI implements Listener{
 			
 			
 	}
+	
+	
+	@EventHandler
+	public void stopMemoryLeaks(PlayerQuitEvent e) {
+		accessMode.remove(e.getPlayer().getName());
+		copyBase.remove(e.getPlayer().getName());
+		
+		GamesManager.getManager().setSpinning(e.getPlayer().getName(), false);
+	}
+	
 }
 
 class AnimationChooserInventoryHolder implements InventoryHolder{

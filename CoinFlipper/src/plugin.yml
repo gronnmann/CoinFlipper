@@ -1,5 +1,5 @@
 name: CoinFlipper
-version: 2.6_2
+version: 2.7
 author: gronnmann
 main: io.github.gronnmann.coinflipper.CoinFlipper
 depend: [Vault]

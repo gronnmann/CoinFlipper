@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -48,8 +49,8 @@ public class CreationGUI implements Listener{
 	public void generatePreset(){
 		preset = Bukkit.createInventory(new CreationGUIHolder(), 45, Message.CREATION_NAME.getMessage());
 		
-		preset.setItem(BET_AMOUNT, ItemUtils.createItem(CustomMaterial.CREATION_MONEY_VALUE.getMaterial(), Message.CREATION_MONEY.getMessage().replaceAll("%MONEY%", 0+""), CustomMaterial.CREATION_MONEY_VALUE.getData()));
-		preset.setItem(BET_SIDE, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_TAILS.getMaterial(), ChatColor.BLUE + Message.CREATION_SIDE.getMessage().replaceAll("%SIDE%", "TAILS"),CustomMaterial.CREATION_SIDE_TAILS.getData()));
+		preset.setItem(BET_AMOUNT, ItemUtils.createItem(CustomMaterial.CREATION_MONEY_VALUE.getMaterial(), Message.CREATION_MONEY.getMessage().replace("%MONEY%", 0+""), CustomMaterial.CREATION_MONEY_VALUE.getData()));
+		preset.setItem(BET_SIDE, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_TAILS.getMaterial(), ChatColor.BLUE + Message.CREATION_SIDE.getMessage().replace("%SIDE%", "TAILS"),CustomMaterial.CREATION_SIDE_TAILS.getData()));
 		preset.setItem(BET_FINALIZE, ItemUtils.createItem(Material.SKULL_ITEM, ChatColor.BLUE + ChatColor.BOLD.toString() +"Bet", 3));
 		
 		String howToAdd = Message.CREATION_MONEY_LEFTTOADD.getMessage();
@@ -139,7 +140,7 @@ public class CreationGUI implements Listener{
 		
 		if (e.getSlot() <= 4){
 			double money = Double.valueOf(ChatColor.stripColor(e.getInventory().getItem(e.getSlot()).getItemMeta().getDisplayName())
-					.replaceAll("[^\\d]", ""));
+					.replace("[^\\d]", ""));
 			
 			if (e.isRightClick()){
 				data.setMoney(data.getMoney()-money);
@@ -193,23 +194,23 @@ public class CreationGUI implements Listener{
 		
 		Inventory inv = data.getInventory();
 		
-		String side = String.valueOf(data.getSide()).replaceAll("0", Message.TAILS.getMessage().toUpperCase())
-				.replaceAll("1", Message.HEADS.getMessage().toUpperCase());
+		String side = String.valueOf(data.getSide()).replace("0", Message.TAILS.getMessage().toUpperCase())
+				.replace("1", Message.HEADS.getMessage().toUpperCase());
 		
 		if (data.getSide() == 0){
-			inv.setItem(BET_SIDE, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_TAILS.getMaterial(), Message.CREATION_SIDE.getMessage().replaceAll("%SIDE%", side), CustomMaterial.CREATION_SIDE_TAILS.getData()));
+			inv.setItem(BET_SIDE, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_TAILS.getMaterial(), Message.CREATION_SIDE.getMessage().replace("%SIDE%", side), CustomMaterial.CREATION_SIDE_TAILS.getData()));
 		}else{
-			inv.setItem(BET_SIDE, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_HEADS.getMaterial(), Message.CREATION_SIDE.getMessage().replaceAll("%SIDE%", side), CustomMaterial.CREATION_SIDE_HEADS.getData()));
+			inv.setItem(BET_SIDE, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_HEADS.getMaterial(), Message.CREATION_SIDE.getMessage().replace("%SIDE%", side), CustomMaterial.CREATION_SIDE_HEADS.getData()));
 		}
 
 		
-		ItemUtils.setName(inv.getItem(BET_AMOUNT), Message.CREATION_MONEY.getMessage().replaceAll("%MONEY%", GeneralUtils.getFormattedNumbers(data.getMoney())));
+		ItemUtils.setName(inv.getItem(BET_AMOUNT), Message.CREATION_MONEY.getMessage().replace("%MONEY%", GeneralUtils.getFormattedNumbers(data.getMoney())));
 		
 		ItemStack headNew = ItemUtils.getSkull(player.getName());
-		ItemUtils.setName(headNew, Message.MENU_HEAD_GAME.getMessage().replaceAll("%ID%", ""));
-		ItemUtils.addToLore(headNew, Message.MENU_HEAD_PLAYER.getMessage().replaceAll("%PLAYER%", player.getName()));
-		ItemUtils.addToLore(headNew, Message.MENU_HEAD_MONEY.getMessage().replaceAll("%MONEY%", GeneralUtils.getFormattedNumbers(data.getMoney())));
-		ItemUtils.addToLore(headNew, Message.MENU_HEAD_SIDE.getMessage().replaceAll("%SIDE%", side));
+		ItemUtils.setName(headNew, Message.MENU_HEAD_GAME.getMessage().replace("%ID%", ""));
+		ItemUtils.addToLore(headNew, Message.MENU_HEAD_PLAYER.getMessage().replace("%PLAYER%", player.getName()));
+		ItemUtils.addToLore(headNew, Message.MENU_HEAD_MONEY.getMessage().replace("%MONEY%", GeneralUtils.getFormattedNumbers(data.getMoney())));
+		ItemUtils.addToLore(headNew, Message.MENU_HEAD_SIDE.getMessage().replace("%SIDE%", side));
 		
 		inv.setItem(BET_FINALIZE, headNew);
 		
@@ -251,7 +252,7 @@ public class CreationGUI implements Listener{
 			
 			
 			
-			p.sendMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS.getMessage().replaceAll("%MONEY%", mon+""));
+			p.sendMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS.getMessage().replace("%MONEY%", mon+""));
 			
 			p.openInventory(data.get(p.getName()).getInventory());
 			
@@ -263,7 +264,7 @@ public class CreationGUI implements Listener{
 		}
 	}
 	
-	@EventHandler
+	@EventHandler (priority = EventPriority.LOWEST)
 	public void customValue(AsyncPlayerChatEvent e){
 		Player p = e.getPlayer();
 		
@@ -271,6 +272,8 @@ public class CreationGUI implements Listener{
 		
 		if (!customMon.contains(p.getName()) || !data.containsKey(p.getName()))return;
 		e.setCancelled(true);
+		
+		
 		
 		if (e.getMessage().equalsIgnoreCase("exit")){
 			Bukkit.getScheduler().runTask(CoinFlipper.getMain(), ()->{
@@ -298,7 +301,7 @@ public class CreationGUI implements Listener{
 			
 			
 			
-			p.sendMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS.getMessage().replaceAll("%MONEY%", mon+""));
+			p.sendMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS.getMessage().replace("%MONEY%", mon+""));
 			
 			Bukkit.getScheduler().runTask(CoinFlipper.getMain(), ()->{
 				p.openInventory(data.get(p.getName()).getInventory());

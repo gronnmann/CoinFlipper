@@ -90,10 +90,6 @@ public class SQLManager {
 		
 			
 		
-		for (Player oPl : Bukkit.getOnlinePlayers()){
-			this.loadStats(oPl.getUniqueId().toString());
-		}
-		
 		
 	}
 	

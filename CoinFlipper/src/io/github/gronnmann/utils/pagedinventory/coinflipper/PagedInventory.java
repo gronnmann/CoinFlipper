@@ -126,7 +126,7 @@ public class PagedInventory implements Inventory{
 	
 	
 
-	@Override
+	
 	public HashMap<Integer, ItemStack> addItem(ItemStack... arg0) throws IllegalArgumentException {
 		
 		for (int invNumbers : invs.keySet()){
@@ -153,109 +153,109 @@ public class PagedInventory implements Inventory{
 		return null;
 	}
 
-	@Override
+	
 	public HashMap<Integer, ? extends ItemStack> all(Material arg0) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public HashMap<Integer, ? extends ItemStack> all(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public void clear() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void clear(int arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public boolean contains(int arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public boolean contains(Material arg0) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public boolean contains(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public boolean contains(int arg0, int arg1) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public boolean contains(Material arg0, int arg1) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public boolean contains(ItemStack arg0, int arg1) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public boolean containsAtLeast(ItemStack arg0, int arg1) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public int first(int arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int first(Material arg0) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int first(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int firstEmpty() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public ItemStack[] getContents() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public InventoryHolder getHolder() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public ItemStack getItem(int arg0) {
 		int invToUse = arg0/usableSlots;
 		
@@ -270,18 +270,18 @@ public class PagedInventory implements Inventory{
 		return null;
 	}
 
-	@Override
+	
 	public int getMaxStackSize() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public String getName() {
-		return copyFrom.getName();
+		return ReflectionUtils.getInventoryName(copyFrom);
 	}
 
-	@Override
+	
 	public int getSize() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -293,47 +293,47 @@ public class PagedInventory implements Inventory{
 		return null;
 	}
 
-	@Override
+	
 	public String getTitle() {
-		return copyFrom.getTitle();
+		return ReflectionUtils.getInventoryName(copyFrom);
 	}
 
-	@Override
+	
 	public InventoryType getType() {
 		return InventoryType.CHEST;
 	}
 
-	@Override
+	
 	public List<HumanEntity> getViewers() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public ListIterator<ItemStack> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public ListIterator<ItemStack> iterator(int arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public void remove(int arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void remove(Material arg0) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void remove(ItemStack arg0) {
 		for (Inventory inv : invs.values()){
 			if (inv.contains(arg0)){
@@ -343,13 +343,13 @@ public class PagedInventory implements Inventory{
 		
 	}
 
-	@Override
+	
 	public HashMap<Integer, ItemStack> removeItem(ItemStack... arg0) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public void setContents(ItemStack[] arg0) throws IllegalArgumentException {
 		for (Inventory inv : invs.values()){
 			inv.clear();
@@ -360,7 +360,7 @@ public class PagedInventory implements Inventory{
 		
 	}
 
-	@Override
+	
 	public void setItem(int arg0, ItemStack arg1) {
 		int invToUse = arg0/usableSlots;
 		
@@ -370,7 +370,7 @@ public class PagedInventory implements Inventory{
 		
 	}
 
-	@Override
+	
 	public void setMaxStackSize(int arg0) {
 		// TODO Auto-generated method stub
 		
@@ -382,11 +382,15 @@ public class PagedInventory implements Inventory{
 		
 	}
 
+	public boolean isEmpty() {
+		return false;
+	}
+
 }
 
 class PagedInventoryHolder implements InventoryHolder{
 
-	@Override
+	
 	public Inventory getInventory() {
 		return null;
 	}

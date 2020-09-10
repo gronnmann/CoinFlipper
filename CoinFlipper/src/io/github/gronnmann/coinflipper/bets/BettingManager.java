@@ -142,6 +142,8 @@ public class BettingManager {
 		
 		int[] chances = this.getChances(p, b);
 		
+		bets.remove(b);
+		
 		Debug.print("Betowner chances: " + chances[1]);
 		Debug.print("Challenger chances: " + chances[0]);
 		
@@ -157,6 +159,7 @@ public class BettingManager {
 			StatsManager.getManager().getStats(Bukkit.getOfflinePlayer(b.getPlayer()).getUniqueId().toString()).addLose();
 			return p.getName();
 		}
+		
 	}
 	
 	public int[] getChances(Player p1, Bet b){

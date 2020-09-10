@@ -78,7 +78,7 @@ public class CoinFlipper extends JavaPlugin{
 		
 		Bukkit.getPluginManager().registerEvents(AnimationGUI.getManager(), this);
 		
-		if (versionId < 14) {
+		//if (versionId < 14) {
 			int versionResponse = VersionUtils.versionFromGithub(this, "https://raw.githubusercontent.com/gronnmann/CoinFlipper/master/CoinFlipper/src/plugin.yml");
 			
 			if (versionResponse == VersionUtils.VERSION_NEWER){
@@ -88,9 +88,9 @@ public class CoinFlipper extends JavaPlugin{
 				System.out.println("[CoinFlipper] You are using an old CoinFlipper version. Please update for best stability at:");
 				System.out.println("[CoinFlipper] https://www.spigotmc.org/resources/coinflipper.33916/");
 			}
-		}else {
-			System.out.print("[CoinFlipper] Could not check version of CoinFlipper. Version checking is not supported at 1.14+.");
-		}
+		//}else {
+			//System.out.print("[CoinFlipper] Could not check version of CoinFlipper. Version checking is not supported at 1.14+.");
+		//}
 		
 		
 		SQLManager.getManager().setup();

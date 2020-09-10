@@ -23,9 +23,9 @@ public class PersonalizedAnimation {
 		p2Skull = ItemUtils.getSkull(p2);
 		winnerSkull = ItemUtils.getSkull(winner);
 		
-		p1Skull = ItemUtils.setName(p1Skull, Message.ANIMATION_ROLL_P1SKULL.getMessage().replaceAll("%PLAYER%", p1));
-		p2Skull = ItemUtils.setName(p2Skull, Message.ANIMATION_ROLL_P2SKULL.getMessage().replaceAll("%PLAYER%", p2));
-		winnerSkull = ItemUtils.setName(winnerSkull, Message.ANIMATION_ROLL_WINNERSKULL.getMessage().replaceAll("%PLAYER%", winner));
+		p1Skull = ItemUtils.setName(p1Skull, Message.ANIMATION_ROLL_P1SKULL.getMessage().replace("%PLAYER%", p1));
+		p2Skull = ItemUtils.setName(p2Skull, Message.ANIMATION_ROLL_P2SKULL.getMessage().replace("%PLAYER%", p2));
+		winnerSkull = ItemUtils.setName(winnerSkull, Message.ANIMATION_ROLL_WINNERSKULL.getMessage().replace("%PLAYER%", winner));
 		
 	}
 	

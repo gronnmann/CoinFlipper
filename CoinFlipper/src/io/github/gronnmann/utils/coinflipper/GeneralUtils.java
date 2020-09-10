@@ -1,11 +1,7 @@
 package io.github.gronnmann.utils.coinflipper;
 
-import java.text.DecimalFormat;
-
 import org.bukkit.Bukkit;
 
-import io.github.gronnmann.coinflipper.ConfigManager;
-import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.CoinFlipper;
 
 public class GeneralUtils {
@@ -16,6 +12,10 @@ public class GeneralUtils {
 	
 	public static String getFormattedNumbers(double number){
 		
+		return CoinFlipper.getEcomony().format(number);
+		
+		/*
+		 
 		if (number < 1000)return number+"";
 		
 		if (ConfigVar.FORMATTING_SHORTEN_MONEY.getBoolean()){
@@ -35,11 +35,11 @@ public class GeneralUtils {
 		}else{
 			return CoinFlipper.getEcomony().format(number);
 			/*DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
-			return formatter.format(number);*/
+			return formatter.format(number);
 		}
 		
 		
-		
+		*/
 		
 		
 	}

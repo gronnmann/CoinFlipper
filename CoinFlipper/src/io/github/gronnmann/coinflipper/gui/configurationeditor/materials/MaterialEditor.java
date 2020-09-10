@@ -141,7 +141,7 @@ public class MaterialEditor implements Listener{
 		
 		cvarsEdited.put(p.getName(), CustomMaterial.fromPath(cvar));
 		
-		e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replaceAll("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
+		e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replace("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
 		e.getWhoClicked().closeInventory();
 		
 		MaterialChooser.getInstance().openEditor(p, cvar);
@@ -164,7 +164,7 @@ public class MaterialEditor implements Listener{
 		
 		ConfigManager.getManager().saveMaterials();
 		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().
-				replaceAll("%VALUE%", newValue.getData().toString()).replace("%CVAR%", cvar.getPath()));
+				replace("%VALUE%", newValue.getData().toString()).replace("%CVAR%", cvar.getPath()));
 		cvarsEdited.remove(p.getName());
 		
 		refresh();

@@ -1,6 +1,5 @@
 package io.github.gronnmann.coinflipper.bets;
 
-import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.animations.Animation;
 import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 

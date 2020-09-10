@@ -182,6 +182,7 @@ public class ConfigManager {
 			msg.save();
 		}
 		
+		BettingManager.getManager().save();
 		
 		
 		bets = YamlConfiguration.loadConfiguration(betsF);

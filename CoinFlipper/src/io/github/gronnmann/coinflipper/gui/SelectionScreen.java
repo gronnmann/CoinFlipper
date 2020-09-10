@@ -86,7 +86,7 @@ public class SelectionScreen implements Listener{
 	
 	private void generateAnimations(String p1, String p2, String winner, double moneyWon, String anim){
 		
-		String invName = Message.GUI_GAME.getMessage().replaceAll("%PLAYER1%", p1).replaceAll("%PLAYER2%", p2);
+		String invName = Message.GUI_GAME.getMessage().replace("%PLAYER1%", p1).replace("%PLAYER2%", p2);
 		String packageName = Bukkit.getServer().getClass().getPackage().getName();
 		int vID = Integer.parseInt(packageName.split("_")[1]);
 		
@@ -102,7 +102,7 @@ public class SelectionScreen implements Listener{
 			public void run(){
 				animation.cancel();
 			}
-		}, 100);
+		}, (ConfigVar.FRAME_WINNER_CHOSEN.getInt()+20)*2);
 		//22 is middle
 		
 		
@@ -119,20 +119,20 @@ public class SelectionScreen implements Listener{
 		SkullMeta sm = (SkullMeta)skull.getItemMeta();
 		sm.setOwner(b.getPlayer());
 		ArrayList<String> lore = new ArrayList<String>();
-		lore.add(Message.MENU_HEAD_PLAYER.getMessage().replaceAll("%PLAYER%", b.getPlayer()));
-		lore.add(Message.MENU_HEAD_MONEY.getMessage().replaceAll("%MONEY%", GeneralUtils.getFormattedNumbers(b.getAmount())));
+		lore.add(Message.MENU_HEAD_PLAYER.getMessage().replace("%PLAYER%", b.getPlayer()));
+		lore.add(Message.MENU_HEAD_MONEY.getMessage().replace("%MONEY%", GeneralUtils.getFormattedNumbers(b.getAmount())));
 		int hours = b.getTimeRemaining()/60;
 		int mins = b.getTimeRemaining()-hours*60;
-		lore.add(Message.MENU_HEAD_TIMEREMAINING.getMessage().replaceAll("%HOURS%", hours+"").replaceAll("%MINUTES%", mins+""));
+		lore.add(Message.MENU_HEAD_TIMEREMAINING.getMessage().replace("%HOURS%", hours+"").replace("%MINUTES%", mins+""));
 		String side = ".";
 		if (b.getSide() == 0){
 			side = Message.TAILS.getMessage();
 		}else{
 			side = Message.HEADS.getMessage();
 		}
-		lore.add(Message.MENU_HEAD_SIDE.getMessage().replaceAll("%SIDE%", side));
+		lore.add(Message.MENU_HEAD_SIDE.getMessage().replace("%SIDE%", side));
 		sm.setLore(lore);
-		sm.setDisplayName(Message.MENU_HEAD_GAME.getMessage().replaceAll("%ID%", b.getID()+""));
+		sm.setDisplayName(Message.MENU_HEAD_GAME.getMessage().replace("%ID%", b.getID()+""));
 		skull.setItemMeta(sm);
 		return skull;
 	}
@@ -155,7 +155,7 @@ public class SelectionScreen implements Listener{
 			
 			if (CoinFlipper.getEcomony().getBalance(e.getWhoClicked().getName())
 					< ConfigVar.MIN_AMOUNT.getDouble()){
-				e.getWhoClicked().sendMessage(Message.PLACE_NOT_POSSIBLE_NOMONEY.getMessage().replaceAll("%MINMON%", ConfigVar.MIN_AMOUNT.getDouble()+""));
+				e.getWhoClicked().sendMessage(Message.PLACE_NOT_POSSIBLE_NOMONEY.getMessage().replace("%MINMON%", ConfigVar.MIN_AMOUNT.getDouble()+""));
 				return;
 			}
 			CreationGUI.getInstance().openInventory((Player) e.getWhoClicked());
@@ -166,7 +166,7 @@ public class SelectionScreen implements Listener{
 		
 		ItemStack item = e.getCurrentItem();
 		String ID = ChatColor.stripColor(item.getItemMeta().getDisplayName());
-		ID = ID.replaceAll("#", "");
+		ID = ID.replace("#", "");
 		int id = GeneralUtils.getIntInString(ID);
 		
 		Player p = (Player) e.getWhoClicked();
@@ -208,7 +208,7 @@ public class SelectionScreen implements Listener{
 				if (removers.contains(p.getName())){
 					BettingManager.getManager().removeBet(b);
 					this.refreshGameManager();
-					p.sendMessage(Message.BET_REMOVE_OTHER_SUCCESSFUL.getMessage().replaceAll("%PLAYER%", b.getPlayer()));
+					p.sendMessage(Message.BET_REMOVE_OTHER_SUCCESSFUL.getMessage().replace("%PLAYER%", b.getPlayer()));
 					Player bP = Bukkit.getPlayer(b.getPlayer());
 					if (bP != null){
 						bP.sendMessage(Message.BET_REMOVE_OTHER_NOTIFICATION.getMessage());
@@ -216,7 +216,7 @@ public class SelectionScreen implements Listener{
 					
 					CoinFlipper.getEcomony().depositPlayer(b.getPlayer(), b.getAmount());
 				}else{
-					p.sendMessage(Message.BET_REMOVE_OTHER_CONFIRM.getMessage().replaceAll("%PLAYER%", b.getPlayer()));
+					p.sendMessage(Message.BET_REMOVE_OTHER_CONFIRM.getMessage().replace("%PLAYER%", b.getPlayer()));
 					removers.add(p.getName());
 					final String pN = p.getName();
 					Bukkit.getScheduler().scheduleAsyncDelayedTask(pl, new Runnable() {
@@ -299,8 +299,11 @@ public class SelectionScreen implements Listener{
 		GamesManager.getManager().setSpinning(b.getPlayer(), true);
 		
 		this.generateAnimations(p.getName(), b.getPlayer(), winner, winAmount, b.getAnimation().getName());
+		if (!ConfigVar.ANIMATIONS_ENABLED.getBoolean()) {
+			p.closeInventory();
+		}
 		
-		BettingManager.getManager().removeBet(b);
+		
 		this.refreshGameManager();
 
 	}
