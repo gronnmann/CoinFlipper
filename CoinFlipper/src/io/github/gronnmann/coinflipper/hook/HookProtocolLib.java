@@ -22,7 +22,8 @@ public class HookProtocolLib {
 	
 	public boolean register(Plugin pl){
 		
-		if (GeneralUtils.getMinecraftVersion() < 18 || GeneralUtils.getMinecraftVersion() > 19) {
+		
+		if (GeneralUtils.getMinecraftVersion() < 8 || GeneralUtils.getMinecraftVersion() > 9) {
 			System.out.println("[CoinFlipper] ProtocolLib is only supported in MC 1.18 or 1.19");
 			return false;
 		}
@@ -44,7 +45,9 @@ public class HookProtocolLib {
 	}
 	
 	
-	public void disable() {
+	public void disable(Plugin pl) {
 		api.disable();
+		
+		mng.removePacketListeners(pl);
 	}
 }

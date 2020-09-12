@@ -85,7 +85,7 @@ public class HookManager {
 	
 	public void onDisable() {
 		if (isHooked(HookType.ProtocolLib)) {
-			HookProtocolLib.getHook().disable();
+			HookProtocolLib.getHook().disable(pl);
 		}
 	}
 	

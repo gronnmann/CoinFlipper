@@ -1,6 +1,5 @@
 package io.github.gronnmann.coinflipper.gui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
@@ -8,11 +7,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -23,13 +20,12 @@ import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.customizable.CustomMaterial;
 import io.github.gronnmann.coinflipper.customizable.Message;
-import io.github.gronnmann.coinflipper.hook.HookManager;
-import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
-import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
-import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
-import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
+import io.github.gronnmann.utils.coinflipper.input.InputData;
+import io.github.gronnmann.utils.coinflipper.input.InputData.InputType;
+import io.github.gronnmann.utils.coinflipper.input.InputManager;
+import io.github.gronnmann.utils.coinflipper.input.PlayerInputEvent;
 
 public class CreationGUI implements Listener{
 	private CreationGUI(){}
@@ -87,7 +83,9 @@ public class CreationGUI implements Listener{
 	
 	private HashMap<String, CreationData> data = new HashMap<String, CreationData>();
 	
-	private ArrayList<String> customMon = new ArrayList<String>();
+	private static final String INPUT_ID = "CREATION_GUI";
+	
+	//private ArrayList<String> customMon = new ArrayList<String>();
 	
 	
 	@EventHandler
@@ -98,7 +96,7 @@ public class CreationGUI implements Listener{
 	}
 	@EventHandler
 	public void mapRemover2(InventoryCloseEvent e){
-		if (customMon.contains(e.getPlayer().getName()))return;
+		if (InputManager.isEditing(e.getPlayer().getName(), INPUT_ID))return;
 		
 		if (e.getInventory().getHolder() instanceof CreationGUIHolder){
 			data.remove(e.getPlayer().getName());
@@ -149,19 +147,12 @@ public class CreationGUI implements Listener{
 			}
 		}
 		if (e.getSlot() == MON_CUSTOM){
-			customMon.add(e.getWhoClicked().getName());
+			
+			InputManager.requestInput(e.getWhoClicked().getName(), new InputData(INPUT_ID, InputType.DOUBLE));
 			e.getWhoClicked().sendMessage(Message.CREATION_MONEY_CUSTOM_SPEC.getMessage());
 			e.getWhoClicked().closeInventory();
 			
-			Debug.print("Using PL: " + HookManager.getManager().isHooked(HookType.ProtocolLib));
-			Debug.print("Sign input: " + ConfigVar.SIGN_INPUT.getBoolean());
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean()
-					&& CoinFlipper.versionId <= 12){
-				Debug.print("sign");
-				
-				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
-			}
 			
 			return;
 			
@@ -217,6 +208,47 @@ public class CreationGUI implements Listener{
 	}
 	
 	@EventHandler
+	public void handleInput(PlayerInputEvent e) {
+		if (!e.getParams().getId().equals(INPUT_ID))return;
+		
+		Player p = e.getPlayer();
+		
+		if (data.get(p.getName()) == null)return;
+		
+		if (e.isExiting()) {
+			Bukkit.getScheduler().runTask(CoinFlipper.getMain(), ()->{
+				p.openInventory(data.get(p.getName()).getInventory());
+			});
+			return;
+		}
+		
+		double mon = (double) e.getData();
+		
+		if (mon < ConfigVar.MIN_AMOUNT.getDouble()){
+			p.sendMessage(Message.MIN_BET.getMessage().replace("%MIN_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MIN_AMOUNT.getDouble())));
+			e.setCancelled(true);
+			return;
+		}else if (mon > ConfigVar.MAX_AMOUNT.getDouble()){
+			p.sendMessage(Message.MAX_BET.getMessage().replace("%MAX_BET%", GeneralUtils.getFormattedNumbers(ConfigVar.MAX_AMOUNT.getDouble())));
+			e.setCancelled(true);
+			return;
+		}
+		if (mon > CoinFlipper.getEcomony().getBalance(e.getPlayer())){
+			p.sendMessage(Message.CREATION_MONEY_CUSTOM_NOMONEY.getMessage());
+			e.setCancelled(true);
+			return;
+		}
+		
+		p.sendMessage(Message.CREATION_MONEY_CUSTOM_SUCCESS.getMessage().replace("%MONEY%", mon+""));
+		
+		p.openInventory(data.get(p.getName()).getInventory());
+		data.get(p.getName()).setMoney(mon);
+		
+		
+		this.refreshInventory(p);
+	}
+	
+	/*@EventHandler
 	public void protocolLibHookInput(SignInputEvent e){
 		
 		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean())return;
@@ -313,7 +345,7 @@ public class CreationGUI implements Listener{
 		}catch(Exception ex){
 			p.sendMessage(Message.INPUT_NOTNUM.getMessage());
 		}
-	}
+	}*/
 }
 
 class CreationGUIHolder implements InventoryHolder{

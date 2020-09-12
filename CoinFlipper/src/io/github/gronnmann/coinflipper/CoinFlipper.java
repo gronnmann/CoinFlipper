@@ -22,6 +22,7 @@ import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.coinflipper.VersionUtils;
+import io.github.gronnmann.utils.coinflipper.input.InputManager;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryManager;
 import net.milkbowl.vault.economy.Economy;
 
@@ -46,6 +47,8 @@ public class CoinFlipper extends JavaPlugin{
 		Debug.print("Minecraft version detected: " + versionId);
 		
 		ConfigManager.getManager().setup();
+		
+		SQLManager.getManager().setup();
 				
 		SelectionScreen.getInstance().setup(this);
 		FileEditSelector.getInstance().setup();
@@ -69,6 +72,7 @@ public class CoinFlipper extends JavaPlugin{
 		
 		Bukkit.getPluginManager().registerEvents(new PagedInventoryManager(), this);
 		
+		
 		Bukkit.getPluginManager().registerEvents(SelectionScreen.getInstance(), this);
 		Bukkit.getPluginManager().registerEvents(FileEditSelector.getInstance(), this);
 		Bukkit.getPluginManager().registerEvents(CreationGUI.getInstance(), this);
@@ -77,6 +81,8 @@ public class CoinFlipper extends JavaPlugin{
 		
 		
 		Bukkit.getPluginManager().registerEvents(AnimationGUI.getManager(), this);
+		
+		InputManager.setupListeners();
 		
 		//if (versionId < 14) {
 			int versionResponse = VersionUtils.versionFromGithub(this, "https://raw.githubusercontent.com/gronnmann/CoinFlipper/master/CoinFlipper/src/plugin.yml");
@@ -93,7 +99,6 @@ public class CoinFlipper extends JavaPlugin{
 		//}
 		
 		
-		SQLManager.getManager().setup();
 		
 		
 		//Start metrics

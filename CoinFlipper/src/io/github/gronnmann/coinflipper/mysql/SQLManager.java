@@ -106,6 +106,7 @@ public class SQLManager {
 							"select * from coinflipper_stats where uuid='" + uuid + "'"
 							);	
 				ResultSet res = getStats.executeQuery();
+				
 					
 				if (!res.next()){
 					StatsManager.getManager().createClearStats(uuid);
@@ -119,6 +120,9 @@ public class SQLManager {
 						res.getDouble("moneyWon"));
 					
 				StatsManager.getManager().setStats(uuid, loadedStats);
+				
+				
+				res.close();
 				
 				}catch(Exception e){
 					e.printStackTrace();

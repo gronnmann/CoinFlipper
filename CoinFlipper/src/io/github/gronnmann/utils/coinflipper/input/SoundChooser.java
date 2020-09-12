@@ -1,4 +1,4 @@
-package io.github.gronnmann.coinflipper.gui.configurationeditor.config;
+package io.github.gronnmann.utils.coinflipper.input;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,9 +12,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.customizable.Message;
+import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
+import io.github.gronnmann.utils.coinflipper.input.InputData.InputType;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventory;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryClickEvent;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryCloseEvent;
@@ -36,7 +40,7 @@ public class SoundChooser implements Listener{
 		selectionScreen = new PagedInventory("Select sound", ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage()),
 				ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage()),
 				ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1),
-				"sound_choose", ConfigEditor.getInstance().selectionScreen);
+				"sound_choose", null);
 		
 		for (Sound sound : Sound.values()){
 			ItemStack item = ItemUtils.createItem(Material.NOTE_BLOCK, ChatColor.GOLD.toString() + sound.toString());
@@ -48,6 +52,18 @@ public class SoundChooser implements Listener{
 			selectionScreen.addItem(item);
 		}
 		
+	}
+	
+	public void openEditor(Player p, Inventory returnInv, String name) {
+		PagedInventory clone = PagedInventory.fromClone(selectionScreen, name);
+		clone.setReturnInventory(returnInv);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				p.openInventory(clone.getPage(0));
+			}
+		}.runTask(CoinFlipper.getMain());
 	}
 	
 	public void refresh(String current){
@@ -78,10 +94,7 @@ public class SoundChooser implements Listener{
 		}
 	}
 	
-	
-	public void openEditor(Player p){
-		p.openInventory(selectionScreen.getPage(0));
-	}
+
 	
 	@EventHandler
 	public void selectNewSound(PagedInventoryClickEvent e){
@@ -95,16 +108,19 @@ public class SoundChooser implements Listener{
 		if (e.getClick().equals(ClickType.RIGHT)){
 			e.getWhoClicked().playSound(e.getWhoClicked().getLocation(), Sound.valueOf(sound), 1, 1);
 		}else if (e.getClick().equals(ClickType.LEFT)){
-			ConfigEditor.getInstance().processEditing(e.getWhoClicked(), sound);
+			InputManager.processInput(e.getWhoClicked().getName(), sound);
 		}else return;
 		
 		
 	}
 	
 	@EventHandler
-	public void removeOnClose(PagedInventoryCloseEvent e){
+	public void removeMemoryLeak(PagedInventoryCloseEvent e){
 		if (!(e.getPagedInventory().getId().equals("sound_choose")))return;
-		ConfigEditor.getInstance().cvarsEdited.remove(e.getPlayer().getName());
+		
+		if (InputManager.getData(e.getPlayer().getName()) != null && InputManager.getData(e.getPlayer().getName()).getType() == InputType.SOUND) {
+			InputManager.removeInput(e.getPlayer().getName());
+		}
 	}
 	
 }

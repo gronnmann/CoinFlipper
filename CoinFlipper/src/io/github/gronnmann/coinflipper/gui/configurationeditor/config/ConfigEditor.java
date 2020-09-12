@@ -29,6 +29,10 @@ import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
+import io.github.gronnmann.utils.coinflipper.input.InputData;
+import io.github.gronnmann.utils.coinflipper.input.InputData.InputType;
+import io.github.gronnmann.utils.coinflipper.input.InputManager;
+import io.github.gronnmann.utils.coinflipper.input.PlayerInputEvent;
 import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
 
 public class ConfigEditor implements Listener{
@@ -107,8 +111,7 @@ public class ConfigEditor implements Listener{
 	
 	
 	
-	public HashMap<String, ConfigVar> cvarsEdited = new HashMap<String, ConfigVar>();
-	private ArrayList<String> editingNumbers = new ArrayList<String>();
+	private static final String CONFIG_EDITCVAR = "CONFIG_EDITCVAR";
 	
 	@EventHandler
 	public void clickDetector(InventoryClickEvent e){
@@ -143,115 +146,79 @@ public class ConfigEditor implements Listener{
 		String cvarS = ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName());
 		ConfigVar cvar = ConfigVar.fromPath(cvarS);
 		
-		String value = cvar.getString();
+		String value = cvar.getDefaultValue().toString();
 		
-		cvarsEdited.put(p.getName(), cvar);
+		
 		
 		e.getWhoClicked().sendMessage(Message.CONFIGURATOR_SPEC.getMessage().replace("%CVAR%", e.getCurrentItem().getItemMeta().getDisplayName()));
 		e.getWhoClicked().closeInventory();
 		
-		if (cvarS.equals(ConfigVar.SOUND_WHILE_CHOOSING.getPath()) || cvarS.equals(ConfigVar.SOUND_WINNER_CHOSEN.getPath())){
-			SoundChooser.getInstance().refresh(value);
-			SoundChooser.getInstance().openEditor(p);
-			return;
-		}
+		
+		
+		InputType inputType = InputType.STRING;
 		
 		if (GeneralUtils.isBoolean(value)){
-			BooleanChooser.getInstance().openEditor(p, cvar);
-			return;
+			inputType = InputType.BOOLEAN;
+		}
+		else if (GeneralUtils.isDouble(value)) {
+			if (GeneralUtils.isInt(value)) {
+				inputType = InputType.INTEGER;
+			}else {
+				inputType = InputType.DOUBLE;
+			}
+			
+		}
+		
+		if (cvarS.equals(ConfigVar.SOUND_WHILE_CHOOSING.getPath()) || cvarS.equals(ConfigVar.SOUND_WINNER_CHOSEN.getPath())){
+			inputType = InputType.SOUND;
 		}
 		
 		
-		
-		if (GeneralUtils.isDouble(value)){
-			editingNumbers.add(p.getName());
+		InputData data = new InputData(CONFIG_EDITCVAR, inputType);
+		data.addExtraData("CVAR", cvar);
+		if (inputType == InputType.BOOLEAN || inputType == InputType.SOUND) {
+			data.addExtraData("RETURN_INVENTORY", selectionScreen);
+			data.addExtraData("INVENTORY_NAME", cvarS);
 		}
 		
-		if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean() && !(cvar == ConfigVar.DISABLED_WORLDS)){
-			HookProtocolLib.getHook().openSignInput(p);
-		}
+		InputManager.requestInput(p.getName(), data);
 		
 	}
+	
 	
 	@EventHandler
-	public void protocolLibHookInput(SignInputEvent e){
-		
-		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean())return;
-		
+	public void handleInput(PlayerInputEvent e) {
+		InputData params = e.getParams();
 		Player p = e.getPlayer();
-		if (!cvarsEdited.containsKey(p.getName()))return;
 		
-		processEditing(p,e.getLine(0));
-	}
-	
-	@EventHandler (priority = EventPriority.LOWEST)
-	public void customValue(AsyncPlayerChatEvent e){
-		Player p = e.getPlayer();
-		if (!cvarsEdited.containsKey(p.getName()))return;
-		e.setCancelled(true);
-		if (e.getMessage().equals("exit")){
-			cvarsEdited.remove(p.getName());
-			openEditor(p);
-			return;
-		}
-		processEditing(p, e.getMessage());
-	}
-	
-	public void processEditing(Player p, String newValue){
-		
-		if (newValue.equalsIgnoreCase("cancel")) {
-			cvarsEdited.remove(p.getName());
+		if (!(params.getId().equals(CONFIG_EDITCVAR)))return;
+			
+		if (e.isExiting()) {
 			openEditor(p);
 			return;
 		}
 		
-		ConfigVar cvar = cvarsEdited.get(p.getName());
+		
+		Object newValue = e.getData().toString();
+		
+		ConfigVar cvar = (ConfigVar) params.getExtraData("CVAR");
 		
 		if (cvar == null) {
-			Debug.print("Player edited cvar but not in cvar editor list.");
+			Debug.print("Player edited cvar but no cvar data found.");
 			return;
 		}
 		
-		System.out.println("[CoinFlipper] " + p.getName() + " changed cvar " + cvarsEdited.get(p.getName()) + " value from " + 
-			cvar.getString() + " to " + newValue);
+		System.out.println("[CoinFlipper] " + p.getName() + " changed cvar " + cvar + " value from " + 
+				cvar.getString() + " to " + newValue);
 		
-		if (editingNumbers.contains(p.getName())){
-			if (GeneralUtils.isDouble(newValue)){
-				editingNumbers.remove(p.getName());
-				if (GeneralUtils.isInt(newValue)){
-					cvar.setValue(Integer.parseInt(newValue));
-				}else{
-					cvar.setValue(Double.parseDouble(newValue));
-				}
-				
-			}else{
-				p.sendMessage(Message.INPUT_NOTNUM.getMessage());
-				if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean()){
-					HookProtocolLib.getHook().openSignInput(p);
-				}
-				return;
-			}
-		}
-		else if (GeneralUtils.isBoolean(newValue)){
-			cvar.setValue(Boolean.valueOf(newValue));
-		}else{
-			cvar.setValue(newValue);
-		}
-		
+		cvar.setValue(newValue);
 		
 		ConfigManager.getManager().saveConfig();
-		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().replace("%VALUE%", newValue).replace("%CVAR%", cvarsEdited.get(p.getName()).getPath()));
-		cvarsEdited.remove(p.getName());
-		
+		p.sendMessage(Message.CONFIGURATOR_EDIT_SUCCESSFUL.getMessage().replace("%VALUE%", newValue.toString()).replace("%CVAR%", cvar.getPath()));
 		refresh();
 		openEditor(p);
 	}
 	
-	@EventHandler
-	public void stopMemoryLeaks(PlayerQuitEvent e) {
-		cvarsEdited.remove(e.getPlayer().getName());
-		editingNumbers.remove(e.getPlayer().getName());
-	}
 	
 }
 

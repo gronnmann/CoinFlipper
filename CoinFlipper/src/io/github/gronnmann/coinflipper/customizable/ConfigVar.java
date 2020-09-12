@@ -7,10 +7,10 @@ import io.github.gronnmann.coinflipper.ConfigManager;
 
 public enum ConfigVar {
 	MYSQL_ENABLED ("mysql_enabled", false, "Set to true to use MySQL instead of SQLite"),
-	MIN_AMOUNT ("min_amount", 300, "Minimum money you can bet"),
-	MAX_AMOUNT("max_amount", 1000000, "Maximum money you can bet"),
+	MIN_AMOUNT ("min_amount", 300.0, "Minimum money you can bet"),
+	MAX_AMOUNT("max_amount", 1000000.0, "Maximum money you can bet"),
 	TIME_EXPIRE ("time_expire", 60, "Time before bet expires in minutes"),
-	TAX_PERCENTAGE ("tax_percentage", 5, "How high the tax on bets should be"),
+	TAX_PERCENTAGE ("tax_percentage", 5.0, "How high the tax on bets should be"),
 	FORMATTING_SHORTEN_MONEY ("formatting_shorten_money", true, "Should numbers be shorted? Example: 1000000 will be displayed as 1M. If set to false, it will be displayed as 1,000,000."),
 	SOUND_WHILE_CHOOSING ("sound_while_choosing", "CLICK", "What sound should play while flipping", "BLOCK_DISPENSER_DISPENSE", 9),
 	SOUND_WINNER_CHOSEN ("sound_winner_chosen", "FIREWORK_BLAST", "What sound should play when a player wins" , "ENTITY_FIREWORK_BLAST", 9),
@@ -20,7 +20,7 @@ public enum ConfigVar {
 	ANIMATION_DEFAULT ("animation_default", "default", "Default animation for players"),
 	BETS_PER_PLAYER ("bets_per_player", 1, "Maximum amount bets a player can place"),
 	GUI_AUTO_CLOSE ("gui_auto_close", true, "Should the GUI close automatically after flip"),
-	VALUE_NEEDED_TO_BROADCAST("value_needed_to_broadcast", 100000, "Value after which wins are broadcasted"),
+	VALUE_NEEDED_TO_BROADCAST("value_needed_to_broadcast", (double) 100000.0, "Value after which wins are broadcasted"),
 	SIGN_INPUT ("sign_input", false,  "Should the SignInputAPI be enabled (requires ProtocolLib, MC 1.8-1.9)", false, 9),
 	DISABLED_WORLDS ("disabled_worlds", "disabledWorld1,disabledWorld2", "At which worlds should the plugin be disabled"),
 	ANIMATION_ONLY_CHALLENGER("animation_only_challenger", false, "Should the animation only play for the player who challenges the bet?"),

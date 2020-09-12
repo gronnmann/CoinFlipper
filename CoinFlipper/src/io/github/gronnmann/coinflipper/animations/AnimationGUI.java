@@ -6,30 +6,30 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.GamesManager;
-import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.events.AnimationCloneEvent;
 import io.github.gronnmann.coinflipper.events.AnimationCreateEvent;
 import io.github.gronnmann.coinflipper.events.AnimationDeleteEvent;
 import io.github.gronnmann.coinflipper.events.AnimationFrameChangeEvent;
-import io.github.gronnmann.coinflipper.hook.HookManager;
-import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
-import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
+import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.InventoryUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.coinflipper.ReflectionUtils;
-import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
+import io.github.gronnmann.utils.coinflipper.input.InputData;
+import io.github.gronnmann.utils.coinflipper.input.InputData.InputType;
+import io.github.gronnmann.utils.coinflipper.input.InputManager;
+import io.github.gronnmann.utils.coinflipper.input.PlayerInputEvent;
 
 public class AnimationGUI implements Listener{
 	private AnimationGUI(){}
@@ -39,12 +39,12 @@ public class AnimationGUI implements Listener{
 	}
 	
 	private HashMap<String, Integer> accessMode = new HashMap<String, Integer>();
-	private HashMap<String, String> copyBase = new HashMap<String, String>();
 	
 	public static int SLOT_NEW = 47, SLOT_DELETE = 51, SLOT_COPY = 49;
 	
 	public static int NEXT = 53, CURRENT = 52, PREV = 51, BACK = 45, P1I = 47, P2I = 48, WINNER = 49, CLONEPREV = 46;
 	
+	private static final String EXTRADATA_ANIM_NAME = "ANIMATION_NAME";
 	
 	private Inventory main;
 	
@@ -84,8 +84,23 @@ public class AnimationGUI implements Listener{
 	
 	public void openGUI(Player pl){
 		this.reloadAnimations();
-		pl.openInventory(main);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				
+				InputManager.removeInputByPlayerAndID(pl.getName(), INPUT_COPY);
+				InputManager.removeInputByPlayerAndID(pl.getName(), INPUT_NEW);
+				
+				
+				pl.openInventory(main);
+				
+			}
+		}.runTask(CoinFlipper.getMain());
 	}
+	
+	
+	private static final String INPUT_NEW = "ANIMATION_CREATE", INPUT_COPY = "ANIMATION_COPY";
 	
 	
 	//Clicker
@@ -102,13 +117,9 @@ public class AnimationGUI implements Listener{
 		Player p = (Player) e.getWhoClicked();
 		
 		if (e.getSlot() == SLOT_NEW){
-			p.closeInventory();
 			p.sendMessage(Message.ANIMATION_CREATE_GIVENAME.getMessage());
-			accessMode.put(p.getName(), 0);
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean()){
-				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
-			}
+			InputManager.requestInput(p.getName(), new InputData(INPUT_NEW, InputType.STRING));
 			
 		}else if (e.getSlot() == SLOT_DELETE){
 			p.openInventory(this.getAnimationSelectorList());
@@ -176,6 +187,7 @@ public class AnimationGUI implements Listener{
 		return selectorList;
 	}
 	
+	
 	@EventHandler
 	public void copyOrDelete(InventoryClickEvent e){
 		if (!(e.getInventory().getHolder() instanceof AnimationChooserInventoryHolder))return;
@@ -229,14 +241,13 @@ public class AnimationGUI implements Listener{
 			openGUI(p);
 			break;
 		case 2:
-			accessMode.remove(p.getName());
-			copyBase.put(p.getName(), anim.getName());
-			p.closeInventory();
+			
 			p.sendMessage(Message.ANIMATION_CLONE_GIVENAME.getMessage());
 			
-			if (HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean()){
-				HookProtocolLib.getHook().openSignInput((Player) e.getWhoClicked());
-			}
+			InputData data = new InputData(INPUT_COPY, InputType.STRING);
+			data.addExtraData(EXTRADATA_ANIM_NAME, anim.getName());
+			
+			InputManager.requestInput(p.getName(), data);
 		default: return;
 		}
 		
@@ -246,7 +257,6 @@ public class AnimationGUI implements Listener{
 	public void stopMemoryLeaks2(InventoryCloseEvent e){
 		if (!(e.getInventory().getHolder() instanceof AnimationChooserInventoryHolder))return;
 		accessMode.remove(e.getPlayer().getName());
-		copyBase.remove(e.getPlayer().getName());
 	}
 	
 	
@@ -355,67 +365,30 @@ public class AnimationGUI implements Listener{
 		this.saveFrame(anim, frameId, e.getInventory());
 	}
 	
-	//Name getter #1
+		
 	@EventHandler
-	public void signInputSupport(SignInputEvent e){
+	public void handleInput(PlayerInputEvent e) {
 		
-		if (!HookManager.getManager().isHooked(HookType.ProtocolLib) && ConfigVar.SIGN_INPUT.getBoolean())return;
+		InputData params = e.getParams();
 		
-		String animation = e.getLine(0);
+		Debug.print(params.getId());
+		if (!(params.getId().equals(INPUT_NEW) || params.getId().equals(INPUT_COPY)))return;
 		
-		if (accessMode.containsKey(e.getPlayer().getName()) && accessMode.get(e.getPlayer().getName()) == 0){
-			
-			
-			
-			if (AnimationsManager.getManager().getAnimation(animation) != null){
-				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replace("%ANIMATION%", animation));
-			return;
-			}
-			
-			AnimationCreateEvent createEvent = new AnimationCreateEvent(animation);
-			Bukkit.getPluginManager().callEvent(createEvent);
-			
-			if (!createEvent.isCancelled()){
-				AnimationsManager.getManager().createAnimation(animation).save();;
-				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replace("%ANIMATION%", animation));
-			}
-			accessMode.remove(e.getPlayer().getName());
-			
+		Player p = e.getPlayer();
+		if (e.isExiting() ) {
+			openGUI(p);
 		}
-			
-		if (copyBase.containsKey(e.getPlayer().getName())){
-			
-			AnimationCloneEvent cloneEvent = new AnimationCloneEvent(animation, AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())));
-			Bukkit.getPluginManager().callEvent(cloneEvent);
-			
-			if (!cloneEvent.isCancelled()){
-				Animation copied = AnimationsManager.getManager().createAnimation(animation);
-				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
-				copied.save();
-				copied.draw();
-				e.getPlayer().sendMessage(Message.ANIMATION_CLONE_SUCCESS.getMessage());
-				openGUI(e.getPlayer());
-			}
-			copyBase.remove(e.getPlayer().getName());
-			
-		}
-	}
-	
-	
-	//Name getter #2
-	@EventHandler (priority = EventPriority.LOWEST)
-	public void onChat(AsyncPlayerChatEvent e){
-		String animation = e.getMessage().split(" ")[0];
-		if (accessMode.containsKey(e.getPlayer().getName()) && accessMode.get(e.getPlayer().getName()) == 0){
+		
+		String animation = (String) e.getData();
+		
+		if (AnimationsManager.getManager().getAnimation(animation) != null){
+			e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replace("%ANIMATION%", animation));
 			e.setCancelled(true);
-			
-			
-			
-			if (AnimationsManager.getManager().getAnimation(animation) != null){
-				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_ALREADYEXISTS.getMessage().replace("%ANIMATION%", animation));
 			return;
-			}
-			
+		}
+		
+		
+		if (params.getId().equals(INPUT_NEW)) {
 			AnimationCreateEvent createEvent = new AnimationCreateEvent(animation);
 			Bukkit.getPluginManager().callEvent(createEvent);
 			
@@ -423,26 +396,23 @@ public class AnimationGUI implements Listener{
 				AnimationsManager.getManager().createAnimation(animation);
 				e.getPlayer().sendMessage(Message.ANIMATION_CREATE_SUCCESS.getMessage().replace("%ANIMATION%", animation));
 			}
-			accessMode.remove(e.getPlayer().getName());
+			openGUI(e.getPlayer());
 			
-		}
 			
-		if (copyBase.containsKey(e.getPlayer().getName())){
 			
-			AnimationCloneEvent cloneEvent = new AnimationCloneEvent(animation, AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())));
+		}else if (params.getId().equals(INPUT_COPY)) {
+			String copiedS = (String) params.getExtraData(EXTRADATA_ANIM_NAME);
+			AnimationCloneEvent cloneEvent = new AnimationCloneEvent(animation, AnimationsManager.getManager().getAnimation(copiedS));
 			Bukkit.getPluginManager().callEvent(cloneEvent);
 			
 			if (!cloneEvent.isCancelled()){
 				Animation copied = AnimationsManager.getManager().createAnimation(animation);
-				AnimationsManager.getManager().getAnimation(copyBase.get(e.getPlayer().getName())).copy(copied);
+				AnimationsManager.getManager().getAnimation(copiedS).copy(copied);
 				e.getPlayer().sendMessage(Message.ANIMATION_CLONE_SUCCESS.getMessage());
 				openGUI(e.getPlayer());
 			}
-			copyBase.remove(e.getPlayer().getName());
-			e.setCancelled(true);
 			
 		}
-			
 			
 	}
 	
@@ -450,7 +420,6 @@ public class AnimationGUI implements Listener{
 	@EventHandler
 	public void stopMemoryLeaks(PlayerQuitEvent e) {
 		accessMode.remove(e.getPlayer().getName());
-		copyBase.remove(e.getPlayer().getName());
 		
 		GamesManager.getManager().setSpinning(e.getPlayer().getName(), false);
 	}

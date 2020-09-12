@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -14,9 +15,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.coinflipper.ReflectionUtils;
-import net.md_5.bungee.api.ChatColor;
 
 public class PagedInventory implements Inventory{
 	
@@ -57,6 +58,8 @@ public class PagedInventory implements Inventory{
 		copyFrom.setItem(CURRENT, ItemUtils.createItem(Material.THIN_GLASS, "0"));
 		
 		copyFrom.setItem(BACK, back);
+		
+		addPage();
 	}
 	
 	public String getId(){
@@ -116,6 +119,7 @@ public class PagedInventory implements Inventory{
 		return -1;
 	}
 	
+	
 	public boolean containsInventory(Inventory inv){
 		for (Inventory toCompare : invs.values()){
 			if (toCompare.equals(inv))return true;
@@ -125,10 +129,21 @@ public class PagedInventory implements Inventory{
 	
 	
 	
-
+	public void setReturnInventory(Inventory inv) {
+		this.redirectToBack = inv;
+	}
+	
+	public static PagedInventory fromClone(PagedInventory inv, String name) {
+		PagedInventory clone = new PagedInventory(name, inv.getPage(0).getItem(NEXT), inv.getPage(0).getItem(PREV), 
+				inv.getPage(0).getItem(BACK), inv.getId(), inv.redirectToBack);
+		Debug.print(clone.toString());
+		clone.setContents(inv.getContents());
+		Debug.print(clone.getPages().toString());
+		
+		return clone;
+	}
 	
 	public HashMap<Integer, ItemStack> addItem(ItemStack... arg0) throws IllegalArgumentException {
-		
 		for (int invNumbers : invs.keySet()){
 			Inventory inv = invs.get(invNumbers);
 			for (int i = 0; i < usableSlots; i++){
@@ -245,8 +260,19 @@ public class PagedInventory implements Inventory{
 
 	
 	public ItemStack[] getContents() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ItemStack> contents = new ArrayList<ItemStack>();
+		for (int invNumbers : invs.keySet()) {
+			Inventory inv = invs.get(invNumbers);
+			for (int i = 0; i < usableSlots; i++) {
+				ItemStack item = inv.getItem(i);
+				if (item != null) {
+					contents.add(item);
+				}
+				
+			}
+		}
+		
+		return contents.toArray(new ItemStack[0]);
 	}
 
 	
@@ -352,10 +378,14 @@ public class PagedInventory implements Inventory{
 	
 	public void setContents(ItemStack[] arg0) throws IllegalArgumentException {
 		for (Inventory inv : invs.values()){
-			inv.clear();
+			for (int i = 0; i < usableSlots; i++){
+				inv.setItem(i, new ItemStack(Material.AIR));
+			}
 		}
-		for (ItemStack item : arg0){
-			this.addItem(item);
+		
+		
+		for (ItemStack i : arg0) {
+			this.addItem(i);
 		}
 		
 	}
@@ -365,6 +395,7 @@ public class PagedInventory implements Inventory{
 		int invToUse = arg0/usableSlots;
 		
 		int slotToUse = arg0-invToUse*usableSlots;
+		
 		
 		invs.get(invToUse).setItem(slotToUse, arg1);
 		

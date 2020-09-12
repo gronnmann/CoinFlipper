@@ -94,11 +94,9 @@ public enum Message {
 	CREATION_MONEY_CUSTOM("Custom value"),
 	CREATION_MONEY_CUSTOM_DESC("&aEnter custom value"),
 	CREATION_MONEY_CUSTOM_SPEC("&aPlease specify how much money you want to set your bet to. Exit typing &e'exit'&a."),
-	CREATION_MONEY_CUSTOM_TOOMUCH("&cThe amount you specified is too big."),
-	CREATION_MONEY_CUSTOM_TOOLITTLE("&cThe amount you specified is too small."),
 	CREATION_MONEY_CUSTOM_NOMONEY("&cYou can't afford this bet."),
 	CREATION_MONEY_CUSTOM_SUCCESS("&aBet money sat to $%MONEY%"),
-	ANIMATION_CREATE_GIVENAME("&ePlease write the name you want the animation to create."),
+	ANIMATION_CREATE_GIVENAME("&ePlease specify name of new animation. 'exit' to exit."),
 	ANIMATION_CREATE_ALREADYEXISTS("&cAn animation with name %ANIMATION% already exists."),
 	ANIMATION_CREATE_SUCCESS("&aNew animation with name %ANIMATION% generated."),
 	ANIMATION_CLONE_GIVENAME("&ePlease write the name of the new copied animation."),
@@ -124,12 +122,17 @@ public enum Message {
 	ANIMATION_ROLL_ROLLING("Rolling..."),
 	ANIMATION_ROLL_WINNERCHOSEN("&aWinner chosen."),
 	INPUT_NOTNUM("&cPlease specify a number"),
-	CONFIGURATOR_SPEC("&aPleace specify the new value for %CVAR%. &aType 'cancel' to cancel."),
+	INPUT_NOTBOOLEAN("&cPlease specify a boolean (true/false)"),
+	INPUT_NOTSOUND("Please specify a correct sound."),
+	INPUT_EMPTY("&cYour input needs to have a lenght of over 0."),
+	CONFIGURATOR_SPEC("&aPleace specify the new value for %CVAR%. &aType 'exit' to exit."),
 	CONFIGURATOR_EDIT_SUCCESSFUL("&aSuccessfully changed value of &e%CVAR% &ato &e%VALUE%"),
 	CONFIGURATOR_MESSAGE_PREVIEW("&ePlease preview new message for %CVAR%"),
 	CONFIGURATOR_MESSAGE_CONFIRM("&a&lConfirm"),
 	CONFIGURATOR_MESSAGE_CHANGE("&6&lChange"),
-	CONFIGURATOR_MESSAGE_CANCEL("&c&lCancel");
+	CONFIGURATOR_MESSAGE_CANCEL("&c&lCancel"),
+	ERROR_UNDER_MIN("&cPlease provide a number over &a%MIN_BET%"),
+	ERROR_OVER_MAX("&cPlease provide a number under &a%MAX_BET%");
 	
 	private String msg, defaultMsg;
 	

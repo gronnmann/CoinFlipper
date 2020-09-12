@@ -13,9 +13,7 @@ import org.bukkit.plugin.Plugin;
 
 import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.customizable.Message;
-import io.github.gronnmann.coinflipper.gui.configurationeditor.config.BooleanChooser;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.config.ConfigEditor;
-import io.github.gronnmann.coinflipper.gui.configurationeditor.config.SoundChooser;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.materials.MaterialChooser;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.materials.MaterialEditor;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.messages.MessageEditor;
@@ -45,12 +43,6 @@ public class FileEditSelector implements Listener{
 		
 		ConfigEditor.getInstance().setup();
 		Bukkit.getPluginManager().registerEvents(ConfigEditor.getInstance(), pl);
-		
-		BooleanChooser.getInstance().setup();
-		Bukkit.getPluginManager().registerEvents(BooleanChooser.getInstance(), pl);
-		
-		SoundChooser.getInstance().setup();
-		Bukkit.getPluginManager().registerEvents(SoundChooser.getInstance(), pl);
 		
 		
 		MaterialEditor.getInstance().setup(pl);
