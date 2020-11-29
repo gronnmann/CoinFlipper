@@ -183,10 +183,12 @@ public class InputManager implements Listener{
 				if (!GeneralUtils.isDouble(input)) {					
 					processed.sendMessage(Message.INPUT_NOTNUM.getMessage());
 					return false;
+				}else {
+					dataHolder = Double.parseDouble(input);
 				}
 			}
 			
-			double asDouble = Double.parseDouble(dataHolder.toString());
+			Double asDouble = Double.parseDouble(dataHolder.toString());
 			
 			if (data.hasMax() && data.getMax() < asDouble) {
 				processed.sendMessage(Message.ERROR_OVER_MAX.getMessage());
@@ -196,6 +198,7 @@ public class InputManager implements Listener{
 				processed.sendMessage(Message.ERROR_UNDER_MIN.getMessage());
 				return false;
 			}
+			
 				
 				
 		}else if (data.getType() == InputType.BOOLEAN) {
