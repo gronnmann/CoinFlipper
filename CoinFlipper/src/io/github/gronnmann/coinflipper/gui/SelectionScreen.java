@@ -265,13 +265,15 @@ public class SelectionScreen implements Listener{
 		
 		final String winner = BettingManager.getManager().challengeBet(b, p);
 		
-		
+		 
 		//Add money stats
 		OfflinePlayer p1 = Bukkit.getOfflinePlayer(p.getName());
 		OfflinePlayer p2 = Bukkit.getOfflinePlayer(b.getPlayer());
 		
 		StatsManager.getManager().getStats(p1.getUniqueId().toString()).addMoneySpent(b.getAmount());
 		StatsManager.getManager().getStats(p2.getUniqueId().toString()).addMoneySpent(b.getAmount());
+		
+		CoinFlipper.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winAmount);
 		
 		if (winner.equals(p1.getName())){
 			StatsManager.getManager().getStats(p1.getUniqueId().toString()).addMoneyWon(winAmount);

@@ -86,9 +86,9 @@ public class AnimationRunnable extends BukkitRunnable{
 		
 		if (phase == winFrame){
 			
-			//Give money
+			//Give money -- MOVED TO START OF SPIN INCASE OF SERVER CRASH/TURNOFF
 			
-			CoinFlipper.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winMoney);
+			
 			
 			//Sound
 			try{
