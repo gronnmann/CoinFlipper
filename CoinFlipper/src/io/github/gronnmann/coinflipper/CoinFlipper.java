@@ -1,8 +1,6 @@
 package io.github.gronnmann.coinflipper;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,7 +18,6 @@ import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
-import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.coinflipper.VersionUtils;
 import io.github.gronnmann.utils.coinflipper.input.InputManager;
 import io.github.gronnmann.utils.pagedinventory.coinflipper.PagedInventoryManager;
@@ -50,16 +47,16 @@ public class CoinFlipper extends JavaPlugin{
 		
 		SQLManager.getManager().setup();
 				
-		SelectionScreen.getInstance().setup(this);
+		SelectionScreen.getInstance().setup();
 		FileEditSelector.getInstance().setup();
 		StatsManager.getManager().load();
 		
-		AnimationFileManager.getManager().setup(this);
+		AnimationFileManager.getManager().setup();
 		AnimationGUI.getManager().setup();
 		
 		BettingManager.getManager().load();
 		
-		HookManager.getManager().registerHooks(this);
+		HookManager.getManager().registerHooks();
 		
 		CreationGUI.getInstance().generatePreset();
 		
@@ -102,7 +99,7 @@ public class CoinFlipper extends JavaPlugin{
 		
 		
 		//Start metrics
-		new BStats(this);
+		new BStats();
 		
 	}
 	

@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 
@@ -20,9 +21,11 @@ public class AnimationFileManager {
 	File animationFolder;
 	
 	
-	public void setup(Plugin p){
+	public void setup(){
 		
 		boolean creation = false;
+		
+		Plugin p = CoinFlipper.getMain();
 		
 		animationFolder = new File(p.getDataFolder(), "animations");
 		if (!animationFolder.exists()){

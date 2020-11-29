@@ -22,9 +22,9 @@ public class HookManager {
 	
 	private Plugin pl;
 	
-	public void registerHooks(Plugin pl){
+	public void registerHooks(){
 		
-		this.pl = pl;
+		this.pl = CoinFlipper.getMain();
 		
 		for (HookType type : HookType.values()){
 			hooks.put(type, false);

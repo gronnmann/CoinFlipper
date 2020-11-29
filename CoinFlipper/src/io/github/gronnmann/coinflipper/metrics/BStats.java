@@ -7,6 +7,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import io.github.gronnmann.coinflipper.CoinFlipper;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -65,17 +67,18 @@ public class BStats {
      *
      * @param plugin The plugin which stats should be submitted.
      */
-    public BStats(JavaPlugin plugin) {
+    public BStats() {
+        this.plugin = CoinFlipper.getMain();
         if (plugin == null) {
-            throw new IllegalArgumentException("Plugin cannot be null!");
+        	throw new IllegalArgumentException("Plugin cannot be null!");
         }
-        this.plugin = plugin;
 
         // Get the config file
         File bStatsFolder = new File(plugin.getDataFolder().getParentFile(), "bStats");
         File configFile = new File(bStatsFolder, "config.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
+        
         // Check if the config file exists
         if (!config.isSet("serverUuid")) {
 

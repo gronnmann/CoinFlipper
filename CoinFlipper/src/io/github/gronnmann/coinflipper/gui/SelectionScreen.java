@@ -47,8 +47,8 @@ public class SelectionScreen implements Listener{
 	
 	private int CREATE = 46;
 	
-	public void setup(Plugin pl){
-		this.pl = pl;
+	public void setup(){
+		this.pl = CoinFlipper.getMain();
 		selectionScreen = Bukkit.createInventory(new SelectionScreenHolder(), 54, Message.GUI_SELECTION.getMessage());
 		
 	}

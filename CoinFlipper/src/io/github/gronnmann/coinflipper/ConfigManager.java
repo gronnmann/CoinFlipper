@@ -94,8 +94,8 @@ public class ConfigManager {
 		
 		setup();
 		
-		SelectionScreen.getInstance().setup(pl);
-		AnimationFileManager.getManager().setup(pl);
+		SelectionScreen.getInstance().setup();
+		AnimationFileManager.getManager().setup();
 		AnimationGUI.getManager().setup();
 		BettingManager.getManager().load();
 		CreationGUI.getInstance().generatePreset();
