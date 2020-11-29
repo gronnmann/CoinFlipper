@@ -2,7 +2,7 @@ package io.github.gronnmann.coinflipper.hook;
 
 import org.bukkit.entity.Player;
 
-import com.SirBlobman.combatlogx.utility.CombatUtil;
+import com.SirBlobman.combatlogx.api.utility.ICombatManager;
 
 public class HookCombatLogX {
 	private HookCombatLogX(){}
