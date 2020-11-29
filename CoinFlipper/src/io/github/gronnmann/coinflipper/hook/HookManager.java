@@ -42,15 +42,15 @@ public class HookManager {
 			this.setHooked(HookType.CombatTagPlus);
 		}
 		
-		Plugin PvPManager = Bukkit.getPluginManager().getPlugin("PvPManager");
+		/*Plugin PvPManager = Bukkit.getPluginManager().getPlugin("PvPManager");
 		if (!(PvPManager == null)){
 			this.setHooked(HookType.PvPManager);
-		}
+		}*/
 		
-		Plugin ChatPerWorld = Bukkit.getPluginManager().getPlugin("ChatPerWorld");
+		/*Plugin ChatPerWorld = Bukkit.getPluginManager().getPlugin("ChatPerWorld");
 		if (!(ChatPerWorld == null)){
 			this.setHooked(HookType.ChatPerWorld);
-		}
+		}*/
 		Plugin CombatLogX = Bukkit.getPluginManager().getPlugin("CombatLogX");
 		if (!(CombatLogX == null)){
 			this.setHooked(HookType.CombatLogX);
@@ -78,6 +78,7 @@ public class HookManager {
 		case ChatPerWorld:
 			break;
 		case CombatLogX:
+			HookCombatLogX.getHook().register();
 			break;
 		}
 		
@@ -101,9 +102,9 @@ public class HookManager {
 			return HookCombatTagPlus.getHook().isTagged(pl);
 		}
 		
-		if (this.isHooked(HookType.PvPManager)){
+		/*if (this.isHooked(HookType.PvPManager)){
 			return HookPvpManager.getHook().isTagged(pl);
-		}
+		}*/
 		if (this.isHooked(HookType.CombatLogX)){
 			return HookCombatLogX.getHook().isTagged(pl);
 		}

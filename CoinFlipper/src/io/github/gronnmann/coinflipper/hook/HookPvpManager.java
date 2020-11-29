@@ -2,7 +2,6 @@ package io.github.gronnmann.coinflipper.hook;
 
 import org.bukkit.entity.Player;
 
-import me.NoChance.PvPManager.PvPlayer;
 
 public class HookPvpManager {
 	private HookPvpManager(){}
@@ -15,6 +14,7 @@ public class HookPvpManager {
 	public void register(){
 	}
 	
+	/* Hook removed till plugin gets maven.
 	public boolean isTagged(Player pl){
 		
 		PvPlayer p = PvPlayer.get(pl);
@@ -25,5 +25,5 @@ public class HookPvpManager {
 		
 		return p.isInCombat();
 
-	}
+	}*/
 }
