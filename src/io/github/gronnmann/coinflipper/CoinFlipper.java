@@ -32,7 +32,7 @@ public class CoinFlipper extends JavaPlugin{
 	
 	public static int versionId;
 	
-	
+	private static final String githubPluginymlUrl = "https://raw.githubusercontent.com/gronnmann/CoinFlipper/master/src/plugin.yml";
 	
 	public void onEnable(){
 		
@@ -82,7 +82,7 @@ public class CoinFlipper extends JavaPlugin{
 		InputManager.setupListeners();
 		
 		//if (versionId < 14) {
-			int versionResponse = VersionUtils.versionFromGithub(this, "https://raw.githubusercontent.com/gronnmann/CoinFlipper/master/CoinFlipper/src/plugin.yml");
+			int versionResponse = VersionUtils.versionFromGithub(this, githubPluginymlUrl);
 			
 			if (versionResponse == VersionUtils.VERSION_NEWER){
 				System.out.println("[CoinFlipper] You are running an experimental version of CoinFlipper.");
