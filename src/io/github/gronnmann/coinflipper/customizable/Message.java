@@ -1,6 +1,8 @@
 package io.github.gronnmann.coinflipper.customizable;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
@@ -143,7 +145,7 @@ public enum Message {
 	}
 	
 	public String getMessage() {
-		return ChatColor.translateAlternateColorCodes('&', msg);
+		return ChatColor.translateAlternateColorCodes('&', msg.replace("%newline%", "\n"));
 	}
 	
 	public String getDefaultMessage() {
@@ -178,4 +180,5 @@ public enum Message {
 		
 		ConfigManager.getManager().saveMessages();
 	}
+	
 }

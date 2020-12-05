@@ -48,7 +48,7 @@ public class PacketUtils {
 	public static void sendTitle(Player player, String title, TitleType type, int fadeIn, int stay, int fadeOut){
 		//PacketPlayOutTitle titleP = new PacketPlayOutTitle(EnumTitleAction.TITLE, ChatSerializer.a("{\"text\":\"Test\"}"));
 		//((CraftPlayer) player).getHandle().playerConnection.sendPacket(titleP);
-		
+		title = title.replaceAll("\n", "");
 		try{
 			Constructor<?> titleConst = getServerClass("PacketPlayOutTitle")
 					.getConstructor(getServerClass("PacketPlayOutTitle$EnumTitleAction"), 
