@@ -37,9 +37,9 @@ public class SoundChooser implements Listener{
 	
 	public void setup(){
 		
-		selectionScreen = new PagedInventory("Select sound", ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage()),
-				ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage()),
-				ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1),
+		selectionScreen = new PagedInventory("Select sound", ItemUtils.createItem(Material.ARROW, Message.NEXT.getMessage()),
+				ItemUtils.createItem(Material.ARROW, Message.PREVIOUS.getMessage()),
+				ItemUtils.createItem(Material.INK_SACK, Message.BACK.getMessage(), 1),
 				"sound_choose", null);
 		
 		for (Sound sound : Sound.values()){

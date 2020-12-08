@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.gronnmann.coinflipper.CoinFlipper;
 import io.github.gronnmann.coinflipper.GamesManager;
@@ -28,6 +29,7 @@ import io.github.gronnmann.coinflipper.customizable.CustomMaterial;
 import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.events.BetChallengeEvent;
 import io.github.gronnmann.coinflipper.events.BetPlayEvent;
+import io.github.gronnmann.coinflipper.history.HistoryManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
@@ -219,14 +221,14 @@ public class SelectionScreen implements Listener{
 					p.sendMessage(Message.BET_REMOVE_OTHER_CONFIRM.getMessage().replace("%PLAYER%", b.getPlayer()));
 					removers.add(p.getName());
 					final String pN = p.getName();
-					Bukkit.getScheduler().scheduleAsyncDelayedTask(pl, new Runnable() {
+					new BukkitRunnable() {
 						
 						public void run() {
 							if (removers.contains(pN)){
 								removers.remove(pN);
 							}
 						}
-					}, 200);
+					}.runTaskLater(CoinFlipper.getMain(), 200);
 				}
 			}
 			
@@ -275,11 +277,25 @@ public class SelectionScreen implements Listener{
 		
 		CoinFlipper.getEcomony().depositPlayer(Bukkit.getOfflinePlayer(winner), winAmount);
 		
+		
+		String winnerUUID = "", loserUUID = "";
 		if (winner.equals(p1.getName())){
-			StatsManager.getManager().getStats(p1.getUniqueId().toString()).addMoneyWon(winAmount);
+			winnerUUID = p1.getUniqueId().toString();
+			loserUUID = p2.getUniqueId().toString();
 		}else{
-			StatsManager.getManager().getStats(p2.getUniqueId().toString()).addMoneyWon(winAmount);
+			winnerUUID = p2.getUniqueId().toString();
+			loserUUID = p1.getUniqueId().toString();
 		}
+		
+		System.out.println("[CoinFlipper] Game played: " + p1.getName() + " vs " + p2.getName() + ". Winner: " + winner + "."
+				+ " Game pot: " + b.getAmount()*2 + " (won " + winAmount + " after tax of " + tax + "%)");
+		
+		StatsManager.getManager().getStats(winnerUUID).addMoneyWon(winAmount);
+		StatsManager.getManager().getStats(loserUUID.toString()).addLose();
+		StatsManager.getManager().getStats(winnerUUID.toString()).addWin();
+		
+		//Log game
+		HistoryManager.getLogger().logGame(winnerUUID, loserUUID, winAmount, b.getAmount()*2, tax);
 		
 		//Call event
 		BetPlayEvent bpe = new BetPlayEvent(p.getName(), b.getPlayer(), winner, b.getAnimation(), winAmount, b);

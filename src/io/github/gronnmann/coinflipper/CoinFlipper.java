@@ -9,12 +9,12 @@ import io.github.gronnmann.coinflipper.animations.AnimationGUI;
 import io.github.gronnmann.coinflipper.animations.AnimationsManager;
 import io.github.gronnmann.coinflipper.bets.BettingManager;
 import io.github.gronnmann.coinflipper.bets.BettingTimer;
+import io.github.gronnmann.coinflipper.command.CommandsManager;
 import io.github.gronnmann.coinflipper.gui.CreationGUI;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.metrics.BStats;
-import io.github.gronnmann.coinflipper.mysql.SQLManager;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
 import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
@@ -104,7 +104,6 @@ public class CoinFlipper extends JavaPlugin{
 	}
 	
 	public void onDisable(){
-		StatsManager.getManager().save();
 		BettingManager.getManager().save();
 		
 		AnimationsManager.getManager().save();

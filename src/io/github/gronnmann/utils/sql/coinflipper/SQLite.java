@@ -9,11 +9,9 @@ import java.sql.SQLException;
 
 import org.bukkit.plugin.Plugin;
 
-public class SQLite {
+public class SQLite extends SQL{
 	
-	private boolean connected;
 	
-	private Connection connection;
 	private File databaseFile;
 	
 	public SQLite(Plugin p, String dbName){
@@ -52,33 +50,6 @@ public class SQLite {
 	public File getDatabaseFile(){
 		return databaseFile;
 	}
-	
-	public Connection getConnection(){
-		return connection;
-	}
-	
-	public boolean isConnected(){
-		return connected;
-	}
-	
-	public boolean tableExists(String table){
-		table = table.toLowerCase();
-		
-		
-		try {
-			ResultSet tables = connection.getMetaData().getTables(null, null, table, new String[]{"TABLE"});
-			
-			return tables.next();
-			
-			
-		} catch (SQLException e) {
-			return false;
-		}
-	}
-	
-	
-	
-	
 	
 	
 }

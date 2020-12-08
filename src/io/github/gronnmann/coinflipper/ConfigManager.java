@@ -93,7 +93,7 @@ public class ConfigManager {
 		
 		
 		setup();
-		
+		//SQLManager.getManager().reload();
 		SelectionScreen.getInstance().setup();
 		AnimationFileManager.getManager().setup();
 		AnimationGUI.getManager().setup();

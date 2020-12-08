@@ -147,16 +147,17 @@ public class BettingManager {
 		Debug.print("Betowner chances: " + chances[1]);
 		Debug.print("Challenger chances: " + chances[0]);
 		
+		int totalChances = chances[0]+chances[1];
+		Debug.print("Total chances: " + totalChances);
+		
 		Random rn = new Random();
-		int r = rn.nextInt(chances[0]+chances[1]);
+		int r = rn.nextInt(totalChances+1);
+		
+		Debug.print("Rolled: " + r+"");
 		
 		if (r <= chances[1]){
-			StatsManager.getManager().getStats(p).addLose();
-			StatsManager.getManager().getStats(Bukkit.getOfflinePlayer(b.getPlayer()).getUniqueId().toString()).addWin();
 			return b.getPlayer();
 		}else{
-			StatsManager.getManager().getStats(p).addWin();
-			StatsManager.getManager().getStats(Bukkit.getOfflinePlayer(b.getPlayer()).getUniqueId().toString()).addLose();
 			return p.getName();
 		}
 		

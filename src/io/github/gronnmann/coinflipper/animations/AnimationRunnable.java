@@ -9,6 +9,7 @@ import io.github.gronnmann.coinflipper.GamesManager;
 import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.hook.HookManager;
+import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.PacketUtils;
 import io.github.gronnmann.utils.coinflipper.PacketUtils.TitleType;
@@ -124,26 +125,10 @@ public class AnimationRunnable extends BukkitRunnable{
 					winMoney >= ConfigVar.VALUE_NEEDED_TO_BROADCAST.getDouble() && 
 							ConfigVar.VALUE_NEEDED_TO_BROADCAST.getDouble() != -1){
 					
-				/*if (HookManager.getManager().isHooked(HookType.ChatPerWorld)){
-					if (Bukkit.getPlayer(winner) == null){
-						return;
-					}
-					Debug.print("ChatPerWorld broadcast.");
-					for (Player oPl : Bukkit.getOnlinePlayers()){
-						Debug.print("Testing player " + oPl.getName());
-						if (HookChatPerWorld.getHook().getReceivers(Bukkit.getPlayer(winner)).contains(oPl)){
-							Debug.print(oPl.getName() + " approved.");
-							oPl.sendMessage(Message.HIGH_GAME_BROADCAST.getMessage()
-									.replace("%MONEY%", winMoneyFormatted+"").replace("%WINNER%",
-								winner).replace("%LOSER%", loser));
-						}
-					}
-				}else{
-					Debug.print("Normal broadcast.");
-					Bukkit.broadcastMessage(Message.HIGH_GAME_BROADCAST.getMessage()
-						.replace("%MONEY%", winMoneyFormatted+"").replace("%WINNER%",
-								winner).replace("%LOSER%", loser));
-				}*/
+				Debug.print("Normal broadcast.");
+				Bukkit.broadcastMessage(Message.HIGH_GAME_BROADCAST.getMessage()
+					.replace("%MONEY%", winMoneyFormatted+"").replace("%WINNER%",
+							winner).replace("%LOSER%", loser));
 					
 					
 			}

@@ -76,7 +76,7 @@ public class MaterialEditor implements Listener{
 		}
 		
 		selectionScreen.setItem(RELOAD, ItemUtils.createItem(Material.STAINED_GLASS_PANE, ChatColor.YELLOW.toString() + ChatColor.BOLD + "RELOAD", 4));
-		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.STAINED_GLASS_PANE, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 14));
+		selectionScreen.setItem(BACK, ItemUtils.createItem(Material.STAINED_GLASS_PANE, Message.BACK.getMessage(), 14));
 		
 	}
 	

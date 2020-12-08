@@ -20,6 +20,7 @@ public enum Message {
 	CMD_RELOAD("reload"),
 	CMD_CONFIG("config"),
 	CMD_CONVERT("convert"),
+	CMD_HISTORY("history"),
 	CONVERT_START("&a[CoinFlipper] Converting .yml stats to SQLite..."),
 	CONVERT_SUCCESS("&a[CoinFlipper] Done"),
 	CONVERT_FAIL("&c[CoinFlipper] Converting failed. Please see console for more information."),
@@ -110,14 +111,14 @@ public enum Message {
 	ANIMATION_GUI_DELETE("&c&lDelete"),
 	ANIMATION_GUI_CLONE("&9&lClone"),
 	ANIMATION_GUI_DEFANIM("&eDefault animation"),
-	ANIMATION_FRAMEEDITOR_BACK("&c&lBack"),
+	BACK("&c&lBack"),
 	ANIMATION_FRAMEEDITOR_COPYLAST("&dCopy last frame"),
 	ANIMATION_FRAMEEDITOR_P1HEAD("&9Player 1 Skull"),
 	ANIMATION_FRAMEEDITOR_P2HEAD("&9Player 2 Skull"),
 	ANIMATION_FRAMEEDITOR_WINNERHEAD("&9Winner Skull"),
-	ANIMATION_FRAMEEDITOR_NEXT("&6Next"),
+	NEXT("&6Next"),
 	ANIMATION_FRAMEEDITOR_CURRENT("&eCurrent frame: %FRAME%"),
-	ANIMATION_FRAMEEDITOR_PREV("&6Previous"),
+	PREVIOUS("&6Previous"),
 	ANIMATION_ROLL_P1SKULL("&9%PLAYER%"),
 	ANIMATION_ROLL_P2SKULL("&9%PLAYER%"),
 	ANIMATION_ROLL_WINNERSKULL("&b&lWinner: &9%PLAYER%"),
@@ -134,7 +135,18 @@ public enum Message {
 	CONFIGURATOR_MESSAGE_CHANGE("&6&lChange"),
 	CONFIGURATOR_MESSAGE_CANCEL("&c&lCancel"),
 	ERROR_UNDER_MIN("&cPlease provide a number over &a%MIN_BET%"),
-	ERROR_OVER_MAX("&cPlease provide a number under &a%MAX_BET%");
+	ERROR_OVER_MAX("&cPlease provide a number under &a%MAX_BET%"),
+	HISTORY_INVENTORY("%player%'s CoinFlipper history"),
+	HISTORY_GAME("&6Game #%id%"),
+	HISTORY_TIME("&2Time: &a%time%"),
+	HISTORY_VICTORY("&2Status: &aWIN"),
+	HISTORY_OPPONENT("&2Opponent: &a%opponent%"),
+	HISTORY_LOSS("&2Status: &cLOSS"),
+	HISTORY_IN_POT("&2In pot: &a%money%"),
+	HISTORY_MONEY_WON("&2Money won: &a%money%"),
+	HISTORY_MONEY_LOST("&2Money lost: &c%money%"),
+	HISTORY_TAX("&2Taxed: &a%tax%%")
+	;
 	
 	private String msg, defaultMsg;
 	

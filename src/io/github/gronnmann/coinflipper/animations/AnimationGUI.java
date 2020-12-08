@@ -182,7 +182,7 @@ public class AnimationGUI implements Listener{
 			}
 		}
 		
-		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1));
+		selectorList.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, Message.BACK.getMessage(), 1));
 		
 		return selectorList;
 	}
@@ -265,8 +265,8 @@ public class AnimationGUI implements Listener{
 		
 		editor.setContents(animation.getFrame(frame).getContents());
 		
-		ItemStack next = ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage());
-		ItemStack prev = ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage());
+		ItemStack next = ItemUtils.createItem(Material.ARROW, Message.NEXT.getMessage());
+		ItemStack prev = ItemUtils.createItem(Material.ARROW, Message.PREVIOUS.getMessage());
 		ItemStack current = ItemUtils.createItem(Material.GLASS, Message.ANIMATION_FRAMEEDITOR_CURRENT.getMessage().replace("%FRAME%", frame+""));
 		current.setAmount(frame);
 		
@@ -274,7 +274,7 @@ public class AnimationGUI implements Listener{
 		editor.setItem(CURRENT, current);
 		editor.setItem(NEXT, next);
 		
-		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1));
+		editor.setItem(BACK, ItemUtils.createItem(Material.INK_SACK, Message.BACK.getMessage(), 1));
 		
 		editor.setItem(P1I, ItemUtils.createItem(Material.WOOD_HOE, Message.ANIMATION_FRAMEEDITOR_P1HEAD.getMessage()));
 		editor.setItem(P2I, ItemUtils.createItem(Material.STONE_HOE, Message.ANIMATION_FRAMEEDITOR_P2HEAD.getMessage()));

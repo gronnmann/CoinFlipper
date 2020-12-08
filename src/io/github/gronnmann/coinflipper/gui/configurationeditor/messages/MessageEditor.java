@@ -57,9 +57,9 @@ public class MessageEditor implements Listener{
 		this.pl = CoinFlipper.getMain();
 		
 		
-		selectionScreen = new PagedInventory("CoinFlipper messages.yml", ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_NEXT.getMessage()),
-				ItemUtils.createItem(Material.ARROW, Message.ANIMATION_FRAMEEDITOR_PREV.getMessage()),
-				ItemUtils.createItem(Material.INK_SACK, Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), 1),
+		selectionScreen = new PagedInventory("CoinFlipper messages.yml", ItemUtils.createItem(Material.ARROW, Message.NEXT.getMessage()),
+				ItemUtils.createItem(Material.ARROW, Message.PREVIOUS.getMessage()),
+				ItemUtils.createItem(Material.INK_SACK, Message.BACK.getMessage(), 1),
 				"coinflipper_messageeditor", FileEditSelector.getInstance().selectionScreen);
 		
 		

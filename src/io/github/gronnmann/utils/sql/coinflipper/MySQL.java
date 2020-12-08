@@ -1,15 +1,11 @@
 package io.github.gronnmann.utils.sql.coinflipper;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MySQL {
+public class MySQL extends SQL{
 	
-	private boolean connected;
-	
-	private Connection connection;
 	
 	private String ip, database, user, password;
 	
@@ -50,13 +46,6 @@ public class MySQL {
 		return password;
 	}
 	
-	public Connection getConnection(){
-		return connection;
-	}
-	
-	public boolean isConnected(){
-		return connected;
-	}
 	
 	public boolean tableExists(String table){
 		table = table.toLowerCase();

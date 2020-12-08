@@ -66,7 +66,7 @@ public class CreationGUI implements Listener{
 		preset.setItem(SIDE_HEADS, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_HEADS.getMaterial(), ChatColor.AQUA + Message.HEADS.getMessage().toUpperCase(), CustomMaterial.CREATION_SIDE_HEADS.getData()));
 		preset.setItem(SIDE_TAILS, ItemUtils.createItem(CustomMaterial.CREATION_SIDE_TAILS.getMaterial(), ChatColor.AQUA + Message.TAILS.getMessage().toUpperCase(), CustomMaterial.CREATION_SIDE_TAILS.getData()));
 		
-		preset.setItem(BACK, ItemUtils.createItem(CustomMaterial.BACK.getMaterial(), Message.ANIMATION_FRAMEEDITOR_BACK.getMessage(), CustomMaterial.BACK.getData()));
+		preset.setItem(BACK, ItemUtils.createItem(CustomMaterial.BACK.getMaterial(), Message.BACK.getMessage(), CustomMaterial.BACK.getData()));
 	}
 	
 	private double getMaxMoney(String player){
@@ -170,7 +170,11 @@ public class CreationGUI implements Listener{
 		}else if (e.getSlot() == SIDE_TAILS){
 			data.setSide(0);
 		}else if (e.getSlot() == BET_FINALIZE){
-			GamesManager.getManager().createGame((Player) e.getWhoClicked(), data.getSide(), data.getMoney());
+			if (e.getWhoClicked().hasPermission("coinflipper.create")) {
+				GamesManager.getManager().createGame((Player) e.getWhoClicked(), data.getSide(), data.getMoney());
+			}else {
+				e.getWhoClicked().sendMessage(Message.NO_PERMISSION.getMessage());
+			}
 		}else if (e.getSlot() == BACK){
 			SelectionScreen.getInstance().openGameManager((Player) e.getWhoClicked());
 		}
