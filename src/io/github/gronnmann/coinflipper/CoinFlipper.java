@@ -13,6 +13,7 @@ import io.github.gronnmann.coinflipper.command.CommandsManager;
 import io.github.gronnmann.coinflipper.gui.CreationGUI;
 import io.github.gronnmann.coinflipper.gui.SelectionScreen;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
+import io.github.gronnmann.coinflipper.history.GameReminder;
 import io.github.gronnmann.coinflipper.hook.HookManager;
 import io.github.gronnmann.coinflipper.metrics.BStats;
 import io.github.gronnmann.coinflipper.stats.StatsManager;
@@ -78,6 +79,8 @@ public class CoinFlipper extends JavaPlugin{
 		
 		
 		Bukkit.getPluginManager().registerEvents(AnimationGUI.getManager(), this);
+		
+		//Bukkit.getPluginManager().registerEvents(new GameReminder(), this);
 		
 		InputManager.setupListeners();
 		
