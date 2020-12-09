@@ -145,7 +145,8 @@ public enum Message {
 	HISTORY_IN_POT("&2In pot: &a%money%"),
 	HISTORY_MONEY_WON("&2Money won: &a%money%"),
 	HISTORY_MONEY_LOST("&2Money lost: &c%money%"),
-	HISTORY_TAX("&2Taxed: &a%tax%%")
+	HISTORY_TAX("&2Taxed: &a%tax%%"),
+	GAMES_PLAYED_WHEN_OFFLINE("&aSomeone has challenged your CoinFlipper game(s) while you were offline.%newline%Check them at &e/coinflipper history")
 	;
 	
 	private String msg, defaultMsg;
