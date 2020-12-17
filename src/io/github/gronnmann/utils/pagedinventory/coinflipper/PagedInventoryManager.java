@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 
 
 public class PagedInventoryManager implements Listener{
@@ -38,7 +39,7 @@ public class PagedInventoryManager implements Listener{
 			p.openInventory(inv.getPage(prev));
 		}else if (e.getSlot() == PagedInventory.BACK){
 			if (inv.redirectToBack == null) {
-				e.getWhoClicked().closeInventory();
+				return;
 			}else {
 				e.getWhoClicked().openInventory(inv.redirectToBack);
 			}
@@ -53,5 +54,12 @@ public class PagedInventoryManager implements Listener{
 	public void onClose(InventoryCloseEvent e){
 		if (!(e.getInventory().getHolder() instanceof PagedInventory))return;
 		Bukkit.getPluginManager().callEvent(new PagedInventoryCloseEvent(e.getInventory(), PagedInventory.getByInventory(e.getInventory()), (Player) e.getPlayer()));
+	}
+	
+	@EventHandler
+	public void disallowDrags(InventoryDragEvent e) {
+		if (e.getInventory().getHolder() instanceof PagedInventory) {
+			e.setCancelled(true);
+		}
 	}
 }

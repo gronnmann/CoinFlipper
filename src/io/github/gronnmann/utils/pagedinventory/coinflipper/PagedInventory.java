@@ -57,7 +57,9 @@ public class PagedInventory implements Inventory{
 		
 		copyFrom.setItem(CURRENT, ItemUtils.createItem(Material.THIN_GLASS, "0"));
 		
-		copyFrom.setItem(BACK, back);
+		if (redirectToBack != null) {
+			copyFrom.setItem(BACK, back);
+		}
 		
 		addPage();
 	}
