@@ -21,7 +21,7 @@ import io.github.gronnmann.utils.coinflipper.ReflectionUtils;
 
 public class PagedInventory implements Inventory{
 	
-	private static ArrayList<PagedInventory> pagedInventories = new ArrayList<PagedInventory>();
+	protected static ArrayList<PagedInventory> pagedInventories = new ArrayList<PagedInventory>();
 	
 	public static PagedInventory getByInventory(Inventory inv){
 		for (PagedInventory pInv : pagedInventories){
@@ -38,15 +38,17 @@ public class PagedInventory implements Inventory{
 	private Inventory copyFrom;
 	private String id;
 	protected Inventory redirectToBack;
+	private boolean unloadOnClose;
 	
 	public static int NEXT = 50, PREV = 48, CURRENT = 49, BACK = 45;
 	
 	public static int usableSlots = 45;
 	
-	public PagedInventory(String name, ItemStack next, ItemStack last, ItemStack back, String id, Inventory redirectToBack){
+	public PagedInventory(String name, ItemStack next, ItemStack last, ItemStack back, String id, Inventory redirectToBack, boolean unloadOnClose){
 		
 		this.id = id;
 		this.redirectToBack = redirectToBack;
+		this.unloadOnClose = unloadOnClose;
 		
 		pagedInventories.add(this);
 		
@@ -70,6 +72,10 @@ public class PagedInventory implements Inventory{
 	
 	public int sizePages(){
 		return invs.size();
+	}
+	
+	public boolean unloadOnClose() {
+		return unloadOnClose;
 	}
 	
 	public int addPage(){
@@ -137,7 +143,7 @@ public class PagedInventory implements Inventory{
 	
 	public static PagedInventory fromClone(PagedInventory inv, String name) {
 		PagedInventory clone = new PagedInventory(name, inv.getPage(0).getItem(NEXT), inv.getPage(0).getItem(PREV), 
-				inv.getPage(0).getItem(BACK), inv.getId(), inv.redirectToBack);
+				inv.getPage(0).getItem(BACK), inv.getId(), inv.redirectToBack, inv.unloadOnClose());
 		Debug.print(clone.toString());
 		clone.setContents(inv.getContents());
 		Debug.print(clone.getPages().toString());

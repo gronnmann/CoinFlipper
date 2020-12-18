@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -422,6 +423,13 @@ public class AnimationGUI implements Listener{
 		accessMode.remove(e.getPlayer().getName());
 		
 		GamesManager.getManager().setSpinning(e.getPlayer().getName(), false);
+	}
+	
+	@EventHandler
+	public void ignoreDrag(InventoryDragEvent e) {
+		if (e.getInventory().getHolder() instanceof AnimationSelectorInventoryHolder)e.setCancelled(true);
+		if (e.getInventory().getHolder() instanceof AnimationChooserInventoryHolder)e.setCancelled(true);
+		if (e.getInventory().getHolder() instanceof AnimationEditorInventoryHolder)e.setCancelled(true);
 	}
 	
 }

@@ -40,7 +40,7 @@ public class SoundChooser implements Listener{
 		selectionScreen = new PagedInventory("Select sound", ItemUtils.createItem(Material.ARROW, Message.NEXT.getMessage()),
 				ItemUtils.createItem(Material.ARROW, Message.PREVIOUS.getMessage()),
 				ItemUtils.createItem(Material.INK_SACK, Message.BACK.getMessage(), 1),
-				"sound_choose", null);
+				"sound_choose", null, false);
 		
 		for (Sound sound : Sound.values()){
 			ItemStack item = ItemUtils.createItem(Material.NOTE_BLOCK, ChatColor.GOLD.toString() + sound.toString());

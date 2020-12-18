@@ -8,12 +8,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.customizable.Message;
-import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.InventoryUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
 import io.github.gronnmann.utils.coinflipper.input.InputData.InputType;
@@ -81,6 +80,11 @@ public class BooleanChooser implements Listener{
 		if (InputManager.getData(e.getPlayer().getName()) != null && InputManager.getData(e.getPlayer().getName()).getType() == InputType.BOOLEAN) {
 			InputManager.removeInput(e.getPlayer().getName());
 		}
+	}
+	
+	@EventHandler
+	public void cancelDrag(InventoryDragEvent e) {
+		if (e.getInventory().getHolder() instanceof BooleanChooserHolder)e.setCancelled(true);
 	}
 	
 }

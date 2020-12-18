@@ -7,6 +7,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import io.github.gronnmann.coinflipper.CoinFlipper;
+import io.github.gronnmann.utils.coinflipper.Debug;
 
 
 public class PagedInventoryManager implements Listener{
@@ -52,7 +57,24 @@ public class PagedInventoryManager implements Listener{
 	
 	@EventHandler
 	public void onClose(InventoryCloseEvent e){
-		if (!(e.getInventory().getHolder() instanceof PagedInventory))return;
+		if (!(e.getInventory().getHolder() instanceof PagedInventoryHolder))return;
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				PagedInventory closed = PagedInventory.getByInventory(e.getInventory());
+				if (closed == null)return;
+				Debug.print(closed.getName());
+				if (closed.unloadOnClose() && !(e.getPlayer().getOpenInventory().getTopInventory().getHolder() instanceof PagedInventoryHolder)) {
+					Debug.print("Unloading " + closed.getName());
+					PagedInventory.pagedInventories.remove(closed);
+				}
+				
+				
+			}
+		}.runTaskAsynchronously(CoinFlipper.getMain());
+		
+		
 		Bukkit.getPluginManager().callEvent(new PagedInventoryCloseEvent(e.getInventory(), PagedInventory.getByInventory(e.getInventory()), (Player) e.getPlayer()));
 	}
 	

@@ -60,7 +60,7 @@ public class MessageEditor implements Listener{
 		selectionScreen = new PagedInventory("CoinFlipper messages.yml", ItemUtils.createItem(Material.ARROW, Message.NEXT.getMessage()),
 				ItemUtils.createItem(Material.ARROW, Message.PREVIOUS.getMessage()),
 				ItemUtils.createItem(Material.INK_SACK, Message.BACK.getMessage(), 1),
-				"coinflipper_messageeditor", FileEditSelector.getInstance().selectionScreen);
+				"coinflipper_messageeditor", FileEditSelector.getInstance().selectionScreen, false);
 		
 		
 		RELOAD = 53;

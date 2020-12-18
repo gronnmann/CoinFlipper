@@ -60,7 +60,7 @@ public class HistoryManager{
 				ItemUtils.createItem(Material.ARROW, Message.PREVIOUS.getMessage()), 
 				ItemUtils.createItem(CustomMaterial.BACK.getMaterial(), Message.BACK.getMessage()),
 				"coinflipper_history_" + p.getName(),
-				null);
+				null, true);
 		BukkitRunnable historyGetter = new BukkitRunnable() {
 			
 			

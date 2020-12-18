@@ -1,18 +1,13 @@
 package io.github.gronnmann.coinflipper.gui.configurationeditor.config;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -23,9 +18,6 @@ import io.github.gronnmann.coinflipper.ConfigManager;
 import io.github.gronnmann.coinflipper.customizable.ConfigVar;
 import io.github.gronnmann.coinflipper.customizable.Message;
 import io.github.gronnmann.coinflipper.gui.configurationeditor.FileEditSelector;
-import io.github.gronnmann.coinflipper.hook.HookManager;
-import io.github.gronnmann.coinflipper.hook.HookManager.HookType;
-import io.github.gronnmann.coinflipper.hook.HookProtocolLib;
 import io.github.gronnmann.utils.coinflipper.Debug;
 import io.github.gronnmann.utils.coinflipper.GeneralUtils;
 import io.github.gronnmann.utils.coinflipper.ItemUtils;
@@ -33,7 +25,6 @@ import io.github.gronnmann.utils.coinflipper.input.InputData;
 import io.github.gronnmann.utils.coinflipper.input.InputData.InputType;
 import io.github.gronnmann.utils.coinflipper.input.InputManager;
 import io.github.gronnmann.utils.coinflipper.input.PlayerInputEvent;
-import io.github.gronnmann.utils.signinput.coinflipper.SignInputEvent;
 
 public class ConfigEditor implements Listener{
 	private ConfigEditor(){}
@@ -219,7 +210,10 @@ public class ConfigEditor implements Listener{
 		openEditor(p);
 	}
 	
-	
+	@EventHandler
+	public void cancelDrag(InventoryDragEvent e) {
+		if (e.getInventory().getHolder() instanceof ConfigEditorHolder)e.setCancelled(true);
+	}
 }
 
 class ConfigEditorHolder implements InventoryHolder{

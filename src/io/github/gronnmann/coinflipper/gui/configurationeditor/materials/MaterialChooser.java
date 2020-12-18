@@ -31,7 +31,7 @@ public class MaterialChooser implements Listener{
 		selectionScreen = new PagedInventory("Select material", ItemUtils.createItem(Material.ARROW, Message.NEXT.getMessage()),
 				ItemUtils.createItem(Material.ARROW, Message.PREVIOUS.getMessage()),
 				ItemUtils.createItem(Material.INK_SACK, Message.BACK.getMessage(), 1),
-				"material_choose", MaterialEditor.getInstance().selectionScreen);
+				"material_choose", MaterialEditor.getInstance().selectionScreen, false);
 		
 		for (Material material : Material.values()){
 			try{
