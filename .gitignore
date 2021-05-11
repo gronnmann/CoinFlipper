@@ -1,9 +1,21 @@
-/bin/
+# Mac OSX
+.DS_Store
+._*
+
+# Java
+*.class
+*.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse IDE
+.settings/
+bin/
 .classpath
-/target/
 .project
-.git
-.github
-.settings
-target/*
-bin/*
+
+# Maven
+target/
+dependency-reduced-pom.xml
