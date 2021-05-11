@@ -75,10 +75,10 @@ public class HookManager {
 		case ProtocolLib:
 			hooks.put(hook, HookProtocolLib.getHook().register(pl));
 			break;
-		case ChatPerWorld:
-			break;
 		case CombatLogX:
-			HookCombatLogX.getHook().register();
+			String version = Bukkit.getPluginManager().getPlugin("CombatLogX").getDescription().getVersion();
+			if(version.startsWith("10")) HookCombatLogX10.getHook().register();
+			else if(version.startsWith("11")) HookCombatLogX11.getHook().register();
 			break;
 		}
 		
@@ -97,16 +97,18 @@ public class HookManager {
 		return hooks.get(hook);
 	}
 	
-	public boolean isTagged(Player pl){
+	public boolean isTagged(Player player) {
 		if (this.isHooked(HookType.CombatTagPlus)){
-			return HookCombatTagPlus.getHook().isTagged(pl);
+			return HookCombatTagPlus.getHook().isTagged(player);
 		}
 		
 		/*if (this.isHooked(HookType.PvPManager)){
 			return HookPvpManager.getHook().isTagged(pl);
 		}*/
 		if (this.isHooked(HookType.CombatLogX)){
-			return HookCombatLogX.getHook().isTagged(pl);
+			String version = Bukkit.getPluginManager().getPlugin("CombatLogX").getDescription().getVersion();
+			if(version.startsWith("10")) return HookCombatLogX10.getHook().isTagged(player);
+			else if(version.startsWith("11")) HookCombatLogX11.getHook().isTagged(player);
 		}
 		
 		return false;
