@@ -20,8 +20,9 @@
     </resources>
     <plugins>
       <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
+        <version>3.8.1</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -39,10 +40,17 @@
   	<repository>
 		<id>jitpack.io</id>
 		<url>https://jitpack.io</url>
+		<snapshots>
+			<enabled>false</enabled>
+		</snapshots>
 	</repository>
 	<repository>
     	<id>codemc-repo</id>
     	<url>https://repo.codemc.io/repository/maven-public/</url>
+	</repository>
+	<repository>
+    	<id>sirblobman-public</id>
+    	<url>https://nexus.sirblobman.xyz/repository/public/</url>
 	</repository>
     <repository>
     	<id>dmulloy2-repo</id>
@@ -78,17 +86,35 @@
     	<version>10.0.0.0-SNAPSHOT</version>
     	<scope>provided</scope>
 	</dependency>
+    <dependency>
+    	<groupId>com.github.sirblobman.combatlogx</groupId>
+    	<artifactId>api</artifactId>
+    	<version>11.0.0.0-SNAPSHOT</version>
+    	<scope>provided</scope>
+	</dependency>
 	<dependency>
     	<groupId>com.comphenix.protocol</groupId>
     	<artifactId>ProtocolLib</artifactId>
     	<version>4.5.0</version>
     	<scope>provided</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>*</groupId>
+				<artifactId>*</artifactId>
+			</exclusion>
+		</exclusions>
   	</dependency>
   	<dependency>
          <groupId>me.clip</groupId>
          <artifactId>placeholderapi</artifactId>
          <version>2.10.9</version>
          <scope>provided</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>*</groupId>
+				<artifactId>*</artifactId>
+			</exclusion>
+		</exclusions>
     </dependency>
     <dependency>
 	    <groupId>com.github.MinelinkNetwork.CombatTagPlus</groupId>
@@ -97,8 +123,8 @@
 	    <scope>provided</scope>
 	    <exclusions>
         	<exclusion>
-            	<groupId>org.mcstats.bukkit</groupId>
-            	<artifactId>metrics-lite</artifactId>
+            	<groupId>*</groupId>
+            	<artifactId>*</artifactId>
         	</exclusion>
     	</exclusions>
 	</dependency>
