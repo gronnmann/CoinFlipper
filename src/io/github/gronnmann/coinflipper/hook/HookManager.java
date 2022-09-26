@@ -108,7 +108,7 @@ public class HookManager {
 		if (this.isHooked(HookType.CombatLogX)){
 			String version = Bukkit.getPluginManager().getPlugin("CombatLogX").getDescription().getVersion();
 			if(version.startsWith("10")) return HookCombatLogX10.getHook().isTagged(player);
-			else if(version.startsWith("11")) HookCombatLogX11.getHook().isTagged(player);
+			else if(version.startsWith("11")) return HookCombatLogX11.getHook().isTagged(player);
 		}
 		
 		return false;
