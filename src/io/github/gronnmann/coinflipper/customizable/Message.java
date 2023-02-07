@@ -1,10 +1,7 @@
 package io.github.gronnmann.coinflipper.customizable;
 
 import io.github.gronnmann.coinflipper.CoinFlipper;
-import org.bukkit.Server;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 
 import io.github.gronnmann.coinflipper.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
@@ -164,7 +161,6 @@ public enum Message {
 	
 	public String getMessage() {
 		msg=ChatColor.translateAlternateColorCodes('&', msg.replace("%newline%", "\n"));
-		//If version below 1.16 dont translate hex codes.
 		if (CoinFlipper.versionId<16){
 			return msg;
 		}
